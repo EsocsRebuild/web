@@ -45,7 +45,12 @@ export function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDi
 }
 
 export function CardFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn("flex items-center gap-3 border-t border-border px-5 py-4 sm:px-6", className)} {...props} />;
+  return (
+    <div
+      className={cn("flex items-center gap-3 border-t border-border px-5 py-4 sm:px-6", className)}
+      {...props}
+    />
+  );
 }
 
 export { cardVariants };

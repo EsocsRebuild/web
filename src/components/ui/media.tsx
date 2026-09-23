@@ -16,7 +16,15 @@ export interface MediaProps extends Omit<ImageProps, "src" | "alt" | "fill"> {
  * Responsive image frame. Renders a neutral block when `src` is missing so
  * layouts hold their shape before content is loaded from the CMS.
  */
-export function Media({ src, alt, aspect = "aspect-[3/2]", zoomOnCardHover, className, sizes = "100vw", ...props }: MediaProps) {
+export function Media({
+  src,
+  alt,
+  aspect = "aspect-[3/2]",
+  zoomOnCardHover,
+  className,
+  sizes = "100vw",
+  ...props
+}: MediaProps) {
   return (
     <div className={cn("relative overflow-hidden bg-surface-sunken", aspect, className)}>
       {src && (
@@ -27,7 +35,8 @@ export function Media({ src, alt, aspect = "aspect-[3/2]", zoomOnCardHover, clas
           sizes={sizes}
           className={cn(
             "object-cover",
-            zoomOnCardHover && "transition-transform duration-500 ease-standard group-hover/card:scale-[1.03]",
+            zoomOnCardHover &&
+              "transition-transform duration-500 ease-standard group-hover/card:scale-[1.03]",
           )}
           {...props}
         />

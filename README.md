@@ -1,88 +1,78 @@
-# ESOCS — Web
+# ESOCS Web
 
-Premium frontend for the Eternal Sacred Order of Cherubim & Seraphim.
+Website for the Eternal Sacred Order of Cherubim & Seraphim.
 
-**Stack:** Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 · Radix UI · Motion · next-themes
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Radix UI.
+
+## Getting started
 
 ```bash
-cp .env.example .env.local
+nvm use
 npm install
-npm run dev        # http://localhost:3000
-npm run build      # production build + type-check
-npm run lint
-npx prettier --write .
+cp .env.example .env.local
+npm run dev
 ```
 
-Open **`/design-system`** to see every token and component live, in light and dark.
+| Script                        | Description                                                                                            |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------ |
+| `npm run dev`                 | Development server on http://localhost:3000                                                            |
+| `npm run build` / `npm start` | Production build and server                                                                            |
+| `npm run validate`            | Lint, format check, type-check and unit tests                                                          |
+| `npm test`                    | Unit tests (Vitest)                                                                                    |
+| `npm run test:e2e`            | Production build and Playwright tests on phone, tablet and desktop, including axe accessibility checks |
+| `npm run format`              | Format all files with Prettier                                                                         |
 
-## Structure
+See [CONTRIBUTING.md](CONTRIBUTING.md) for branches, commit conventions, Git hooks and CI.
+
+## Project structure
 
 ```
 src/
-├─ app/
-│  ├─ globals.css          ← design tokens, themes, base styles, utilities
-│  ├─ layout.tsx           ← fonts, providers, header/footer, metadata
-│  ├─ page.tsx             ← home page (reference composition)
-│  ├─ design-system/       ← living style guide
-│  └─ error / loading / not-found / robots / sitemap / manifest
-├─ components/
-│  ├─ layout/              Container, Section, SiteHeader, SiteFooter, MobileNav, SkipLink
-│  ├─ typography/          Heading, Text, Lead, Eyebrow, SectionHeader
-│  ├─ ui/                  Button, Badge, Card, Alert, Avatar, Input, Textarea, Select,
-│  │                       Checkbox, Switch, Field, Label, Dialog, Sheet, Accordion, Tabs,
-│  │                       Tooltip, DropdownMenu, Toaster, Separator, Skeleton, Spinner, Links
-│  ├─ blocks/              PageHero, Scripture, EventCard, SermonCard, CtaBanner, ServiceTimes
-│  ├─ motion/              Reveal, Stagger, StaggerItem
-│  ├─ theme/               Providers, ThemeToggle
-│  └─ icons/               Logo, social icons
-├─ config/site.ts          ← church name, contacts, service times, navigation (edit TODOs)
-├─ hooks/                  useScrolled, useMediaQuery, useMounted
-└─ lib/                    cn & helpers, date/currency formatters, fonts, placeholder data
+  app/                 Routes, root layout, global styles
+    design-system/     Internal component reference (dev only)
+  components/
+    layout/            Container, Section, SiteHeader, SiteFooter, MobileNav
+    typography/        Heading, Text, Lead, Overline, SectionHeader
+    ui/                Buttons, forms, cards, media, dialogs, menus, tabs, etc.
+    blocks/            Church-specific sections: PageHero, ServiceTimes, EventCard, SermonCard, Scripture, CtaBanner
+    theme/             Theme provider and toggle
+    icons/             Logo and social icons
+  config/site.ts       Church details, service times, navigation
+  hooks/               Client hooks
+  lib/                 Utilities, formatters, fonts, development fixtures
+e2e/                   Playwright tests
 ```
 
 ## Design tokens
 
-Defined once in `src/app/globals.css`:
+All tokens live in `src/app/globals.css`.
 
-| Layer | Examples | Use for |
-| --- | --- | --- |
-| Brand palette | `royal-50…950`, `gold-…`, `parchment-…` | Rare, deliberate brand moments |
-| **Semantic** | `bg-background`, `bg-surface`, `text-foreground`, `text-muted-foreground`, `bg-primary`, `bg-accent`, `text-highlight`, `border-border`, `bg-danger` | **Default choice for all UI** — adapts to light/dark automatically |
-| Type | `text-display-2xl…sm`, `text-eyebrow`, `font-display`, `font-sans` | Fluid headings (clamp-based) |
-| Layout | `px-gutter`, `py-section`, `h-header`, `max-w-site`, `max-w-wide` | Consistent rhythm |
-| Effects | `shadow-soft/card/elevated/glow`, `rounded-card`, `ease-out-expo` | Depth & motion |
-| Utilities | `bg-sanctuary`, `bg-grain`, `bg-dots`, `text-gold-gradient`, `divider-fade`, `prose-sacred` | Signature textures |
+- **Palette:** `royal`, `gold` and `parchment` scales, 50–950.
+- **Semantic colours:** `background`, `foreground`, `surface`, `surface-muted`, `muted-foreground`,
+  `border`, `primary`, `accent`, `highlight`, `inverse`, and the status colours. Use these in components so
+  light and dark themes work without extra classes.
+- **Type:** Cormorant Garamond for display headings (`text-display-sm` to `text-display-2xl`, fluid),
+  Manrope for everything else.
+- **Layout:** `px-gutter`, `py-section`, `h-header`, `max-w-site`, `max-w-wide`.
+- **Shape:** `rounded-control` for inputs and buttons, `rounded-card` for cards and media.
 
-**Fonts:** Cormorant Garamond (display) + Manrope (body), self-hosted via `next/font`.
+Any element with the `dark` class switches its subtree to dark tokens. `Section tone="inverse"`,
+`Card variant="inverse"`, `PageHero` and the footer use this.
 
-## Building a page
+## Conventions
 
-```tsx
-import { PageHero } from "@/components/blocks/page-hero";
-import { Section } from "@/components/layout/section";
-import { SectionHeader } from "@/components/typography/section-header";
+- Build pages from `PageHero` followed by `Section` components.
+- When a page opens with a dark hero (anything marked `data-hero`, such as `PageHero`), the header becomes
+  transparent over it automatically.
+- `Heading` sets the document level with `as` and the visual size with `size`. One `h1` per page.
+- Use `Button asChild` to style a Next.js `Link` as a button.
+- Use `Media` for images. It keeps its aspect ratio and shows a neutral block until an image is supplied.
+- Card lists use `snap-row` on small screens and a grid from `lg`.
+- Inputs use a 16px font on mobile to prevent iOS zoom on focus.
 
-export default function AboutPage() {
-  return (
-    <>
-      <PageHero eyebrow="About" title="Our Story" description="…" />
-      <Section>
-        <SectionHeader eyebrow="Heritage" title="Founded in prayer" />
-        {/* content */}
-      </Section>
-      <Section tone="inverse" container="narrow">…</Section>
-    </>
-  );
-}
-```
+## Before launch
 
-### Conventions
-
-- **Always use semantic colours**, not raw palette or hex values, so dark mode works for free.
-- `<Section tone="inverse">`, `<Card variant="inverse">` and `CtaBanner` add a `.dark` class so everything inside them automatically uses dark tokens, even in light mode.
-- Pages that open with a dark hero must be added to `OVERLAY_ROUTES` in `components/layout/site-header.tsx` so the header starts transparent.
-- `Heading` separates semantics (`as="h1"`) from appearance (`size="xl"`). Keep one `h1` per page.
-- Use `Button asChild` to style a `next/link` as a button.
-- Style variants with `cva`, and merge classes with `cn()` from `@/lib/utils`.
-- Replace `LogoMark` in `components/icons/logo.tsx` with the official crest.
-- Delete `lib/placeholder-data.ts` once real content (CMS/API) is connected.
+- Fill in every `TODO` in `src/config/site.ts`, and set `heroImage`.
+- Replace the placeholder mark in `src/components/icons/logo.tsx` with the official crest.
+- Replace `src/lib/fixtures.ts` with real content from the CMS or API.
+- Set `NEXT_PUBLIC_SITE_URL` in the hosting environment.

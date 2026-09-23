@@ -20,7 +20,16 @@ export interface PageHeroProps {
 }
 
 /** Opening band for inner pages. Place it first in the page for the transparent header. */
-export function PageHero({ overline, title, description, actions, image, align = "left", className, children }: PageHeroProps) {
+export function PageHero({
+  overline,
+  title,
+  description,
+  actions,
+  image,
+  align = "left",
+  className,
+  children,
+}: PageHeroProps) {
   const centered = align === "center";
   return (
     <section

@@ -60,7 +60,9 @@ export function OverlayDemos() {
 
       <Button
         variant="outline"
-        onClick={() => toast("Service update", { description: "Bible Study moves to the Youth Hall this week." })}
+        onClick={() =>
+          toast("Service update", { description: "Bible Study moves to the Youth Hall this week." })
+        }
       >
         Toast
       </Button>
@@ -100,7 +102,9 @@ export function AccordionDemo() {
     <Accordion type="single" collapsible defaultValue="a" className="max-w-2xl">
       <AccordionItem value="a">
         <AccordionTrigger>How long is the Sunday service?</AccordionTrigger>
-        <AccordionContent>About two hours, including hymns, prayer, readings and the sermon.</AccordionContent>
+        <AccordionContent>
+          About two hours, including hymns, prayer, readings and the sermon.
+        </AccordionContent>
       </AccordionItem>
       <AccordionItem value="b">
         <AccordionTrigger>Is there a dress code?</AccordionTrigger>
@@ -130,5 +134,7 @@ export function LoadingButtonDemo() {
 }
 
 export function SearchDemo() {
-  return <Input type="search" leftIcon={<Search />} placeholder="Search sermons and events" aria-label="Search" />;
+  return (
+    <Input type="search" leftIcon={<Search />} placeholder="Search sermons and events" aria-label="Search" />
+  );
 }

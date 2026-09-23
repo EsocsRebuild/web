@@ -46,10 +46,15 @@ export function SiteHeader() {
                     <ul className="w-64 rounded-card border border-border bg-surface p-1.5 text-foreground shadow-overlay">
                       {item.children.map((child) => (
                         <li key={child.href}>
-                          <Link href={child.href} className="block rounded-control px-3 py-2.5 hover:bg-surface-muted">
+                          <Link
+                            href={child.href}
+                            className="block rounded-control px-3 py-2.5 hover:bg-surface-muted"
+                          >
                             <span className="block text-sm font-medium">{child.title}</span>
                             {child.description && (
-                              <span className="mt-0.5 block text-xs text-muted-foreground">{child.description}</span>
+                              <span className="mt-0.5 block text-xs text-muted-foreground">
+                                {child.description}
+                              </span>
                             )}
                           </Link>
                         </li>

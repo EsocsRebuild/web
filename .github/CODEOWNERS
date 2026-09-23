@@ -1,0 +1,6 @@
+# Default reviewers for every change.
+* @peterchims
+
+# Build, CI and repository settings.
+/.github/ @peterchims
+/.husky/ @peterchims

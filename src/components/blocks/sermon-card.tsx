@@ -16,11 +16,27 @@ export interface SermonCardProps {
   thumbnail?: string | null;
 }
 
-export function SermonCard({ title, href, speaker, date, series, scripture, durationSeconds, thumbnail }: SermonCardProps) {
+export function SermonCard({
+  title,
+  href,
+  speaker,
+  date,
+  series,
+  scripture,
+  durationSeconds,
+  thumbnail,
+}: SermonCardProps) {
   return (
     <Card variant="plain" className="h-full">
       <div className="relative">
-        <Media src={thumbnail} alt="" aspect="aspect-video" zoomOnCardHover sizes="(min-width: 1024px) 30vw, 80vw" className="rounded-card" />
+        <Media
+          src={thumbnail}
+          alt=""
+          aspect="aspect-video"
+          zoomOnCardHover
+          sizes="(min-width: 1024px) 30vw, 80vw"
+          className="rounded-card"
+        />
         <span className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-control bg-royal-950/80 px-2 py-1 text-xs font-semibold text-white">
           <Play aria-hidden className="size-3 fill-current" />
           {durationSeconds ? formatDuration(durationSeconds) : "Watch"}

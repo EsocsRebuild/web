@@ -18,9 +18,18 @@ export function EventCard({ title, href, start, location, category, image }: Eve
   const iso = new Date(start).toISOString();
   return (
     <Card variant="plain" className="h-full">
-      <Media src={image} alt="" zoomOnCardHover sizes="(min-width: 1024px) 30vw, 80vw" className="rounded-card" />
+      <Media
+        src={image}
+        alt=""
+        zoomOnCardHover
+        sizes="(min-width: 1024px) 30vw, 80vw"
+        className="rounded-card"
+      />
       <div className="flex gap-4 pt-5">
-        <time dateTime={iso} className="flex w-12 shrink-0 flex-col items-center border-r border-border pr-4 text-center">
+        <time
+          dateTime={iso}
+          className="flex w-12 shrink-0 flex-col items-center border-r border-border pr-4 text-center"
+        >
           <span className="text-xs font-semibold text-highlight">{month}</span>
           <span className="font-display text-3xl leading-none font-medium tabular-nums">{day}</span>
         </time>

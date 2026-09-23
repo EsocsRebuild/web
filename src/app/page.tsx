@@ -33,11 +33,24 @@ export default function HomePage() {
 
   return (
     <>
-      <section data-hero className="dark relative isolate flex min-h-[min(88svh,52rem)] items-end bg-inverse pt-header text-foreground">
+      <section
+        data-hero
+        className="dark relative isolate flex min-h-[min(88svh,52rem)] items-end bg-inverse pt-header text-foreground"
+      >
         {siteConfig.heroImage && (
           <>
-            <Image src={siteConfig.heroImage} alt="" fill priority sizes="100vw" className="-z-20 object-cover" />
-            <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-inverse via-inverse/60 to-inverse/20" />
+            <Image
+              src={siteConfig.heroImage}
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+              className="-z-20 object-cover"
+            />
+            <div
+              aria-hidden
+              className="absolute inset-0 -z-10 bg-gradient-to-t from-inverse via-inverse/60 to-inverse/20"
+            />
           </>
         )}
         <Container size="wide" className="pt-16 pb-14 md:pb-20">
@@ -86,15 +99,17 @@ export default function HomePage() {
               Plan your visit
             </ArrowLink>
           </div>
-          <Media src={null} alt="Congregation at Sunday worship" aspect="aspect-[4/3] lg:aspect-auto" className="rounded-card lg:h-full" />
+          <Media
+            src={null}
+            alt="Congregation at Sunday worship"
+            aspect="aspect-[4/3] lg:aspect-auto"
+            className="rounded-card lg:h-full"
+          />
         </div>
       </Section>
 
       <Section tone="muted">
-        <SectionHeader
-          title="Upcoming events"
-          actions={<ArrowLink href="/events">All events</ArrowLink>}
-        />
+        <SectionHeader title="Upcoming events" actions={<ArrowLink href="/events">All events</ArrowLink>} />
         <ul className={cardRow}>
           {fixtureEvents.map((event) => (
             <li key={event.href}>

@@ -1,0 +1,2 @@
+# Lint, format and test only the staged files.
+npx lint-staged

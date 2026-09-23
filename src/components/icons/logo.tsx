@@ -15,9 +15,15 @@ export function LogoMark({ className }: { className?: string }) {
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className={cn("inline-flex min-h-11 items-center gap-2.5", className)} aria-label={`${siteConfig.name} home`}>
+    <Link
+      href="/"
+      className={cn("inline-flex min-h-11 items-center gap-2.5", className)}
+      aria-label={`${siteConfig.name} home`}
+    >
       <LogoMark />
-      <span className="font-display text-2xl leading-none font-semibold tracking-wide">{siteConfig.name}</span>
+      <span className="font-display text-2xl leading-none font-semibold tracking-wide">
+        {siteConfig.name}
+      </span>
     </Link>
   );
 }

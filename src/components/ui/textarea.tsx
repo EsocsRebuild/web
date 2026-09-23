@@ -4,7 +4,11 @@ import { cn } from "@/lib/utils";
 
 import { fieldBase } from "./input";
 
-export function Textarea({ className, rows = 5, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
+export function Textarea({
+  className,
+  rows = 5,
+  ...props
+}: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <textarea
       rows={rows}

@@ -12,7 +12,11 @@ export function AccordionItem({ className, ...props }: React.ComponentProps<type
   return <AccordionPrimitive.Item className={cn("border-b border-border", className)} {...props} />;
 }
 
-export function AccordionTrigger({ className, children, ...props }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
+export function AccordionTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Trigger>) {
   return (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
@@ -29,13 +33,19 @@ export function AccordionTrigger({ className, children, ...props }: React.Compon
   );
 }
 
-export function AccordionContent({ className, children, ...props }: React.ComponentProps<typeof AccordionPrimitive.Content>) {
+export function AccordionContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionPrimitive.Content>) {
   return (
     <AccordionPrimitive.Content
       className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
       {...props}
     >
-      <div className={cn("max-w-3xl pb-5 text-base leading-7 text-muted-foreground", className)}>{children}</div>
+      <div className={cn("max-w-3xl pb-5 text-base leading-7 text-muted-foreground", className)}>
+        {children}
+      </div>
     </AccordionPrimitive.Content>
   );
 }

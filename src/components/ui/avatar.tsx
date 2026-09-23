@@ -34,5 +34,7 @@ export function Avatar({ name, src, size = "md", className }: AvatarProps) {
 }
 
 export function AvatarGroup({ className, children }: { className?: string; children: React.ReactNode }) {
-  return <div className={cn("flex -space-x-2 [&>*]:ring-2 [&>*]:ring-background", className)}>{children}</div>;
+  return (
+    <div className={cn("flex -space-x-2 [&>*]:ring-2 [&>*]:ring-background", className)}>{children}</div>
+  );
 }

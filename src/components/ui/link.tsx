@@ -35,7 +35,10 @@ export function ArrowLink({ className, children, ...props }: React.ComponentProp
       {...props}
     >
       {children}
-      <ArrowRight aria-hidden className="size-4 transition-transform duration-150 group-hover/arrow:translate-x-0.5" />
+      <ArrowRight
+        aria-hidden
+        className="size-4 transition-transform duration-150 group-hover/arrow:translate-x-0.5"
+      />
     </NextLink>
   );
 }

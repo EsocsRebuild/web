@@ -13,7 +13,9 @@ export function ServiceTimes({ className }: { className?: string }) {
             <span className="block text-sm font-semibold">{s.name}</span>
             <span className="block text-sm text-muted-foreground">{s.day}s</span>
           </dt>
-          <dd className="font-display text-3xl font-medium tabular-nums md:order-first md:text-4xl">{s.time}</dd>
+          <dd className="font-display text-3xl font-medium tabular-nums md:order-first md:text-4xl">
+            {s.time}
+          </dd>
         </div>
       ))}
     </dl>

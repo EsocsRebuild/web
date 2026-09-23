@@ -9,7 +9,13 @@ export interface SeparatorProps {
 
 export function Separator({ orientation = "horizontal", variant = "solid", className }: SeparatorProps) {
   if (orientation === "vertical") {
-    return <span role="separator" aria-orientation="vertical" className={cn("w-px self-stretch bg-border", className)} />;
+    return (
+      <span
+        role="separator"
+        aria-orientation="vertical"
+        className={cn("w-px self-stretch bg-border", className)}
+      />
+    );
   }
   if (variant === "ornament") {
     return (

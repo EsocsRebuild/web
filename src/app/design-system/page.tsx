@@ -29,7 +29,13 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { fixtureEvents, fixtureSermons } from "@/lib/fixtures";
 
-import { AccordionDemo, LoadingButtonDemo, OverlayDemos, SearchDemo, TabsDemo } from "./_components/interactive-demos";
+import {
+  AccordionDemo,
+  LoadingButtonDemo,
+  OverlayDemos,
+  SearchDemo,
+  TabsDemo,
+} from "./_components/interactive-demos";
 
 export const metadata: Metadata = { title: "Design system", robots: { index: false, follow: false } };
 
@@ -86,8 +92,14 @@ export default function DesignSystemPage() {
                 <p className="mb-2 text-sm font-medium capitalize">{scale}</p>
                 <div className="grid grid-cols-6 overflow-hidden rounded-control border border-border sm:grid-cols-11">
                   {steps.map((step) => (
-                    <div key={step} className="h-12 sm:h-14" style={{ background: `var(--color-${scale}-${step})` }}>
-                      <span className={`block p-1.5 font-mono text-[0.625rem] ${step >= lightLabelFrom[scale] ? "text-white" : "text-black"}`}>
+                    <div
+                      key={step}
+                      className="h-12 sm:h-14"
+                      style={{ background: `var(--color-${scale}-${step})` }}
+                    >
+                      <span
+                        className={`block p-1.5 font-mono text-[0.625rem] ${step >= lightLabelFrom[scale] ? "text-white" : "text-black"}`}
+                      >
                         {step}
                       </span>
                     </div>
@@ -111,20 +123,36 @@ export default function DesignSystemPage() {
 
         <Block title="Typography">
           <div className="grid gap-6">
-            <Heading as="p" size="2xl">Display 2XL</Heading>
-            <Heading as="p" size="xl">Display XL</Heading>
-            <Heading as="p" size="lg">Display LG</Heading>
-            <Heading as="p" size="md">Display MD</Heading>
-            <Heading as="p" size="sm">Display SM</Heading>
-            <Heading as="p" size="title">Title, sans serif</Heading>
-            <Heading as="p" size="subtitle">Subtitle, sans serif</Heading>
+            <Heading as="p" size="2xl">
+              Display 2XL
+            </Heading>
+            <Heading as="p" size="xl">
+              Display XL
+            </Heading>
+            <Heading as="p" size="lg">
+              Display LG
+            </Heading>
+            <Heading as="p" size="md">
+              Display MD
+            </Heading>
+            <Heading as="p" size="sm">
+              Display SM
+            </Heading>
+            <Heading as="p" size="title">
+              Title, sans serif
+            </Heading>
+            <Heading as="p" size="subtitle">
+              Subtitle, sans serif
+            </Heading>
             <Overline>Overline</Overline>
             <Lead>Lead paragraph. Introduces a page or section.</Lead>
             <Text>
               Body text with an <TextLink href="#">inline link</TextLink>. Standalone links use the{" "}
               <ArrowLink href="#">arrow link</ArrowLink>.
             </Text>
-            <Text size="sm" tone="muted">Small muted text for metadata and captions.</Text>
+            <Text size="sm" tone="muted">
+              Small muted text for metadata and captions.
+            </Text>
           </div>
         </Block>
 
@@ -132,8 +160,8 @@ export default function DesignSystemPage() {
           <div className="rich-text">
             <h2>Our heritage</h2>
             <p>
-              HTML from the CMS is styled with the <code>rich-text</code> class. It covers <strong>headings</strong>,{" "}
-              <a href="#">links</a>, lists and quotations.
+              HTML from the CMS is styled with the <code>rich-text</code> class. It covers{" "}
+              <strong>headings</strong>, <a href="#">links</a>, lists and quotations.
             </p>
             <ul>
               <li>Prayer and fasting</li>
@@ -157,7 +185,9 @@ export default function DesignSystemPage() {
               <Button size="md">Medium</Button>
               <Button size="lg">Large</Button>
               <Button size="icon-sm" variant="outline" aria-label="Share">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 5v14M5 12h14" /></svg>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
               </Button>
               <LoadingButtonDemo />
               <Button disabled>Disabled</Button>
@@ -179,7 +209,9 @@ export default function DesignSystemPage() {
             <Badge variant="outline">Outline</Badge>
             <Badge variant="success">Success</Badge>
             <Badge variant="warning">Warning</Badge>
-            <Badge variant="danger" dot>Live</Badge>
+            <Badge variant="danger" dot>
+              Live
+            </Badge>
             <Badge variant="info">Info</Badge>
           </div>
         </Block>
@@ -190,9 +222,20 @@ export default function DesignSystemPage() {
               <Input id="ds-first" autoComplete="given-name" required />
             </Field>
             <Field label="Email" htmlFor="ds-email" error="Enter a valid email address.">
-              <Input id="ds-email" type="email" defaultValue="name@" aria-invalid aria-describedby="ds-email-msg" />
+              <Input
+                id="ds-email"
+                type="email"
+                defaultValue="name@"
+                aria-invalid
+                aria-describedby="ds-email-msg"
+              />
             </Field>
-            <Field label="Ministry" htmlFor="ds-ministry" hint="Where would you like to serve?" className="sm:col-span-2">
+            <Field
+              label="Ministry"
+              htmlFor="ds-ministry"
+              hint="Where would you like to serve?"
+              className="sm:col-span-2"
+            >
               <Select id="ds-ministry" defaultValue="" aria-describedby="ds-ministry-msg">
                 <option value="" disabled>
                   Select a ministry
@@ -208,17 +251,29 @@ export default function DesignSystemPage() {
             <div className="sm:col-span-2">
               <SearchDemo />
             </div>
-            <Checkbox label="Weekly bulletin" description="Service updates by email, once a week." defaultChecked />
+            <Checkbox
+              label="Weekly bulletin"
+              description="Service updates by email, once a week."
+              defaultChecked
+            />
             <Switch label="Event reminders" defaultChecked />
           </form>
         </Block>
 
         <Block title="Alerts">
           <div className="grid max-w-2xl gap-3">
-            <Alert variant="info" title="Live stream">Sunday Worship is streamed on YouTube.</Alert>
-            <Alert variant="success" title="Donation received">A receipt has been sent to your email.</Alert>
-            <Alert variant="warning" title="Venue change">Bible Study moves to the Youth Hall this week.</Alert>
-            <Alert variant="danger" title="Payment failed">Check your card details and try again.</Alert>
+            <Alert variant="info" title="Live stream">
+              Sunday Worship is streamed on YouTube.
+            </Alert>
+            <Alert variant="success" title="Donation received">
+              A receipt has been sent to your email.
+            </Alert>
+            <Alert variant="warning" title="Venue change">
+              Bible Study moves to the Youth Hall this week.
+            </Alert>
+            <Alert variant="danger" title="Payment failed">
+              Check your card details and try again.
+            </Alert>
           </div>
         </Block>
 
@@ -318,14 +373,23 @@ export default function DesignSystemPage() {
           description="Optional overline, description and actions."
           actions={<Button variant="outline">Action</Button>}
         />
-        <SectionHeader align="center" title="Centred" description="For editorial sections." className="mb-0 md:mb-0" />
+        <SectionHeader
+          align="center"
+          title="Centred"
+          description="For editorial sections."
+          className="mb-0 md:mb-0"
+        />
       </Section>
 
       <Section>
         <CtaBanner
           title="Call to action"
           description="Used at the end of key pages."
-          actions={<Button variant="accent" size="lg">Primary action</Button>}
+          actions={
+            <Button variant="accent" size="lg">
+              Primary action
+            </Button>
+          }
         />
       </Section>
     </>

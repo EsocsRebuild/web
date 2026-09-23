@@ -9,7 +9,11 @@ export function Select({ className, children, ...props }: React.SelectHTMLAttrib
   return (
     <div className="relative">
       <select
-        className={cn(fieldBase, "h-11 cursor-pointer appearance-none pr-10 pl-3.5 text-base sm:text-sm", className)}
+        className={cn(
+          fieldBase,
+          "h-11 cursor-pointer appearance-none pr-10 pl-3.5 text-base sm:text-sm",
+          className,
+        )}
         {...props}
       >
         {children}
