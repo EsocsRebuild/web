@@ -25,7 +25,6 @@ updates:
             "typescript",
             "tailwindcss",
             "@tailwindcss/*",
-            "husky",
             "lint-staged",
             "@commitlint/*",
           ]

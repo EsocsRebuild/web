@@ -1,0 +1,82 @@
+[
+  {
+    "id": 526,
+    "date": "2025-04-30T23:24:47",
+    "date_gmt": "2025-04-30T23:24:47",
+    "modified": "2025-06-11T11:44:36",
+    "modified_gmt": "2025-06-11T11:44:36",
+    "slug": "standard-chartered-bank",
+    "status": "publish",
+    "type": "banks",
+    "link": "https://super-vault.esocs.net/banks/standard-chartered-bank/",
+    "title": {
+      "rendered": "Standard Chartered Bank"
+    },
+    "acf": {
+      "bank_name": "Standard Chartered Bank",
+      "bank_account_name": "The Eternal Order of the Cherubim and Seraphim",
+      "bank_account_number": 98765432,
+      "bank_logo": 535
+    }
+  },
+  {
+    "id": 525,
+    "date": "2025-04-30T23:24:18",
+    "date_gmt": "2025-04-30T23:24:18",
+    "modified": "2025-05-01T09:36:28",
+    "modified_gmt": "2025-05-01T09:36:28",
+    "slug": "fcmb",
+    "status": "publish",
+    "type": "banks",
+    "link": "https://super-vault.esocs.net/banks/fcmb/",
+    "title": {
+      "rendered": "FCMB"
+    },
+    "acf": {
+      "bank_name": "FCMB",
+      "bank_account_name": "The Eternal Order of the Cherubim and Seraphim",
+      "bank_account_number": 98765432,
+      "bank_logo": 533
+    }
+  },
+  {
+    "id": 524,
+    "date": "2025-04-30T23:23:42",
+    "date_gmt": "2025-04-30T23:23:42",
+    "modified": "2025-05-01T09:34:55",
+    "modified_gmt": "2025-05-01T09:34:55",
+    "slug": "united-bank-of-africa",
+    "status": "publish",
+    "type": "banks",
+    "link": "https://super-vault.esocs.net/banks/united-bank-of-africa/",
+    "title": {
+      "rendered": "United Bank of Africa"
+    },
+    "acf": {
+      "bank_name": "United Bank of Africa",
+      "bank_account_name": "The Eternal Order of the Cherubim and Seraphim",
+      "bank_account_number": 99987654,
+      "bank_logo": 530
+    }
+  },
+  {
+    "id": 523,
+    "date": "2025-04-30T23:22:20",
+    "date_gmt": "2025-04-30T23:22:20",
+    "modified": "2025-05-01T09:25:50",
+    "modified_gmt": "2025-05-01T09:25:50",
+    "slug": "523",
+    "status": "publish",
+    "type": "banks",
+    "link": "https://super-vault.esocs.net/banks/523/",
+    "title": {
+      "rendered": "GT Bank"
+    },
+    "acf": {
+      "bank_name": "GT Bank",
+      "bank_account_name": "The Eternal Order of the Cherubim and Seraphim",
+      "bank_account_number": 98765432,
+      "bank_logo": 528
+    }
+  }
+]

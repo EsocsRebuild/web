@@ -1,0 +1,98 @@
+[
+  {
+    "number": 1,
+    "name": "CMC 1",
+    "slug": "cmc-1",
+    "chairman": "SUP. AP. GEN. B. OKUNSEINDE",
+    "viceChairman": "AP. GEN. J. O. DADA",
+    "secretary": null
+  },
+  {
+    "number": 2,
+    "name": "CMC 2",
+    "slug": "cmc-2",
+    "chairman": "SUP. AP. GEN. PROF. (DR.) W.O.C. UGWU",
+    "viceChairman": "AP. GEN. C. I. EBO",
+    "secretary": null
+  },
+  {
+    "number": 3,
+    "name": "CMC 3",
+    "slug": "cmc-3",
+    "chairman": "AP. GEN. (DR) A. B. O. JAJA",
+    "viceChairman": null,
+    "secretary": null
+  },
+  {
+    "number": 4,
+    "name": "CMC 4",
+    "slug": "cmc-4",
+    "chairman": "DBA. (DR) ISAAC BELLO",
+    "viceChairman": null,
+    "secretary": null
+  },
+  {
+    "number": 5,
+    "name": "CMC 5",
+    "slug": "cmc-5",
+    "chairman": "SUP. AP. GEN. NDUKWE U. NDUKWE",
+    "viceChairman": "AP. GEN. BASSEY E. O. EDEM (MFR)",
+    "secretary": null
+  },
+  {
+    "number": 6,
+    "name": "CMC 6",
+    "slug": "cmc-6",
+    "chairman": "SUP. AP. GEN. (DR) E. F. FALOUGHI (OON)",
+    "viceChairman": "SUP. AP. GEN. DERE OTUBU",
+    "secretary": null
+  },
+  {
+    "number": 7,
+    "name": "CMC 7",
+    "slug": "cmc-7",
+    "chairman": "AP. GEN. CLEM AGBA",
+    "viceChairman": "SUP. AP. GEN (DR) I. U. OMOIKE",
+    "secretary": null
+  },
+  {
+    "number": 8,
+    "name": "CMC 8",
+    "slug": "cmc-8",
+    "chairman": "SUP. AP. GEN. G. O. FAFOWORA",
+    "viceChairman": null,
+    "secretary": null
+  },
+  {
+    "number": 9,
+    "name": "CMC 9",
+    "slug": "cmc-9",
+    "chairman": "SUP. AP. GEN. (ENGR) G. A. ONOBUN",
+    "viceChairman": "AP. GEN. TIMOTHY OGBU",
+    "secretary": "AP. GEN. JOHN MACPEPPLE"
+  },
+  {
+    "number": 10,
+    "name": "CMC 10",
+    "slug": "cmc-10",
+    "chairman": "SUP. AP. GEN. 'BIODUN SANYAOLU",
+    "viceChairman": null,
+    "secretary": null
+  },
+  {
+    "number": 11,
+    "name": "CMC 11",
+    "slug": "cmc-11",
+    "chairman": "AP. GEN. DR. TOPE OLOFINNADE",
+    "viceChairman": null,
+    "secretary": null
+  },
+  {
+    "number": 12,
+    "name": "CMC 12",
+    "slug": "cmc-12",
+    "chairman": "SUP. AP. GEN. (DR) A. AKINMOLADUN",
+    "viceChairman": null,
+    "secretary": null
+  }
+]

@@ -1,0 +1,122 @@
+[
+  {
+    "slug": "joint-prayers-at-wilderness-preparatory-prayer-to-fasting",
+    "title": "Joint Prayers at the Wilderness",
+    "description": "Joint Prayers at the Wilderness Preparatory Prayer to Fasting",
+    "date": "2026-01-22",
+    "startTime": null,
+    "endTime": null,
+    "types": [
+      "communion service"
+    ],
+    "status": "open",
+    "registrationUrl": null,
+    "image": {
+      "id": 715,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/07/esocs-logo.jpg",
+      "width": 316,
+      "height": 316,
+      "alt": null
+    }
+  },
+  {
+    "slug": "easter-sunday",
+    "title": "Easter Sunday",
+    "description": "Celebration Service of Easter Sunday",
+    "date": "2026-03-05",
+    "startTime": null,
+    "endTime": null,
+    "types": [
+      "thanksgiving"
+    ],
+    "status": "open",
+    "registrationUrl": null,
+    "image": {
+      "id": 715,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/07/esocs-logo.jpg",
+      "width": 316,
+      "height": 316,
+      "alt": null
+    }
+  },
+  {
+    "slug": "good-friday",
+    "title": "Good Friday",
+    "description": "Good Friday Service at the Wilderness",
+    "date": "2026-03-03",
+    "startTime": "06:00:00",
+    "endTime": null,
+    "types": [
+      "communion service"
+    ],
+    "status": "open",
+    "registrationUrl": null,
+    "image": {
+      "id": 715,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/07/esocs-logo.jpg",
+      "width": 316,
+      "height": 316,
+      "alt": null
+    }
+  },
+  {
+    "slug": "palm-sunday",
+    "title": "Palm Sunday",
+    "description": "A Day to celebrate Palm Sunday at Surulere",
+    "date": "2026-02-28",
+    "startTime": null,
+    "endTime": null,
+    "types": [
+      "communion service"
+    ],
+    "status": "open",
+    "registrationUrl": null,
+    "image": {
+      "id": 715,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/07/esocs-logo.jpg",
+      "width": 316,
+      "height": 316,
+      "alt": null
+    }
+  },
+  {
+    "slug": "mothers-day",
+    "title": "Mother's Day Celebration",
+    "description": "A Day to Celebrate Mother's All over the World",
+    "date": "2026-02-15",
+    "startTime": null,
+    "endTime": null,
+    "types": [
+      "thanksgiving"
+    ],
+    "status": "open",
+    "registrationUrl": null,
+    "image": {
+      "id": 715,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/07/esocs-logo.jpg",
+      "width": 316,
+      "height": 316,
+      "alt": null
+    }
+  },
+  {
+    "slug": "40-days-lenten-season",
+    "title": "40 Days Lenten Season",
+    "description": "A Season of Lent (24th, febuary to 4th, April 2026)",
+    "date": "2026-01-24",
+    "startTime": null,
+    "endTime": null,
+    "types": [
+      "communion service"
+    ],
+    "status": "open",
+    "registrationUrl": null,
+    "image": {
+      "id": 715,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/07/esocs-logo.jpg",
+      "width": 316,
+      "height": 316,
+      "alt": null
+    }
+  }
+]

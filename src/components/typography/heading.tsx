@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 const headingVariants = cva("text-foreground", {
   variants: {
     size: {
-      "2xl": "font-display text-display-2xl font-medium",
-      xl: "font-display text-display-xl font-medium",
-      lg: "font-display text-display-lg font-medium",
-      md: "font-display text-display-md font-medium",
-      sm: "font-display text-display-sm font-medium",
+      "2xl": "font-display text-display-2xl font-extrabold",
+      xl: "font-display text-display-xl font-extrabold",
+      lg: "font-display text-display-lg font-bold",
+      md: "font-display text-display-md font-bold",
+      sm: "font-display text-display-sm font-bold",
       title: "font-sans text-xl leading-snug font-semibold tracking-tight",
       subtitle: "font-sans text-base leading-snug font-semibold",
     },

@@ -1,0 +1,164 @@
+[
+  {
+    "id": 877,
+    "date": "2026-02-04T15:55:06",
+    "date_gmt": "2026-02-04T15:55:06",
+    "modified": "2026-02-04T15:57:15",
+    "modified_gmt": "2026-02-04T15:57:15",
+    "slug": "joint-prayers-at-wilderness-preparatory-prayer-to-fasting",
+    "status": "publish",
+    "type": "event",
+    "link": "https://super-vault.esocs.net/event/joint-prayers-at-wilderness-preparatory-prayer-to-fasting/",
+    "title": {
+      "rendered": "Joint Prayers at the Wilderness Preparatory Prayer to Fasting"
+    },
+    "acf": {
+      "event_title": "Joint Prayers at the Wilderness ",
+      "description": "Joint Prayers at the Wilderness Preparatory Prayer to Fasting",
+      "date": "20260122",
+      "start_time": "",
+      "end_time": "",
+      "registration_link": "",
+      "event_type": [
+        "communion service"
+      ],
+      "image": 715,
+      "status": "open"
+    }
+  },
+  {
+    "id": 875,
+    "date": "2026-02-04T14:28:41",
+    "date_gmt": "2026-02-04T14:28:41",
+    "modified": "2026-02-04T14:28:41",
+    "modified_gmt": "2026-02-04T14:28:41",
+    "slug": "easter-sunday",
+    "status": "publish",
+    "type": "event",
+    "link": "https://super-vault.esocs.net/event/easter-sunday/",
+    "title": {
+      "rendered": "Easter Sunday"
+    },
+    "acf": {
+      "event_title": "Easter Sunday ",
+      "description": "Celebration Service of Easter Sunday",
+      "date": "20260305",
+      "start_time": "",
+      "end_time": "",
+      "registration_link": "",
+      "event_type": [
+        "thanksgiving"
+      ],
+      "image": 715,
+      "status": "open"
+    }
+  },
+  {
+    "id": 873,
+    "date": "2026-02-04T14:26:30",
+    "date_gmt": "2026-02-04T14:26:30",
+    "modified": "2026-02-04T14:30:30",
+    "modified_gmt": "2026-02-04T14:30:30",
+    "slug": "good-friday",
+    "status": "publish",
+    "type": "event",
+    "link": "https://super-vault.esocs.net/event/good-friday/",
+    "title": {
+      "rendered": "Good Friday"
+    },
+    "acf": {
+      "event_title": "Good Friday",
+      "description": " Good Friday Service at the Wilderness",
+      "date": "20260303",
+      "start_time": "06:00:00",
+      "end_time": "",
+      "registration_link": "",
+      "event_type": [
+        "communion service"
+      ],
+      "image": 715,
+      "status": "open"
+    }
+  },
+  {
+    "id": 871,
+    "date": "2026-02-04T14:25:10",
+    "date_gmt": "2026-02-04T14:25:10",
+    "modified": "2026-02-04T15:55:49",
+    "modified_gmt": "2026-02-04T15:55:49",
+    "slug": "palm-sunday",
+    "status": "publish",
+    "type": "event",
+    "link": "https://super-vault.esocs.net/event/palm-sunday/",
+    "title": {
+      "rendered": "Palm Sunday"
+    },
+    "acf": {
+      "event_title": "Palm Sunday",
+      "description": "A Day to celebrate Palm Sunday at Surulere",
+      "date": "20260228",
+      "start_time": "",
+      "end_time": "",
+      "registration_link": "",
+      "event_type": [
+        "communion service"
+      ],
+      "image": 715,
+      "status": "open"
+    }
+  },
+  {
+    "id": 869,
+    "date": "2026-02-04T14:23:46",
+    "date_gmt": "2026-02-04T14:23:46",
+    "modified": "2026-02-04T14:23:46",
+    "modified_gmt": "2026-02-04T14:23:46",
+    "slug": "mothers-day",
+    "status": "publish",
+    "type": "event",
+    "link": "https://super-vault.esocs.net/event/mothers-day/",
+    "title": {
+      "rendered": "Mother&#8217;s Day"
+    },
+    "acf": {
+      "event_title": "Mother's Day Celebration",
+      "description": "A Day to Celebrate Mother's All over the World ",
+      "date": "20260215",
+      "start_time": "",
+      "end_time": "",
+      "registration_link": "",
+      "event_type": [
+        "thanksgiving"
+      ],
+      "image": 715,
+      "status": "open"
+    }
+  },
+  {
+    "id": 841,
+    "date": "2026-02-04T13:33:13",
+    "date_gmt": "2026-02-04T13:33:13",
+    "modified": "2026-02-04T13:34:29",
+    "modified_gmt": "2026-02-04T13:34:29",
+    "slug": "40-days-lenten-season",
+    "status": "publish",
+    "type": "event",
+    "link": "https://super-vault.esocs.net/event/40-days-lenten-season/",
+    "title": {
+      "rendered": "40 Days Lenten Season"
+    },
+    "acf": {
+      "event_title": "40 Days Lenten Season",
+      "description": "A Season of Lent (24th, febuary to 4th, April 2026)  ",
+      "date": "20260124",
+      "start_time": "",
+      "end_time": "",
+      "registration_link": "",
+      "event_type": [
+        "communion service"
+      ],
+      "image": 715,
+      "status": "open"
+    }
+  }
+]

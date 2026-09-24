@@ -1,16 +1,18 @@
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Archivo, DM_Sans } from "next/font/google";
 
-export const fontDisplay = Cormorant_Garamond({
+/** Headlines. Variable weight and width, so display sizes can run heavy and expanded. */
+export const fontDisplay = Archivo({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-cormorant",
+  axes: ["wdth"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
-export const fontSans = Manrope({
+/** Body copy and interface text. Optical sizing keeps small labels crisp. */
+export const fontSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-manrope",
+  axes: ["opsz"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 

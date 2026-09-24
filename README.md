@@ -8,7 +8,7 @@ Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Radix UI.
 
 ```bash
 nvm use
-npm install          # installs Git hooks via the prepare script
+npm install          # also points Git at .githooks
 cp .env.example .env.local
 npm run dev          # http://localhost:3000
 ```
@@ -46,6 +46,9 @@ src/
   hooks/               useScrolled, useMediaQuery, useMounted
   lib/                 Utilities, formatters, fonts, development fixtures
 e2e/                   Playwright specs
+.githooks/             Git hooks (pre-commit, commit-msg, pre-push) and their policy
+scripts/githooks.mjs   Installs the hooks (runs on npm install)
+.github/               CI, CodeQL, dependency review, release automation, templates
 ```
 
 ## Design tokens
@@ -55,8 +58,8 @@ All tokens live in `src/app/globals.css`.
 - **Colour.** Components use semantic tokens (`bg-background`, `bg-surface`, `text-foreground`,
   `text-muted-foreground`, `bg-primary`, `bg-accent`, `text-highlight`, `border-border`, `bg-inverse`), never
   raw palette values. Light and dark themes redefine the same tokens.
-- **Type.** Cormorant Garamond for display headings (`text-display-sm` to `text-display-2xl`, fluid between
-  360px and 1440px viewports). Manrope for body and interface text.
+- **Type.** Archivo (bold, variable width) for display headings (`text-display-sm` to `text-display-2xl`, fluid between
+  360px and 1440px viewports). DM Sans for body and interface text.
 - **Layout.** `px-gutter` for horizontal page padding, `py-section` for vertical rhythm, `max-w-site` and
   `max-w-wide` for content width, `h-header` for the header height.
 - **Shape.** `rounded-control` for buttons and inputs, `rounded-card` for cards and media.

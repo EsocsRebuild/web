@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Sunday Service",
+    "sessions": [
+      {
+        "name": "First Service",
+        "time": "7:00 AM – 8:00AM"
+      },
+      {
+        "name": "Second Service",
+        "time": "8:30 AM – 10:00 AM"
+      },
+      {
+        "name": "Third Service",
+        "time": "10:30 AM – 12:00 PM"
+      },
+      {
+        "name": "Youth Church",
+        "time": "8:30 AM – 10:00 AM"
+      },
+      {
+        "name": "Teens Church",
+        "time": "10:30 AM – 12:00 PM"
+      }
+    ],
+    "needsVerification": true
+  }
+]

@@ -3,4 +3,5 @@
 
 # Build, CI and repository settings.
 /.github/ @peterchims
-/.husky/ @peterchims
+/.githooks/ @peterchims
+/scripts/githooks* @peterchims

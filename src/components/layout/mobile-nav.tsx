@@ -26,7 +26,7 @@ export function MobileNav({ trigger }: { trigger: React.ReactNode }) {
       <SheetTrigger asChild>{trigger}</SheetTrigger>
       <SheetContent>
         <div className="flex h-header shrink-0 items-center px-gutter">
-          <SheetTitle className="font-display text-2xl font-semibold">{siteConfig.name}</SheetTitle>
+          <SheetTitle className="font-display text-2xl font-extrabold">{siteConfig.name}</SheetTitle>
           <SheetDescription className="sr-only">Site navigation</SheetDescription>
         </div>
 

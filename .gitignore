@@ -55,3 +55,6 @@ next-env.d.ts
 
 # lighthouse
 /.lighthouseci/
+
+# legacy media originals (~300 MB) — kept locally, served from object storage
+/data/legacy/media/

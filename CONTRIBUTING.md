@@ -51,14 +51,72 @@ Scopes are optional and kebab-case. Common scopes: `ui`, `layout`, `blocks`, `th
 
 ## Git hooks
 
-| Hook         | Runs                                                                                    |
-| ------------ | --------------------------------------------------------------------------------------- |
-| `pre-commit` | ESLint and Prettier on staged files; unit tests related to staged source files          |
-| `commit-msg` | commitlint                                                                              |
-| `pre-push`   | Branch-name check, blocks direct pushes to `main`, then type-check, lint and unit tests |
+The hooks are plain shell scripts versioned in [`.githooks/`](.githooks). No hook framework is used:
+`npm install` runs `scripts/githooks.mjs`, which sets `git config core.hooksPath .githooks`. It does
+nothing in CI or outside a Git checkout.
 
-Hooks are installed by `npm install` (the `prepare` script). Do not bypass them with `--no-verify`; CI runs
-the same checks.
+```
+.githooks/
+  pre-commit            Policy checks on staged changes, then lint-staged
+  commit-msg            Conventional Commits (commitlint)
+  pre-push              Push policy per branch, then the checks CI runs
+  lib/policy.sh         All rules: protected branches, branch types, size limit, forbidden paths
+  lib/checks.sh         The checks as shell functions
+  lib/common.sh         Runtime: Node discovery, step runner, output, skipping
+  lib/secret-patterns.txt
+  lib/check-lockfile.mjs
+```
+
+To change a rule, edit `lib/policy.sh`. Every check is covered by `scripts/githooks.test.ts`, which runs
+the real hooks against temporary repositories.
+
+### What runs
+
+| Hook         | Step id            | Check                                                                            |
+| ------------ | ------------------ | -------------------------------------------------------------------------------- |
+| `pre-commit` | `protected-branch` | No commits directly on `main`                                                    |
+|              | `forbidden-files`  | No `.env*` (except `.env.example`), `*.pem`, `*.key` or other credential files   |
+|              | `conflict-markers` | No unresolved `<<<<<<<` / `>>>>>>>` markers                                      |
+|              | `secrets`          | No API keys or tokens (AWS, GitHub, Stripe, Paystack, Flutterwave, Google, etc.) |
+|              | `file-size`        | No file over 1 MB; use a CDN or Git LFS for media                                |
+|              | `lockfile`         | Dependency changes in `package.json` include `package-lock.json`                 |
+|              | `lint-staged`      | ESLint and Prettier on staged files, and unit tests related to them              |
+| `commit-msg` | `commitlint`       | Conventional Commits format                                                      |
+| `pre-push`   | `push-policy`      | No pushes to `main`; no force-push or delete of `main`/`develop`; branch naming  |
+|              | `format`           | `npm run format:check`                                                           |
+|              | `lint`             | `npm run lint`                                                                   |
+|              | `typecheck`        | `npm run typecheck`                                                              |
+|              | `tests`            | `npm test`                                                                       |
+
+Checks run quietly and print one line each. Output is shown only when a check fails.
+
+### Skipping a step
+
+When a step genuinely does not apply, skip that step by id rather than disabling all hooks:
+
+```bash
+GITHOOKS_SKIP=tests git push                # one step
+GITHOOKS_SKIP=lint-staged,secrets git commit ...
+GITHOOKS_SKIP=pre-push git push             # a whole hook
+```
+
+Administrators can push to `main` in an emergency with `GITHOOKS_SKIP=push-policy`. CI and branch
+protection still apply, so skipping locally never skips review.
+
+### Commands and troubleshooting
+
+```bash
+npm run hooks:status      # show whether hooks are installed and executable
+npm run hooks:install     # (re)install
+npm run hooks:uninstall   # restore Git's default hooks directory
+GITHOOKS_VERBOSE=1 git commit ...   # stream all output and trace the hook
+```
+
+- **"Node.js was not found"** from a Git GUI or editor: the hooks look for Node in nvm, Volta, fnm, asdf,
+  mise and Homebrew. If yours is elsewhere, make it available on the PATH your Git client uses.
+- **Hooks not running:** run `npm run hooks:status`. Another tool may have changed `core.hooksPath`.
+- **Set `GITHOOKS_DISABLE=1`** before `npm install` to skip hook installation, e.g. on a build server
+  that is not detected as CI.
 
 ## Checks
 

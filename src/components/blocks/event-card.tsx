@@ -31,7 +31,7 @@ export function EventCard({ title, href, start, location, category, image }: Eve
           className="flex w-12 shrink-0 flex-col items-center border-r border-border pr-4 text-center"
         >
           <span className="text-xs font-semibold text-highlight">{month}</span>
-          <span className="font-display text-3xl leading-none font-medium tabular-nums">{day}</span>
+          <span className="font-display text-3xl leading-none font-extrabold tabular-nums">{day}</span>
         </time>
         <div className="min-w-0">
           {category && <p className="text-xs font-semibold text-muted-foreground">{category}</p>}

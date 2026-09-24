@@ -15,7 +15,7 @@ export function Scripture({ children, reference, version, align = "center", clas
     <figure
       className={cn("flex flex-col gap-6", align === "center" && "items-center text-center", className)}
     >
-      <blockquote className="max-w-3xl font-display text-display-md font-normal text-balance italic">
+      <blockquote className="max-w-3xl font-display text-display-md font-bold text-balance">
         <p>{children}</p>
       </blockquote>
       <figcaption className="text-sm font-semibold text-muted-foreground">

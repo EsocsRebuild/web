@@ -9,6 +9,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Stop `next dev` from generating AGENTS.md / CLAUDE.md in the project root.
+  agentRules: false,
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
