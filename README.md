@@ -8,71 +8,76 @@ Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Radix UI.
 
 ```bash
 nvm use
-npm install
+npm install          # installs Git hooks via the prepare script
 cp .env.example .env.local
-npm run dev
+npm run dev          # http://localhost:3000
 ```
 
-| Script                        | Description                                                                                            |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `npm run dev`                 | Development server on http://localhost:3000                                                            |
-| `npm run build` / `npm start` | Production build and server                                                                            |
-| `npm run validate`            | Lint, format check, type-check and unit tests                                                          |
-| `npm test`                    | Unit tests (Vitest)                                                                                    |
-| `npm run test:e2e`            | Production build and Playwright tests on phone, tablet and desktop, including axe accessibility checks |
-| `npm run format`              | Format all files with Prettier                                                                         |
+| Script              | Purpose                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------ |
+| `npm run dev`       | Development server                                                                         |
+| `npm run build`     | Production build                                                                           |
+| `npm run lint`      | ESLint, zero warnings allowed                                                              |
+| `npm run format`    | Prettier (with Tailwind class sorting)                                                     |
+| `npm run typecheck` | Route type generation and `tsc`                                                            |
+| `npm run test`      | Unit and component tests (Vitest, Testing Library)                                         |
+| `npm run test:e2e`  | Production build, then Playwright on phone, tablet, desktop, plus axe accessibility checks |
+| `npm run validate`  | Everything CI runs before the build                                                        |
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for branches, commit conventions, Git hooks and CI.
+Contribution workflow, branch naming, commit conventions and hooks are described in
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Project structure
 
 ```
 src/
   app/                 Routes, root layout, global styles
+    globals.css        Design tokens and base styles
     design-system/     Internal component reference (dev only)
   components/
-    layout/            Container, Section, SiteHeader, SiteFooter, MobileNav
+    layout/            Container, Section, SiteHeader, SiteFooter, MobileNav, SkipLink
     typography/        Heading, Text, Lead, Overline, SectionHeader
-    ui/                Buttons, forms, cards, media, dialogs, menus, tabs, etc.
-    blocks/            Church-specific sections: PageHero, ServiceTimes, EventCard, SermonCard, Scripture, CtaBanner
-    theme/             Theme provider and toggle
-    icons/             Logo and social icons
+    ui/                Button, Badge, Card, Media, Alert, Avatar, form controls,
+                       Dialog, Sheet, Accordion, Tabs, Tooltip, DropdownMenu, Toaster
+    blocks/            PageHero, ServiceTimes, EventCard, SermonCard, Scripture, CtaBanner
+    theme/             Providers, ThemeToggle
+    icons/             Logo, social icons
   config/site.ts       Church details, service times, navigation
-  hooks/               Client hooks
+  hooks/               useScrolled, useMediaQuery, useMounted
   lib/                 Utilities, formatters, fonts, development fixtures
-e2e/                   Playwright tests
+e2e/                   Playwright specs
 ```
 
 ## Design tokens
 
 All tokens live in `src/app/globals.css`.
 
-- **Palette:** `royal`, `gold` and `parchment` scales, 50–950.
-- **Semantic colours:** `background`, `foreground`, `surface`, `surface-muted`, `muted-foreground`,
-  `border`, `primary`, `accent`, `highlight`, `inverse`, and the status colours. Use these in components so
-  light and dark themes work without extra classes.
-- **Type:** Cormorant Garamond for display headings (`text-display-sm` to `text-display-2xl`, fluid),
-  Manrope for everything else.
-- **Layout:** `px-gutter`, `py-section`, `h-header`, `max-w-site`, `max-w-wide`.
-- **Shape:** `rounded-control` for inputs and buttons, `rounded-card` for cards and media.
-
-Any element with the `dark` class switches its subtree to dark tokens. `Section tone="inverse"`,
-`Card variant="inverse"`, `PageHero` and the footer use this.
+- **Colour.** Components use semantic tokens (`bg-background`, `bg-surface`, `text-foreground`,
+  `text-muted-foreground`, `bg-primary`, `bg-accent`, `text-highlight`, `border-border`, `bg-inverse`), never
+  raw palette values. Light and dark themes redefine the same tokens.
+- **Type.** Cormorant Garamond for display headings (`text-display-sm` to `text-display-2xl`, fluid between
+  360px and 1440px viewports). Manrope for body and interface text.
+- **Layout.** `px-gutter` for horizontal page padding, `py-section` for vertical rhythm, `max-w-site` and
+  `max-w-wide` for content width, `h-header` for the header height.
+- **Shape.** `rounded-control` for buttons and inputs, `rounded-card` for cards and media.
 
 ## Conventions
 
-- Build pages from `PageHero` followed by `Section` components.
-- When a page opens with a dark hero (anything marked `data-hero`, such as `PageHero`), the header becomes
-  transparent over it automatically.
-- `Heading` sets the document level with `as` and the visual size with `size`. One `h1` per page.
-- Use `Button asChild` to style a Next.js `Link` as a button.
-- Use `Media` for images. It keeps its aspect ratio and shows a neutral block until an image is supplied.
-- Card lists use `snap-row` on small screens and a grid from `lg`.
-- Inputs use a 16px font on mobile to prevent iOS zoom on focus.
+- Build pages from `Section` and `Container`. Use `Heading` with `as` for the outline level and `size` for
+  appearance; one `h1` per page.
+- A page that opens with a dark band (`PageHero`, or any first section with `data-hero`) gets a transparent
+  header automatically. See the `.site-header` rules in `globals.css`.
+- `Section tone="inverse"`, `Card variant="inverse"` and `CtaBanner` apply the `dark` class, so their
+  contents use dark tokens in either theme.
+- Use `Button asChild` to render a Next.js `Link` as a button.
+- Define component variants with `cva` and merge classes with `cn()`.
+- Images go through `Media` or `next/image`. `Media` keeps its aspect ratio when no image is set.
 
 ## Before launch
 
-- Fill in every `TODO` in `src/config/site.ts`, and set `heroImage`.
-- Replace the placeholder mark in `src/components/icons/logo.tsx` with the official crest.
-- Replace `src/lib/fixtures.ts` with real content from the CMS or API.
-- Set `NEXT_PUBLIC_SITE_URL` in the hosting environment.
+- Confirm every `TODO` in `src/config/site.ts`.
+- Replace `LogoMark` in `src/components/icons/logo.tsx` with the official crest.
+- Supply photography and set `siteConfig.heroImage`.
+- Replace `src/lib/fixtures.ts` with the real content source.
+
+The design-system route returns 404 in production unless `ENABLE_DESIGN_SYSTEM=true`.

@@ -8,10 +8,28 @@ export default defineConfig({
     alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
   test: {
-    environment: "jsdom",
-    setupFiles: ["./src/test/setup.ts"],
-    include: ["src/**/*.test.{ts,tsx}"],
-    css: false,
+    projects: [
+      {
+        extends: true,
+        test: {
+          name: "unit",
+          environment: "jsdom",
+          setupFiles: ["./src/test/setup.ts"],
+          include: ["src/**/*.test.{ts,tsx}"],
+          css: false,
+        },
+      },
+      {
+        // Runs the real Git hooks against throwaway repositories.
+        extends: true,
+        test: {
+          name: "githooks",
+          environment: "node",
+          include: ["scripts/**/*.test.ts"],
+          testTimeout: 30_000,
+        },
+      },
+    ],
     coverage: {
       provider: "v8",
       include: ["src/lib/**", "src/components/**"],
