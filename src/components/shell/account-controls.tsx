@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Bookmark, Church, LogOut, Settings, UsersRound } from "lucide-react";
+import { Bell, Bookmark, Church, LogOut, Settings, UserRound, UsersRound } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -28,8 +28,15 @@ export function AccountControls() {
 
   if (!member) {
     return (
-      <Button variant="ghost" size="sm" onClick={() => requestSignIn()} className="font-semibold">
-        Sign in
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={() => requestSignIn()}
+        aria-label="Sign in"
+        className="size-10 rounded-pill px-0 font-semibold sm:w-auto sm:px-3.5"
+      >
+        <UserRound aria-hidden className="sm:hidden" />
+        <span className="hidden sm:inline">Sign in</span>
       </Button>
     );
   }

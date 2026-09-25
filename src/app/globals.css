@@ -609,6 +609,7 @@ html:not([data-splash="seen"]) .hero-word {
   position: absolute;
   inset: -4%;
   background: url("/brand/splash-bg.webp") center / cover no-repeat;
+  filter: saturate(1.1) brightness(0.95);
   animation: splash-bg 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 /* Navy veil with a soft spotlight where the crest sits. */
@@ -617,8 +618,8 @@ html:not([data-splash="seen"]) .hero-word {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(38% 42% at 50% 46%, oklch(0.22 0.07 265 / 0.35), oklch(0.13 0.04 265 / 0.9) 70%),
-    linear-gradient(to bottom, oklch(0.13 0.04 265 / 0.55), oklch(0.1 0.03 265 / 0.85));
+    radial-gradient(34% 40% at 50% 46%, oklch(0.16 0.05 265 / 0.55), transparent 75%),
+    linear-gradient(to bottom, oklch(0.14 0.05 265 / 0.35), oklch(0.12 0.04 265 / 0.6));
 }
 html[data-splash="seen"] .app-splash {
   display: none;
