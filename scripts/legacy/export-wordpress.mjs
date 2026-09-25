@@ -91,17 +91,30 @@ function decode(s) {
   });
 }
 
+function stripHtmlComments(input = "") {
+  let prev;
+  let out = input;
+  do {
+    prev = out;
+    out = out.replace(/<!--[\s\S]*?-->/g, "");
+  } while (out !== prev);
+  return out;
+}
+
 /** Plain text with paragraph breaks preserved. */
 function toText(html = "") {
-  return decode(
-    html
-      .replace(/<style[\s\S]*?<\/style>/gi, "")
-      .replace(/<button[\s\S]*?<\/button>/gi, "")
-      .replace(/<!--[\s\S]*?-->/g, "")
+  let sanitized = html;
+  let previous;
+  do {
+    previous = sanitized;
+    sanitized = sanitized
+      .replace(stripHtmlComments)
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<\/(p|li|h\d|tr|div|strong)>/gi, "\n")
-      .replace(/<[^>]+>/g, ""),
-  )
+      .replace(/<[^>]+>/g, "");
+  } while (sanitized !== previous);
+
+  return decode(sanitized)
     .replace(/[ \t\r ]+/g, " ")
     .replace(/ *\n */g, "\n")
     .replace(/\n{2,}/g, "\n")
@@ -110,14 +123,20 @@ function toText(html = "") {
 
 /** Clean HTML: drops inline styles, classes, <style>, legacy Svelte buttons and comments. */
 function cleanHtml(html = "") {
-  return html
-    .replace(/<style[\s\S]*?<\/style>/gi, "")
-    .replace(/<button[\s\S]*?<\/button>/gi, "")
-    .replace(/<!--[\s\S]*?-->/g, "")
-    .replace(/\s(style|class|width|n)="[^"]*"/gi, "")
-    .replace(/\r/g, "")
-    .replace(/\n{2,}/g, "\n")
-    .trim();
+  let sanitized = html;
+  let previous;
+  do {
+    previous = sanitized;
+    sanitized = sanitized
+      .replace(/<style[\s\S]*?<\/style>/gi, "")
+      .replace(/<button[\s\S]*?<\/button>/gi, "")
+      .replace(stripHtmlComments)
+      .replace(/\s(style|class|width|n)="[^"]*"/gi, "")
+      .replace(/\r/g, "")
+      .replace(/\n{2,}/g, "\n")
+      .trim();
+  } while (sanitized !== previous);
+  return sanitized;
 }
 
 const isPlaceholder = (s = "") => /lorem ipsum|^caption$/i.test(toText(s));
