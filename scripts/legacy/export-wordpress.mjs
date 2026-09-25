@@ -125,14 +125,20 @@ function toText(html = "") {
 
 /** Clean HTML: drops inline styles, classes, <style>, legacy Svelte buttons and comments. */
 function cleanHtml(html = "") {
-  return html
-    .replace(/<style[\s\S]*?<\/style>/gi, "")
-    .replace(/<button[\s\S]*?<\/button>/gi, "")
-    .replace(stripHtmlComments)
-    .replace(/\s(style|class|width|n)="[^"]*"/gi, "")
-    .replace(/\r/g, "")
-    .replace(/\n{2,}/g, "\n")
-    .trim();
+  let sanitized = html;
+  let previous;
+  do {
+    previous = sanitized;
+    sanitized = sanitized
+      .replace(/<style[\s\S]*?<\/style>/gi, "")
+      .replace(/<button[\s\S]*?<\/button>/gi, "")
+      .replace(stripHtmlComments)
+      .replace(/\s(style|class|width|n)="[^"]*"/gi, "")
+      .replace(/\r/g, "")
+      .replace(/\n{2,}/g, "\n")
+      .trim();
+  } while (sanitized !== previous);
+  return sanitized;
 }
 
 const isPlaceholder = (s = "") => /lorem ipsum|^caption$/i.test(toText(s));
