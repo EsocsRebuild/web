@@ -108,8 +108,6 @@ function toText(html = "") {
   do {
     previous = sanitized;
     sanitized = sanitized
-      .replace(/<style[\s\S]*?<\/style>/gi, "")
-      .replace(/<button[\s\S]*?<\/button>/gi, "")
       .replace(stripHtmlComments)
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<\/(p|li|h\d|tr|div|strong)>/gi, "\n")
