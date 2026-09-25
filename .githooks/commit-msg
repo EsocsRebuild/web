@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+#
+# commit-msg: enforce Conventional Commits (https://www.conventionalcommits.org).
+# Merge, revert, fixup! and squash! messages are accepted as generated.
+#
+# Step ids (for GITHOOKS_SKIP): commitlint
+
+# shellcheck source=lib/common.sh
+. "$(dirname "$0")/lib/common.sh"
+
+hook_start
+ensure_node
+ensure_dependencies
+
+# shellcheck disable=SC2034  # Read by run_step.
+STEP_HINT="Format: <type>(<optional-scope>): <summary>, e.g. feat(blocks): add sermon series header"
+run_step commitlint "Commit message follows Conventional Commits" bin commitlint --edit "$1"

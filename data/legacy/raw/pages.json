@@ -1,0 +1,29 @@
+[
+  {
+    "id": 189,
+    "date": "2025-01-17T16:06:50",
+    "date_gmt": "2025-01-17T16:06:50",
+    "modified": "2025-04-29T18:21:00",
+    "modified_gmt": "2025-04-29T18:21:00",
+    "slug": "home",
+    "status": "publish",
+    "type": "page",
+    "link": "https://super-vault.esocs.net/",
+    "title": {
+      "rendered": "home"
+    },
+    "content": {
+      "rendered": "",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "parent": 0,
+    "menu_order": 0,
+    "acf": []
+  }
+]

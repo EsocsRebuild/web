@@ -1,0 +1,80 @@
+{
+  "name": "The Eternal Sacred Order of the Cherubim & Seraphim",
+  "shortName": "ESOCS",
+  "founded": 1925,
+  "founder": "Saint Moses Orimolade Tunolase",
+  "summary": "The Cherubim and Seraphim Church is a Pentecostal Christian Organisation which was founded in Nigeria in 1925 by Saint Moses Orimolade Tunolase, an Itinerant Evangelist, who believed in efficacy of prayers and power of healing in the name of our LORD JESUS CHRIST. His Evangelical mission was characterized by a Great Revival – turning people away from idol worshipping to the worship of the true and living God. Orimolade’s uncommon anointing of effective prayers earned him the sobriquet “Baba Aladura”.",
+  "vision": "Salvation for all through Jesus Christ.",
+  "mission": "To evangelize and to arouse the African in Nigeria in Particular and the whole world in general to the practice of spiritual Christian life and",
+  "coreValues": [
+    {
+      "letter": "F",
+      "value": "Faith"
+    },
+    {
+      "letter": "L",
+      "value": "Love"
+    },
+    {
+      "letter": "O",
+      "value": "Orderliness"
+    },
+    {
+      "letter": "S",
+      "value": "Service to Humanity"
+    },
+    {
+      "letter": "H",
+      "value": "Holiness"
+    }
+  ],
+  "watchword": {
+    "text": "Sustained by God's Endless Mercies",
+    "reference": "Lamentations 3:21",
+    "image": {
+      "id": 690,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/01/watchword-1.png",
+      "width": 1440,
+      "height": 529,
+      "alt": null
+    }
+  },
+  "socials": [
+    {
+      "name": "Online Radio",
+      "url": "http://www.esocsradio.com/"
+    },
+    {
+      "name": "Youtube",
+      "url": "https://www.youtube.com/@esocschurch"
+    },
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/esocs.church"
+    },
+    {
+      "name": "Twitter",
+      "url": "http://www.twitter.com/esocschurch"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://web.facebook.com/esocschurchpage/"
+    }
+  ],
+  "welcomeMessage": {
+    "title": "Welcome to ESOCS Worldwide.",
+    "subtitle": "NEW YEAR MESSAGE BY HIS MOST EMINENCE, BABA ALADURA & PRELATE OF THE ETERNAL SACRED ORDER OF THE CHERUBIM AND SERAPHIM WORLD",
+    "bodyHtml": "<div><p>Grace and peace be multiplied unto you in the precious name of our Lord and Savior Jesus Christ.\nBeloved, we are all witnesses to various excruciating challenges of last year that the whole world went through. From kidnapping to banditry, terrorism, armed robbery, herdsmen tragedy, killings to natural disasters which brought with it hunger and rendered millions of people homeless across the globe. Both low, high and mighty had their own full share of the catastrophes of last year. In the midst of all these despicable situations, God in His endless mercies kept us alive to see the new year.\n</p><p>\nGod kept us alive for a purpose and the purpose is that we must begin to change our mindset and perception of living. We must begin to realise the emptiness and folly of our ephemeral struggles for power and position, unhealthy competition in the issues of life and punitive accumulation of wealth and power but show a little kindness to our neighbourhood and save a life for Christ. The only way to eternal freedom from the challenges of the world and peace in the world is to make Christ the foundation and Chief cornerstone of our being. Then shall the world be a better place for living. As you live through the year, I charge you to share love and show forgiveness as a virtue.\n</p><p>\nTo us as a church, despite the several challenges that militated against the world economy, we celebrated our centenary as an organisation purposed to advance the gospel of Jesus Christ, confirming that the foundation of the church was built on our Lord Jesus Christ. It is therefore incumbent on us to reaffirm this commitment as we begin the journey of the new year with Christ as the foundation and chief cornerstone and bedrock of our faith, the nexus and the central pillar supporting every element of our life. There is no better time to state this assurance than this year which forms the beginning of our new century. As children of God, we should approach our faith and lives with focus on Christ as the central figure and foundation of our beliefs and actions. This is the key if we must live a victorious life, full of impact and kingdom purpose.\n</p>\n<p>\nI have no doubt that the years ahead shall be tougher, given the trend of events around us. It is only Jesus Christ as our foundation that can see us through the trials and tribulations of this world as all other options have failed the world, but Christ as the foundation of the world and its chief cornerstone, there is hope for peace and salvation for mankind. I therefore, encourage you like saint Paul encouraged the Corinthian Christians, to remain steadfast, unmovable, focused on God, always abounding in the work of the Lord, for as much as ye know that your labor is not in vain in the Lord, 1 Corinthians 15:58.\n</p><p>\nI wish you all a very happy and prosperous new year 2026, as I commend you into God’s hands, that you be sustained by His endless mercies.\n</p><p>\nYour praying father,\n</p><p>\nHIS MOST EMINENCE, BABA ALADURA\nDR. DAVID D. L. BOB-MANUEL MOSES ORIMOLADE IX &\nPRELATE OF THE ESOCS CHURCH WORLDWIDE </p></div>"
+  },
+  "givingAppeal": {
+    "title": "Sowing Seeds of Love",
+    "body": "Join us in spreading hope and joy! Plant your seed of love today and help transform lives through your generous giving.",
+    "image": {
+      "id": 147,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/01/home_sowing.png",
+      "width": 657,
+      "height": 559,
+      "alt": null
+    }
+  }
+}

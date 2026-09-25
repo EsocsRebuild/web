@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Baba Aladura",
+    "caption": null,
+    "image": {
+      "id": 685,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/01/baba-aladura-1.png",
+      "width": 1080,
+      "height": 594,
+      "alt": null
+    },
+    "cta": null
+  },
+  {
+    "title": "2026 Banner",
+    "caption": null,
+    "image": {
+      "id": 828,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2026/01/esocsanniversary.jpg",
+      "width": 1080,
+      "height": 607,
+      "alt": null
+    },
+    "cta": null
+  },
+  {
+    "title": "2026 THEME OF THE YEAR",
+    "caption": null,
+    "image": {
+      "id": 777,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/06/b651d511-9e7d-46bc-9aa4-2f3e89671bcd-e1769796267638.jpeg",
+      "width": 1917,
+      "height": 973,
+      "alt": null
+    },
+    "cta": null
+  }
+]

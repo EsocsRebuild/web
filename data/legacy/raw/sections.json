@@ -1,0 +1,149 @@
+[
+  {
+    "id": 140,
+    "date": "2025-06-11T15:15:02",
+    "date_gmt": "2025-06-11T15:15:02",
+    "modified": "2026-01-29T15:00:00",
+    "modified_gmt": "2026-01-29T15:00:00",
+    "slug": "section-you-are-welcome-to-church",
+    "status": "publish",
+    "type": "sections",
+    "link": "https://super-vault.esocs.net/sections/section-you-are-welcome-to-church/",
+    "title": {
+      "rendered": "Home Section: Welcome Message"
+    },
+    "acf": {
+      "title": "Welcome to ESOCS Worldwide.",
+      "subtitle": "NEW YEAR MESSAGE BY HIS MOST EMINENCE, BABA ALADURA & PRELATE OF THE ETERNAL SACRED ORDER OF THE CHERUBIM AND SERAPHIM WORLD",
+      "content": "<div><p>Grace and peace be multiplied unto you in the precious name of our Lord and Savior Jesus Christ.\r\n\r\nBeloved, we are all witnesses to various excruciating challenges of last year that the whole world went through. From kidnapping to banditry, terrorism, armed robbery, herdsmen tragedy, killings to natural disasters which brought with it hunger and rendered millions of people homeless across the globe. Both low, high and mighty had their own full share of the catastrophes of last year. In the midst of all these despicable situations, God in His endless mercies kept us alive to see the new year.\r\n\r\n</p><p>\r\nGod kept us alive for a purpose and the purpose is that we must begin to change our mindset and perception of living. We must begin to realise the emptiness and folly of our ephemeral struggles for power and position, unhealthy competition in the issues of life and punitive accumulation of wealth and power but show a little kindness to our neighbourhood and save a life for Christ. The only way to eternal freedom from the challenges of the world and peace in the world is to make Christ the foundation and Chief cornerstone of our being. Then shall the world be a better place for living. As you live through the year, I charge you to share love and show forgiveness as a virtue.\r\n\r\n</p><p>\r\nTo us as a church, despite the several challenges that militated against the world economy, we celebrated our centenary as an organisation purposed to advance the gospel of Jesus Christ, confirming that the foundation of the church was built on our Lord Jesus Christ. It is therefore incumbent on us to reaffirm this commitment as we begin the journey of the new year with Christ as the foundation and chief cornerstone and bedrock of our faith, the nexus and the central pillar supporting every element of our life. There is no better time to state this assurance than this year which forms the beginning of our new century. As children of God, we should approach our faith and lives with focus on Christ as the central figure and foundation of our beliefs and actions. This is the key if we must live a victorious life, full of impact and kingdom purpose.\r\n\r\n</p>\r\n<p>\r\nI have no doubt that the years ahead shall be tougher, given the trend of events around us. It is only Jesus Christ as our foundation that can see us through the trials and tribulations of this world as all other options have failed the world, but Christ as the foundation of the world and its chief cornerstone, there is hope for peace and salvation for mankind. I therefore, encourage you like saint Paul encouraged the Corinthian Christians, to remain steadfast, unmovable, focused on God, always abounding in the work of the Lord, for as much as ye know that your labor is not in vain in the Lord, 1 Corinthians 15:58.\r\n</p><p>\r\n\r\nI wish you all a very happy and prosperous new year 2026, as I commend you into God’s hands, that you be sustained by His endless mercies.\r\n\r\n\r\n</p><p>\r\nYour praying father,\r\n</p><p>\r\n\r\nHIS MOST EMINENCE, BABA ALADURA\r\nDR. DAVID D. L. BOB-MANUEL MOSES ORIMOLADE IX &\r\nPRELATE OF THE ESOCS CHURCH WORLDWIDE </p></div>",
+      "id": "welcome-to-church",
+      "image": 287
+    }
+  },
+  {
+    "id": 540,
+    "date": "2025-05-01T17:23:40",
+    "date_gmt": "2025-05-01T17:23:40",
+    "modified": "2025-05-01T17:23:40",
+    "modified_gmt": "2025-05-01T17:23:40",
+    "slug": "sermons",
+    "status": "publish",
+    "type": "sections",
+    "link": "https://super-vault.esocs.net/sections/sermons/",
+    "title": {
+      "rendered": "Sermons"
+    },
+    "acf": {
+      "title": "Sermons",
+      "subtitle": "",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "id": "sermons",
+      "image": 541
+    }
+  },
+  {
+    "id": 510,
+    "date": "2025-04-30T20:41:37",
+    "date_gmt": "2025-04-30T20:41:37",
+    "modified": "2025-05-01T16:26:52",
+    "modified_gmt": "2025-05-01T16:26:52",
+    "slug": "online-church",
+    "status": "publish",
+    "type": "sections",
+    "link": "https://super-vault.esocs.net/sections/online-church/",
+    "title": {
+      "rendered": "Online Church"
+    },
+    "acf": {
+      "title": "Online Church",
+      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      "id": "online-church",
+      "image": 511
+    }
+  },
+  {
+    "id": 498,
+    "date": "2025-04-18T22:48:53",
+    "date_gmt": "2025-04-18T22:48:53",
+    "modified": "2025-06-24T17:39:06",
+    "modified_gmt": "2025-06-24T17:39:06",
+    "slug": "vision",
+    "status": "publish",
+    "type": "sections",
+    "link": "https://super-vault.esocs.net/sections/vision/",
+    "title": {
+      "rendered": "About US: Our History Section"
+    },
+    "acf": {
+      "title": "The Journey So Far: A testament to God’s faithfulness since 1925.",
+      "subtitle": "",
+      "content": "<p style=\"line-height:1.8\">The Cherubim and Seraphim Church is a Pentecostal Christian Organisation which was founded in Nigeria in 1925 by Saint Moses Orimolade Tunolase, an Itinerant Evangelist, who believed in efficacy of prayers and power of healing in the name of our LORD JESUS CHRIST. His Evangelical mission was characterized by a Great Revival – turning people away from idol worshipping to the worship of the true and living God. Orimolade’s uncommon anointing of effective prayers earned him the sobriquet “Baba Aladura”. </p>\r\n\r\n<button class=\"small svelte-3x6684\" style=\"margin-top:25px\">\r\n<span class=\"text svelte-3x6684\"><a href=\"https://candscentenary.org/objective-of-the-centenary-celebration/\"n target=\"_blank\">Find Out More</a><!----> <img alt=\"right arrow\" src=\"data:image/svg+xml,%3csvg%20class='w-6%20h-6%20text-gray-800%20dark:text-white'%20aria-hidden='true'%20xmlns='http://www.w3.org/2000/svg'%20width='24'%20height='24'%20fill='none'%20viewBox='0%200%2024%2024'%3e%3cpath%20stroke='white'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-width='2'%20d='M19%2012H5m14%200-4%204m4-4-4-4'/%3e%3c/svg%3e\"></span></button>",
+      "id": "vision-of-our-church",
+      "image": 472
+    }
+  },
+  {
+    "id": 158,
+    "date": "2025-01-14T18:14:48",
+    "date_gmt": "2025-01-14T18:14:48",
+    "modified": "2025-06-25T17:25:54",
+    "modified_gmt": "2025-06-25T17:25:54",
+    "slug": "home-our-watchworch",
+    "status": "publish",
+    "type": "sections",
+    "link": "https://super-vault.esocs.net/sections/home-our-watchworch/",
+    "title": {
+      "rendered": "Our Watchword"
+    },
+    "acf": {
+      "title": "Our Watchword ",
+      "subtitle": "",
+      "content": "Sustained by God's Endless Mercies. Lamentations. 3:21",
+      "id": "our-watchword",
+      "image": 690
+    }
+  },
+  {
+    "id": 150,
+    "date": "2025-01-13T22:18:28",
+    "date_gmt": "2025-01-13T22:18:28",
+    "modified": "2025-02-04T18:30:04",
+    "modified_gmt": "2025-02-04T18:30:04",
+    "slug": "about-section-sowing-seeds-of-love",
+    "status": "publish",
+    "type": "sections",
+    "link": "https://super-vault.esocs.net/sections/about-section-sowing-seeds-of-love/",
+    "title": {
+      "rendered": "About Section: Sowing Seeds of Love"
+    },
+    "acf": {
+      "title": "Sowing Seeds of Love",
+      "subtitle": "",
+      "content": "Join us in spreading hope and joy! Plant your seed of love today and help transform lives through your generous giving.",
+      "id": "sowing-seeds-2",
+      "image": 151
+    }
+  },
+  {
+    "id": 146,
+    "date": "2025-01-13T22:03:53",
+    "date_gmt": "2025-01-13T22:03:53",
+    "modified": "2025-01-26T16:34:12",
+    "modified_gmt": "2025-01-26T16:34:12",
+    "slug": "home-section-sowing-seeds-of-love",
+    "status": "publish",
+    "type": "sections",
+    "link": "https://super-vault.esocs.net/sections/home-section-sowing-seeds-of-love/",
+    "title": {
+      "rendered": "Home Section: Sowing Seeds of Love"
+    },
+    "acf": {
+      "title": "Sowing Seeds of Love",
+      "subtitle": "",
+      "content": "Join us in spreading hope and joy! Plant your seed of love today and help transform lives through your generous giving.",
+      "id": "sowing-seeds-1",
+      "image": 147
+    }
+  }
+]

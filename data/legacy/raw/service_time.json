@@ -1,0 +1,21 @@
+[
+  {
+    "id": 435,
+    "date": "2025-02-21T07:43:45",
+    "date_gmt": "2025-02-21T07:43:45",
+    "modified": "2025-02-21T08:34:02",
+    "modified_gmt": "2025-02-21T08:34:02",
+    "slug": "sunday-service",
+    "status": "publish",
+    "type": "service_time",
+    "link": "https://super-vault.esocs.net/service_time/sunday-service/",
+    "title": {
+      "rendered": "Sunday Service"
+    },
+    "acf": {
+      "image_icon": 436,
+      "service_title": "Sunday Service",
+      "service_time": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>\r\n\r\n<ul>\r\n<li>First Service : 7:00 AM – 8:00AM</li>\r\n<li>Second Service : 8:30 AM – 10:00 AM</li>\r\n<li>Third Service : 10:30 AM – 12:00 PM</li>\r\n<li>Youth Church : 8:30 AM – 10:00 AM</li>\r\n<li>Teens Church : 10:30 AM – 12:00 PM</li>\r\n</ul>"
+    }
+  }
+]

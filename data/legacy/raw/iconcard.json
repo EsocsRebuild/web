@@ -1,0 +1,68 @@
+[
+  {
+    "id": 84,
+    "date": "2025-06-11T12:00:59",
+    "date_gmt": "2025-06-11T12:00:59",
+    "modified": "2026-01-29T19:19:48",
+    "modified_gmt": "2026-01-29T19:19:48",
+    "slug": "worship",
+    "status": "publish",
+    "type": "iconcard",
+    "link": "https://super-vault.esocs.net/iconcard/worship/",
+    "title": {
+      "rendered": "Core Value"
+    },
+    "card-category": [],
+    "acf": {
+      "title": "Core Value",
+      "card_icon_2": 667,
+      "subtitle": "Our Core Values",
+      "content": "<ul><li>F - Faith</li> <li> L - Love</li> <li>O - Orderliness</li>  <li>S - Service to Humanity</li>  <li>H - Holiness</li></ul>",
+      "card_id": "1"
+    }
+  },
+  {
+    "id": 90,
+    "date": "2025-06-11T12:00:34",
+    "date_gmt": "2025-06-11T12:00:34",
+    "modified": "2026-01-29T19:20:05",
+    "modified_gmt": "2026-01-29T19:20:05",
+    "slug": "worship-3",
+    "status": "publish",
+    "type": "iconcard",
+    "link": "https://super-vault.esocs.net/iconcard/worship-3/",
+    "title": {
+      "rendered": "Vision"
+    },
+    "card-category": [],
+    "acf": {
+      "title": "Vision",
+      "card_icon_2": 667,
+      "subtitle": "What to expect!!",
+      "content": "Salvation for all through Jesus Christ.",
+      "card_id": ""
+    }
+  },
+  {
+    "id": 89,
+    "date": "2025-06-11T12:00:26",
+    "date_gmt": "2025-06-11T12:00:26",
+    "modified": "2025-06-25T12:19:54",
+    "modified_gmt": "2025-06-25T12:19:54",
+    "slug": "worship-2",
+    "status": "publish",
+    "type": "iconcard",
+    "link": "https://super-vault.esocs.net/iconcard/worship-2/",
+    "title": {
+      "rendered": "Mission"
+    },
+    "card-category": [],
+    "acf": {
+      "title": "Mission",
+      "card_icon_2": 667,
+      "subtitle": "Beliefs and History",
+      "content": "To evangelize and to arouse the African in Nigeria in Particular and the whole world in general to the practice of spiritual Christian life and ",
+      "card_id": "Hello world!"
+    }
+  }
+]

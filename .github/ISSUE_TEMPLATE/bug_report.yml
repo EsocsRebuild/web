@@ -1,0 +1,37 @@
+name: Bug report
+description: Something is broken or looks wrong.
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Include the page URL and what you expected to see.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to …
+        2. Tap …
+    validations:
+      required: true
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options: [Phone, Tablet, Desktop]
+      multiple: true
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Safari 19 on iOS
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
