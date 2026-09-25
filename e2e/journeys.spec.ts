@@ -6,7 +6,7 @@ test("J1 · find a house of prayer and get directions", async ({ page }) => {
   await expect(page).toHaveURL(/q=Awka/);
   await page.getByRole("link", { name: "Mount Horeb, Umuike" }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Mount Horeb, Umuike" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Directions" })).toHaveAttribute("href", /google\.com\/maps/);
+  await expect(page.getByRole("link", { name: "Directions" })).toHaveAttribute("href", /^https?:\/\/(?:www\.)?google\.com\/maps(?:[/?#]|$)/);
 });
 
 test("J6 · move up and across the structure without getting lost", async ({ page }) => {
