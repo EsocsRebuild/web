@@ -93,15 +93,20 @@ function decode(s) {
 
 /** Plain text with paragraph breaks preserved. */
 function toText(html = "") {
-  return decode(
-    html
+  let sanitized = html;
+  let previous;
+  do {
+    previous = sanitized;
+    sanitized = sanitized
       .replace(/<style[\s\S]*?<\/style>/gi, "")
       .replace(/<button[\s\S]*?<\/button>/gi, "")
       .replace(/<!--[\s\S]*?-->/g, "")
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<\/(p|li|h\d|tr|div|strong)>/gi, "\n")
-      .replace(/<[^>]+>/g, ""),
-  )
+      .replace(/<[^>]+>/g, "");
+  } while (sanitized !== previous);
+
+  return decode(sanitized)
     .replace(/[ \t\r ]+/g, " ")
     .replace(/ *\n */g, "\n")
     .replace(/\n{2,}/g, "\n")
