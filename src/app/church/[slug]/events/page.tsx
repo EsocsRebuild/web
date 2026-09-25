@@ -2,7 +2,13 @@ import { notFound } from "next/navigation";
 
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { EventRows } from "@/features/events/event-rows";
-import { getUnitContext, hasTab } from "@/features/units/unit-context";
+import { getUnitContext, hasTab, staticParamsForTab } from "@/features/units/unit-context";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return staticParamsForTab("events");
+}
 
 export default async function UnitEventsPage({ params }: PageProps<"/church/[slug]">) {
   const ctx = getUnitContext((await params).slug);

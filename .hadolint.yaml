@@ -1,0 +1,6 @@
+# Dockerfile lint rules (https://github.com/hadolint/hadolint)
+failure-threshold: warning
+ignored:
+  # Debian packages are pinned by the base image's release; pinning exact
+  # versions of tini/jemalloc would break on every security update.
+  - DL3008

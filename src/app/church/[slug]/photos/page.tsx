@@ -5,7 +5,13 @@ import { notFound } from "next/navigation";
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { formatLongDate } from "@/lib/format";
 import { routes } from "@/lib/routes";
-import { getUnitContext, hasTab } from "@/features/units/unit-context";
+import { getUnitContext, hasTab, staticParamsForTab } from "@/features/units/unit-context";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return staticParamsForTab("photos");
+}
 
 export default async function UnitPhotosPage({ params }: PageProps<"/church/[slug]">) {
   const ctx = getUnitContext((await params).slug);

@@ -55,3 +55,15 @@ export function childTabLabel(unit: Unit) {
 export function hasTab(ctx: ReturnType<typeof getUnitContext>, tab: UnitTab) {
   return ctx.tabs.some((t) => t.tab === tab);
 }
+
+/**
+ * Static params for a tab route: only units that actually have the tab are
+ * pre-rendered. Everything else is a normal 404 at request time, instead of a
+ * pre-built 404 page per unit (which multiplied the build output several times).
+ */
+export function staticParamsForTab(tab: UnitTab) {
+  return getContent()
+    .listUnits()
+    .filter((u) => hasTab(getUnitContext(u.slug), tab))
+    .map((u) => ({ slug: u.slug }));
+}

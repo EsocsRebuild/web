@@ -4,7 +4,7 @@ import { UnitCard } from "@/components/patterns/cards";
 import { SectionHeading } from "@/components/patterns/section-heading";
 import type { UnitKind } from "@/data/schema/content";
 import { UNIT_KIND } from "@/lib/kinds";
-import { childTabLabel, getUnitContext, hasTab } from "@/features/units/unit-context";
+import { childTabLabel, getUnitContext, hasTab, staticParamsForTab } from "@/features/units/unit-context";
 
 const ORDER: UnitKind[] = [
   "headquarters",
@@ -16,6 +16,12 @@ const ORDER: UnitKind[] = [
   "district",
   "branch",
 ];
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return staticParamsForTab("branches");
+}
 
 export default async function UnitBranchesPage({ params }: PageProps<"/church/[slug]">) {
   const ctx = getUnitContext((await params).slug);

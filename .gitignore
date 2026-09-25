@@ -58,3 +58,7 @@ next-env.d.ts
 
 # legacy media originals (~300 MB) — kept locally, served from object storage
 /data/legacy/media/
+
+# local secrets for Docker Compose (see deploy/secrets/README.md)
+/deploy/secrets/*
+!/deploy/secrets/README.md

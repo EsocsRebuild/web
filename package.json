@@ -20,7 +20,14 @@
     "hooks:install": "node scripts/githooks.mjs install",
     "hooks:uninstall": "node scripts/githooks.mjs uninstall",
     "hooks:status": "node scripts/githooks.mjs status",
-    "lint:hooks": "shellcheck -x .githooks/pre-commit .githooks/commit-msg .githooks/pre-push .githooks/lib/*.sh"
+    "lint:hooks": "shellcheck -x .githooks/pre-commit .githooks/commit-msg .githooks/pre-push .githooks/lib/*.sh",
+    "start:standalone": "node .next/standalone/server.js",
+    "docker:init": "node scripts/docker-init.mjs",
+    "docker:build": "docker build -t esocs-web:local .",
+    "docker:up": "npm run docker:init && docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f web",
+    "lint:docker": "docker run --rm -i hadolint/hadolint < Dockerfile"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.20",

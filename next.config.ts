@@ -13,6 +13,16 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // Stop `next dev` from generating AGENTS.md / CLAUDE.md in the project root.
   agentRules: false,
+  // Minimal self-contained server for the container image (see Dockerfile).
+  output: "standalone",
+  // Set per release (the git SHA in CI) so rolling deployments detect version skew
+  // and clients reload cleanly instead of requesting assets that no longer exist.
+  deploymentId: process.env.DEPLOYMENT_ID || undefined,
+  experimental: {
+    // The container's filesystem is read-only; regenerated pages live in memory
+    // (per instance) instead of being written into the build output.
+    isrFlushToDisk: false,
+  },
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
