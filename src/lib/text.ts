@@ -30,12 +30,22 @@ export function decodeEntities(value: string) {
  */
 export function htmlToParagraphs(html: string | null | undefined): string[] {
   if (!html) return [];
-  const text = html
-    .replace(/<(style|script|button)[\s\S]*?<\/\1>/gi, "")
-    .replace(/<!--[\s\S]*?-->/g, "")
-    .replace(/<br\s*\/?>|<\/(p|div|li|h\d)>/gi, "\n\n")
-    .replace(/<[^>]+>/g, "")
-    .replace(/\r/g, "");
+  const replaceUntilStable = (input: string, pattern: RegExp, replacement: string) => {
+    let previous: string;
+    let current = input;
+    do {
+      previous = current;
+      current = current.replace(pattern, replacement);
+    } while (current !== previous);
+    return current;
+  };
+
+  let text = html;
+  text = replaceUntilStable(text, /<(style|script|button)[\s\S]*?<\/\1>/gi, "");
+  text = replaceUntilStable(text, /<!--[\s\S]*?-->/g, "");
+  text = replaceUntilStable(text, /<br\s*\/?>|<\/(p|div|li|h\d)>/gi, "\n\n");
+  text = replaceUntilStable(text, /<[^>]+>/g, "");
+  text = text.replace(/\r/g, "");
   // Only block boundaries and blank lines start a paragraph; the legacy text wraps
   // mid-sentence, so single line breaks are just spaces.
   return decodeEntities(text)
