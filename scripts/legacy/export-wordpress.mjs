@@ -91,6 +91,16 @@ function decode(s) {
   });
 }
 
+function stripHtmlComments(input = "") {
+  let prev;
+  let out = input;
+  do {
+    prev = out;
+    out = out.replace(/<!--[\s\S]*?-->/g, "");
+  } while (out !== prev);
+  return out;
+}
+
 /** Plain text with paragraph breaks preserved. */
 function toText(html = "") {
   let sanitized = html;
@@ -100,7 +110,7 @@ function toText(html = "") {
     sanitized = sanitized
       .replace(/<style[\s\S]*?<\/style>/gi, "")
       .replace(/<button[\s\S]*?<\/button>/gi, "")
-      .replace(/<!--[\s\S]*?-->/g, "")
+      .replace(stripHtmlComments)
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<\/(p|li|h\d|tr|div|strong)>/gi, "\n")
       .replace(/<[^>]+>/g, "");
@@ -118,7 +128,7 @@ function cleanHtml(html = "") {
   return html
     .replace(/<style[\s\S]*?<\/style>/gi, "")
     .replace(/<button[\s\S]*?<\/button>/gi, "")
-    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(stripHtmlComments)
     .replace(/\s(style|class|width|n)="[^"]*"/gi, "")
     .replace(/\r/g, "")
     .replace(/\n{2,}/g, "\n")
