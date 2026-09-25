@@ -1,15 +1,22 @@
 import type { Metadata, Viewport } from "next";
 
-import { SiteFooter } from "@/components/layout/site-footer";
-import { SiteHeader } from "@/components/layout/site-header";
 import { SkipLink } from "@/components/layout/skip-link";
+import { RevealController } from "@/components/motion/reveal";
+import { Announcements } from "@/components/shell/announcements";
+import { AppHeader } from "@/components/shell/app-header";
+import { BottomNav } from "@/components/shell/bottom-nav";
+import { SiteFooter } from "@/components/shell/site-footer";
 import { Providers } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
+import { SignInDialog } from "@/features/social/sign-in-dialog";
 import { fontVariables } from "@/lib/fonts";
 import { absoluteUrl } from "@/lib/utils";
 
 import "./globals.css";
+
+// Upcoming events and the announcement ticker depend on today's date.
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl()),
@@ -22,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: siteConfig.fullName,
-    title: siteConfig.name,
+    title: siteConfig.fullName,
     description: siteConfig.description,
     url: absoluteUrl(),
     locale: siteConfig.locale.replace("-", "_"),
@@ -32,6 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
+  viewportFit: "cover",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#fbfaf7" },
     { media: "(prefers-color-scheme: dark)", color: "#0d1224" },
@@ -44,11 +52,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-dvh flex-col">
         <Providers>
           <SkipLink />
-          <SiteHeader />
-          <main id="main" className="flex-1">
+          <AppHeader />
+          <Announcements />
+          <main id="main" tabIndex={-1} className="flex-1 outline-none">
             {children}
           </main>
           <SiteFooter />
+          <BottomNav />
+          <SignInDialog />
+          <RevealController />
           <Toaster />
         </Providers>
       </body>

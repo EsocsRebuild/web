@@ -1,13 +1,27 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { CtaBanner } from "@/components/blocks/cta-banner";
-import { EventCard } from "@/components/blocks/event-card";
-import { PageHero } from "@/components/blocks/page-hero";
-import { Scripture } from "@/components/blocks/scripture";
-import { SermonCard } from "@/components/blocks/sermon-card";
-import { ServiceTimes } from "@/components/blocks/service-times";
+import { Counter } from "@/components/motion/counter";
+import { Marquee } from "@/components/motion/marquee";
+import { SplitHeadline } from "@/components/motion/split-headline";
 import { Section } from "@/components/layout/section";
+import { Bridges } from "@/components/patterns/bridges";
+import { LeaderCard, UnitCard } from "@/components/patterns/cards";
+import { Cover } from "@/components/patterns/cover";
+import { DateBadge } from "@/components/patterns/date-badge";
+import { GlossaryTerm } from "@/components/patterns/glossary-term";
+import { KindBadge } from "@/components/patterns/kind-badge";
+import { PageIntro } from "@/components/patterns/page-intro";
+import { EmptyState } from "@/components/patterns/states";
+import { Timeline } from "@/components/patterns/timeline";
+import { UnitAvatar } from "@/components/patterns/unit-avatar";
+import { unitKinds } from "@/data/schema/content";
+import { getContent } from "@/data/content";
+import { FeedFilters } from "@/features/feed/feed-filters";
+import { PostCard } from "@/features/feed/post-card";
+import { resolvePost } from "@/features/feed/resolve";
+import { FollowButton, ReactionBar, RsvpControl, SaveButton, ShareButton } from "@/features/social/actions";
+import { UNIT_KIND } from "@/lib/kinds";
 import { Heading } from "@/components/typography/heading";
 import { Overline } from "@/components/typography/overline";
 import { SectionHeader } from "@/components/typography/section-header";
@@ -27,11 +41,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Spinner } from "@/components/ui/spinner";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-import { fixtureEvents, fixtureSermons } from "@/lib/fixtures";
 
 import {
   AccordionDemo,
+  ErrorDemo,
   LoadingButtonDemo,
+  OtpDemo,
   OverlayDemos,
   SearchDemo,
   TabsDemo,
@@ -75,14 +90,26 @@ function Block({ title, children }: { title: string; children: React.ReactNode }
 
 export default function DesignSystemPage() {
   if (!enabled) notFound();
+  const content = getContent();
+  const branch = content.getUnit("oroigwe-pro-cathedral")!;
+  const nextEvent = content.listEvents()[0];
+  const dedications = content
+    .listPostsForUnit("rumuomasi-province")
+    .filter((p) => p.kind === "dedication")
+    .slice(0, 3)
+    .reverse();
+  const albumPost = resolvePost(content.getFeed({ kind: "album", limit: 1 }).items[0]);
+  const album = content.getGallery(albumPost.post.gallerySlug ?? "");
 
   return (
     <>
-      <PageHero
-        overline="Internal"
-        title="Design system"
-        description="Tokens and components used across the site. Use the theme control in the header to check dark mode."
-      />
+      <div className="mx-auto max-w-wide px-gutter pt-10">
+        <PageIntro
+          eyebrow="Internal"
+          title="Design system"
+          description="Tokens, primitives, patterns and motion used across the platform, shown with real church data. Use the theme control in the header to check dark mode."
+        />
+      </div>
 
       <Section container="wide" spacing="sm">
         <Block title="Palette">
@@ -308,14 +335,105 @@ export default function DesignSystemPage() {
               </CardContent>
             </Card>
           </div>
-          <div className="mt-10 grid gap-8 md:grid-cols-2">
-            <EventCard {...fixtureEvents[0]} />
-            <SermonCard {...fixtureSermons[0]} />
+        </Block>
+
+        <Block title="Kinds of page">
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {unitKinds.map((kind) => (
+              <li
+                key={kind}
+                className="flex items-center gap-3 rounded-card border border-border bg-surface p-3"
+              >
+                <UnitAvatar name={UNIT_KIND[kind].label} kind={kind} size="md" />
+                <KindBadge kind={kind} />
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {(["province", "branch", "section"] as const).map((kind) => (
+              <Cover key={kind} image={null} kind={kind} className="aspect-[16/9] rounded-card" />
+            ))}
           </div>
         </Block>
 
-        <Block title="Service times">
-          <ServiceTimes />
+        <Block title="Page patterns">
+          <div className="grid gap-8">
+            <div className="grid gap-3 md:grid-cols-2">
+              <UnitCard unit={branch} parentName="Rumuomasi Province" />
+              <LeaderCard leader={{ name: "Mother Cherub Janet Otubu", role: "Director, Women's Affairs" }} />
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <DateBadge date={nextEvent.date} />
+              <DateBadge date={nextEvent.date} size="sm" />
+              <p className="text-sm">
+                Inline term: the <GlossaryTerm id="cmc">CMC</GlossaryTerm> groups provinces.
+              </p>
+            </div>
+            <Timeline entries={dedications.map((d) => ({ key: d.id, date: d.date, title: d.title }))} />
+            <EmptyState title="Rumuomasi Province's first post will appear here" compact>
+              Empty states tell the story of what is coming, never apologise.
+            </EmptyState>
+            <ErrorDemo />
+            <Bridges
+              items={[
+                { href: "/history", eyebrow: "Our story", title: "1925 to today" },
+                { href: "/find", eyebrow: "Near you", title: "Find a house of prayer" },
+              ]}
+            />
+          </div>
+        </Block>
+
+        <Block title="Feed">
+          <div className="grid max-w-2xl gap-5">
+            <FeedFilters
+              basePath="/design-system"
+              active={null}
+              available={["message", "news", "dedication", "album", "milestone"]}
+            />
+            <PostCard item={albumPost} albumSize={album?.photos.length} />
+          </div>
+        </Block>
+
+        <Block title="Social controls">
+          <div className="grid max-w-xl gap-5">
+            <div className="flex flex-wrap items-center gap-3">
+              <FollowButton slug="women" name="Women" />
+              <ShareButton title="Women" path="/church/women" />
+              <SaveButton postId={albumPost.post.id} title={albumPost.post.title} />
+            </div>
+            <ReactionBar postId={albumPost.post.id} title={albumPost.post.title} />
+            <RsvpControl eventSlug={nextEvent.slug} title={nextEvent.title} />
+          </div>
+        </Block>
+
+        <Block title="One-time code">
+          <OtpDemo />
+        </Block>
+
+        <Block title="Motion">
+          <div className="grid gap-8">
+            <SplitHeadline
+              as="p"
+              text="Sustained by God's endless mercies"
+              className="font-display text-display-md font-extrabold"
+            />
+            <div className="flex gap-10">
+              <span className="grid">
+                <Counter value={101} className="font-display text-4xl font-extrabold" />
+                <span className="text-sm text-muted-foreground">Counter</span>
+              </span>
+            </div>
+            <div className="dark rounded-card bg-inverse py-3 text-foreground">
+              <Marquee
+                label="Marquee demo"
+                items={[
+                  "Watchword · Sustained by God's Endless Mercies",
+                  "Coming up · Christmas Day",
+                  "Find a house of prayer near you",
+                ]}
+              />
+            </div>
+          </div>
         </Block>
 
         <Block title="Avatars">
@@ -360,12 +478,6 @@ export default function DesignSystemPage() {
         </Block>
       </Section>
 
-      <Section tone="inverse" container="narrow">
-        <Scripture reference="Colossians 3:23" version="KJV">
-          And whatsoever ye do, do it heartily, as to the Lord, and not unto men.
-        </Scripture>
-      </Section>
-
       <Section tone="muted">
         <SectionHeader
           overline="Section header"
@@ -378,18 +490,6 @@ export default function DesignSystemPage() {
           title="Centred"
           description="For editorial sections."
           className="mb-0 md:mb-0"
-        />
-      </Section>
-
-      <Section>
-        <CtaBanner
-          title="Call to action"
-          description="Used at the end of key pages."
-          actions={
-            <Button variant="accent" size="lg">
-              Primary action
-            </Button>
-          }
         />
       </Section>
     </>

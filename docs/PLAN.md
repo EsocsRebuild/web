@@ -6,6 +6,11 @@ has directorates, societies, a century of history and an active leadership calen
 has to reflect that structure. It is a content platform with a directory, a publishing system and
 a calendar, not a brochure.
 
+**UX-led plan (approved):** the gates and phases in
+`~/.claude/plans/soft-jingling-kite.md` now govern the build. UX deliverables live in
+[`docs/ux/`](./ux/): information architecture and tree test kit (P1), glossary draft (P1).
+Wireframes (P2) are published for review.
+
 This document is the source of truth for scope, architecture and order of work. Update it as
 decisions are made. Tick items only when they meet the [Definition of Done](#8-definition-of-done).
 
@@ -74,6 +79,10 @@ script is re-runnable and needs Node 22+ with a working CA store.
       only appears inside the history text.
 - [ ] No media file has alt text (436 of 436).
 - [ ] One news record has a slug copied from an unrelated Access Bank article.
+- [ ] The Onitsha manse record reads "13th February, 202". The platform dates it 13 February
+      2021 because it sits among the February 2021 Onitsha visits. **Confirm.**
+- [ ] Legacy events are not carried over (their dates were wrong). Church-calendar observances
+      are computed instead (`src/lib/church-calendar.ts`).
 
 ### Content that does not exist anywhere online, and must come from the church
 

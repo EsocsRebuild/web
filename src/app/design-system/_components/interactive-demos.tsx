@@ -15,8 +15,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ErrorState } from "@/components/patterns/states";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { OtpInput } from "@/components/ui/otp-input";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/toaster";
@@ -136,5 +138,27 @@ export function LoadingButtonDemo() {
 export function SearchDemo() {
   return (
     <Input type="search" leftIcon={<Search />} placeholder="Search sermons and events" aria-label="Search" />
+  );
+}
+
+export function OtpDemo() {
+  const [code, setCode] = React.useState("");
+  const [done, setDone] = React.useState<string | null>(null);
+  return (
+    <div className="grid gap-3">
+      <OtpInput id="ds-otp" value={code} onChange={setCode} onComplete={setDone} />
+      <p className="text-sm text-muted-foreground">
+        {done ? `Completed: ${done}` : "Type, paste or autofill a 6-digit code."}
+      </p>
+    </div>
+  );
+}
+
+export function ErrorDemo() {
+  const [tries, setTries] = React.useState(0);
+  return (
+    <ErrorState onRetry={() => setTries((t) => t + 1)}>
+      {tries ? `Retried ${tries} time${tries === 1 ? "" : "s"}.` : "Check your connection and try again."}
+    </ErrorState>
   );
 }

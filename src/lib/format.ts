@@ -81,3 +81,16 @@ export function formatDuration(seconds: number) {
   const m = Math.round((seconds % 3600) / 60);
   return h ? `${h} hr ${m} min` : `${m} min`;
 }
+
+/** e.g. "16 August 2018". Takes an ISO date or date-time. */
+export function formatLongDate(date: DateInput) {
+  const d = typeof date === "string" && /^\d{4}-\d{2}-\d{2}$/.test(date) ? `${date}T12:00:00Z` : date;
+  return new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric", timeZone }).format(
+    toDate(d),
+  );
+}
+
+/** e.g. "1925 – 1933", "2017 – present". */
+export function formatTenure(tenure: { from: number; to: number | null }) {
+  return `${tenure.from} – ${tenure.to ?? "present"}`;
+}

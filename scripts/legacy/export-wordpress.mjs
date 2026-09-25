@@ -183,6 +183,12 @@ function mediaManifest(media) {
       alt: m.alt_text || null,
       title: decode(m.title?.rendered ?? ""),
       uploaded: m.date,
+      // WordPress's pre-generated smaller versions; far lighter to fetch than originals.
+      variants: Object.fromEntries(
+        Object.entries(d.sizes ?? {})
+          .filter(([name]) => ["medium_large", "large", "1536x1536"].includes(name))
+          .map(([name, v]) => [name, { url: v.source_url, width: v.width, height: v.height }]),
+      ),
     };
   });
 }

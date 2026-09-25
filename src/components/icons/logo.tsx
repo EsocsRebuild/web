@@ -21,7 +21,7 @@ export function Logo({ className }: { className?: string }) {
       aria-label={`${siteConfig.name} home`}
     >
       <LogoMark />
-      <span className="font-display text-2xl leading-none font-semibold tracking-wide">
+      <span className="font-display text-2xl leading-none font-extrabold tracking-tight">
         {siteConfig.name}
       </span>
     </Link>
