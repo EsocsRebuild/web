@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 
 import { SkipLink } from "@/components/layout/skip-link";
-import { RevealController } from "@/components/motion/reveal";
-import { Announcements } from "@/components/shell/announcements";
+import { AppSplash, SPLASH_SCRIPT } from "@/components/shell/app-splash";
 import { AppHeader } from "@/components/shell/app-header";
 import { BottomNav } from "@/components/shell/bottom-nav";
 import { SiteFooter } from "@/components/shell/site-footer";
@@ -49,18 +48,24 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
+      <head>
+        {/* Must run before first paint so a returning visitor never sees the splash flash. */}
+        <script dangerouslySetInnerHTML={{ __html: SPLASH_SCRIPT }} />
+        {/* The splash paints these first; fetch them before anything else. */}
+        <link rel="preload" as="image" href="/brand/splash-bg.webp" fetchPriority="high" />
+        <link rel="preload" as="image" href="/brand/esocs-crest-192.webp" fetchPriority="high" />
+      </head>
       <body className="flex min-h-dvh flex-col">
+        <AppSplash />
         <Providers>
           <SkipLink />
           <AppHeader />
-          <Announcements />
           <main id="main" tabIndex={-1} className="flex-1 outline-none">
             {children}
           </main>
           <SiteFooter />
           <BottomNav />
           <SignInDialog />
-          <RevealController />
           <Toaster />
         </Providers>
       </body>

@@ -15,8 +15,9 @@ for (const path of TEMPLATES) {
 test("navigation targets are at least 40px on touch devices", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.use.hasTouch, "Touch-only check");
   await page.goto("/");
+  // The site's own navigation chrome: the top bar and the phone bottom bar.
   const small = await page.$$eval(
-    "header a, header button, nav[aria-label='Main'] a, nav[aria-label='Main'] button",
+    "[data-site-header] a, [data-site-header] button, [data-bottom-nav] a, [data-bottom-nav] button",
     (els) =>
       els
         .filter((el) => (el as HTMLElement).offsetParent !== null)

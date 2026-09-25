@@ -13,7 +13,7 @@ export function SiteFooter() {
     <footer className="dark mt-16 bg-inverse pb-[calc(var(--spacing-bottom-nav)+env(safe-area-inset-bottom))] text-foreground lg:pb-0">
       <div className="mx-auto grid max-w-wide gap-12 px-gutter py-14 lg:grid-cols-12 lg:gap-8">
         <div className="grid content-start gap-5 lg:col-span-4">
-          <Logo />
+          <Logo size="lg" />
           <p className="max-w-sm text-sm leading-6 text-muted-foreground">
             {siteConfig.fullName}. Founded in {siteConfig.founded}. Sustained by God&apos;s endless mercies.
           </p>

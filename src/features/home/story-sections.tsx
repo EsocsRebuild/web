@@ -2,7 +2,6 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { Counter } from "@/components/motion/counter";
 import { Reveal } from "@/components/motion/reveal";
 import { Cover } from "@/components/patterns/cover";
 import { SectionHeading } from "@/components/patterns/section-heading";
@@ -13,37 +12,6 @@ import { successionLabel } from "@/features/history/ordinal";
 import { formatTenure } from "@/lib/format";
 import { routes } from "@/lib/routes";
 import { initials } from "@/lib/utils";
-
-/** The Order in numbers: only figures that cannot mislead. */
-export function OrderInNumbers({
-  founded,
-  leaders,
-  cmcs,
-}: {
-  founded: number;
-  leaders: number;
-  cmcs: number;
-}) {
-  const stats = [
-    { value: new Date().getFullYear() - founded, label: "Years of the Order", note: `Founded ${founded}` },
-    { value: leaders, label: "Baba Aladuras", note: "From the founder to today" },
-    { value: cmcs, label: "CMCs", note: "Regional councils" },
-  ];
-  return (
-    <section
-      aria-label="The Order in numbers"
-      className="grid grid-cols-3 gap-px overflow-hidden rounded-panel border border-border bg-border"
-    >
-      {stats.map((s) => (
-        <div key={s.label} className="grid gap-0.5 bg-surface p-4 sm:p-5">
-          <Counter value={s.value} className="font-display text-3xl font-extrabold sm:text-4xl" />
-          <span className="text-sm font-semibold">{s.label}</span>
-          <span className="hidden text-xs text-muted-foreground sm:block">{s.note}</span>
-        </div>
-      ))}
-    </section>
-  );
-}
 
 /** Women and Youth, each with its own story and a way in. */
 export function SectionsFeature({ sections }: { sections: Unit[] }) {
@@ -67,7 +35,7 @@ export function SectionsFeature({ sections }: { sections: Unit[] }) {
               />
               <div
                 aria-hidden
-                className="absolute inset-0 -z-10 bg-gradient-to-t from-black/70 via-black/25 to-transparent"
+                className="absolute inset-0 -z-10 bg-linear-to-t from-black/70 via-black/25 to-transparent"
               />
               <div className="grid gap-3 p-6 sm:p-8">
                 <p className="text-overline font-semibold text-white/80 uppercase">{s.tagline}</p>
@@ -161,7 +129,7 @@ export function GiveAppeal({ appeal }: { appeal: Organisation["givingAppeal"] })
       )}
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-inverse via-inverse/85 to-inverse/30"
+        className="absolute inset-0 -z-10 bg-linear-to-r from-inverse via-inverse/85 to-inverse/30"
       />
       <div className="grid max-w-2xl gap-4 p-8 sm:p-12">
         <p className="text-overline font-semibold text-highlight uppercase">Give</p>

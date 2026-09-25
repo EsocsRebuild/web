@@ -6,7 +6,7 @@ import { formatLongDate } from "@/lib/format";
 import { routes } from "@/lib/routes";
 
 /** The announcement ticker under the top bar, built from live content only. */
-export function Announcements() {
+export function Announcements({ variant = "bar" }: { variant?: "bar" | "hero" }) {
   const content = getContent();
   const org = content.getOrganisation();
   const next = content.listEvents().slice(0, 2);
@@ -41,7 +41,13 @@ export function Announcements() {
   ].filter(Boolean);
 
   return (
-    <div className="dark border-b border-border bg-inverse text-sm text-foreground">
+    <div
+      className={
+        variant === "hero"
+          ? "border-t border-white/10 bg-black/25 text-sm text-foreground backdrop-blur-md"
+          : "dark border-b border-border bg-inverse text-sm text-foreground"
+      }
+    >
       <Marquee label="Announcements" items={items} className="py-2.5" pxPerSecond={40} />
     </div>
   );

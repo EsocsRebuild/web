@@ -9,7 +9,11 @@ const QUICK = ["Lagos", "Port Harcourt", "Abuja", "Ibadan", "Awka", "London", "U
 /** "Find a house of prayer": a real form, so it works before JavaScript loads. */
 export function FindStrip({ pageCount }: { pageCount: number }) {
   return (
-    <section aria-labelledby="find-strip-title" className="border-b border-border bg-surface">
+    <section
+      id="explore"
+      aria-labelledby="find-strip-title"
+      className="scroll-mt-24 border-b border-border bg-surface"
+    >
       <div className="mx-auto grid max-w-wide gap-4 px-gutter py-6 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-10">
         <div>
           <h2 id="find-strip-title" className="font-display text-xl font-extrabold">

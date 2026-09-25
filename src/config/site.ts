@@ -4,6 +4,8 @@
  */
 export const siteConfig = {
   name: "ESOCS",
+  /** How the church presents itself in the header and on sharing cards. */
+  brandName: "The ESOCS Church",
   fullName: "The Eternal Sacred Order of the Cherubim & Seraphim",
   description:
     "The worldwide home of the Eternal Sacred Order of the Cherubim & Seraphim: houses of prayer, provinces and headquarters, news, events, history and the succession of Baba Aladuras since 1925.",

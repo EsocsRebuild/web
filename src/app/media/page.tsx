@@ -44,7 +44,7 @@ export default function MediaPage() {
           />
           <span
             aria-hidden
-            className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+            className="absolute inset-0 -z-10 bg-linear-to-t from-black/80 via-black/20 to-transparent"
           />
           <span className="grid content-end gap-2 p-6 sm:p-10">
             <span className="text-overline font-semibold text-white/80 uppercase">

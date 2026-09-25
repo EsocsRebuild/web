@@ -11,9 +11,10 @@ import { FeedFilters, parseKind } from "@/features/feed/feed-filters";
 import { FeedList } from "@/features/feed/feed-list";
 import { getFeedPage } from "@/features/feed/resolve";
 import { FindStrip } from "@/features/home/find-strip";
-import { HomeHero } from "@/features/home/hero";
+import { Announcements } from "@/components/shell/announcements";
+import { HeroScenes, type HeroScene } from "@/features/home/hero-scenes";
 import { StoriesRow } from "@/features/home/stories-row";
-import { GiveAppeal, HistoryTeaser, OrderInNumbers, SectionsFeature } from "@/features/home/story-sections";
+import { GiveAppeal, HistoryTeaser, SectionsFeature } from "@/features/home/story-sections";
 import { PagesToFollow } from "@/features/units/pages-to-follow";
 import { routes } from "@/lib/routes";
 
@@ -33,10 +34,72 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
   const kinds = [...new Set(content.getFeed({ limit: 1000 }).items.map((p) => p.kind))];
   const albumSizes = Object.fromEntries(content.listGalleries().map((g) => [g.slug, g.photos.length]));
   const root = content.getUnit("esocs")!;
+  const fathersDay = content.listEvents().find((e) => e.slug.startsWith("fathers-day"));
+  const scenes: HeroScene[] = [
+    {
+      id: "church",
+      image: "/brand/hero-church.webp",
+      alt: "The congregation gathered under the canopy at the centenary",
+      focus: "center 40%",
+      eyebrow: `The Eternal Sacred Order of the Cherubim & Seraphim · Since ${org.founded}`,
+      lead: "A house of prayer",
+      accent: "for all people.",
+      cite: "Isaiah 56:7",
+      body: `A worldwide Order of houses of prayer, founded by ${org.founder}. Find your church and walk with the family this week.`,
+      cta: { label: "Who we are", href: routes.unit("esocs") },
+    },
+    {
+      id: "women",
+      image: "/brand/hero-women.webp",
+      alt: "Mothers of the Order in white garments at the centenary",
+      focus: "70% center",
+      eyebrow: "Our church family · Women",
+      lead: "Mothers of faith,",
+      accent: "pillars of the Order.",
+      body: "Women of all ages growing in their relationship with Jesus Christ through learning, sharing and serving.",
+      cta: { label: "Meet the Mothers", href: routes.unit("women") },
+    },
+    {
+      id: "youth",
+      image: "/brand/hero-youth.webp",
+      alt: "Young members in white garments in a joyful procession",
+      focus: "center 35%",
+      eyebrow: "Our church family · Mount Zion Youth Society",
+      lead: "Raised in holiness,",
+      accent: "sent out in faith.",
+      body: "Tuesday Bible Studies in every branch, the Campus Fellowship and missions: the future of the Holy Order.",
+      cta: { label: "Explore Youth", href: routes.unit("youth") },
+    },
+    {
+      id: "children",
+      image: "/brand/hero-children.webp",
+      alt: "Children in white and blue caps at the Children's Day celebration",
+      focus: "center 30%",
+      eyebrow: "Our church family · Children",
+      lead: "Suffer the little children",
+      accent: "to come unto me.",
+      cite: "Mark 10:14",
+      body: "The joy of the Order's youngest members, from Children's Day to the Christmas party.",
+      cta: { label: "See Children's Day", href: routes.album("childrens-day-celebration") },
+    },
+    {
+      id: "fathers",
+      image: "/brand/hero-fathers.webp",
+      alt: "Elders of the Order with their staffs at a thanksgiving service",
+      focus: "center 30%",
+      eyebrow: "Our church family · Fathers",
+      lead: "Fathers who lead",
+      accent: "with humble hearts.",
+      body: "ESOCS Father's Day is kept on the third Sunday of June, honouring the fathers of every house of prayer.",
+      cta: fathersDay
+        ? { label: "ESOCS Father's Day", href: routes.event(fathersDay.slug) }
+        : { label: "Church calendar", href: routes.calendar() },
+    },
+  ];
 
   return (
     <>
-      <HomeHero org={org} />
+      <HeroScenes scenes={scenes} findHref={routes.find()} footer={<Announcements variant="hero" />} />
       <FindStrip pageCount={content.listUnits().length} />
 
       <PageColumns
@@ -92,7 +155,6 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
       >
         <div className="grid gap-6">
           <StoriesRow units={[root, ...headquarters, ...sections, ...cmcs]} />
-          <OrderInNumbers founded={org.founded} leaders={people.length} cmcs={cmcs.length} />
           <section aria-labelledby="feed-heading" className="grid gap-4">
             <SectionHeading
               id="feed-heading"

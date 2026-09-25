@@ -31,6 +31,7 @@ export function StoriesRow({ units }: { units: Unit[] }) {
 }
 
 function shortName(u: Unit) {
+  if (u.slug === "esocs") return "ESOCS Worldwide";
   return u.name
     .replace(/^National Headquarters Annex, /, "")
     .replace(/ House of Prayer$/, "")

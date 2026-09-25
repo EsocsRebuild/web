@@ -62,10 +62,10 @@ export function MoreMenuDesktop() {
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger
         className={cn(
-          "inline-flex h-11 cursor-pointer items-center gap-1.5 rounded-control px-3.5 text-sm font-semibold transition-colors",
+          "inline-flex h-10 cursor-pointer items-center gap-1.5 rounded-pill px-4 text-sm font-semibold transition-colors",
           active || open
             ? "text-foreground"
-            : "text-muted-foreground hover:bg-surface-muted hover:text-foreground",
+            : "text-foreground/70 hover:bg-foreground/[0.07] hover:text-foreground",
         )}
       >
         More

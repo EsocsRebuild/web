@@ -4,7 +4,7 @@ test("J1 · find a house of prayer and get directions", async ({ page }) => {
   await page.goto("/find");
   await page.getByLabel("Town, province or church name").fill("Awka");
   await expect(page).toHaveURL(/q=Awka/);
-  await page.getByRole("link", { name: "Mount Horeb, Umuike" }).click();
+  await page.getByRole("link", { name: "Mount Horeb, Umuike", exact: true }).click();
   await expect(page.getByRole("heading", { level: 1, name: "Mount Horeb, Umuike" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Directions" })).toHaveAttribute("href", /google\.com\/maps/);
 });

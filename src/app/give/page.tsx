@@ -41,7 +41,7 @@ export default function GivePage() {
         )}
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-inverse via-inverse/85 to-inverse/40"
+          className="absolute inset-0 -z-10 bg-linear-to-r from-inverse via-inverse/85 to-inverse/40"
         />
         <div className="mx-auto grid max-w-wide gap-5 px-gutter py-16 sm:py-24">
           <p className="text-overline font-semibold text-highlight uppercase">Give</p>

@@ -58,8 +58,9 @@ All tokens live in `src/app/globals.css`.
 - **Colour.** Components use semantic tokens (`bg-background`, `bg-surface`, `text-foreground`,
   `text-muted-foreground`, `bg-primary`, `bg-accent`, `text-highlight`, `border-border`, `bg-inverse`), never
   raw palette values. Light and dark themes redefine the same tokens.
-- **Type.** Archivo (bold, variable width) for display headings (`text-display-sm` to `text-display-2xl`, fluid between
-  360px and 1440px viewports). DM Sans for body and interface text.
+- **Type.** Bricolage Grotesque for display headings (`text-display-sm` to `text-display-2xl`, fluid between
+  360px and 1440px viewports), Instrument Serif italic as the elegant accent (key words, the wordmark,
+  quotes) via `font-serif`, and DM Sans for body and interface text.
 - **Layout.** `px-gutter` for horizontal page padding, `py-section` for vertical rhythm, `max-w-site` and
   `max-w-wide` for content width, `h-header` for the header height.
 - **Shape.** `rounded-control` for buttons and inputs, `rounded-card` for cards and media.

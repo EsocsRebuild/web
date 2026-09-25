@@ -1,10 +1,19 @@
-import { Archivo, DM_Sans } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans, Instrument_Serif } from "next/font/google";
 
-/** Headlines. Variable weight and width, so display sizes can run heavy and expanded. */
-export const fontDisplay = Archivo({
+/** Headlines: a characterful grotesk whose optical sizes sharpen as type grows. */
+export const fontDisplay = Bricolage_Grotesque({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
+  axes: ["opsz", "wdth"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
+
+/** Elegant accent: key words in headlines, the wordmark, scripture and quotes. */
+export const fontSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
   display: "swap",
 });
 
@@ -16,4 +25,4 @@ export const fontSans = DM_Sans({
   display: "swap",
 });
 
-export const fontVariables = `${fontDisplay.variable} ${fontSans.variable}`;
+export const fontVariables = `${fontDisplay.variable} ${fontSerif.variable} ${fontSans.variable}`;

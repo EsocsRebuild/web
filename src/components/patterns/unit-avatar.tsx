@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { LogoMark } from "@/components/icons/logo";
+import { Crest } from "@/components/icons/logo";
 import type { ImageRef, UnitKind } from "@/data/schema/content";
 import { UNIT_KIND } from "@/lib/kinds";
 import { cn, initials } from "@/lib/utils";
@@ -43,7 +43,7 @@ export function UnitAvatar({
       {image ? (
         <Image src={image.url} alt="" fill sizes={`${px}px`} className="object-cover" />
       ) : kind === "holy-order" ? (
-        <LogoMark className="size-[62%] text-white" />
+        <Crest size={px} className="size-full" />
       ) : (
         <span aria-hidden>{initials(name.replace(/^(CMC)\s+(\d+)/, "C $2")) || "•"}</span>
       )}

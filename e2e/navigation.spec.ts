@@ -7,15 +7,18 @@ test("desktop top bar reaches every destination", async ({ page }, testInfo) => 
   await nav.getByRole("link", { name: "Events" }).click();
   await expect(page).toHaveURL(/\/events$/);
   await expect(nav.getByRole("link", { name: "Events" })).toHaveAttribute("aria-current", "page");
-  await nav.getByRole("button", { name: "More" }).click();
-  await page.getByRole("link", { name: "Women" }).click();
+  await page
+    .getByRole("navigation", { name: "More destinations" })
+    .getByRole("button", { name: "More", exact: true })
+    .click();
+  await page.getByRole("dialog").getByRole("link", { name: "Women", exact: true }).click();
   await expect(page).toHaveURL(/\/church\/women$/);
 });
 
 test("phone bottom bar opens the More menu", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== "mobile", "Phone only");
   await page.goto("/");
-  await page.getByRole("button", { name: "More" }).click();
+  await page.getByRole("button", { name: "More", exact: true }).click();
   const menu = page.getByRole("dialog");
   await expect(menu.getByRole("link", { name: "Youth" })).toBeVisible();
   await menu.getByRole("link", { name: "Youth" }).click();
@@ -29,7 +32,11 @@ test("search palette finds a church from anywhere", async ({ page }, testInfo) =
   const input = page.getByPlaceholder("Search churches, people, news and events…");
   await expect(input).toBeFocused();
   await input.fill("Mokola");
-  await page.getByRole("option", { name: /Mokola District Headquarters/ }).click();
+  // Churches are listed first; the dedication post about the same church follows.
+  await page
+    .getByRole("option", { name: /Mokola District Headquarters/ })
+    .first()
+    .click();
   await expect(page).toHaveURL(/\/church\/mokola-district-headquarters$/);
 });
 

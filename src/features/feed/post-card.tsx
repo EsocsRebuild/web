@@ -63,7 +63,7 @@ export function PostCard({
         <div className="grid min-w-0 flex-1">
           <Link
             href={routes.unit(publisher.slug)}
-            className="truncate text-sm font-semibold hover:underline hover:underline-offset-4"
+            className="flex min-h-6 items-center truncate text-sm font-semibold hover:underline hover:underline-offset-4"
           >
             {publisher.slug === "esocs" ? "ESOCS Worldwide" : publisher.name}
           </Link>
