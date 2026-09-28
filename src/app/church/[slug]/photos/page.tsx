@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { SmartImage } from "@/components/media/smart-image";
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { formatLongDate } from "@/lib/format";
 import { routes } from "@/lib/routes";
@@ -25,11 +25,12 @@ export default async function UnitPhotosPage({ params }: PageProps<"/church/[slu
           <li key={g.slug}>
             <Link href={routes.album(g.slug)} className="group/album grid gap-2">
               <span className="relative block aspect-[4/3] overflow-hidden rounded-card bg-surface-sunken">
-                <Image
-                  src={g.cover.url}
-                  alt={g.cover.alt}
+                <SmartImage
+                  image={g.cover}
                   fill
+                  frame={{ width: 4, height: 3 }}
                   sizes="(min-width: 640px) 340px, 100vw"
+                  quality={60}
                   className="object-cover transition-transform duration-500 group-hover/album:scale-[1.03]"
                 />
                 <span className="absolute right-2 bottom-2 rounded-pill bg-black/65 px-2 py-0.5 text-xs font-bold text-white tabular">

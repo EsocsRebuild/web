@@ -2,8 +2,10 @@ import { SplashController } from "./splash-controller";
 
 /**
  * Opening loader: the crest settles in the centre as a gold ring draws around it,
- * the wordmark rises, then the screen lifts away. Pure CSS, so it shows on the
- * first paint before any JavaScript; plays once per visit (see SPLASH_SCRIPT).
+ * the wordmark rises, then the screen opens onto the site. Pure CSS, so it shows
+ * on the first paint before any JavaScript. It plays on every full page load
+ * (opening or refreshing the site) and never on in-app navigation, because the
+ * root layout does not re-render between pages.
  */
 export function AppSplash() {
   return (
@@ -34,6 +36,3 @@ export function AppSplash() {
     </div>
   );
 }
-
-/** Runs before first paint: skip the splash if it has already played in this visit. */
-export const SPLASH_SCRIPT = `try{if(sessionStorage.getItem("esocs:splash")){document.documentElement.dataset.splash="seen"}}catch(e){}`;

@@ -21,7 +21,7 @@ export function MemberGate({
 
   if (member === undefined) {
     return (
-      <div className="grid gap-4" aria-busy="true" aria-label="Loading your account">
+      <div role="status" className="grid gap-4" aria-busy="true" aria-label="Loading your account">
         <Skeleton className="h-24 rounded-panel" />
         <Skeleton className="h-16 rounded-card" />
         <Skeleton className="h-16 rounded-card" />

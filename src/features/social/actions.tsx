@@ -34,7 +34,8 @@ export function FollowButton({
   name: string;
   size?: "sm" | "md";
   className?: string;
-  tone?: "default" | "inverse";
+  /** "quiet": an outline until followed, for lists where many sit side by side. */
+  tone?: "default" | "inverse" | "quiet";
 }) {
   const { following } = useSocial();
   const run = useMemberAction();
@@ -53,7 +54,9 @@ export function FollowButton({
     <Button
       type="button"
       size={size}
-      variant={isFollowing ? (tone === "inverse" ? "overlay" : "secondary") : "accent"}
+      variant={
+        isFollowing ? (tone === "inverse" ? "overlay" : "secondary") : tone === "quiet" ? "outline" : "accent"
+      }
       aria-pressed={isFollowing}
       onClick={toggle}
       className={cn("min-w-28", className)}
@@ -180,7 +183,7 @@ export function SaveButton({
       className={cn(actionButton, isSaved && "text-highlight", className)}
     >
       <Bookmark aria-hidden className={cn("size-5", isSaved && "fill-current")} />
-      <span className="sr-only sm:not-sr-only">{isSaved ? "Saved" : "Save"}</span>
+      <span className="@max-[30rem]/actions:sr-only">{isSaved ? "Saved" : "Save"}</span>
     </button>
   );
 }
@@ -194,7 +197,7 @@ const REACTIONS: { kind: ReactionKind; label: string; icon: LucideIcon }[] = [
 ];
 
 export const actionButton =
-  "inline-flex min-h-10 cursor-pointer items-center gap-1.5 rounded-control px-2.5 text-sm font-semibold text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground disabled:cursor-default";
+  "inline-flex min-h-10 cursor-pointer items-center gap-1.5 rounded-control px-2 text-sm sm:px-2.5 font-semibold text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground disabled:cursor-default";
 
 function useReactions(postId: string) {
   const { member } = useSocial();
@@ -264,7 +267,7 @@ export function ReactionBar({ postId, title }: { postId: string; title: string }
                 popped === kind && active && "animate-pop",
               )}
             />
-            <span>{label}</span>
+            <span className="@max-[26rem]/actions:sr-only">{label}</span>
             {count > 0 && <span className="text-xs tabular">{count}</span>}
           </button>
         );

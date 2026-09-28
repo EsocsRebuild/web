@@ -26,8 +26,8 @@ export function Bridges({ items, className }: { items: Bridge[]; className?: str
           items.length > 2 && "lg:grid-cols-3",
         )}
       >
-        {items.map((item, i) => (
-          <Reveal as="li" key={item.href} delay={i * 60}>
+        {items.map((item) => (
+          <Reveal as="li" key={item.href}>
             <Link
               href={item.href}
               className="group/bridge flex h-full flex-col gap-1.5 rounded-card border border-border bg-surface p-5 transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-border-strong hover:shadow-lift"

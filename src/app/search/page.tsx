@@ -42,11 +42,11 @@ export default async function SearchPage({ searchParams }: PageProps<"/search">)
           type="search"
           defaultValue={q}
           placeholder="Churches, people, news and events"
-          className="h-12 flex-1 rounded-pill border border-input bg-surface px-5 text-base outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30"
+          className="h-12 min-w-0 flex-1 rounded-pill border border-input bg-surface px-5 text-base outline-none focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/30"
         />
         <button
           type="submit"
-          className="h-12 cursor-pointer rounded-pill bg-foreground px-6 font-semibold text-background"
+          className="h-12 shrink-0 cursor-pointer rounded-pill bg-foreground px-5 font-semibold text-background sm:px-6"
         >
           Search
         </button>

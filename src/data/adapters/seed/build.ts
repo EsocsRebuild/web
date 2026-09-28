@@ -13,6 +13,7 @@ import newsSeed from "../../../../data/legacy/seed/news.json";
 import organisationSeed from "../../../../data/legacy/seed/organisation.json";
 import provincesSeed from "../../../../data/legacy/seed/provinces.json";
 
+import { placeholderFor } from "@/lib/image-placeholders";
 import { displayCase, htmlToParagraphs } from "@/lib/text";
 
 import {
@@ -76,13 +77,16 @@ function image(source: SeedImage | undefined, alt: string): ImageRef | null {
     raster && source.width && source.height
       ? Math.min(1, MAX_EDGE / Math.max(source.width, source.height))
       : 1;
+  const url = raster
+    ? `${LEGACY_MEDIA_BASE}/${decodeURIComponent(source.url.slice(LEGACY_UPLOADS.length))}.webp`
+    : source.url;
+  const placeholder = placeholderFor(url);
   return {
-    url: raster
-      ? `${LEGACY_MEDIA_BASE}/${decodeURIComponent(source.url.slice(LEGACY_UPLOADS.length))}.webp`
-      : source.url,
+    url,
     width: source.width ? Math.round(source.width * scale) : null,
     height: source.height ? Math.round(source.height * scale) : null,
     alt: source.alt || alt,
+    ...(placeholder ? { placeholder } : {}),
   };
 }
 

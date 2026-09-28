@@ -33,10 +33,10 @@ export function AccountControls() {
         size="sm"
         onClick={() => requestSignIn()}
         aria-label="Sign in"
-        className="size-10 rounded-pill px-0 font-semibold sm:w-auto sm:px-3.5"
+        className="size-10 rounded-pill px-0 font-semibold sm:w-auto sm:px-3.5 lg:w-10 lg:px-0 xl:w-auto xl:px-3.5"
       >
-        <UserRound aria-hidden className="sm:hidden" />
-        <span className="hidden sm:inline">Sign in</span>
+        <UserRound aria-hidden className="sm:hidden lg:inline xl:hidden" />
+        <span className="hidden sm:inline lg:hidden xl:inline">Sign in</span>
       </Button>
     );
   }
@@ -71,7 +71,7 @@ export function AccountControls() {
         <DropdownMenuContent align="end" className="w-60">
           <DropdownMenuLabel className="grid gap-0.5 py-2">
             <span className="text-sm text-foreground">{member.displayName}</span>
-            <span className="truncate font-normal">{member.contact}</span>
+            <span className="font-normal [overflow-wrap:anywhere]">{member.contact}</span>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem

@@ -1,18 +1,29 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as React from "react";
 
-import { isActive, moreIcon as MoreIcon, moreNav, primaryNav } from "@/config/navigation";
+import { bottomNav, isActive, moreIcon as MoreIcon, moreNav } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
-import { MoreMenuDrawer } from "./more-menu";
+// The sheet and its drawer library load on the first tap of More, warmed on touch.
+const loadDrawer = () => import("./more-menu-drawer");
+const MoreMenuDrawer = dynamic(loadDrawer, { ssr: false });
 
 /** Thumb-reach navigation for phones: the same five destinations as the top bar. */
 export function BottomNav() {
   const pathname = usePathname();
   const [moreOpen, setMoreOpen] = React.useState(false);
+  const [moreUsed, setMoreUsed] = React.useState(false);
+
+  // Mount the sheet closed first, then open it, so it slides up the first time too.
+  const openMore = async () => {
+    setMoreUsed(true);
+    await loadDrawer();
+    requestAnimationFrame(() => setMoreOpen(true));
+  };
   const moreActive = moreNav.some((g) => g.items.some((i) => isActive(pathname, i)));
   const item =
     "relative flex min-h-14 flex-1 flex-col items-center justify-center gap-1 text-[0.6875rem] font-semibold transition-colors";
@@ -25,7 +36,7 @@ export function BottomNav() {
         className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/92 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl lg:hidden"
       >
         <ul className="mx-auto flex max-w-lg">
-          {primaryNav.map((link) => {
+          {bottomNav.map((link) => {
             const active = isActive(pathname, link);
             return (
               <li key={link.href} className="flex flex-1">
@@ -46,7 +57,9 @@ export function BottomNav() {
           <li className="flex flex-1">
             <button
               type="button"
-              onClick={() => setMoreOpen(true)}
+              onClick={() => void openMore()}
+              onPointerDown={() => void loadDrawer()}
+              onFocus={() => void loadDrawer()}
               aria-haspopup="dialog"
               className={cn(item, "cursor-pointer", moreActive ? "text-foreground" : "text-muted-foreground")}
             >
@@ -59,7 +72,7 @@ export function BottomNav() {
           </li>
         </ul>
       </nav>
-      <MoreMenuDrawer open={moreOpen} onOpenChange={setMoreOpen} />
+      {moreUsed && <MoreMenuDrawer open={moreOpen} onOpenChange={setMoreOpen} />}
     </>
   );
 }

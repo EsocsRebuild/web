@@ -1,14 +1,16 @@
 import type { Metadata, Viewport } from "next";
 
 import { SkipLink } from "@/components/layout/skip-link";
-import { AppSplash, SPLASH_SCRIPT } from "@/components/shell/app-splash";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
+import { AppSplash } from "@/components/shell/app-splash";
 import { AppHeader } from "@/components/shell/app-header";
 import { BottomNav } from "@/components/shell/bottom-nav";
+import { FloatingDock } from "@/components/shell/floating-dock";
 import { SiteFooter } from "@/components/shell/site-footer";
 import { Providers } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
-import { SignInDialog } from "@/features/social/sign-in-dialog";
+import { SignInHost } from "@/features/social/sign-in-host";
 import { fontVariables } from "@/lib/fonts";
 import { absoluteUrl } from "@/lib/utils";
 
@@ -49,8 +51,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
       <head>
-        {/* Must run before first paint so a returning visitor never sees the splash flash. */}
-        <script dangerouslySetInnerHTML={{ __html: SPLASH_SCRIPT }} />
         {/* The splash paints these first; fetch them before anything else. */}
         <link rel="preload" as="image" href="/brand/splash-bg.webp" fetchPriority="high" />
         <link rel="preload" as="image" href="/brand/esocs-crest-192.webp" fetchPriority="high" />
@@ -65,8 +65,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </main>
           <SiteFooter />
           <BottomNav />
-          <SignInDialog />
+          <FloatingDock />
+          <SignInHost />
           <Toaster />
+          <ScrollReveal />
         </Providers>
       </body>
     </html>

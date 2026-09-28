@@ -14,7 +14,7 @@ export function UpcomingList({ events, className }: { events: ChurchEvent[]; cla
           <Link href={routes.event(e.slug)} className="group/event flex items-center gap-3 rounded-control">
             <DateBadge date={e.date} size="sm" />
             <span className="grid min-w-0">
-              <span className="truncate text-sm font-semibold group-hover/event:text-highlight">
+              <span className="text-sm leading-snug font-semibold text-pretty group-hover/event:text-highlight">
                 {e.title}
               </span>
               <span className="text-xs text-muted-foreground">

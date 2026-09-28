@@ -147,6 +147,26 @@ describe("prayer requests", () => {
   });
 });
 
+describe("newsletter", () => {
+  it("subscribes without signing in, once per address, and validates the email", async () => {
+    const storage = memoryStorage();
+    const repo = create({ storage });
+    await repo.subscribeToNewsletter({ email: " Ada@Example.org ", name: "Ada" });
+    await repo.subscribeToNewsletter({ email: "ada@example.org" });
+    const saved = JSON.parse(storage.getItem("esocs:social:v1")!).newsletter;
+    expect(saved).toHaveLength(1);
+    expect(saved[0]).toMatchObject({ email: "ada@example.org", name: "Ada" });
+    await expectCode(repo.subscribeToNewsletter({ email: "not-an-email" }), "validation");
+  });
+
+  it("is unavailable where the demo is off", async () => {
+    await expectCode(
+      create({ allowDemoSignIn: false }).subscribeToNewsletter({ email: "ada@example.org" }),
+      "unavailable",
+    );
+  });
+});
+
 describe("persistence and reliability", () => {
   it("restores state from storage", async () => {
     const storage = memoryStorage();

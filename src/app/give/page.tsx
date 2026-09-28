@@ -1,7 +1,7 @@
 import { Landmark, Phone, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 
+import { SmartImage } from "@/components/media/smart-image";
 import { Bridges } from "@/components/patterns/bridges";
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { siteConfig } from "@/config/site";
@@ -30,9 +30,8 @@ export default function GivePage() {
         className="dark relative isolate overflow-hidden bg-inverse text-foreground"
       >
         {givingAppeal.image && (
-          <Image
-            src={givingAppeal.image.url}
-            alt=""
+          <SmartImage
+            image={{ ...givingAppeal.image, alt: "" }}
             fill
             priority
             sizes="100vw"

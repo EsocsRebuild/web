@@ -5,12 +5,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as React from "react";
 
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from "@/components/ui/drawer";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { isActive, moreNav } from "@/config/navigation";
 import { cn } from "@/lib/utils";
 
-function MoreGroups({ onNavigate, columns }: { onNavigate: () => void; columns?: boolean }) {
+export function MoreGroups({ onNavigate, columns }: { onNavigate: () => void; columns?: boolean }) {
   const pathname = usePathname();
   return (
     <div className={cn("grid gap-6", columns && "sm:grid-cols-2")}>
@@ -75,26 +74,5 @@ export function MoreMenuDesktop() {
         <MoreGroups columns onNavigate={() => setOpen(false)} />
       </PopoverContent>
     </Popover>
-  );
-}
-
-export function MoreMenuDrawer({
-  open,
-  onOpenChange,
-}: {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}) {
-  return (
-    <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent aria-describedby={undefined}>
-        <DrawerHeader>
-          <DrawerTitle>More</DrawerTitle>
-        </DrawerHeader>
-        <div className="overflow-y-auto px-3 pb-6">
-          <MoreGroups onNavigate={() => onOpenChange(false)} />
-        </div>
-      </DrawerContent>
-    </Drawer>
   );
 }

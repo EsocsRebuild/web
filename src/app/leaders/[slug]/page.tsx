@@ -1,7 +1,8 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+
+import { SmartImage } from "@/components/media/smart-image";
 import { notFound } from "next/navigation";
 
 import { Timeline } from "@/components/patterns/timeline";
@@ -44,11 +45,11 @@ export default async function LeaderPage({ params }: PageProps<"/leaders/[slug]"
       <header className="grid gap-8 md:grid-cols-[18rem_minmax(0,1fr)] md:items-end">
         <div className="relative aspect-[4/5] w-full max-w-72 overflow-hidden rounded-panel bg-surface-sunken shadow-lift">
           {p.portrait ? (
-            <Image
-              src={p.portrait.url}
-              alt={p.portrait.alt}
+            <SmartImage
+              image={p.portrait}
               fill
               priority
+              frame={{ width: 4, height: 5 }}
               sizes="288px"
               className="object-cover object-top"
             />

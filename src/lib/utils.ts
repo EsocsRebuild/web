@@ -30,12 +30,6 @@ export function slugify(value: string) {
     .replace(/^-+|-+$/g, "");
 }
 
-export function truncate(value: string, max: number) {
-  if (value.length <= max) return value;
-  const cut = value.lastIndexOf(" ", max);
-  return `${value.slice(0, cut > 0 ? cut : max).trimEnd()}…`;
-}
-
 const TITLES = /\b(most|rev|revd|dr|pastor|elder|bishop|apostle|evangelist|prophet|mother|mr|mrs|ms)\.?\s+/gi;
 
 /** Two-letter initials, ignoring clerical and honorific titles. */

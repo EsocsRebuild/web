@@ -53,6 +53,16 @@
   --color-parchment-900: oklch(0.2 0.005 70);
   --color-parchment-950: oklch(0.14 0.004 70);
 
+  /* Cool neutrals tinted toward the royal navy: the site's paper, lines and quiet text. */
+  --color-mist-50: oklch(0.985 0.004 255);
+  --color-mist-100: oklch(0.965 0.008 255);
+  --color-mist-200: oklch(0.925 0.013 255);
+  --color-mist-300: oklch(0.87 0.018 257);
+  --color-mist-400: oklch(0.72 0.025 258);
+  --color-mist-500: oklch(0.53 0.03 260);
+  --color-mist-600: oklch(0.48 0.032 262);
+  --color-mist-700: oklch(0.38 0.035 263);
+
   --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-bricolage), var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-instrument), "Iowan Old Style", Georgia, serif;
@@ -96,15 +106,18 @@
   --spacing-rail-right: 20rem;
   --spacing-bottom-nav: 4rem;
 
-  /* Colour role per kind of page, for badges, avatars and default covers. */
-  --color-kind-holy-order: oklch(0.42 0.14 265);
-  --color-kind-headquarters: oklch(0.55 0.12 70);
-  --color-kind-cmc: oklch(0.47 0.1 200);
-  --color-kind-province: oklch(0.5 0.11 155);
-  --color-kind-district: oklch(0.52 0.09 130);
-  --color-kind-branch: oklch(0.5 0.1 235);
-  --color-kind-section: oklch(0.52 0.14 350);
-  --color-kind-directorate: oklch(0.45 0.08 300);
+  /*
+   * Colour role per kind of page. One blue-and-gold family, used only as a small
+   * mark (a seal's ring, a dot, a cover's glow): never as a large fill.
+   */
+  --color-kind-holy-order: oklch(0.45 0.15 265);
+  --color-kind-headquarters: oklch(0.66 0.12 78);
+  --color-kind-cmc: oklch(0.52 0.1 232);
+  --color-kind-province: oklch(0.55 0.08 200);
+  --color-kind-district: oklch(0.56 0.05 180);
+  --color-kind-branch: oklch(0.55 0.12 250);
+  --color-kind-section: oklch(0.5 0.11 295);
+  --color-kind-directorate: oklch(0.5 0.04 255);
 
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
@@ -118,9 +131,10 @@
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
   --animate-sheet-up: sheet-up 0.35s var(--ease-emphasized) both;
   --animate-ken-burns: ken-burns 18s ease-out both;
+  /* The church family card in focus: a slow push into the photograph. */
+  --animate-family-drift: family-drift 14s cubic-bezier(0.25, 0.1, 0.25, 1) both;
   --animate-hero-zoom-in: hero-zoom-in 9s cubic-bezier(0.25, 0.1, 0.25, 1) both;
   --animate-hero-zoom-out: hero-zoom-out 9s cubic-bezier(0.25, 0.1, 0.25, 1) both;
-  --animate-scene-ring: scene-ring var(--scene-ms, 7000ms) linear both;
 
   --animate-fade-in: fade-in 0.2s var(--ease-standard) both;
   --animate-pop-in: pop-in 0.2s var(--ease-standard) both;
@@ -180,12 +194,12 @@
       transform: scale(1.03) translate3d(0, 0, 0);
     }
   }
-  @keyframes scene-ring {
+  @keyframes family-drift {
     from {
-      stroke-dashoffset: 1;
+      transform: scale(1.12) translate3d(1.5%, 1%, 0);
     }
     to {
-      stroke-dashoffset: 0;
+      transform: scale(1.02) translate3d(0, 0, 0);
     }
   }
   @keyframes ken-burns {
@@ -240,30 +254,31 @@
 :root {
   color-scheme: light;
 
-  --background: var(--color-parchment-50);
+  --background: var(--color-mist-50);
   --foreground: var(--color-royal-950);
 
   --surface: oklch(1 0 0);
-  --surface-muted: var(--color-parchment-100);
-  --surface-sunken: var(--color-parchment-200);
+  --surface-muted: var(--color-mist-100);
+  --surface-sunken: var(--color-mist-200);
 
-  --muted-foreground: var(--color-parchment-600);
-  --subtle-foreground: var(--color-parchment-500);
+  --muted-foreground: var(--color-mist-600);
+  --subtle-foreground: var(--color-mist-500);
 
-  --border: var(--color-parchment-200);
-  --border-strong: var(--color-parchment-300);
-  --input: var(--color-parchment-300);
+  --border: var(--color-mist-200);
+  --border-strong: var(--color-mist-300);
+  --input: var(--color-mist-300);
   --ring: var(--color-royal-500);
 
   --primary: var(--color-royal-800);
   --primary-hover: var(--color-royal-900);
-  --primary-foreground: var(--color-parchment-50);
+  --primary-foreground: oklch(1 0 0);
 
-  --accent: var(--color-gold-500);
-  --accent-hover: var(--color-gold-400);
-  --accent-foreground: var(--color-royal-950);
-  --accent-soft: var(--color-gold-100);
-  --accent-soft-foreground: var(--color-gold-800);
+  /* Royal blue carries the actions; gold is reserved for highlights and giving. */
+  --accent: var(--color-royal-600);
+  --accent-hover: var(--color-royal-700);
+  --accent-foreground: oklch(1 0 0);
+  --accent-soft: var(--color-royal-50);
+  --accent-soft-foreground: var(--color-royal-800);
 
   /* Gold for text on light backgrounds; darker than --accent for AA contrast. */
   --highlight: var(--color-gold-700);
@@ -306,11 +321,11 @@
   --primary-hover: var(--color-parchment-200);
   --primary-foreground: var(--color-royal-950);
 
-  --accent: var(--color-gold-400);
-  --accent-hover: var(--color-gold-300);
+  --accent: oklch(0.7 0.13 262);
+  --accent-hover: oklch(0.76 0.12 262);
   --accent-foreground: var(--color-royal-950);
-  --accent-soft: oklch(0.3 0.045 75 / 0.4);
-  --accent-soft-foreground: var(--color-gold-200);
+  --accent-soft: oklch(0.3 0.07 265 / 0.55);
+  --accent-soft-foreground: var(--color-royal-100);
 
   --highlight: var(--color-gold-300);
 
@@ -375,6 +390,16 @@
 /* 4. Base --------------------------------------------------------------- */
 
 @layer base {
+  /*
+   * Page-level layout grids fill the screen's width and never grow past it: a single
+   * implicit column would otherwise widen to fit its widest child (a long word, a
+   * row of buttons) and push the whole page sideways on small phones. Utilities
+   * such as grid-cols-* still override this.
+   */
+  :where(.grid.px-gutter, .grid.mx-auto) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   *,
   ::before,
   ::after {
@@ -549,15 +574,19 @@
   }
 }
 
-/* Scroll reveal. Only elements that start below the fold get `data-reveal="pending"`
-   (set by <Reveal> after it hydrates), so content is never hidden before JavaScript runs. */
-[data-reveal="pending"] {
-  opacity: 0;
-  transform: translateY(14px);
+/*
+ * The corner dock (back to top, ESOCS Help) waits for the opening splash, and steps
+ * aside while a dialog, menu or the photo viewer is open (they lock the page).
+ */
+[data-dock] {
+  transition:
+    opacity 0.3s var(--ease-standard),
+    visibility 0.3s;
 }
-[data-reveal="shown"] {
-  animation: var(--animate-rise-in);
-  animation-delay: var(--reveal-delay, 0ms);
+html:not([data-splash="seen"]) [data-dock],
+body[data-scroll-locked] [data-dock] {
+  opacity: 0;
+  visibility: hidden;
 }
 
 @utility mask-fade-x {
@@ -773,5 +802,51 @@ html[data-splash="seen"] .app-splash {
   to {
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+/*
+ * Parallax, driven by the scroll position itself (no JavaScript, off the main
+ * thread). Only where the browser supports scroll timelines and the reader has
+ * not asked for reduced motion; everywhere else the content simply sits still.
+ *
+ * .parallax-media  a photo drifting inside its frame (the frame clips it)
+ * .parallax-layer  a decorative layer moving at its own pace (--parallax-shift)
+ * .parallax-exit   the hero's words easing away as it scrolls out
+ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax-media {
+      scale: 1.18;
+      animation: parallax-drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+      --parallax-shift: 8%;
+    }
+    .parallax-layer {
+      animation: parallax-drift linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+    .parallax-exit {
+      animation: parallax-exit linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+  }
+}
+
+@keyframes parallax-drift {
+  from {
+    translate: 0 calc(var(--parallax-shift, 18%) * -1);
+  }
+  to {
+    translate: 0 var(--parallax-shift, 18%);
+  }
+}
+@keyframes parallax-exit {
+  to {
+    opacity: 0;
+    translate: 0 -64px;
   }
 }

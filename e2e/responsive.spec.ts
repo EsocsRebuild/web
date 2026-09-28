@@ -37,3 +37,21 @@ test("unknown routes return 404 with a way forward", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
   await expect(page.getByRole("link", { name: "Find a Church" }).last()).toBeVisible();
 });
+
+test("the header's controls stay on screen at every width", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Widths are set explicitly");
+  await page.goto("/");
+  for (const width of [320, 360, 390, 768, 1024, 1100, 1280, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    // Let the wordmark finish collapsing or expanding (a 500 ms transition).
+    await page.waitForTimeout(700);
+    const offscreen = await page.evaluate(() =>
+      [...document.querySelectorAll("[data-site-header] a, [data-site-header] button")]
+        .map((el) => ({ el, r: el.getBoundingClientRect() }))
+        .filter(({ el, r }) => r.width > 0 && getComputedStyle(el).visibility !== "hidden")
+        .filter(({ r }) => r.left < 0 || r.right > window.innerWidth)
+        .map(({ el }) => el.getAttribute("aria-label") ?? el.textContent?.trim()),
+    );
+    expect(offscreen, `at ${width}px`).toEqual([]);
+  }
+});

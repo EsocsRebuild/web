@@ -19,6 +19,7 @@ import type {
   ReportReason,
   RsvpStatus,
 } from "./schema/social";
+import type { OrderConfirmation, OrderDraft, Product, ProductCategory } from "./schema/store";
 
 /**
  * The contracts every data source implements. Components depend only on these,
@@ -115,10 +116,33 @@ export interface SocialRepository {
 
   /** Private: read only by the prayer team. Works signed in or not. */
   submitPrayerRequest(request: { name?: string; contact?: string; request: string }): Promise<void>;
+  /** Adds an email address to the church newsletter. Subscribing twice is not an error. */
+  subscribeToNewsletter(subscriber: { email: string; name?: string }): Promise<void>;
 
   listNotifications(): Promise<Notification[]>;
   markNotificationsRead(ids?: string[]): Promise<void>;
 
   /** Notifies listeners whenever any social state changes. */
   subscribe(listener: () => void): () => void;
+}
+
+export interface ProductQuery {
+  category?: string;
+  featured?: boolean;
+}
+
+/** The store's catalogue, read on the server. The admin app implements it later. */
+export interface StoreRepository {
+  listCategories(): ProductCategory[];
+  getCategory(slug: string): ProductCategory | null;
+  /** In catalogue order. */
+  listProducts(query?: ProductQuery): Product[];
+  getProduct(slug: string): Product | null;
+  /** Others from the same category first, then the featured range. */
+  listRelated(slug: string, limit?: number): Product[];
+}
+
+/** Placing an order, from the browser. The server re-prices every line. */
+export interface OrderRepository {
+  placeOrder(order: OrderDraft): Promise<OrderConfirmation>;
 }

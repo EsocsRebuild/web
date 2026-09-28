@@ -72,7 +72,7 @@ export function Lightbox({
           aria-describedby={undefined}
         >
           <div className="flex items-center justify-between gap-4 px-4 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-3 sm:px-6">
-            <DialogPrimitive.Title className="min-w-0 truncate text-sm font-semibold">
+            <DialogPrimitive.Title className="min-w-0 text-sm font-semibold text-pretty">
               {title}
               <span className="ml-3 font-normal text-white/60 tabular">
                 {current + 1} / {images.length}

@@ -1,8 +1,8 @@
 import { Radio } from "lucide-react";
 import type { Metadata } from "next";
 
+import { SmartImage } from "@/components/media/smart-image";
 import { YoutubeIcon } from "@/components/icons/social-icons";
-import Image from "next/image";
 import Link from "next/link";
 
 import { Reveal } from "@/components/motion/reveal";
@@ -34,12 +34,11 @@ export default function MediaPage() {
           href={routes.album(latest.slug)}
           className="group/latest relative isolate grid min-h-[22rem] overflow-hidden rounded-panel text-white sm:min-h-[28rem]"
         >
-          <Image
-            src={latest.cover.url}
-            alt={latest.cover.alt}
+          <SmartImage
+            image={latest.cover}
             fill
             priority
-            sizes="(min-width: 1280px) 1200px, 100vw"
+            sizes="(min-width: 1280px) 1280px, (min-width: 640px) 100vw, 180vw"
             className="-z-10 object-cover transition-transform duration-700 group-hover/latest:scale-[1.02]"
           />
           <span
@@ -88,15 +87,16 @@ export default function MediaPage() {
           description={`${galleries.length} albums, ${galleries.reduce((n, g) => n + g.photos.length, 0)} photographs.`}
         />
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {rest.map((g, i) => (
-            <Reveal as="li" key={g.slug} delay={i * 60}>
+          {rest.map((g) => (
+            <Reveal as="li" key={g.slug}>
               <Link href={routes.album(g.slug)} className="group/album grid gap-2">
                 <span className="relative block aspect-[4/5] overflow-hidden rounded-card bg-surface-sunken">
-                  <Image
-                    src={g.cover.url}
-                    alt={g.cover.alt}
+                  <SmartImage
+                    image={g.cover}
                     fill
+                    frame={{ width: 4, height: 5 }}
                     sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 100vw"
+                    quality={60}
                     className="object-cover transition-transform duration-500 group-hover/album:scale-[1.04]"
                   />
                   <span className="absolute right-2 bottom-2 rounded-pill bg-black/65 px-2 py-0.5 text-xs font-bold text-white tabular">

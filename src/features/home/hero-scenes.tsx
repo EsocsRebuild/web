@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, MapPin, Pause, Play } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
@@ -10,6 +10,8 @@ import { cn } from "@/lib/utils";
 export interface HeroScene {
   id: string;
   image: string;
+  /** A tiny blurred preview shown while the photograph loads. */
+  placeholder?: string;
   alt: string;
   /** CSS object-position, to keep faces clear of the words. */
   focus: string;
@@ -79,9 +81,10 @@ function RisingWords({ text, start, className }: { text: string; start: number; 
 /**
  * The opening of the platform: the church family in five scenes. Photographs
  * drift in and out like film and crossfade, each with its own words and way in.
- * It runs itself: advancing on a timer, pausing when the tab is hidden, the hero is
- * scrolled away or someone is using it by keyboard, and swiping on touch screens.
- * Photos load just before their turn. A small pause control remains (WCAG 2.2.2).
+ * It runs itself with no controls on screen: advancing on a timer, holding still
+ * while a mouse rests on it, while someone uses it by keyboard, when the tab is
+ * hidden or the hero is scrolled away, and not moving at all for reduced motion.
+ * Swipe and the arrow keys move between scenes. Photos load just before their turn.
  */
 export function HeroScenes({
   scenes,
@@ -97,12 +100,12 @@ export function HeroScenes({
   // Photos mounted so far: the first two up front, then each one ahead of its turn.
   const [mounted, setMounted] = React.useState<ReadonlySet<number>>(() => new Set([0, 1]));
   const [focused, setFocused] = React.useState(false);
-  const [userPaused, setUserPaused] = React.useState(false);
+  const [hovered, setHovered] = React.useState(false);
   const [announce, setAnnounce] = React.useState("");
   const touchX = React.useRef<number | null>(null);
   const reduced = usePrefersReducedMotion();
   const onScreen = useOnScreen(ref);
-  const playing = !reduced && !userPaused && !focused && onScreen;
+  const playing = !reduced && !hovered && !focused && onScreen;
   const count = scenes.length;
   const scene = scenes[index];
 
@@ -129,6 +132,8 @@ export function HeroScenes({
       aria-roledescription="carousel"
       aria-label="The church family"
       className="dark relative isolate flex min-h-[max(38rem,100svh)] touch-pan-y flex-col overflow-hidden bg-inverse text-foreground"
+      onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
       onFocusCapture={() => setFocused(true)}
       onBlurCapture={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setFocused(false);
@@ -164,6 +169,8 @@ export function HeroScenes({
                 src={s.image}
                 alt=""
                 fill
+                placeholder={s.placeholder ? "blur" : "empty"}
+                blurDataURL={s.placeholder}
                 priority={i === 0}
                 fetchPriority={i === 0 ? "high" : "low"}
                 sizes="100vw"
@@ -177,6 +184,7 @@ export function HeroScenes({
           ) : null,
         )}
       </div>
+      {/* The navy veil over the photographs: the hero's soft, hazy look. */}
       <div
         aria-hidden
         className="absolute inset-0 -z-20 bg-linear-to-r from-inverse/95 via-inverse/70 to-inverse/10"
@@ -194,8 +202,9 @@ export function HeroScenes({
         }}
       />
 
-      <div className="mx-auto flex w-full max-w-wide flex-1 flex-col justify-center px-gutter pt-[calc(var(--spacing-header)+2rem)] pb-12">
-        <div key={scene.id} className="grid max-w-3xl gap-5 sm:gap-6">
+      {/* The words sit in the lower part of the frame, clear of the quick paths that overlap the hero's foot. */}
+      <div className="parallax-exit mx-auto flex w-full max-w-wide flex-1 flex-col justify-end px-gutter pt-[calc(var(--spacing-header)+2rem)] pb-24 sm:pb-32 lg:pb-36">
+        <div key={scene.id} className="grid max-w-2xl gap-4 sm:gap-5">
           <p
             className="hero-word animate-fade-in text-[0.6875rem] font-semibold tracking-[0.16em] text-highlight uppercase sm:text-overline sm:tracking-[0.2em]"
             style={{ "--d": "0ms" } as React.CSSProperties}
@@ -205,7 +214,7 @@ export function HeroScenes({
 
           <h1
             aria-label={`${scene.lead} ${scene.accent}`}
-            className="font-display text-[clamp(2.15rem,1.3rem+3.2vw,4.5rem)] leading-[1] font-extrabold tracking-[-0.03em] text-balance"
+            className="font-display text-[clamp(1.95rem,1.35rem+2.3vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em] text-balance"
           >
             <RisingWords text={scene.lead} start={120} />
             <span className="block font-serif text-[1.08em] leading-[1.02] font-normal tracking-[-0.005em] italic">
@@ -219,7 +228,7 @@ export function HeroScenes({
 
           {scene.cite && (
             <p
-              className="hero-word animate-rise-in font-serif text-base text-foreground/70 italic sm:text-lg"
+              className="hero-word animate-rise-in font-serif text-[0.9375rem] text-foreground/70 italic sm:text-base"
               style={{ "--d": "600ms" } as React.CSSProperties}
             >
               {scene.cite} (KJV)
@@ -227,77 +236,36 @@ export function HeroScenes({
           )}
 
           <p
-            className="hero-word max-w-xl animate-rise-in text-[0.9375rem] leading-7 text-foreground/80 sm:text-lg sm:leading-8"
+            className="hero-word max-w-lg animate-rise-in text-[0.9375rem] leading-7 text-foreground/80 sm:text-base sm:leading-7"
             style={{ "--d": "700ms" } as React.CSSProperties}
           >
             {scene.body}
           </p>
 
           <div
-            className="hero-word mt-1 flex animate-rise-in flex-col gap-3 sm:flex-row"
+            className="hero-word mt-2 flex animate-rise-in flex-col gap-2.5 sm:flex-row sm:gap-3"
             style={{ "--d": "850ms" } as React.CSSProperties}
           >
             <Link
               href={findHref}
-              className="inline-flex h-12 items-center justify-center gap-2.5 rounded-pill bg-accent px-6 text-[0.9375rem] font-semibold text-accent-foreground transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-accent-hover sm:h-13 sm:px-7"
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-gold-400 px-5 text-sm font-semibold text-royal-950 transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-gold-300"
             >
-              <MapPin aria-hidden className="size-[1.125rem]" /> Find a church near you
+              <MapPin aria-hidden className="size-4" /> Find a church near you
             </Link>
             <Link
               href={scene.cta.href}
-              className="group/cta inline-flex h-12 items-center justify-center gap-2.5 rounded-pill border border-white/30 bg-white/5 px-6 text-[0.9375rem] font-semibold text-white backdrop-blur-md transition-colors hover:bg-white hover:text-royal-950 sm:h-13 sm:px-7"
+              className="group/cta inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-white/30 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white hover:text-royal-950"
             >
               {scene.cta.label}
               <ArrowRight
                 aria-hidden
-                className="size-[1.125rem] transition-transform group-hover/cta:translate-x-0.5"
+                className="size-4 transition-transform group-hover/cta:translate-x-0.5"
               />
             </Link>
           </div>
         </div>
       </div>
 
-      {/* The only control: pause, ringed by the scene's progress. */}
-      {!reduced && (
-        <button
-          type="button"
-          onClick={() => setUserPaused((p) => !p)}
-          className="absolute right-[max(var(--spacing-gutter),env(safe-area-inset-right))] bottom-[4.25rem] z-10 inline-flex size-11 cursor-pointer items-center justify-center rounded-full text-white/85 backdrop-blur-md transition-colors hover:text-white"
-          aria-label={userPaused ? "Play the scenes" : "Pause the scenes"}
-        >
-          <svg aria-hidden viewBox="0 0 44 44" className="absolute inset-0 -rotate-90">
-            <circle
-              cx="22"
-              cy="22"
-              r="20"
-              fill="none"
-              stroke="currentColor"
-              strokeOpacity="0.25"
-              strokeWidth="1.5"
-            />
-            <circle
-              key={`${index}-${playing}`}
-              cx="22"
-              cy="22"
-              r="20"
-              fill="none"
-              stroke="var(--color-gold-400)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              pathLength={1}
-              strokeDasharray={1}
-              className={playing ? "animate-scene-ring" : ""}
-              style={
-                {
-                  "--scene-ms": `${SCENE_MS}ms`,
-                  strokeDashoffset: playing ? undefined : 1,
-                } as React.CSSProperties
-              }
-            />
-          </svg>
-          {userPaused ? <Play className="relative size-4" /> : <Pause className="relative size-4" />}
-        </button>
-      )}
       <p className="sr-only" aria-live="polite">
         {announce}
       </p>

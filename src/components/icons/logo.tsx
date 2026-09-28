@@ -44,9 +44,12 @@ export function Logo({
   className,
   size = "md",
   compact = false,
+  priority = false,
 }: {
   className?: string;
   size?: "md" | "lg";
+  /** Only the header's crest loads eagerly; every other copy is lazy. */
+  priority?: boolean;
   /** Crest only: the wordmark folds away (used by the condensed header). */
   compact?: boolean;
 }) {
@@ -55,11 +58,17 @@ export function Logo({
     <Link
       href="/"
       aria-label={`${siteConfig.brandName}, home`}
-      className={cn("group/logo inline-flex min-h-11 items-center gap-3", className)}
+      className={cn(
+        "group/logo inline-flex min-h-11 items-center gap-3 transition-[gap] duration-500",
+        compact && "gap-0",
+        // The smallest phones show the crest alone, so the bar never overflows.
+        !lg && "max-[379px]:gap-0",
+        className,
+      )}
     >
       <Crest
         size={lg ? 56 : compact ? 38 : 44}
-        priority
+        priority={priority}
         className="shadow-[0_2px_10px_-2px_oklch(0.2_0.06_265/0.35)] ring-2 ring-white/70 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover/logo:-rotate-12"
       />
       <span
@@ -67,6 +76,7 @@ export function Logo({
         className={cn(
           "grid overflow-hidden leading-none whitespace-nowrap transition-[max-width,opacity] duration-500 ease-[var(--ease-out-expo)]",
           compact ? "max-w-0 opacity-0" : "max-w-40 opacity-100",
+          !lg && "max-[379px]:max-w-0 max-[379px]:opacity-0",
         )}
       >
         <span

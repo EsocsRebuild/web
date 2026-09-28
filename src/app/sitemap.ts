@@ -21,7 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...content.listTours().map((t) => routes.tour(t.slug)),
     ...content.listEvents().map((e) => routes.event(e.slug)),
   ];
-  return [...new Set(paths.map((p) => p.split("?")[0]))].map((path) => ({
+  // The store is a preview with sample stock until it launches, so it is not listed.
+  const listed = paths.map((p) => p.split("?")[0]).filter((p) => !p.startsWith(routes.store()));
+  return [...new Set(listed)].map((path) => ({
     url: absoluteUrl(path),
     changeFrequency: path === "/" ? "daily" : "weekly",
     priority: path === "/" ? 1 : path.startsWith("/church/") ? 0.8 : 0.6,

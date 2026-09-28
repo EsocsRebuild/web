@@ -17,6 +17,14 @@ function shiftMonth(month: string, by: number) {
  * A month of the church calendar. Multi-day observances (Lent) shade every day
  * they cover. On phones the grid gives way to the list beneath it.
  */
+const dayLabel = new Intl.DateTimeFormat("en-GB", {
+  weekday: "long",
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
 export function MonthGrid({ month, events, today }: { month: string; events: ChurchEvent[]; today: string }) {
   const first = new Date(`${month}-01T00:00:00Z`);
   const lead = (first.getUTCDay() + 6) % 7;
@@ -59,13 +67,10 @@ export function MonthGrid({ month, events, today }: { month: string; events: Chu
       </div>
 
       <div className="hidden overflow-hidden rounded-panel border border-border bg-border md:block">
-        <div role="row" className="grid grid-cols-7 gap-px">
+        {/* Weekday names are for the eye; each day carries its full date for screen readers. */}
+        <div aria-hidden className="grid grid-cols-7 gap-px">
           {WEEKDAYS.map((d) => (
-            <div
-              key={d}
-              role="columnheader"
-              className="bg-surface-muted px-3 py-2 text-xs font-semibold text-muted-foreground"
-            >
+            <div key={d} className="bg-surface-muted px-3 py-2 text-xs font-semibold text-muted-foreground">
               {d}
             </div>
           ))}
@@ -84,6 +89,7 @@ export function MonthGrid({ month, events, today }: { month: string; events: Chu
                 )}
               >
                 <span
+                  aria-hidden
                   className={cn(
                     "inline-flex size-7 items-center justify-center rounded-full text-sm font-semibold tabular",
                     iso === today && "bg-foreground text-background",
@@ -91,11 +97,15 @@ export function MonthGrid({ month, events, today }: { month: string; events: Chu
                 >
                   {Number(iso.slice(8))}
                 </span>
+                <span className="sr-only">
+                  {dayLabel.format(new Date(`${iso}T12:00:00Z`))}
+                  {iso === today && ", today"}
+                </span>
                 {dayEvents.map((e) => (
                   <Link
                     key={e.slug}
                     href={routes.event(e.slug)}
-                    className="line-clamp-2 rounded-control bg-accent-soft px-1.5 py-1 text-xs leading-tight font-semibold text-accent-soft-foreground hover:underline"
+                    className="rounded-control bg-accent-soft px-1.5 py-1 text-xs leading-tight font-semibold [overflow-wrap:anywhere] text-accent-soft-foreground hover:underline"
                   >
                     {e.title}
                   </Link>

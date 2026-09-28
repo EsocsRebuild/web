@@ -1,7 +1,7 @@
 import { ArrowRight, CalendarHeart, Quote } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
+import { SmartImage } from "@/components/media/smart-image";
 import { Reveal } from "@/components/motion/reveal";
 import { LeaderCard, UnitCard } from "@/components/patterns/cards";
 import { DateBadge } from "@/components/patterns/date-badge";
@@ -53,11 +53,10 @@ export function HolyOrderOverview() {
           description="The five values the Order lives by."
         />
         <ul className="grid grid-cols-2 gap-3 sm:grid-cols-5">
-          {org.coreValues.map((v, i) => (
+          {org.coreValues.map((v) => (
             <Reveal
               as="li"
               key={v.letter}
-              delay={i * 60}
               className="grid gap-1 rounded-card border border-border bg-surface p-4"
             >
               <span aria-hidden className="font-display text-5xl leading-none font-extrabold text-highlight">
@@ -183,11 +182,10 @@ export function SectionOverview({ unit }: { unit: Unit }) {
         <section aria-labelledby="programmes-heading" className="grid gap-5">
           <SectionHeading id="programmes-heading" title="Take part" />
           <ul className="grid gap-3 md:grid-cols-3">
-            {story.programmes.map((p, i) => (
+            {story.programmes.map((p) => (
               <Reveal
                 as="li"
                 key={p.title}
-                delay={i * 70}
                 className="grid content-start gap-2 rounded-card border border-border bg-surface p-5"
               >
                 <h3 className="font-display text-lg font-extrabold">{p.title}</h3>
@@ -318,7 +316,13 @@ export function LocalOverview({ unit, childUnits }: { unit: Unit; childUnits: Un
 
       {unit.kind === "headquarters" && unit.cover && (
         <div className="relative aspect-video overflow-hidden rounded-panel">
-          <Image src={unit.cover.url} alt={unit.cover.alt} fill sizes="680px" className="object-cover" />
+          <SmartImage
+            image={unit.cover}
+            fill
+            frame={{ width: 16, height: 9 }}
+            sizes="(min-width: 1024px) 900px, 100vw"
+            className="object-cover"
+          />
         </div>
       )}
     </div>

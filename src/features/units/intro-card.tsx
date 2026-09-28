@@ -1,6 +1,8 @@
 import { MapPin, Phone, Users } from "lucide-react";
 import Link from "next/link";
 
+import { Paragraphs } from "@/components/patterns/paragraphs";
+import { ReadMore } from "@/components/patterns/read-more";
 import { RailCard } from "@/components/shell/rails";
 import { siteConfig } from "@/config/site";
 import type { Unit } from "@/data/schema/content";
@@ -35,7 +37,11 @@ export function IntroCard({
         {unit.about[0] && (
           <div>
             <dt className="sr-only">About</dt>
-            <dd className="line-clamp-4 leading-6 text-muted-foreground">{unit.about[0]}</dd>
+            <dd>
+              <ReadMore lines={4} contentClassName="leading-6 text-muted-foreground">
+                <Paragraphs text={unit.about} />
+              </ReadMore>
+            </dd>
           </div>
         )}
         {where && (

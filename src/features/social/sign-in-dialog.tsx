@@ -22,7 +22,7 @@ type Step = "contact" | "code" | "unavailable";
 const DEMO = process.env.NODE_ENV !== "production";
 
 /** The one sign-in flow, opened from any member action. People stay where they were. */
-export function SignInDialog() {
+export default function SignInDialog() {
   const { signInOpen, setSignInOpen } = useSocial();
   return (
     <Dialog open={signInOpen} onOpenChange={setSignInOpen}>

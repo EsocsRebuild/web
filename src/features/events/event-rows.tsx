@@ -27,8 +27,8 @@ export function EventRows({ events }: { events: ChurchEvent[] }) {
             {monthName(key)}
           </h3>
           <ul className="grid gap-3">
-            {list.map((e, i) => (
-              <Reveal as="li" key={e.slug} delay={i * 40}>
+            {list.map((e) => (
+              <Reveal as="li" key={e.slug}>
                 <Link
                   href={routes.event(e.slug)}
                   className="group/row flex items-center gap-4 rounded-card border border-border bg-surface p-4 transition-[border-color,box-shadow] hover:border-border-strong hover:shadow-card"

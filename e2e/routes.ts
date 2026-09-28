@@ -30,4 +30,9 @@ export const TEMPLATES = [
   "/prayer",
   "/contact",
   "/search?q=ibadan",
+  "/store",
+  "/store/category/garments",
+  "/store/white-prayer-gown",
+  "/store/bag",
+  "/store/checkout",
 ] as const;

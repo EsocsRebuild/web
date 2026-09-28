@@ -44,6 +44,7 @@ export function Marquee({
 
   return (
     <section
+      data-marquee
       aria-label={label}
       className={cn(
         "group/marquee relative overflow-hidden mask-fade-x motion-reduce:scrollbar-none motion-reduce:overflow-x-auto",

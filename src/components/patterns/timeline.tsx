@@ -17,8 +17,8 @@ export interface TimelineEntry {
 export function Timeline({ entries, className }: { entries: TimelineEntry[]; className?: string }) {
   return (
     <ol className={cn("relative grid gap-5 border-l border-border pl-6", className)}>
-      {entries.map((e, i) => (
-        <Reveal as="li" key={e.key} delay={Math.min(i, 6) * 40} className="relative">
+      {entries.map((e) => (
+        <Reveal as="li" key={e.key} className="relative">
           <span
             aria-hidden
             className="absolute top-1.5 -left-[1.8rem] size-2.5 rounded-full border-2 border-background bg-highlight ring-1 ring-border"

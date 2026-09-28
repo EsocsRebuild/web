@@ -26,7 +26,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   images: {
-    formats: ["image/avif", "image/webp"],
+    // WebP only. The AVIF encoder hangs on some photos at some widths (the giving
+    // photo at 750px never returned), leaving the page loading forever; our
+    // sources are already WebP, so AVIF's saving is small and not worth that risk.
+    formats: ["image/webp"],
+    // 60 for small grid tiles and thumbnails (the difference is invisible at that
+    // size and they are the bulk of a gallery's bytes); 75 for everything else.
+    qualities: [60, 75],
   },
   async redirects() {
     return legacyRedirects;

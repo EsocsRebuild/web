@@ -194,7 +194,7 @@ export function FollowingPage({ units }: { units: UnitSummary[] }) {
               >
                 <UnitAvatar name={u.name} kind={u.kind} size="md" />
                 <Link href={routes.unit(u.slug)} className="grid min-w-0 flex-1 hover:text-highlight">
-                  <span className="truncate font-semibold">{u.name}</span>
+                  <span className="font-semibold text-pretty">{u.name}</span>
                   {u.locality && <span className="text-xs text-muted-foreground">{u.locality}</span>}
                 </Link>
                 <FollowButton slug={u.slug} name={u.name} size="sm" />

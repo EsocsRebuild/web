@@ -7,6 +7,7 @@ import * as React from "react";
 
 import { Logo } from "@/components/icons/logo";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { BagButton } from "@/features/store/bag-button";
 import { isActive, primaryNav, type NavLink } from "@/config/navigation";
 import { routes } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -35,13 +36,16 @@ function NavItem({ item, pathname }: { item: NavLink; pathname: string }) {
         href={item.href}
         aria-current={active ? "page" : undefined}
         className={cn(
-          "relative inline-flex h-10 items-center rounded-pill px-4 text-sm font-semibold whitespace-nowrap transition-colors duration-200",
+          "relative inline-flex h-10 items-center rounded-pill px-3 text-sm font-semibold whitespace-nowrap transition-colors duration-200 xl:px-4",
           active ? "text-foreground" : "text-foreground/70 hover:bg-foreground/[0.07] hover:text-foreground",
         )}
       >
         {item.label}
         {active && (
-          <span aria-hidden className="absolute inset-x-4 bottom-1.5 h-0.5 rounded-pill bg-highlight" />
+          <span
+            aria-hidden
+            className="absolute inset-x-3 bottom-1.5 h-0.5 rounded-pill bg-highlight xl:inset-x-4"
+          />
         )}
       </Link>
     </li>
@@ -56,7 +60,7 @@ function NavItem({ item, pathname }: { item: NavLink; pathname: string }) {
 export function AppHeader() {
   const pathname = usePathname();
   const scrolled = useScrolled(24);
-  const { open: openSearch } = useCommandPalette();
+  const { open: openSearch, preload: preloadSearch } = useCommandPalette();
   const overHero = pathname === "/" && !scrolled;
 
   // Home is reached through the crest, so the centre-split nav carries the other four.
@@ -75,7 +79,9 @@ export function AppHeader() {
     >
       <div
         className={cn(
-          "mx-auto grid h-header grid-cols-[1fr_auto_1fr] items-center gap-3 text-foreground",
+          // Side columns share the space but never shrink below their contents, so nothing
+          // can fall off the bar; the crest stays centred wherever there is room.
+          "mx-auto grid h-header grid-cols-[minmax(max-content,1fr)_auto_minmax(max-content,1fr)] items-center gap-2 text-foreground sm:gap-3",
           "transition-[max-width,height,background-color,border-color,box-shadow,border-radius,padding] duration-500 ease-[var(--ease-out-expo)]",
           scrolled
             ? "h-16 max-w-[66rem] rounded-b-panel border border-border/70 bg-background/80 px-3 shadow-[0_18px_50px_-20px_oklch(0.2_0.06_265/0.45)] backdrop-blur-xl backdrop-saturate-150 sm:rounded-pill sm:px-4"
@@ -83,10 +89,12 @@ export function AppHeader() {
         )}
       >
         {/* Left: search, then the first half of the navigation, leaning in to the crest. */}
-        <div className="flex min-w-0 items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <button
             type="button"
             onClick={openSearch}
+            onPointerEnter={preloadSearch}
+            onFocus={preloadSearch}
             aria-label="Search"
             className="inline-flex h-10 shrink-0 cursor-pointer items-center gap-2 rounded-pill border border-foreground/15 px-3 text-sm text-foreground/75 transition-colors hover:border-foreground/30 hover:text-foreground"
           >
@@ -101,6 +109,7 @@ export function AppHeader() {
               ⌘K
             </kbd>
           </button>
+          <ThemeToggle className="rounded-pill" />
           <nav aria-label="Main" className="ml-auto hidden lg:block">
             <ul className="flex items-center gap-0.5">
               {leftLinks.map((item) => (
@@ -111,10 +120,10 @@ export function AppHeader() {
         </div>
 
         {/* Centre: the crest and wordmark. */}
-        <Logo compact={scrolled} className="justify-self-center px-2" />
+        <Logo compact={scrolled} priority className="justify-self-center px-2" />
 
         {/* Right: the second half of the navigation, then account and Give. */}
-        <div className="flex min-w-0 items-center gap-1.5">
+        <div className="flex items-center gap-1.5">
           <nav aria-label="More destinations" className="hidden lg:block">
             <ul className="flex items-center gap-0.5">
               {rightLinks.map((item) => (
@@ -126,11 +135,11 @@ export function AppHeader() {
             </ul>
           </nav>
           <div className="ml-auto flex items-center gap-1">
-            <ThemeToggle className="rounded-pill" />
+            <BagButton />
             <AccountControls />
             <Link
               href={routes.give()}
-              className="ml-1 hidden h-10 items-center rounded-pill bg-accent px-5 text-sm font-semibold text-accent-foreground transition-[background-color,transform] hover:-translate-y-px hover:bg-accent-hover sm:inline-flex"
+              className="ml-1 hidden h-10 items-center rounded-pill bg-gold-400 px-4 text-sm font-semibold text-royal-950 transition-[background-color,transform] hover:-translate-y-px hover:bg-gold-300 sm:inline-flex xl:px-5"
             >
               Give
             </Link>

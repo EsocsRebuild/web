@@ -50,6 +50,12 @@ export const routes = {
   videos: () => "/media/videos",
   radio: () => "/media/radio",
 
+  // Store
+  store: (category?: string) => (category ? `/store/category/${enc(category)}` : "/store"),
+  product: (slug: string) => `/store/${enc(slug)}`,
+  bag: () => "/store/bag",
+  checkout: () => "/store/checkout",
+
   search: (q?: string) => withQuery("/search", { q }),
   give: () => "/give",
   prayer: () => "/prayer",

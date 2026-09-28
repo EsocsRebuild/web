@@ -1,5 +1,4 @@
-import Image from "next/image";
-
+import { SmartImage } from "@/components/media/smart-image";
 import { LogoMark } from "@/components/icons/logo";
 import type { ImageRef, UnitKind } from "@/data/schema/content";
 import { UNIT_KIND } from "@/lib/kinds";
@@ -27,9 +26,8 @@ export function Cover({
   if (image) {
     return (
       <div className={cn("relative overflow-hidden bg-surface-sunken", className)}>
-        <Image
-          src={image.url}
-          alt={image.alt}
+        <SmartImage
+          image={image}
           fill
           priority={priority}
           sizes={sizes}
@@ -42,15 +40,14 @@ export function Cover({
   return (
     <div
       aria-hidden
-      className={cn("relative overflow-hidden", className)}
+      className={cn("relative overflow-hidden bg-royal-950", className)}
       style={{
-        backgroundColor: colour,
-        backgroundImage: `radial-gradient(120% 90% at 85% 10%, color-mix(in oklch, white 22%, transparent), transparent 55%),
-          radial-gradient(80% 70% at 0% 100%, color-mix(in oklch, black 35%, transparent), transparent 60%),
-          repeating-linear-gradient(135deg, color-mix(in oklch, white 6%, transparent) 0 1px, transparent 1px 22px)`,
+        backgroundImage: `radial-gradient(70% 120% at 88% 0%, color-mix(in oklch, ${colour} 55%, transparent), transparent 70%),
+          radial-gradient(60% 90% at 0% 100%, color-mix(in oklch, var(--color-royal-700) 45%, transparent), transparent 70%)`,
       }}
     >
-      <LogoMark className="absolute -right-[4%] -bottom-[18%] size-[62%] max-h-none text-white opacity-[0.09]" />
+      <LogoMark className="absolute -right-[3%] -bottom-[22%] size-[70%] max-h-none text-white opacity-[0.07]" />
+      <span className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-gold-400/60 to-transparent" />
     </div>
   );
 }

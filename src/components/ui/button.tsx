@@ -19,6 +19,8 @@ const buttonVariants = cva(
       variant: {
         primary: "bg-primary text-primary-foreground hover:bg-primary-hover",
         accent: "bg-accent text-accent-foreground hover:bg-accent-hover",
+        /** Gold: giving and the hero's first action only. */
+        gold: "bg-gold-400 text-royal-950 hover:bg-gold-300",
         secondary: "bg-surface-muted text-foreground hover:bg-surface-sunken",
         outline: "border border-border-strong bg-transparent text-foreground hover:bg-surface-muted",
         ghost: "bg-transparent text-foreground hover:bg-surface-muted",

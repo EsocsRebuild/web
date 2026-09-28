@@ -334,7 +334,7 @@ export function CommentThread({ postId, title }: { postId: string; title: string
       {failed ? (
         <ErrorState onRetry={load}>We couldn&apos;t load the comments.</ErrorState>
       ) : comments === null ? (
-        <div className="grid gap-4" aria-busy="true" aria-label="Loading comments">
+        <div role="status" className="grid gap-4" aria-busy="true" aria-label="Loading comments">
           {[0, 1].map((i) => (
             <div key={i} className="flex gap-3">
               <Skeleton className="size-9 rounded-full" />

@@ -390,7 +390,9 @@ export default function DesignSystemPage() {
               active={null}
               available={["message", "news", "dedication", "album", "milestone"]}
             />
-            <PostCard item={albumPost} albumSize={album?.photos.length} />
+            <div className="rounded-panel border border-border bg-surface">
+              <PostCard item={albumPost} albumSize={album?.photos.length} />
+            </div>
           </div>
         </Block>
 

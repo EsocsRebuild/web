@@ -27,7 +27,8 @@
     "docker:up": "npm run docker:init && docker compose up --build -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f web",
-    "lint:docker": "docker run --rm -i hadolint/hadolint < Dockerfile"
+    "lint:docker": "docker run --rm -i hadolint/hadolint < Dockerfile",
+    "images:placeholders": "node scripts/build-image-placeholders.mjs"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.20",
@@ -73,6 +74,7 @@
     "lint-staged": "^17.5.1",
     "prettier": "^3.9.9",
     "prettier-plugin-tailwindcss": "^0.8.1",
+    "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^5.0.1"

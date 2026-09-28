@@ -14,6 +14,7 @@ import {
   Phone,
   Route,
   ScrollText,
+  ShoppingBag,
   Sparkles,
   Users,
   UsersRound,
@@ -42,7 +43,11 @@ export const primaryNav: NavLink[] = [
   { label: "Find a Church", href: routes.find(), icon: MapPin, match: ["/find", "/structure", "/church"] },
   { label: "Events", href: routes.events(), icon: CalendarDays, match: ["/events", "/calendar", "/tours"] },
   { label: "Media", href: routes.media(), icon: Images, match: ["/media", "/news", "/posts"] },
+  { label: "Store", href: routes.store(), icon: ShoppingBag, match: ["/store"] },
 ];
+
+/** The phone's bottom bar keeps five thumb-sized tabs; the Store is in More and the header bag. */
+export const bottomNav = primaryNav.filter((n) => n.href !== routes.store());
 
 /** The fifth slot opens this menu. */
 export const moreNav: { title: string; items: NavLink[] }[] = [
@@ -92,6 +97,12 @@ export const moreNav: { title: string; items: NavLink[] }[] = [
     title: "Get involved",
     items: [
       { label: "Give", href: routes.give(), icon: Gift },
+      {
+        label: "Store",
+        href: routes.store(),
+        icon: ShoppingBag,
+        description: "Hymn books, garments, keepsakes",
+      },
       { label: "Prayer request", href: routes.prayer(), icon: MessageSquareHeart },
       { label: "Contact us", href: routes.contact(), icon: Phone },
     ],
@@ -99,18 +110,6 @@ export const moreNav: { title: string; items: NavLink[] }[] = [
 ];
 
 export const moreIcon = Menu;
-
-/** Desktop left rail shortcuts, under "My Church" when set. */
-export const railShortcuts: NavLink[] = [
-  { label: "Who we are", href: routes.unit("esocs"), icon: Landmark },
-  { label: "Women", href: routes.unit("women"), icon: UsersRound },
-  { label: "Youth", href: routes.unit("youth"), icon: UsersRound },
-  { label: "Headquarters", href: routes.find({ kind: "headquarters" }), icon: Landmark },
-  { label: "CMCs", href: routes.find({ kind: "cmc" }), icon: Network },
-  { label: "Baba Aladuras", href: routes.leaders(), icon: Crown },
-  { label: "History", href: routes.history(), icon: History },
-  { label: "Pastoral tours", href: routes.tours(), icon: Route },
-];
 
 export function isActive(pathname: string, link: Pick<NavLink, "href" | "match">) {
   const path = link.href.split("?")[0];

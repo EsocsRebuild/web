@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { dateParts, formatDuration, formatTime } from "./format";
+import { dateParts, formatCurrency, formatDuration, formatTime } from "./format";
 
 describe("formatDuration", () => {
   it("formats minutes", () => {
@@ -25,5 +25,11 @@ describe("dateParts", () => {
     expect(parts.day).toBe("04");
     expect(parts.month).toBe("OCT");
     expect(parts.weekday).toBe("Sun");
+  });
+});
+
+describe("formatCurrency", () => {
+  it("shows naira with the ₦ sign and no kobo", () => {
+    expect(formatCurrency(25000)).toBe("₦25,000");
   });
 });

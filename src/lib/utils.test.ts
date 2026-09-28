@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { cn, initials, slugify, truncate } from "./utils";
+import { cn, initials, slugify } from "./utils";
 
 describe("cn", () => {
   it("resolves conflicting Tailwind classes, last one wins", () => {
@@ -23,16 +23,6 @@ describe("slugify", () => {
 
   it("strips diacritics", () => {
     expect(slugify("Adúràá")).toBe("aduraa");
-  });
-});
-
-describe("truncate", () => {
-  it("returns short strings unchanged", () => {
-    expect(truncate("Short", 10)).toBe("Short");
-  });
-
-  it("cuts on a word boundary", () => {
-    expect(truncate("Walking in the light of the Lord", 16)).toBe("Walking in the…");
   });
 });
 

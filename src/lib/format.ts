@@ -65,9 +65,13 @@ export function formatRelative(date: DateInput, now: Date = new Date()) {
 
 /** e.g. "₦25,000". Defaults to the site currency. */
 export function formatCurrency(amount: number, currency = siteConfig.currency) {
-  return new Intl.NumberFormat(locale, { style: "currency", currency, maximumFractionDigits: 0 }).format(
-    amount,
-  );
+  // "narrowSymbol" gives ₦ rather than "NGN" in every locale.
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    currencyDisplay: "narrowSymbol",
+    maximumFractionDigits: 0,
+  }).format(amount);
 }
 
 /** e.g. "12.4K" */

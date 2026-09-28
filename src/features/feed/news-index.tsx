@@ -1,7 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 
+import { SmartImage } from "@/components/media/smart-image";
 import { PageIntro } from "@/components/patterns/page-intro";
+import { Paragraphs } from "@/components/patterns/paragraphs";
+import { ReadMore } from "@/components/patterns/read-more";
 import { getContent } from "@/data/content";
 import { postKinds, type PostKind } from "@/data/schema/content";
 import { formatLongDate } from "@/lib/format";
@@ -38,32 +40,38 @@ export function NewsIndex({ kind }: { kind: PostKind | null }) {
       />
 
       {leadItem && (
-        <Link
-          href={postHref(leadItem)}
-          className="group/lead dark relative isolate grid gap-4 overflow-hidden rounded-panel bg-inverse p-6 text-foreground sm:p-10"
-        >
+        <article className="group/lead dark relative isolate grid gap-4 overflow-hidden rounded-panel bg-inverse p-6 text-foreground sm:p-10">
           {leadItem.post.images[0] && (
-            <Image
-              src={leadItem.post.images[0].url}
-              alt=""
+            <SmartImage
+              image={{ ...leadItem.post.images[0], alt: "" }}
               fill
-              sizes="900px"
+              sizes="(min-width: 896px) 896px, 100vw"
               className="-z-10 object-cover opacity-30"
             />
           )}
-          <span className="text-overline font-semibold text-highlight uppercase">
+          <p className="text-overline font-semibold text-highlight uppercase">
             {POST_KIND[leadItem.post.kind].label}
             {leadItem.post.date && ` · ${formatLongDate(leadItem.post.date)}`}
-          </span>
-          <span className="font-display text-display-sm leading-tight font-extrabold text-balance group-hover/lead:underline group-hover/lead:underline-offset-4">
-            {leadItem.post.title}
-          </span>
-          {leadItem.post.body[0] && (
-            <span className="line-clamp-3 max-w-2xl text-lg leading-8 text-muted-foreground">
-              {leadItem.post.body[0]}
-            </span>
+          </p>
+          <h2 className="font-display text-display-sm leading-tight font-extrabold text-balance">
+            <Link
+              href={postHref(leadItem)}
+              className="group-hover/lead:underline group-hover/lead:underline-offset-4 after:absolute after:inset-0"
+            >
+              {leadItem.post.title}
+            </Link>
+          </h2>
+          {leadItem.post.body.length > 0 && (
+            <ReadMore
+              lines={3}
+              tone="inverse"
+              className="relative z-10 max-w-2xl"
+              contentClassName="text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8"
+            >
+              <Paragraphs text={leadItem.post.body} />
+            </ReadMore>
           )}
-        </Link>
+        </article>
       )}
 
       <nav aria-label="Categories" className="-mx-gutter scrollbar-none overflow-x-auto px-gutter">

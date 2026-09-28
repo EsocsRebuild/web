@@ -33,14 +33,14 @@ export default function ToursPage() {
       </EmptyState>
 
       <ol className="grid gap-4 sm:grid-cols-2">
-        {tours.map((t, i) => {
+        {tours.map((t) => {
           const places = [
             ...new Set(
               t.visits.map((v) => content.getUnit(v.unitSlug)?.locality?.split(",")[0]).filter(Boolean),
             ),
           ];
           return (
-            <Reveal as="li" key={t.slug} delay={(i % 2) * 70}>
+            <Reveal as="li" key={t.slug}>
               <Link
                 href={routes.tour(t.slug)}
                 className="group/tour grid h-full gap-3 rounded-panel border border-border bg-surface p-6 transition-[border-color,box-shadow] hover:border-border-strong hover:shadow-lift"
@@ -54,7 +54,7 @@ export default function ToursPage() {
                 <span className="text-sm text-muted-foreground">
                   {formatLongDate(t.visits[0].date)} to {formatLongDate(t.visits.at(-1)!.date)}
                 </span>
-                <span className="line-clamp-2 text-sm font-semibold group-hover/tour:text-highlight">
+                <span className="text-sm leading-6 font-semibold text-pretty group-hover/tour:text-highlight">
                   {places.join(" · ")}
                 </span>
               </Link>

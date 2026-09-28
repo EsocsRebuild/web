@@ -43,7 +43,7 @@ export function UnitCard({
             </span>
           )}
         </span>
-        {parentName && <span className="truncate text-xs text-subtle-foreground">{parentName}</span>}
+        {parentName && <span className="text-xs text-subtle-foreground">{parentName}</span>}
       </span>
       <ArrowRight
         aria-hidden

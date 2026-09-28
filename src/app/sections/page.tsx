@@ -5,7 +5,7 @@ import { UnitCard } from "@/components/patterns/cards";
 import { PageIntro } from "@/components/patterns/page-intro";
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { getContent } from "@/data/content";
-import { SectionsFeature } from "@/features/home/story-sections";
+import { ChurchFamily } from "@/features/home/church-family";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
@@ -15,7 +15,6 @@ export const metadata: Metadata = {
 
 export default function SectionsPage() {
   const content = getContent();
-  const sections = content.listUnits({ kind: "section" });
   const directorates = content.listUnits({ kind: "directorate" });
 
   return (
@@ -25,7 +24,7 @@ export default function SectionsPage() {
         title="How the Order serves"
         description="Women and Youth have their own pages and community. Directorates carry the work of the Holy Order, each led by a Director."
       />
-      <SectionsFeature sections={sections} />
+      <ChurchFamily />
       <section aria-labelledby="directorates-heading" className="grid gap-5">
         <SectionHeading
           id="directorates-heading"

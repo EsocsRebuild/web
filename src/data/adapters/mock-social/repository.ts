@@ -33,6 +33,7 @@ interface State {
   notifications: Notification[];
   reports: { postId?: string; commentId?: string; reason: ReportReason; note?: string; at: string }[];
   prayerRequests: { name?: string; contact?: string; request: string; at: string }[];
+  newsletter: { email: string; name?: string; at: string }[];
 }
 
 const emptyState = (): State => ({
@@ -47,6 +48,7 @@ const emptyState = (): State => ({
   notifications: [],
   reports: [],
   prayerRequests: [],
+  newsletter: [],
 });
 
 export interface MockSocialOptions {
@@ -65,6 +67,7 @@ export interface MockSocialOptions {
 
 export const DEMO_CODE = "000000";
 
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const CONTACT = /^(\+?\d[\d\s-]{7,}|[^\s@]+@[^\s@]+\.[^\s@]+)$/;
 
 export function createMockSocialRepository(options: MockSocialOptions = {}): SocialRepository {
@@ -311,6 +314,18 @@ export function createMockSocialRepository(options: MockSocialOptions = {}): Soc
               at: stamp(),
             },
           ],
+        });
+      }),
+
+    subscribeToNewsletter: (input) =>
+      request(() => {
+        if (!allowDemoSignIn) throw new SocialError("unavailable", "Newsletter sign-up opens soon.");
+        const email = input.email.trim().toLowerCase();
+        if (!EMAIL.test(email)) throw new SocialError("validation", "Please enter a valid email address.");
+        if (state.newsletter.some((s) => s.email === email)) return;
+        commit({
+          ...state,
+          newsletter: [...state.newsletter, { email, name: input.name?.trim() || undefined, at: stamp() }],
         });
       }),
 

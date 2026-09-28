@@ -30,10 +30,10 @@ test("page tabs are linkable routes", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "The Advisory Board" })).toBeVisible();
 });
 
-test("feed filters live in the URL", async ({ page }) => {
-  await page.goto("/");
-  await page.getByRole("navigation", { name: "Filter posts" }).getByRole("link", { name: "Albums" }).click();
-  await expect(page).toHaveURL(/\?type=album/);
+test("news categories live in the URL", async ({ page }) => {
+  await page.goto("/news");
+  await page.getByRole("navigation", { name: "Categories" }).getByRole("link", { name: "Albums" }).click();
+  await expect(page).toHaveURL(/\/news\/category\/album$/);
   await expect(page.getByRole("article").first()).toContainText(/Celebration|Party|Lecture|Service/);
 });
 

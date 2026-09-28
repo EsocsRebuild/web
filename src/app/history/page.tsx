@@ -1,7 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
+
+import { SmartImage } from "@/components/media/smart-image";
 
 import { Bridges } from "@/components/patterns/bridges";
 import { PageIntro } from "@/components/patterns/page-intro";
@@ -54,10 +55,10 @@ export default function HistoryPage() {
                 <div className="grid gap-6 md:grid-cols-[12rem_minmax(0,1fr)] md:items-end">
                   <div className="relative aspect-[4/5] w-40 overflow-hidden rounded-panel bg-surface-sunken md:w-full">
                     {p.portrait ? (
-                      <Image
-                        src={p.portrait.url}
-                        alt={p.portrait.alt}
+                      <SmartImage
+                        image={p.portrait}
                         fill
+                        frame={{ width: 4, height: 5 }}
                         sizes="200px"
                         className="object-cover object-top"
                       />

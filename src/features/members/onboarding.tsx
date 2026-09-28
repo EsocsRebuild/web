@@ -108,10 +108,10 @@ export function Onboarding({ churches, suggestions }: { churches: FinderUnit[]; 
                       >
                         <UnitAvatar name={c.name} kind={c.kind} size="sm" />
                         <span className="grid min-w-0 flex-1 gap-1">
-                          <span className="truncate text-sm font-semibold">{c.name}</span>
+                          <span className="text-sm font-semibold text-pretty">{c.name}</span>
                           <span className="flex items-center gap-2 text-xs text-muted-foreground">
                             <KindBadge kind={c.kind} />
-                            <span className="truncate">{c.locality ?? c.parentName}</span>
+                            <span>{c.locality ?? c.parentName}</span>
                           </span>
                         </span>
                         {selected && <Check aria-hidden className="size-5 shrink-0" />}
@@ -168,7 +168,7 @@ export function Onboarding({ churches, suggestions }: { churches: FinderUnit[]; 
                   >
                     <UnitAvatar name={s.name} kind={s.kind} size="md" />
                     <span className="grid min-w-0 flex-1">
-                      <span className="truncate font-semibold">{s.name}</span>
+                      <span className="font-semibold text-pretty">{s.name}</span>
                       <span className="text-xs text-muted-foreground">
                         {s.locality ?? s.parentName ?? "The Holy Order"}
                       </span>

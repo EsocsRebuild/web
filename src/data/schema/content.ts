@@ -21,6 +21,11 @@ export const imageSchema = z.object({
   width: z.number().int().positive().nullable(),
   height: z.number().int().positive().nullable(),
   alt: text,
+  /** A tiny blurred preview (data URL) shown while the photograph loads. */
+  placeholder: z
+    .string()
+    .regex(/^data:image\/webp;base64,/)
+    .optional(),
 });
 
 export const unitKinds = [
