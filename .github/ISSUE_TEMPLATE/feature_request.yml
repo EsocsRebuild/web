@@ -1,0 +1,20 @@
+name: Feature request
+description: Propose a new page, section or improvement.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What need does this address?
+      description: Who is it for (visitors, members, church admin) and what are they trying to do?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Designs, content or examples from other sites.

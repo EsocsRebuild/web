@@ -1,0 +1,96 @@
+# ESOCS web: production-like stack.
+#
+#   docker compose up --build -d                  # app only, on http://localhost:3000
+#   docker compose --profile proxy up --build -d  # with Caddy (HTTPS, compression) on :80/:443
+#
+# Variables come from the shell or a .env file next to this file (see .env.example).
+
+name: esocs
+
+x-hardening: &hardening
+  read_only: true
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  restart: unless-stopped
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "5"
+
+services:
+  web:
+    <<: *hardening
+    image: ${IMAGE:-esocs-web}:${TAG:-local}
+    build:
+      context: .
+      target: runner
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+        DEPLOYMENT_ID: ${DEPLOYMENT_ID:-local}
+        APP_VERSION: ${APP_VERSION:-local}
+      secrets:
+        - server_actions_key
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    volumes:
+      # Regenerated pages and optimised images survive restarts.
+      - next-cache:/app/.next/cache
+    tmpfs:
+      - /tmp:size=64m
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 1g
+        reservations:
+          memory: 256m
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+
+  proxy:
+    <<: *hardening
+    profiles: [proxy]
+    image: caddy:2-alpine
+    depends_on:
+      web:
+        condition: service_healthy
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    cap_add:
+      # Bind to ports 80 and 443 as a non-root process.
+      - NET_BIND_SERVICE
+    volumes:
+      - ./deploy/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    tmpfs:
+      - /tmp:size=16m
+
+volumes:
+  next-cache:
+  caddy-data:
+  caddy-config:
+
+secrets:
+  # Shared Server Functions key so every instance of a build can decrypt the same
+  # actions. Create it once: `openssl rand -base64 32 > deploy/secrets/server_actions_key`.
+  server_actions_key:
+    file: ${SERVER_ACTIONS_KEY_FILE:-./deploy/secrets/server_actions_key}

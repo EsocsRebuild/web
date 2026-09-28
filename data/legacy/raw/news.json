@@ -1,0 +1,42 @@
+[
+  {
+    "id": 393,
+    "date": "2025-02-08T18:45:00",
+    "date_gmt": "2025-02-08T18:45:00",
+    "modified": "2026-01-31T21:21:03",
+    "modified_gmt": "2026-01-31T21:21:03",
+    "slug": "ingydar",
+    "status": "publish",
+    "type": "news",
+    "link": "https://super-vault.esocs.net/news/ingydar/",
+    "title": {
+      "rendered": "Official Launch of Centenary Celebration"
+    },
+    "acf": {
+      "title": "Official Launch of Centenary Celebration",
+      "news_content": "Media Launch and Unveiling of Centenary Logo, Theme, Theme Song, Website, Social Media Handles & World Press Conference on C&S Centenary Plans and Activities .",
+      "date": "20250709",
+      "image": 685
+    }
+  },
+  {
+    "id": 333,
+    "date": "2025-02-08T15:37:19",
+    "date_gmt": "2025-02-08T15:37:19",
+    "modified": "2026-01-31T21:21:35",
+    "modified_gmt": "2026-01-31T21:21:35",
+    "slug": "access-bank-clinches-thisdays-global-bank-of-the-year-award-aig-imoukhuede-is-named-titan-of-the-year-3",
+    "status": "publish",
+    "type": "news",
+    "link": "https://super-vault.esocs.net/news/access-bank-clinches-thisdays-global-bank-of-the-year-award-aig-imoukhuede-is-named-titan-of-the-year-3/",
+    "title": {
+      "rendered": "Pre-Event Sensitization and Mobilization"
+    },
+    "acf": {
+      "title": "Pre-Event Sensitization and Mobilization",
+      "news_content": "Centenary Sensitization/Familiarization of HME to key personalities (Inviting them to Centenary Programs and decorating them with C&S Centenary Emblem)",
+      "date": "20250208",
+      "image": 606
+    }
+  }
+]

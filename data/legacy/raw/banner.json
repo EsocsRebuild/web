@@ -1,0 +1,242 @@
+[
+  {
+    "id": 765,
+    "date": "2025-08-21T01:19:40",
+    "date_gmt": "2025-08-21T01:19:40",
+    "modified": "2025-08-21T01:19:40",
+    "modified_gmt": "2025-08-21T01:19:40",
+    "slug": "gallery-banner",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/gallery-banner/",
+    "title": {
+      "rendered": "Gallery Banner"
+    },
+    "acf": {
+      "banner_caption": "Photo Gallery",
+      "banner_description": "Look through photos of our past events and so much more!",
+      "banner_image": 766,
+      "banner_page": "Photo Gallery"
+    }
+  },
+  {
+    "id": 761,
+    "date": "2025-07-27T20:10:36",
+    "date_gmt": "2025-07-27T20:10:36",
+    "modified": "2025-07-27T20:10:36",
+    "modified_gmt": "2025-07-27T20:10:36",
+    "slug": "esocs-directorate",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/esocs-directorate/",
+    "title": {
+      "rendered": "ESOCS Directorate"
+    },
+    "acf": {
+      "banner_caption": "ESOCS Directorate",
+      "banner_description": "",
+      "banner_image": 606,
+      "banner_page": "ESOCS Directorate"
+    }
+  },
+  {
+    "id": 758,
+    "date": "2025-07-27T19:41:00",
+    "date_gmt": "2025-07-27T19:41:00",
+    "modified": "2025-07-27T20:08:13",
+    "modified_gmt": "2025-07-27T20:08:13",
+    "slug": "our-founder-baba-aladuras",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/our-founder-baba-aladuras/",
+    "title": {
+      "rendered": "Advisory Board"
+    },
+    "acf": {
+      "banner_caption": "Advisory Board",
+      "banner_description": "",
+      "banner_image": 606,
+      "banner_page": "Advisory Board"
+    }
+  },
+  {
+    "id": 656,
+    "date": "2025-06-25T03:41:13",
+    "date_gmt": "2025-06-25T03:41:13",
+    "modified": "2025-06-25T03:41:13",
+    "modified_gmt": "2025-06-25T03:41:13",
+    "slug": "news-page-banner",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/news-page-banner/",
+    "title": {
+      "rendered": "News Page Banner"
+    },
+    "acf": {
+      "banner_caption": "Our News",
+      "banner_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et \r\ndolore magna ali",
+      "banner_image": 448,
+      "banner_page": "Our_News"
+    }
+  },
+  {
+    "id": 447,
+    "date": "2025-03-03T11:18:29",
+    "date_gmt": "2025-03-03T11:18:29",
+    "modified": "2025-06-25T19:55:24",
+    "modified_gmt": "2025-06-25T19:55:24",
+    "slug": "events-page-banner",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/events-page-banner/",
+    "title": {
+      "rendered": "Events Page Banner"
+    },
+    "acf": {
+      "banner_caption": "Events",
+      "banner_description": "",
+      "banner_image": 606,
+      "banner_page": "Our_Events"
+    }
+  },
+  {
+    "id": 459,
+    "date": "2025-03-03T10:50:13",
+    "date_gmt": "2025-03-03T10:50:13",
+    "modified": "2025-06-25T20:45:09",
+    "modified_gmt": "2025-06-25T20:45:09",
+    "slug": "our-videos",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/our-videos/",
+    "title": {
+      "rendered": "Our Videos Banner"
+    },
+    "acf": {
+      "banner_caption": "Our Videos",
+      "banner_description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ali",
+      "banner_image": 460,
+      "banner_page": "Our_Videos"
+    }
+  },
+  {
+    "id": 471,
+    "date": "2025-03-01T02:41:06",
+    "date_gmt": "2025-03-01T02:41:06",
+    "modified": "2025-06-25T20:45:27",
+    "modified_gmt": "2025-06-25T20:45:27",
+    "slug": "seeds-of-love",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/seeds-of-love/",
+    "title": {
+      "rendered": "Giving Banner"
+    },
+    "acf": {
+      "banner_caption": "Seeds of Love",
+      "banner_description": "",
+      "banner_image": 699,
+      "banner_page": "Seeds_Of_Love"
+    }
+  },
+  {
+    "id": 463,
+    "date": "2025-03-01T02:38:20",
+    "date_gmt": "2025-03-01T02:38:20",
+    "modified": "2025-06-25T20:15:56",
+    "modified_gmt": "2025-06-25T20:15:56",
+    "slug": "contact-us-banner",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/contact-us-banner/",
+    "title": {
+      "rendered": "Contact Us Banner"
+    },
+    "acf": {
+      "banner_caption": "Contact Us",
+      "banner_description": "",
+      "banner_image": 702,
+      "banner_page": "Contact_Us"
+    }
+  },
+  {
+    "id": 452,
+    "date": "2025-02-28T19:08:43",
+    "date_gmt": "2025-02-28T19:08:43",
+    "modified": "2025-06-25T20:45:42",
+    "modified_gmt": "2025-06-25T20:45:42",
+    "slug": "our-photos",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/our-photos/",
+    "title": {
+      "rendered": "Media Banner"
+    },
+    "acf": {
+      "banner_caption": "Media",
+      "banner_description": "",
+      "banner_image": 694,
+      "banner_page": "Photo_Gallery"
+    }
+  },
+  {
+    "id": 309,
+    "date": "2025-02-07T13:35:49",
+    "date_gmt": "2025-02-07T13:35:49",
+    "modified": "2025-06-25T20:42:10",
+    "modified_gmt": "2025-06-25T20:42:10",
+    "slug": "our-services-time",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/our-services-time/",
+    "title": {
+      "rendered": "Our Services Time"
+    },
+    "acf": {
+      "banner_caption": "Our Services Time",
+      "banner_description": "<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--> ",
+      "banner_image": 508,
+      "banner_page": "Our-services"
+    }
+  },
+  {
+    "id": 304,
+    "date": "2025-02-07T13:23:00",
+    "date_gmt": "2025-02-07T13:23:00",
+    "modified": "2025-07-26T15:40:23",
+    "modified_gmt": "2025-07-26T15:40:23",
+    "slug": "our_pastor",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/our_pastor/",
+    "title": {
+      "rendered": "Our Leaders Banner"
+    },
+    "acf": {
+      "banner_caption": "Our Founder",
+      "banner_description": "And past Baba Aladuras",
+      "banner_image": 706,
+      "banner_page": "Pastors"
+    }
+  },
+  {
+    "id": 15,
+    "date": "2025-01-03T12:58:09",
+    "date_gmt": "2025-01-03T12:58:09",
+    "modified": "2025-06-24T19:29:39",
+    "modified_gmt": "2025-06-24T19:29:39",
+    "slug": "a-place-for-you-join-us-this-weekend",
+    "status": "publish",
+    "type": "banner",
+    "link": "https://super-vault.esocs.net/banner/a-place-for-you-join-us-this-weekend/",
+    "title": {
+      "rendered": "About Us Banner"
+    },
+    "acf": {
+      "banner_caption": "About Us",
+      "banner_description": "The Cherubim and Seraphim Church is a Pentecostal Christian Organisation which was founded in Nigeria in 1925 ",
+      "banner_image": 606,
+      "banner_page": "About"
+    }
+  }
+]

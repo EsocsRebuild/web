@@ -1,0 +1,51 @@
+# Build context: send only what the image needs. Keeps builds fast, cache stable
+# and secrets out of the image.
+
+# Dependencies and build output are recreated inside the image
+node_modules
+.next
+out
+*.tsbuildinfo
+next-env.d.ts
+
+# Version control, editors, OS
+.git
+.gitattributes
+.githooks
+.husky
+.github
+.vscode
+.idea
+.DS_Store
+
+# Secrets and local configuration: never in an image
+.env*
+!.env.example
+*.pem
+
+# Legacy media originals (~336 MB). Web copies live in public/media/legacy.
+data/legacy/media
+
+# Tests, reports and tooling not used at runtime
+e2e
+coverage
+test-results
+playwright-report
+blob-report
+playwright.config.ts
+vitest.config.mts
+**/*.test.ts
+**/*.test.tsx
+src/test
+scripts
+docs
+
+# Container and deploy files themselves
+Dockerfile*
+compose*.yaml
+docker-compose*.yml
+deploy
+
+# Misc
+*.log
+npm-debug.log*

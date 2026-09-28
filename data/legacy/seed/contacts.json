@@ -1,0 +1,44 @@
+{
+  "phones": [
+    {
+      "label": "General",
+      "number": "+2348082563457"
+    },
+    {
+      "label": "Counselling hotline",
+      "number": "+2349167678828"
+    }
+  ],
+  "addresses": [
+    {
+      "name": "National Headquarters",
+      "address": "9/11 Pearse Street, off Tejuosho, Surulere, Lagos",
+      "country": "NG"
+    },
+    {
+      "name": "Ebute-Metta General Headquarters Cathedral",
+      "address": "75 Ibadan Street (East), Ebute-Metta, Lagos",
+      "country": "NG"
+    },
+    {
+      "name": "National Headquarters Annex, Abuja",
+      "address": "31 Oyo Street, Area 2, Section 1, Garki, Abuja",
+      "country": "NG"
+    },
+    {
+      "name": "London Cathedral",
+      "address": "53 Chatham Street, London SE17 1PA",
+      "country": "GB"
+    },
+    {
+      "name": "New York",
+      "address": "981 Morris Avenue @ 164 Street, Bronx, NY 10456",
+      "country": "US"
+    },
+    {
+      "name": "Houston",
+      "address": "6103 Corporate Dr, Houston, TX 77036",
+      "country": "US"
+    }
+  ]
+}

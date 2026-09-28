@@ -1,0 +1,31 @@
+#!/usr/bin/env sh
+#
+# pre-commit: repository policy on the staged changes, then formatting,
+# linting and related unit tests via lint-staged.
+#
+# Step ids (for GITHOOKS_SKIP): protected-branch, forbidden-files,
+# conflict-markers, secrets, file-size, lockfile, lint-staged
+
+# shellcheck source=lib/common.sh
+. "$(dirname "$0")/lib/common.sh"
+# shellcheck source=lib/checks.sh
+. "$LIB_DIR/checks.sh"
+
+hook_start
+
+if [ -z "$(staged_files)" ]; then
+  info "Nothing staged"
+  exit 0
+fi
+
+run_step protected-branch "Branch allows commits" check_not_on_protected_branch
+run_step forbidden-files "No credential files" check_forbidden_paths
+run_step conflict-markers "No conflict markers" check_conflict_markers
+run_step secrets "No secrets" check_secrets
+run_step file-size "File sizes under ${MAX_FILE_SIZE_KB} KB" check_file_sizes
+
+ensure_node
+ensure_dependencies
+
+run_step lockfile "Lockfile in sync" check_lockfile
+run_live_step lint-staged "Format, lint and test staged files" bin lint-staged --concurrent false

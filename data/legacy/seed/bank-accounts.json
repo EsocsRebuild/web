@@ -1,0 +1,54 @@
+[
+  {
+    "bank": "Standard Chartered Bank",
+    "accountName": "The Eternal Order of the Cherubim and Seraphim",
+    "accountNumber": "98765432",
+    "logo": {
+      "id": 535,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/04/Standard-Chartered.png",
+      "width": 139,
+      "height": 138,
+      "alt": null
+    },
+    "placeholder": true
+  },
+  {
+    "bank": "FCMB",
+    "accountName": "The Eternal Order of the Cherubim and Seraphim",
+    "accountNumber": "98765432",
+    "logo": {
+      "id": 533,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/04/FCMB.png",
+      "width": 139,
+      "height": 138,
+      "alt": null
+    },
+    "placeholder": true
+  },
+  {
+    "bank": "United Bank of Africa",
+    "accountName": "The Eternal Order of the Cherubim and Seraphim",
+    "accountNumber": "99987654",
+    "logo": {
+      "id": 530,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/04/UBA.png",
+      "width": 139,
+      "height": 138,
+      "alt": null
+    },
+    "placeholder": true
+  },
+  {
+    "bank": "GT Bank",
+    "accountName": "The Eternal Order of the Cherubim and Seraphim",
+    "accountNumber": "98765432",
+    "logo": {
+      "id": 528,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/04/GT-Bank.png",
+      "width": 139,
+      "height": 138,
+      "alt": null
+    },
+    "placeholder": true
+  }
+]

@@ -1,0 +1,86 @@
+#!/usr/bin/env sh
+#
+# pre-push: push policy for each updated branch, then the quality checks
+# CI runs before the build.
+#
+# Git passes one line per ref on stdin:
+#   <local ref> <local sha> <remote ref> <remote sha>
+#
+# Step ids (for GITHOOKS_SKIP): push-policy, format, lint, typecheck, tests
+# Protected-branch override for administrators: GITHOOKS_SKIP=push-policy
+
+# shellcheck source=lib/common.sh
+. "$(dirname "$0")/lib/common.sh"
+# shellcheck source=lib/checks.sh
+. "$LIB_DIR/checks.sh"
+
+hook_start
+
+remote_name=${1:-origin}
+violations=''
+branch_updates=0
+
+add_violation() {
+  violations="$violations$1
+"
+}
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ -n "${local_ref:-}" ] || continue
+
+  case $remote_ref in
+    refs/heads/*) branch=${remote_ref#refs/heads/} ;;
+    *) continue ;; # Tags and other refs are not policed.
+  esac
+
+  if is_null_sha "$local_sha"; then
+    if in_list "$branch" "$LONG_LIVED_BRANCHES"; then
+      add_violation "Deleting '$branch' from $remote_name is not allowed."
+    fi
+    continue
+  fi
+
+  branch_updates=1
+
+  if in_list "$branch" "$PROTECTED_BRANCHES"; then
+    add_violation "'$branch' only changes through pull requests. Push a work branch and open a PR."
+  fi
+
+  # A push that does not contain the remote tip rewrites history.
+  if in_list "$branch" "$LONG_LIVED_BRANCHES" && ! is_null_sha "$remote_sha" &&
+    git cat-file -e "$remote_sha^{commit}" 2>/dev/null &&
+    ! git merge-base --is-ancestor "$remote_sha" "$local_sha"; then
+    add_violation "Force-pushing '$branch' is not allowed; it would rewrite shared history."
+  fi
+
+  if ! valid_branch_name "$branch"; then
+    add_violation "Branch '$branch' does not follow the naming convention. Rename with: git branch -m <type>/<description>"
+  fi
+done
+
+if [ -n "$violations" ]; then
+  if is_skipped push-policy; then
+    warn "Push policy skipped (GITHOOKS_SKIP=push-policy)"
+  else
+    fail "Push policy"
+    printf '%s' "$violations" | sed 's/^/  /' >&2
+    hint "$(branch_naming_help | head -n 1)"
+    exit 1
+  fi
+else
+  ok "Push policy"
+fi
+
+[ "$branch_updates" -eq 1 ] || exit 0
+
+if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
+  warn "You have uncommitted changes. Checks run on the working tree, not only on the commits being pushed."
+fi
+
+ensure_node
+ensure_dependencies
+
+run_step format "Formatting" npm_script format:check
+run_step lint "Lint" npm_script lint
+run_step typecheck "Type-check" npm_script typecheck
+run_step tests "Unit tests" npm_script test

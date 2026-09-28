@@ -1,0 +1,68 @@
+[
+  {
+    "id": 807,
+    "date": "2026-01-30T16:49:27",
+    "date_gmt": "2026-01-30T16:49:27",
+    "modified": "2026-01-31T23:09:16",
+    "modified_gmt": "2026-01-31T23:09:16",
+    "slug": "baba-aladura",
+    "status": "publish",
+    "type": "slider",
+    "link": "https://super-vault.esocs.net/slider/baba-aladura/",
+    "title": {
+      "rendered": "Baba Aladura"
+    },
+    "acf": {
+      "slider_title": "Baba Aladura",
+      "slider_image": 685,
+      "slider_caption": "Caption",
+      "button_text": "Learn More",
+      "button_url": "#",
+      "button_options": "_blank"
+    }
+  },
+  {
+    "id": 788,
+    "date": "2026-01-29T20:10:39",
+    "date_gmt": "2026-01-29T20:10:39",
+    "modified": "2026-01-31T23:13:33",
+    "modified_gmt": "2026-01-31T23:13:33",
+    "slug": "788",
+    "status": "publish",
+    "type": "slider",
+    "link": "https://super-vault.esocs.net/slider/788/",
+    "title": {
+      "rendered": "2026 Banner"
+    },
+    "acf": {
+      "slider_title": "2026 Banner",
+      "slider_image": 828,
+      "slider_caption": "Caption",
+      "button_text": "Learn More",
+      "button_url": "#",
+      "button_options": "_blank"
+    }
+  },
+  {
+    "id": 507,
+    "date": "2025-06-24T12:46:16",
+    "date_gmt": "2025-06-24T12:46:16",
+    "modified": "2026-01-31T23:10:41",
+    "modified_gmt": "2026-01-31T23:10:41",
+    "slug": "2026theme",
+    "status": "publish",
+    "type": "slider",
+    "link": "https://super-vault.esocs.net/slider/2026theme/",
+    "title": {
+      "rendered": "2026 THEME OF THE YEAR"
+    },
+    "acf": {
+      "slider_title": "2026 THEME OF THE YEAR",
+      "slider_image": 777,
+      "slider_caption": "Caption",
+      "button_text": "Find Out More",
+      "button_url": "#",
+      "button_options": "_self"
+    }
+  }
+]

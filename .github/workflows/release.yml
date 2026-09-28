@@ -1,0 +1,20 @@
+name: Release
+
+# Opens and maintains a release PR on main from Conventional Commits.
+# Merging that PR tags the release and updates CHANGELOG.md.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v5
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

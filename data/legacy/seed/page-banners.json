@@ -1,0 +1,140 @@
+[
+  {
+    "page": "Photo Gallery",
+    "caption": "Photo Gallery",
+    "description": "Look through photos of our past events and so much more!",
+    "image": {
+      "id": 766,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/08/image3.png",
+      "width": 1440,
+      "height": 455,
+      "alt": null
+    }
+  },
+  {
+    "page": "ESOCS Directorate",
+    "caption": "ESOCS Directorate",
+    "description": null,
+    "image": {
+      "id": 606,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/01/esocsabout.png",
+      "width": 1440,
+      "height": 545,
+      "alt": null
+    }
+  },
+  {
+    "page": "Advisory Board",
+    "caption": "Advisory Board",
+    "description": null,
+    "image": {
+      "id": 606,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/01/esocsabout.png",
+      "width": 1440,
+      "height": 545,
+      "alt": null
+    }
+  },
+  {
+    "page": "Our_News",
+    "caption": "Our News",
+    "description": null,
+    "image": {
+      "id": 448,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/02/image3.png",
+      "width": 1440,
+      "height": 455,
+      "alt": null
+    }
+  },
+  {
+    "page": "Our_Events",
+    "caption": "Events",
+    "description": null,
+    "image": {
+      "id": 606,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/01/esocsabout.png",
+      "width": 1440,
+      "height": 545,
+      "alt": null
+    }
+  },
+  {
+    "page": "Our_Videos",
+    "caption": "Our Videos",
+    "description": null,
+    "image": {
+      "id": 460,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/03/image5.png",
+      "width": 1440,
+      "height": 455,
+      "alt": null
+    }
+  },
+  {
+    "page": "Seeds_Of_Love",
+    "caption": "Seeds of Love",
+    "description": null,
+    "image": {
+      "id": 699,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/03/seed.png",
+      "width": 1440,
+      "height": 455,
+      "alt": null
+    }
+  },
+  {
+    "page": "Contact_Us",
+    "caption": "Contact Us",
+    "description": null,
+    "image": {
+      "id": 702,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/03/map.png",
+      "width": 1080,
+      "height": 342,
+      "alt": null
+    }
+  },
+  {
+    "page": "Photo_Gallery",
+    "caption": "Media",
+    "description": null,
+    "image": null
+  },
+  {
+    "page": "Our-services",
+    "caption": "Our Services Time",
+    "description": "<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore--> ",
+    "image": {
+      "id": 508,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/04/slider2.png",
+      "width": 1080,
+      "height": 594,
+      "alt": null
+    }
+  },
+  {
+    "page": "Pastors",
+    "caption": "Our Founder",
+    "description": "And past Baba Aladuras",
+    "image": {
+      "id": 706,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/02/founders.png",
+      "width": 1440,
+      "height": 545,
+      "alt": null
+    }
+  },
+  {
+    "page": "About",
+    "caption": "About Us",
+    "description": "The Cherubim and Seraphim Church is a Pentecostal Christian Organisation which was founded in Nigeria in 1925 ",
+    "image": {
+      "id": 606,
+      "url": "https://super-vault.esocs.net/wp-content/uploads/2025/01/esocsabout.png",
+      "width": 1440,
+      "height": 545,
+      "alt": null
+    }
+  }
+]
