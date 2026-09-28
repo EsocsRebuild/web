@@ -27,10 +27,14 @@ async function audit(SCOPES) {
     return cs.display !== "none" && cs.visibility !== "hidden" && r.width > 1 && r.height > 1;
   };
   const lines = (el) => {
-    const rg = document.createRange();
-    rg.selectNodeContents(el);
+    // Only the element's own text: icons, dots and child pills are not lines.
     const tops = new Set();
-    for (const r of rg.getClientRects()) if (r.width > 1) tops.add(Math.round(r.top / 4));
+    for (const t of el.childNodes) {
+      if (t.nodeType !== 3 || !t.textContent.trim()) continue;
+      const rg = document.createRange();
+      rg.selectNodeContents(t);
+      for (const r of rg.getClientRects()) if (r.width > 1) tops.add(Math.round(r.bottom / 6));
+    }
     return tops.size;
   };
   const seen = new Set();
