@@ -62,7 +62,11 @@ async function audit(SCOPES) {
             what: desc(el),
             detail: `${n} lines @ ${Math.round(r.width)}px`,
           });
-        if (r.right > pr.right + 2 && getComputedStyle(el.parentElement).overflowX === "visible")
+        if (
+          r.right > pr.right + 2 &&
+          getComputedStyle(el.parentElement).display !== "contents" &&
+          getComputedStyle(el.parentElement).overflowX === "visible"
+        )
           out.push({ kind: "spill", what: desc(el) });
       }
     }
