@@ -5,6 +5,7 @@ import * as React from "react";
 import type { Product } from "@/data/schema/store";
 
 import { ProductCard } from "./product-card";
+import { SHELF_GRID } from "./store-parts";
 
 const SORTS = {
   featured: {
@@ -68,7 +69,7 @@ export function ProductShelf({
           </select>
         </label>
       </div>
-      <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 xl:grid-cols-4">
+      <ul className={SHELF_GRID}>
         {sorted.map((p, i) => (
           <li key={p.slug}>
             <ProductCard product={p} category={categoryNames[p.categorySlug]} priority={i < 4} />

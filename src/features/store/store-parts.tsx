@@ -7,6 +7,30 @@ import { cn } from "@/lib/utils";
 
 import { ORDER_STEPS, shelfTheme, type ShelfTheme } from "./store-theme";
 
+/*
+ * Product cards are never narrower than 17rem, so the longest name ("White altar
+ * candles, pack of 12") sits on one line: each column count only starts once the
+ * page has room for it (1 on phones, 2 from sm, 3 from lg, 4 from xl).
+ */
+export const SHELF_GRID = "grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4";
+
+/**
+ * A short row of products (featured, related): a swipeable row on phones, then a
+ * grid showing only as many as fill it whole: four, three, or two by two.
+ */
+export function ProductRow({ children, label }: { children: React.ReactNode; label?: string }) {
+  return (
+    <ul
+      aria-label={label}
+      className="-mx-gutter scrollbar-none flex snap-x scroll-px-gutter gap-4 overflow-x-auto px-gutter pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 xl:grid-cols-4 lg:[&>li:nth-child(n+4)]:hidden xl:[&>li:nth-child(n+4)]:block"
+    >
+      {children}
+    </ul>
+  );
+}
+
+export const productRowItem = "w-[17.5rem] shrink-0 snap-start sm:w-auto";
+
 /** A shelf's icon on its own colours: the same swatch as its products' pictures. */
 export function ShelfSwatch({ theme, className }: { theme: ShelfTheme; className?: string }) {
   return (
@@ -53,22 +77,19 @@ export function OrderSteps({
       >
         How ordering works
       </h2>
-      <ol className={cn("grid gap-4", layout === "row" && "sm:grid-cols-3 sm:gap-6")}>
+      <ol className={cn("grid gap-4", layout === "row" && "md:grid-cols-3 md:gap-6")}>
         {ORDER_STEPS.map((step, i) => (
           <li key={step.title} className="flex items-start gap-3">
             <span
               className={cn(
-                "flex size-9 shrink-0 items-center justify-center rounded-full font-display text-sm font-extrabold tabular",
+                "flex size-8 shrink-0 items-center justify-center rounded-full font-display text-sm font-extrabold tabular",
                 tone === "light" ? "bg-royal-900 text-gold-100" : "bg-gold-300 text-royal-950",
               )}
             >
               {i + 1}
             </span>
-            <span className="grid gap-0.5">
-              <span className="flex items-center gap-1.5 text-sm font-bold">
-                <step.icon aria-hidden className="size-4 text-highlight" />
-                {step.title}
-              </span>
+            <span className="grid gap-0.5 pt-1">
+              <span className="text-sm font-bold whitespace-nowrap">{step.title}</span>
               <span className="text-sm leading-6 text-muted-foreground">{step.body}</span>
             </span>
           </li>
@@ -97,11 +118,10 @@ export function ShelfTiles({
   className?: string;
 }) {
   const items = [
-    { slug: null, name: "Everything", promise: "The whole store", count: total },
+    { slug: null, name: "Everything", count: total },
     ...categories.map((c) => ({
       slug: c.slug,
       name: c.name,
-      promise: shelfTheme(c.slug).promise,
       count: counts[c.slug] ?? 0,
     })),
   ];
@@ -110,11 +130,11 @@ export function ShelfTiles({
       aria-label="Store categories"
       className={cn("-mx-gutter scrollbar-none overflow-x-auto px-gutter", className)}
     >
-      <ul className="flex snap-x gap-3 lg:grid lg:grid-cols-5">
+      <ul className="flex snap-x gap-3 min-[88rem]:grid min-[88rem]:grid-cols-5">
         {items.map((c) => {
           const current = active !== undefined && c.slug === active;
           return (
-            <li key={c.slug ?? "all"} className="w-[13.5rem] shrink-0 snap-start lg:w-auto">
+            <li key={c.slug ?? "all"} className="w-[15.5rem] shrink-0 snap-start min-[88rem]:w-auto">
               <Link
                 href={routes.store(c.slug ?? undefined)}
                 aria-current={current ? "page" : undefined}
@@ -136,9 +156,9 @@ export function ShelfTiles({
                   </span>
                 )}
                 <span className="grid min-w-0 flex-1">
-                  <span className="truncate text-sm font-bold">{c.name}</span>
-                  <span className="truncate text-xs text-muted-foreground">
-                    {c.count} {c.count === 1 ? "item" : "items"} · {c.promise}
+                  <span className="text-sm font-bold whitespace-nowrap">{c.name}</span>
+                  <span className="text-xs whitespace-nowrap text-muted-foreground">
+                    {c.count} {c.count === 1 ? "item" : "items"}
                   </span>
                 </span>
               </Link>

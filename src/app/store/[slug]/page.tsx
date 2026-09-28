@@ -10,6 +10,7 @@ import { Price, ProductCard, StockLabel } from "@/features/store/product-card";
 import { ProductArt } from "@/features/store/product-art";
 import { ProductPurchase } from "@/features/store/product-purchase";
 import { StorePreviewNotice } from "@/features/store/store-front";
+import { ProductRow, productRowItem } from "@/features/store/store-parts";
 import { routes } from "@/lib/routes";
 
 export const dynamicParams = false;
@@ -144,13 +145,13 @@ export default async function ProductPage({ params }: PageProps<"/store/[slug]">
             href={routes.store(category?.slug)}
             linkLabel={category ? `More ${category.name.toLowerCase()}` : "The whole store"}
           />
-          <ul className="grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-4">
+          <ProductRow label="You may also like">
             {related.map((p) => (
-              <li key={p.slug}>
+              <li key={p.slug} className={productRowItem}>
                 <ProductCard product={p} category={store.getCategory(p.categorySlug)?.name} />
               </li>
             ))}
-          </ul>
+          </ProductRow>
         </section>
       )}
     </div>

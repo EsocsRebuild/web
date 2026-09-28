@@ -19,7 +19,7 @@ export function StockLabel({ stock, className }: { stock: StockStatus; className
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 text-xs font-semibold",
+        "inline-flex items-center gap-1.5 text-xs font-semibold whitespace-nowrap",
         stock === "in-stock" && "text-success",
         stock === "low-stock" && "text-warning",
         stock === "sold-out" && "text-muted-foreground",
@@ -40,7 +40,7 @@ export function Price({
   size?: "md" | "lg";
 }) {
   return (
-    <span className="inline-flex items-baseline gap-2">
+    <span className="inline-flex items-baseline gap-2 whitespace-nowrap">
       <span className={cn("font-display font-bold tabular", size === "lg" ? "text-2xl" : "text-base")}>
         {formatMoney(product.price)}
       </span>
@@ -77,7 +77,7 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        "group/product relative flex h-full flex-col overflow-hidden rounded-panel border border-border bg-surface transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_18px_40px_-24px_rgb(0_0_0/0.45)] has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-ring",
+        "group/product @container relative flex h-full flex-col overflow-hidden rounded-panel border border-border bg-surface transition-[transform,box-shadow,border-color] duration-300 ease-[var(--ease-out-expo)] hover:-translate-y-1 hover:border-border-strong hover:shadow-[0_18px_40px_-24px_rgb(0_0_0/0.45)] has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-ring",
         className,
       )}
     >
@@ -92,7 +92,7 @@ export function ProductCard({
         />
         <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
           {product.badge ? (
-            <span className="rounded-pill bg-background/90 px-2.5 py-1 text-[0.6875rem] font-bold tracking-wide text-foreground uppercase shadow-sm backdrop-blur">
+            <span className="rounded-pill bg-background/90 px-2.5 py-1 text-[0.6875rem] font-bold tracking-wide whitespace-nowrap text-foreground uppercase shadow-sm backdrop-blur">
               {product.badge}
             </span>
           ) : (
@@ -101,20 +101,20 @@ export function ProductCard({
           {product.stock !== "in-stock" && (
             <StockLabel
               stock={product.stock}
-              className="rounded-pill bg-background/90 px-2.5 py-1 text-[0.6875rem] shadow-sm backdrop-blur"
+              className="rounded-pill bg-background/90 px-2.5 py-1 text-[0.6875rem] whitespace-nowrap shadow-sm backdrop-blur"
             />
           )}
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-1.5 p-4 sm:p-5">
+      <div className="flex flex-1 flex-col gap-1.5 p-4">
         {category && (
-          <p className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
+          <p className="flex items-center gap-1.5 text-xs font-semibold whitespace-nowrap text-muted-foreground">
             <theme.icon aria-hidden className="size-3.5 text-highlight" />
             {category}
           </p>
         )}
-        <h3 className="font-display text-base leading-snug font-bold text-balance">
+        <h3 className="font-display text-[0.9375rem] leading-snug font-bold @min-[18rem]:text-base">
           <Link
             href={routes.product(product.slug)}
             className="outline-none group-hover/product:text-accent after:absolute after:inset-0"
@@ -122,12 +122,12 @@ export function ProductCard({
             {product.name}
           </Link>
         </h3>
-        <p className="line-clamp-2 text-sm leading-6 text-muted-foreground">{product.summary}</p>
+        <p className="text-sm leading-6 text-pretty text-muted-foreground">{product.summary}</p>
         <div className="mt-auto flex items-center justify-between gap-3 pt-3">
           <Price product={product} />
           <span
             aria-hidden
-            className="inline-flex h-9 items-center gap-1 rounded-pill bg-surface-muted pr-2.5 pl-3.5 text-xs font-bold text-foreground transition-colors group-hover/product:bg-accent group-hover/product:text-accent-foreground"
+            className="inline-flex h-9 shrink-0 items-center gap-1 rounded-pill bg-surface-muted pr-2.5 pl-3.5 text-xs font-bold whitespace-nowrap text-foreground transition-colors group-hover/product:bg-accent group-hover/product:text-accent-foreground"
           >
             {soldOut ? "See item" : "View"}
             <ArrowRight className="size-3.5 transition-transform group-hover/product:translate-x-0.5" />
