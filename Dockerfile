@@ -21,6 +21,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     npm_config_update_notifier=false \
     npm_config_fund=false \
     npm_config_audit=false
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /app
 
 # ---------------------------------------------------------------------------
@@ -54,7 +55,8 @@ COPY . .
 RUN --mount=type=secret,id=server_actions_key,required=false \
     --mount=type=cache,target=/app/.next/cache \
     if [ -f /run/secrets/server_actions_key ]; then \
-      export NEXT_SERVER_ACTIONS_ENCRYPTION_KEY="$(cat /run/secrets/server_actions_key)"; \
+      NEXT_SERVER_ACTIONS_ENCRYPTION_KEY="$(cat /run/secrets/server_actions_key)"; \
+      export NEXT_SERVER_ACTIONS_ENCRYPTION_KEY; \
     fi && \
     npm run build
 
@@ -102,7 +104,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 RUN mkdir -p .next/cache && chown -R nextjs:nodejs .next/cache
 VOLUME ["/app/.next/cache"]
 
-USER nextjs
+USER 1001:1001
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
