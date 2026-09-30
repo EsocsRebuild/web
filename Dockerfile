@@ -65,6 +65,8 @@ RUN --mount=type=secret,id=server_actions_key,required=false \
 # ---------------------------------------------------------------------------
 FROM base AS runner
 
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 ARG APP_VERSION=dev
 ARG DEPLOYMENT_ID=""
 ARG VCS_REF=""
@@ -82,7 +84,7 @@ LABEL org.opencontainers.image.title="esocs-web" \
 RUN apt-get update \
  && apt-get install --no-install-recommends -y tini libjemalloc2 \
  && rm -rf /var/lib/apt/lists/* \
- && ln -s "$(find /usr/lib -name 'libjemalloc.so.2' | head -n1)" /usr/lib/libjemalloc.so.2
+ && ln -s "$(find /usr/lib -name 'libjemalloc.so.2' -print -quit)" /usr/lib/libjemalloc.so.2
 
 ENV NODE_ENV=production \
     PORT=3000 \
