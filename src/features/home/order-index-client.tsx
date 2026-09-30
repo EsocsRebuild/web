@@ -38,8 +38,8 @@ export function YourChurchCard({ churches, reach }: { churches: ChurchNames; rea
           </span>
           <span className="grid min-w-0 flex-1">
             <span className="text-overline font-semibold text-subtle-foreground uppercase">Your church</span>
-            <span className="truncate text-[0.9375rem] leading-snug font-bold">{home.name}</span>
-            {home.locality && <span className="truncate text-xs text-muted-foreground">{home.locality}</span>}
+            <span className="text-[0.9375rem] leading-snug font-bold">{home.name}</span>
+            {home.locality && <span className="text-xs text-muted-foreground">{home.locality}</span>}
           </span>
           <ArrowRight
             aria-hidden

@@ -21,19 +21,21 @@ export function SplitHeadline({
 }) {
   const words = text.split(/\s+/).filter(Boolean);
   return (
-    <Comp className={className} aria-label={text}>
-      {words.map((word, i) => (
-        <React.Fragment key={`${word}-${i}`}>
-          <span
-            aria-hidden
-            className={cn("inline-block animate-word-in will-change-transform")}
-            style={{ animationDelay: `${delay + i * stagger}ms` }}
-          >
-            {word}
-          </span>
-          {i < words.length - 1 && " "}
-        </React.Fragment>
-      ))}
+    <Comp className={className}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden="true">
+        {words.map((word, i) => (
+          <React.Fragment key={`${word}-${i}`}>
+            <span
+              className={cn("inline-block animate-word-in will-change-transform")}
+              style={{ animationDelay: `${delay + i * stagger}ms` }}
+            >
+              {word}
+            </span>
+            {i < words.length - 1 && " "}
+          </React.Fragment>
+        ))}
+      </span>
     </Comp>
   );
 }

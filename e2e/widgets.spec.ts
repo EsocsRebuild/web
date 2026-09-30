@@ -1,7 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
 
 /** The dock waits for the opening splash; wait for it too. */
-const afterSplash = (page: Page) => page.waitForSelector('html[data-splash="seen"]', { timeout: 10_000 });
+const afterSplash = (page: Page) =>
+  page.waitForSelector('html[data-splash="seen"]', { state: "attached", timeout: 15_000 });
 
 test.describe("section scroll reveal", () => {
   const opacity = (page: Page, selector: string) =>

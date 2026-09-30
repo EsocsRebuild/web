@@ -102,10 +102,10 @@ function Row({
       <Link href={href} className={rowClass}>
         {visual}
         <span className="grid min-w-0 flex-1">
-          <span className="truncate text-sm leading-snug font-semibold text-foreground/90 group-hover/row:text-foreground">
+          <span className="text-sm leading-snug font-semibold text-foreground/90 group-hover/row:text-foreground">
             {label}
           </span>
-          {detail && <span className="truncate text-xs text-muted-foreground">{detail}</span>}
+          {detail && <span className="text-xs text-muted-foreground">{detail}</span>}
         </span>
         <ChevronRight
           aria-hidden
@@ -188,10 +188,8 @@ export function OrderIndex({
           <summary className={cn(rowClass, "cursor-pointer list-none [&::-webkit-details-marker]:hidden")}>
             <Tile icon={Network} colour={cmc} />
             <span className="grid min-w-0 flex-1">
-              <span className="truncate text-sm leading-snug font-semibold">Church councils</span>
-              <span className="truncate text-xs text-muted-foreground">
-                CMC 1 to {cmcs.length}, by region
-              </span>
+              <span className="text-sm leading-snug font-semibold">Church councils</span>
+              <span className="text-xs text-muted-foreground">CMC 1 to {cmcs.length}, by region</span>
             </span>
             <ChevronDown
               aria-hidden
@@ -253,7 +251,7 @@ export function OrderIndex({
                 >
                   <l.icon className="size-4" />
                 </span>
-                <span className="flex-1 truncate text-sm font-medium text-foreground/85 group-hover/row:text-foreground">
+                <span className="flex-1 text-sm font-medium text-foreground/85 group-hover/row:text-foreground">
                   {l.label}
                 </span>
                 <ChevronRight

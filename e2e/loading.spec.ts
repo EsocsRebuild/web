@@ -47,7 +47,10 @@ test("an album renders in batches, adds more as you scroll, and still opens ever
   await expect(photos).toHaveCount(24);
   await expect(page.getByRole("button", { name: /Show more photos/ })).toContainText("50 left");
 
-  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await page.evaluate(() =>
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }),
+  );
+  await page.getByRole("button", { name: /Show more photos/ }).scrollIntoViewIfNeeded();
   await expect.poll(() => photos.count()).toBeGreaterThan(24);
 
   await photos.first().click();
