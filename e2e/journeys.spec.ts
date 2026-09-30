@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("J1 · find a house of prayer and get directions", async ({ page }) => {
   await page.goto("/find");
+  await page.locator('[data-hydrated="true"]').waitFor({ state: "attached" });
   await page.getByLabel("Town, province or church name").fill("Awka");
   await expect(page).toHaveURL(/q=Awka/);
   await page.getByRole("link", { name: "Mount Horeb, Umuike", exact: true }).click();

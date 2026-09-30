@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 test("the church family: children, youth, women and men, with more to scroll to", async ({ page }) => {
   await page.goto("/");
   const family = page.locator('[aria-labelledby="family-heading"]');
+  await family.scrollIntoViewIfNeeded();
   await expect(family.getByRole("heading", { level: 3 })).toHaveText(["Children", "Youth", "Women", "Men"]);
 
   // The next card peeks in at the edge, so it is plain there is more.
@@ -15,6 +16,7 @@ test("the church family: children, youth, women and men, with more to scroll to"
   expect(second.x).toBeLessThan(box.x + box.width);
 
   // The dots show where you are and jump to a card; the arrows (from tablets up) step through.
+  await family.evaluate((el) => el.scrollIntoView({ block: "center" }));
   await family.getByRole("button", { name: "Show Youth" }).click();
   await expect(family.getByRole("button", { name: "Show Youth" })).toHaveAttribute("aria-current", "true");
   await family.getByRole("button", { name: "Show Men" }).click();

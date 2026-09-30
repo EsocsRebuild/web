@@ -84,7 +84,14 @@ LABEL org.opencontainers.image.title="esocs-web" \
 RUN apt-get update \
  && apt-get install --no-install-recommends -y tini libjemalloc2 \
  && rm -rf /var/lib/apt/lists/* \
- && ln -s "$(find /usr/lib -name 'libjemalloc.so.2' -print -quit)" /usr/lib/libjemalloc.so.2
+ && ln -s "$(find /usr/lib -name 'libjemalloc.so.2' -print -quit)" /usr/lib/libjemalloc.so.2 \
+ && rm -rf /usr/local/lib/node_modules/npm \
+           /usr/local/lib/node_modules/corepack \
+           /usr/local/bin/npm \
+           /usr/local/bin/npx \
+           /usr/local/bin/corepack \
+           /usr/local/bin/yarn* \
+           /opt/yarn*
 
 ENV NODE_ENV=production \
     PORT=3000 \
