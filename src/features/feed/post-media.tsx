@@ -32,9 +32,9 @@ export function PostMedia({
       aria-label={`View ${total ?? images.length} photos: ${title}`}
       className={cn(
         "grid gap-1 overflow-hidden rounded-card",
-        shown.length === 1 && "aspect-[16/9]",
-        shown.length === 2 && "aspect-[2/1] grid-cols-2",
-        spread && "aspect-[3/2] grid-cols-3 grid-rows-2 sm:aspect-[16/9]",
+        shown.length === 1 && "aspect-video",
+        shown.length === 2 && "aspect-2/1 grid-cols-2",
+        spread && "aspect-3/2 grid-cols-3 grid-rows-2 sm:aspect-video",
       )}
     >
       {shown.map((img, i) => (

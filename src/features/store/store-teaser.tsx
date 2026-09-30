@@ -101,7 +101,7 @@ export function StoreTeaser() {
                   <li key={c.slug}>
                     <Link
                       href={routes.store(c.slug)}
-                      className="group/shelf flex h-full items-center gap-3 rounded-card border border-white/10 bg-white/[0.04] p-3 transition-colors hover:border-white/25 hover:bg-white/[0.08]"
+                      className="group/shelf flex h-full items-center gap-3 rounded-card border border-white/10 bg-white/4 p-3 transition-colors hover:border-white/25 hover:bg-white/8"
                     >
                       <ShelfSwatch theme={theme} />
                       <span className="grid min-w-0 flex-1 gap-0.5">
