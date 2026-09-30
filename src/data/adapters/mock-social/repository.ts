@@ -296,26 +296,43 @@ export function createMockSocialRepository(options: MockSocialOptions = {}): Soc
         commit({ ...state, rsvps });
       }),
 
-    submitPrayerRequest: (input) =>
-      request(() => {
-        if (!allowDemoSignIn) throw new SocialError("unavailable", "Online prayer requests are coming soon.");
-        const text = input.request.trim();
-        if (text.length < 3 || text.length > 4000) {
-          throw new SocialError("validation", "Please write your request (up to 4,000 characters).");
-        }
-        commit({
-          ...state,
-          prayerRequests: [
-            ...state.prayerRequests,
-            {
-              name: input.name?.trim() || undefined,
-              contact: input.contact?.trim() || undefined,
-              request: text,
-              at: stamp(),
-            },
-          ],
+    submitPrayerRequest: async (input) => {
+      if (!allowDemoSignIn) throw new SocialError("unavailable", "Online prayer requests are coming soon.");
+      const text = input.request.trim();
+      if (text.length < 3 || text.length > 4000) {
+        throw new SocialError("validation", "Please write your request (up to 4,000 characters).");
+      }
+      try {
+        const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5080/api/v1";
+        const tenantSlug = process.env.NEXT_PUBLIC_TENANT_SLUG || "esocs";
+        await fetch(`${backendUrl}/public/prayer-requests`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "X-Tenant": tenantSlug },
+          body: JSON.stringify({
+            name: input.name?.trim() || "Anonymous",
+            email: input.contact?.includes("@") ? input.contact.trim() : null,
+            phoneNumber: !input.contact?.includes("@") && input.contact?.trim() ? input.contact.trim() : null,
+            request: text,
+            isAnonymous: !input.name?.trim(),
+            shareOnPrayerWall: true,
+          }),
         });
-      }),
+      } catch {
+        // Offline / dev fallback
+      }
+      commit({
+        ...state,
+        prayerRequests: [
+          ...state.prayerRequests,
+          {
+            name: input.name?.trim() || undefined,
+            contact: input.contact?.trim() || undefined,
+            request: text,
+            at: stamp(),
+          },
+        ],
+      });
+    },
 
     subscribeToNewsletter: (input) =>
       request(() => {
