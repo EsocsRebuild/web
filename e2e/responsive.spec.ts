@@ -4,7 +4,7 @@ import { TEMPLATES } from "./routes";
 
 for (const path of TEMPLATES) {
   test(`${path} renders without horizontal scroll`, async ({ page }) => {
-    const response = await page.goto(path);
+    const response = await page.goto(path, { waitUntil: "domcontentloaded" });
     expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
