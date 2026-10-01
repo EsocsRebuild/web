@@ -12,7 +12,7 @@ export function SplashController() {
       () => {
         root.dataset.splash = "seen";
       },
-      reduce ? 50 : 2400,
+      reduce ? 50 : 1800,
     );
     return () => window.clearTimeout(id);
   }, []);

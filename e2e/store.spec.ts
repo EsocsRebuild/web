@@ -54,13 +54,14 @@ test("store categories are linkable pages", async ({ page }) => {
 
 test("newsletter sign-up checks the address and is honest that it opens soon", async ({ page }) => {
   await page.goto("/");
+  await page.waitForSelector('html[data-splash="seen"]', { state: "attached", timeout: 30_000 });
   const form = page.getByRole("form", { name: "Newsletter sign-up" });
   await form.getByRole("textbox", { name: "Email address" }).fill("not-an-email");
   await form.getByRole("button", { name: "Subscribe" }).click();
   await expect(form.getByText(/Please enter a valid email address/)).toBeVisible();
   await form.getByRole("textbox", { name: "Email address" }).fill("ada@example.org");
   await form.getByRole("button", { name: "Subscribe" }).click();
-  await expect(form.getByRole("alert")).toContainText("Newsletter sign-up opens soon");
+  await expect(form.getByRole("alert").filter({ hasText: "Newsletter sign-up opens soon" })).toBeVisible();
   await expect(form.getByRole("textbox", { name: "Email address" })).toHaveValue("ada@example.org");
 });
 

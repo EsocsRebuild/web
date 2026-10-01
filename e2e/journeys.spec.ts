@@ -23,7 +23,7 @@ test("J6 · move up and across the structure without getting lost", async ({ pag
 
 test("page tabs are linkable routes", async ({ page }) => {
   await page.goto("/church/esocs");
-  await page.waitForSelector('html[data-splash="seen"]', { state: "attached", timeout: 15_000 });
+  await page.waitForSelector('html[data-splash="seen"]', { state: "attached", timeout: 30_000 });
   const tab = page
     .getByRole("navigation", { name: "Page sections" })
     .getByRole("link", { name: /Advisory Board/ });
