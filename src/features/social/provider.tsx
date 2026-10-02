@@ -107,6 +107,10 @@ export function useSocial() {
   return ctx;
 }
 
+export function useOptionalSocial() {
+  return React.useContext(SocialContext);
+}
+
 /** Shows the right message for a failed social action. */
 export function reportSocialError(error: unknown, fallback = "That didn't work. Please try again.") {
   if (isSocialError(error)) toast.error(error.message);

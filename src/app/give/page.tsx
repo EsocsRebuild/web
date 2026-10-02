@@ -6,6 +6,7 @@ import { Bridges } from "@/components/patterns/bridges";
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { siteConfig } from "@/config/site";
 import { getContent } from "@/data/content";
+import { LiveCampaignProgress } from "@/features/giving/live-campaign-progress";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
@@ -80,6 +81,11 @@ export default function GivePage() {
               </span>
             </li>
           </ul>
+        </section>
+
+        <section aria-labelledby="live-giving-heading" className="grid gap-5">
+          <SectionHeading id="live-giving-heading" eyebrow="Real-Time Giving" title="Sow a Seed Online" />
+          <LiveCampaignProgress />
         </section>
 
         <section aria-labelledby="how-heading" className="grid gap-5">

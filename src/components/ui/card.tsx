@@ -7,13 +7,15 @@ import { cn } from "@/lib/utils";
 const cardVariants = cva("group/card relative flex flex-col overflow-hidden rounded-card text-foreground", {
   variants: {
     variant: {
-      default: "border border-border bg-surface",
-      muted: "bg-surface-muted",
-      inverse: "dark bg-inverse",
+      default: "border border-border bg-surface shadow-xs",
+      elevated: "border border-border bg-surface shadow-sm hover:shadow-card",
+      muted: "border border-border/60 bg-surface-muted",
+      inverse: "dark border border-white/10 bg-inverse text-white",
+      structural: "border border-border/80 bg-surface-sunken/40",
       plain: "",
     },
     interactive: {
-      true: "transition-colors duration-150 hover:border-border-strong",
+      true: "cursor-pointer transition-[transform,box-shadow,border-color] duration-200 ease-[cubic-bezier(0.2,0,0,1)] hover:-translate-y-0.5 hover:border-border-strong hover:shadow-card active:translate-y-0 active:scale-[0.995]",
     },
   },
   defaultVariants: { variant: "default" },

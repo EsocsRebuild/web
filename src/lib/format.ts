@@ -94,6 +94,11 @@ export function formatLongDate(date: DateInput) {
   );
 }
 
+/** e.g. "1,250" */
+export function formatNumber(n: number) {
+  return new Intl.NumberFormat(locale).format(n);
+}
+
 /** e.g. "1925 – 1933", "2017 – present". */
 export function formatTenure(tenure: { from: number; to: number | null }) {
   return `${tenure.from} – ${tenure.to ?? "present"}`;
