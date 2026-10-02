@@ -45,7 +45,7 @@ function getSignalRConnection(): HubConnection | null {
         },
       })
       .withAutomaticReconnect([0, 1000, 3000, 5000, 10000])
-      .configureLogging(LogLevel.Warning)
+      .configureLogging(LogLevel.None)
       .build();
   }
 
@@ -123,6 +123,7 @@ export function RealtimeProvider({
         }
       } catch {
         setIsConnected(false);
+        setTransport(null);
       }
     };
 
