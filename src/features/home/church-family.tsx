@@ -82,7 +82,7 @@ function resolve(): FamilyCard[] {
       image: photo ? { ...photo, alt: g.photo.alt } : null,
       focus: g.photo.focus,
       link: unit
-        ? { label: "Explore", href: routes.unit(unit.slug) }
+        ? { label: `Explore ${g.title}`, href: routes.unit(unit.slug) }
         : event
           ? { label: event.title, href: routes.event(event.slug) }
           : "link" in g
@@ -100,7 +100,13 @@ export function ChurchFamily() {
       <SectionHeading
         id="family-heading"
         eyebrow="Our church family"
-        title="Every generation has a place"
+        title={
+          <>
+            Every generation has a place,{" "}
+            <span className="font-serif font-normal text-accent italic">in worship.</span>
+          </>
+        }
+        size="lg"
         href={routes.sections()}
         linkLabel="All sections"
       />

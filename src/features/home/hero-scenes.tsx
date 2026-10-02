@@ -160,7 +160,7 @@ export function HeroScenes({
             <div
               key={s.id}
               className={cn(
-                "absolute inset-0 h-full w-full transition-opacity duration-[1600ms] ease-[var(--ease-standard)]",
+                "absolute inset-0 h-full w-full transition-opacity duration-1600 ease-standard",
                 i === index ? "opacity-100" : "opacity-0",
               )}
             >
