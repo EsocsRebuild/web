@@ -103,4 +103,23 @@ describe("RealtimeProvider & hooks", () => {
     expect(mockSocket.off).toHaveBeenCalledWith("prayer:new", expect.any(Function));
     expect(mockSocket.emit).toHaveBeenCalledWith("room:leave", { room: "prayer:wall" });
   });
+
+  it("remains safely dormant when no socket URL is configured", () => {
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+      <RealtimeProvider>{children}</RealtimeProvider>
+    );
+
+    const { result } = renderHook(() => useRealtime(), { wrapper });
+
+    expect(result.current.socket).toBeNull();
+    expect(result.current.isConnected).toBe(false);
+    expect(result.current.transport).toBeNull();
+
+    // Invoking methods should be safe no-ops
+    expect(() => {
+      result.current.joinRoom("room-1");
+      result.current.leaveRoom("room-1");
+      result.current.emitEvent("test", {});
+    }).not.toThrow();
+  });
 });

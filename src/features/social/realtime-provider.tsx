@@ -16,19 +16,25 @@ const RealtimeContext = React.createContext<RealtimeContextValue | null>(null);
 
 let globalSocket: Socket | null = null;
 
-function getSocketInstance(): Socket {
-  if (!globalSocket) {
-    const socketUrl =
-      process.env.NEXT_PUBLIC_SOCKET_URL ||
-      process.env.NEXT_PUBLIC_API_URL ||
-      (typeof window !== "undefined" ? window.location.origin : "");
+function getSocketInstance(): Socket | null {
+  if (typeof window === "undefined") return null;
 
+  // Dedicated WebSocket server URL (e.g. NEXT_PUBLIC_SOCKET_URL="https://realtime.esocs.org").
+  // If not configured, we do NOT open websocket connections against the Next.js HTTP server.
+  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL;
+  if (!socketUrl) {
+    return null;
+  }
+
+  if (!globalSocket) {
     globalSocket = io(socketUrl, {
       autoConnect: false,
       reconnection: true,
-      reconnectionDelay: 1000,
+      reconnectionAttempts: 5,
+      reconnectionDelay: 2000,
       reconnectionDelayMax: 10000,
       randomizationFactor: 0.5,
+      timeout: 5000,
       transports: ["websocket", "polling"],
     });
   }
@@ -70,6 +76,10 @@ export function RealtimeProvider({
       setTransport(null);
     };
 
+    const onConnectError = () => {
+      setIsConnected(false);
+    };
+
     const onUpgrade = () => {
       const engineTransport = sock.io.engine?.transport?.name ?? null;
       setTransport(engineTransport);
@@ -77,6 +87,7 @@ export function RealtimeProvider({
 
     sock.on("connect", onConnect);
     sock.on("disconnect", onDisconnect);
+    sock.on("connect_error", onConnectError);
 
     if (sock.io.engine) {
       sock.io.engine.on("upgrade", onUpgrade);
@@ -95,6 +106,7 @@ export function RealtimeProvider({
     return () => {
       sock.off("connect", onConnect);
       sock.off("disconnect", onDisconnect);
+      sock.off("connect_error", onConnectError);
       if (sock.io.engine) {
         sock.io.engine.off("upgrade", onUpgrade);
       }

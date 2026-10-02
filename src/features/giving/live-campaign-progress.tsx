@@ -11,7 +11,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/toaster";
 import { useRealtime, useSubscription } from "@/features/social/realtime-provider";
 import { initializeDonationSession, type DonationSessionResult } from "@/features/store/bag-store";
-import { formatNumber } from "@/lib/format";
+
+const formatNumber = (n: number) => n.toLocaleString("en-NG");
 
 export interface GivingSettledPayload {
   campaignId: string;
