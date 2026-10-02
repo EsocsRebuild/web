@@ -3,6 +3,7 @@
 // Authentic solid physical materials replacing glassmorphic AI templates.
 // ============================================================================
 
+@use "sass:map";
 @use "tokens" as *;
 @use "mixins" as *;
 
@@ -75,14 +76,14 @@
   border-radius: $radius-control;
   font-weight: 700;
   font-size: 0.875rem;
-  background-color: map-get($palette-gold, 500);
-  color: map-get($palette-royal, 950);
+  background-color: map.get($palette-gold, 500);
+  color: map.get($palette-royal, 950);
   box-shadow:
     0 1px 3px 0 oklch(0 0 0 / 0.15),
     inset 0 1px 0 0 oklch(1 0 0 / 0.3);
 
   &:hover {
-    background-color: map-get($palette-gold, 400);
+    background-color: map.get($palette-gold, 400);
     box-shadow:
       0 3px 8px -1px oklch(0.72 0.115 76 / 0.4),
       inset 0 1px 0 0 oklch(1 0 0 / 0.45);

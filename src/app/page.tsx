@@ -45,7 +45,8 @@ export default function HomePage() {
   const albumSizes = Object.fromEntries(content.listGalleries().map((g) => [g.slug, g.photos.length]));
 
   const shepherd = people.find((p) => p.tenure.to === null);
-  const shepherdPhoto = org.heroSlides.find((s) => /baba aladura/i.test(s.title))?.image ?? null;
+  const shepherdPhoto =
+    org.heroSlides.find((s) => /baba aladura/i.test(s.title))?.image ?? shepherd?.portrait ?? null;
   const messagePost = content.getFeed({ kind: "message", limit: 1 }).items[0];
 
   // The editorial spread shows the latest four and the Baba Aladura's message has its

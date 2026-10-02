@@ -3,6 +3,7 @@
 // Guarantees zero disorientation on route transit using high-intent physics.
 // ============================================================================
 
+@use "sass:map";
 @use "@/styles/tokens" as *;
 @use "@/styles/mixins" as *;
 
@@ -16,11 +17,11 @@
   height: 2px;
   background: linear-gradient(
     90deg,
-    map-get($palette-royal, 500) 0%,
-    map-get($palette-gold, 400) 50%,
-    map-get($palette-gold, 500) 100%
+    map.get($palette-royal, 500) 0%,
+    map.get($palette-gold, 400) 50%,
+    map.get($palette-gold, 500) 100%
   );
-  box-shadow: 0 0 8px 1px map-get($palette-gold, 400);
+  box-shadow: 0 0 8px 1px map.get($palette-gold, 400);
 }
 
 .spatialRibbon {
@@ -45,8 +46,8 @@
   gap: 0.375rem;
   border-radius: $radius-ribbon;
   font-weight: 700;
-  color: map-get($palette-royal, 950);
-  background-color: map-get($palette-gold, 500);
+  color: map.get($palette-royal, 950);
+  background-color: map.get($palette-gold, 500);
   padding: 0.25rem 0.625rem;
   box-shadow: 0 1px 3px oklch(0 0 0 / 0.15);
 

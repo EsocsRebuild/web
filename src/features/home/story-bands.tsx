@@ -18,7 +18,7 @@ import { DateBadge } from "@/components/patterns/date-badge";
 import { Paragraphs } from "@/components/patterns/paragraphs";
 import { ReadMore } from "@/components/patterns/read-more";
 import { SectionHeading } from "@/components/patterns/section-heading";
-import type { ChurchEvent, ImageRef, Organisation, Person, Post, Unit } from "@/data/schema/content";
+import type { ChurchEvent, ImageRef, Organisation, Post, Unit } from "@/data/schema/content";
 import { formatLongDate } from "@/lib/format";
 import { POST_KIND } from "@/lib/kinds";
 import { routes } from "@/lib/routes";
@@ -451,104 +451,5 @@ export function FindBand({ pageCount, headquarters }: { pageCount: number; headq
   );
 }
 
-/**
- * The Baba Aladura's welcome, in his own words, before the life of the church
- * this week. His portrait drifts in its frame; the message links to the full text.
- */
-export function BabaAladuraMessage({
-  message,
-  shepherd,
-  portrait,
-  href,
-}: {
-  message: Organisation["message"];
-  shepherd: Person | undefined;
-  portrait: ImageRef | null;
-  href: string;
-}) {
-  const [opening = "", ...rest] = message.body;
-  // The opening blessing is the first sentence of the message.
-  const greeting = opening.split(/(?<=[.!?])\s+/)[0]?.trim() ?? "";
-  // Everything after the opening blessing, so nothing is said twice.
-  const messageText = [opening.slice(greeting.length).trim(), ...rest].filter(Boolean);
-  return (
-    <section aria-labelledby="message-heading" className="relative isolate overflow-hidden bg-surface">
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-gold-400/70 to-transparent"
-      />
-      <div className="mx-auto grid max-w-wide gap-10 px-gutter py-16 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-        <div className="relative">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-panel bg-royal-950 sm:aspect-[16/10] lg:aspect-[4/5]">
-            {portrait ? (
-              <SmartImage
-                image={portrait}
-                fill
-                sizes="(min-width: 1024px) 1280px, 170vw"
-                className="parallax-media object-cover object-[60%_30%]"
-              />
-            ) : (
-              <Cover image={null} kind="holy-order" className="absolute inset-0" />
-            )}
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-royal-950/85 to-transparent"
-            />
-            {shepherd && (
-              <div className="absolute inset-x-5 bottom-5 grid gap-0.5 text-white">
-                <p className="text-overline font-semibold text-gold-300 uppercase">His Most Eminence</p>
-                <p className="font-display text-lg font-bold">
-                  {shepherd.honorific ? `${shepherd.honorific} ` : ""}
-                  {shepherd.name}
-                </p>
-                <p className="text-sm text-white/80">Baba Aladura & Prelate</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="grid content-start gap-5">
-          <p className="text-overline font-semibold text-highlight uppercase">
-            A welcome from the Baba Aladura
-          </p>
-          <h2 id="message-heading" className="font-display text-display-md font-extrabold text-balance">
-            Welcome to ESOCS Worldwide
-          </h2>
-          {greeting && (
-            <p className="font-serif text-[1.5rem] leading-snug text-balance italic sm:text-[1.75rem]">
-              “{greeting}”
-            </p>
-          )}
-          {messageText.length > 0 && (
-            <ReadMore
-              lines={5}
-              moreLabel="Read the full message"
-              className="max-w-2xl"
-              contentClassName="text-base leading-7 text-muted-foreground sm:text-[1.0625rem] sm:leading-8"
-            >
-              <Paragraphs text={messageText} />
-            </ReadMore>
-          )}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-1">
-            <Link
-              href={href}
-              className="group/link inline-flex min-h-11 items-center gap-1.5 rounded-pill bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
-            >
-              Comment on the {message.title}
-              <ArrowRight
-                aria-hidden
-                className="size-4 transition-transform group-hover/link:translate-x-0.5"
-              />
-            </Link>
-            <Link
-              href={routes.leaders()}
-              className="inline-flex min-h-11 items-center text-sm font-semibold text-muted-foreground hover:text-foreground"
-            >
-              The Baba Aladuras since 1925
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+export { PatriarchalWelcome, type PatriarchalWelcomeProps } from "./patriarchal-welcome";
+export { PatriarchalWelcome as BabaAladuraMessage } from "./patriarchal-welcome";

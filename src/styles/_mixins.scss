@@ -3,6 +3,7 @@
 // Concrete physical surfaces with precision micro-bevels and zero faux-glass.
 // ============================================================================
 
+@use "sass:map";
 @use "tokens" as *;
 
 /// Solid Physical Surface: Delivers authentic material depth using precision
@@ -39,7 +40,7 @@
 /// Solid Altar Dark Surface: High-contrast solemn navy substrate
 @mixin physical-inverse($elevation: 2) {
   position: relative;
-  background-color: map-get($palette-royal, 950);
+  background-color: map.get($palette-royal, 950);
   color: #ffffff;
   border: 1px solid oklch(1 0 0 / 0.12);
 
@@ -82,8 +83,8 @@
 
 /// Sacred Gold Accent Line / Border
 @mixin sacred-gold-edge {
-  border-color: map-get($palette-gold, 500);
-  box-shadow: 0 0 0 1px map-get($palette-gold, 500);
+  border-color: map.get($palette-gold, 500);
+  box-shadow: 0 0 0 1px map.get($palette-gold, 500);
 }
 
 /// Fluid Typography Calculation
