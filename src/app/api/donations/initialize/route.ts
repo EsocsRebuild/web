@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { randomBytes } from "crypto";
 
 export const runtime = "nodejs";
 
@@ -34,7 +35,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Minimum donation amount is ₦100" }, { status: 422 });
     }
 
-    const sessionId = `don_sess_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+    const sessionId = `don_sess_${Date.now()}_${randomBytes(8).toString("hex")}`;
 
     return NextResponse.json({
       sessionId,
