@@ -49,9 +49,15 @@ export function filterUnits(units: FinderUnit[], { q, kind, country }: FinderQue
   });
 }
 
-/** Search-as-you-type directory. Filters live in the URL, so any search can be shared. */
+const emptySubscribe = () => () => {};
+
 export function FindExplorer({ units, initial }: { units: FinderUnit[]; initial: FinderQuery }) {
   const [query, setQuery] = React.useState(initial);
+  const hydrated = React.useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
   const deferred = React.useDeferredValue(query);
   const results = React.useMemo(() => filterUnits(units, deferred), [units, deferred]);
 
@@ -80,7 +86,7 @@ export function FindExplorer({ units, initial }: { units: FinderUnit[]; initial:
   const shown = results.slice(0, 60);
 
   return (
-    <div className="grid gap-6">
+    <div data-hydrated={hydrated ? "true" : undefined} className="grid gap-6">
       <form role="search" onSubmit={(e) => e.preventDefault()} className="relative">
         <label htmlFor="find-q" className="sr-only">
           Town, province or church name

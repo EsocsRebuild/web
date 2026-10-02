@@ -6,10 +6,14 @@ import * as React from "react";
 export function SplashController() {
   React.useEffect(() => {
     const root = document.documentElement;
-    // Matches the exit timing in globals.css; a timer is robust if animations are skipped.
-    const id = window.setTimeout(() => {
-      root.dataset.splash = "seen";
-    }, 2400);
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Matches the exit timing in globals.css; if reduced motion, complete promptly.
+    const id = window.setTimeout(
+      () => {
+        root.dataset.splash = "seen";
+      },
+      reduce ? 50 : 1800,
+    );
     return () => window.clearTimeout(id);
   }, []);
   return null;

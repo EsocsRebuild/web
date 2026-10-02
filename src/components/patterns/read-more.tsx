@@ -115,7 +115,7 @@ export function ReadMore({
         id={id}
         ref={content}
         className={cn(
-          "w-full overflow-hidden transition-[max-height] ease-[var(--ease-out-expo)] motion-reduce:transition-none",
+          "w-full overflow-hidden transition-[max-height] ease-out-expo motion-reduce:transition-none",
           contentClassName,
         )}
         style={{

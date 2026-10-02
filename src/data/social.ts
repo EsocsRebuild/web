@@ -23,15 +23,27 @@ function browserStorage(): Storage | null {
 let loading: Promise<SocialRepository> | null = null;
 
 function load(): Promise<SocialRepository> {
-  loading ??= import("./adapters/mock-social/repository").then(({ createMockSocialRepository }) => {
-    const isProduction = process.env.NODE_ENV === "production";
-    const failureRate = isProduction ? 0 : Number(process.env.NEXT_PUBLIC_SOCIAL_FAILURE_RATE ?? 0);
-    return createMockSocialRepository({
-      storage: typeof window === "undefined" ? null : browserStorage(),
-      allowDemoSignIn: !isProduction,
-      failureRate: Number.isFinite(failureRate) ? failureRate : 0,
+  const isProduction = process.env.NODE_ENV === "production";
+  const useHttp =
+    Boolean(process.env.NEXT_PUBLIC_API_BASE_URL) || process.env.NEXT_PUBLIC_USE_HTTP_SOCIAL === "true";
+
+  if (useHttp) {
+    loading ??= import("./adapters/http-social/repository").then(({ createHttpSocialRepository }) =>
+      createHttpSocialRepository({
+        storage: typeof window === "undefined" ? null : browserStorage(),
+        allowDemoSignIn: !isProduction,
+      }),
+    );
+  } else {
+    loading ??= import("./adapters/mock-social/repository").then(({ createMockSocialRepository }) => {
+      const failureRate = isProduction ? 0 : Number(process.env.NEXT_PUBLIC_SOCIAL_FAILURE_RATE ?? 0);
+      return createMockSocialRepository({
+        storage: typeof window === "undefined" ? null : browserStorage(),
+        allowDemoSignIn: !isProduction,
+        failureRate: Number.isFinite(failureRate) ? failureRate : 0,
+      });
     });
-  });
+  }
   return loading;
 }
 

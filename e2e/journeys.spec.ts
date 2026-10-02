@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("J1 · find a house of prayer and get directions", async ({ page }) => {
   await page.goto("/find");
+  await page.locator('[data-hydrated="true"]').waitFor({ state: "attached" });
   await page.getByLabel("Town, province or church name").fill("Awka");
   await expect(page).toHaveURL(/q=Awka/);
   await page.getByRole("link", { name: "Mount Horeb, Umuike", exact: true }).click();
@@ -22,10 +23,12 @@ test("J6 · move up and across the structure without getting lost", async ({ pag
 
 test("page tabs are linkable routes", async ({ page }) => {
   await page.goto("/church/esocs");
-  await page
+  await page.waitForSelector('html[data-splash="seen"]', { state: "attached", timeout: 30_000 });
+  const tab = page
     .getByRole("navigation", { name: "Page sections" })
-    .getByRole("link", { name: /Advisory Board/ })
-    .click();
+    .getByRole("link", { name: /Advisory Board/ });
+  await tab.scrollIntoViewIfNeeded();
+  await tab.click();
   await expect(page).toHaveURL(/\/church\/esocs\/leaders$/);
   await expect(page.getByRole("heading", { name: "The Advisory Board" })).toBeVisible();
 });

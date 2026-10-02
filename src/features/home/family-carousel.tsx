@@ -69,8 +69,10 @@ export function FamilyCarousel({ cards }: { cards: FamilyCard[] }) {
 
   const goTo = (i: number) => {
     const el = track.current;
-    const item = list.current?.children[Math.max(0, Math.min(i, cards.length - 1))];
+    const clamped = Math.max(0, Math.min(i, cards.length - 1));
+    const item = list.current?.children[clamped];
     if (!el || !item) return;
+    setActive(clamped);
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const start = el.getBoundingClientRect().left + parseFloat(getComputedStyle(el).scrollPaddingLeft || "0");
     el.scrollBy({ left: item.getBoundingClientRect().left - start, behavior: reduce ? "auto" : "smooth" });

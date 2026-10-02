@@ -9,8 +9,26 @@ export const SECTION_STORY: Record<
   women: {
     hook: "Encourage women of all ages to grow in their relationship with Jesus Christ through learning, sharing, and serving.",
     source: "Directorate of Women's Affairs",
-    programmes: [],
+    programmes: [
+      {
+        title: "Annual Mothers' Summit & National Conference",
+        body: "Annual gathering bringing together mothers and young ladies from all provinces for spiritual renewal, leadership, and health seminars.",
+      },
+      {
+        title: "Widows & Welfare Benevolence Outreach",
+        body: "Structured care and empowerment programmes providing food parcels, medical subsidies, and craft training to vulnerable members.",
+      },
+      {
+        title: "Virtuous Daughters Mentorship",
+        body: "Intentional discipleship pairing experienced mothers with young brides and adolescents to build godly Christian homes.",
+      },
+      {
+        title: "Hannah Intercessory Prayer Hour",
+        body: "Weekly specialized prayer circles interceding for families, the fruit of the womb, children in education, and church leaders.",
+      },
+    ],
   },
+
   youth: {
     hook: "Direct the minds of the youth towards living a life of holiness, righteousness, and integrity.",
     source: "Directorate of Youth Affairs",

@@ -52,14 +52,14 @@ export function SealsRow({ units }: { units: Unit[] }) {
           <li key={u.slug} className="snap-start">
             <Link
               href={routes.unit(u.slug)}
-              className="group/seal flex w-[5.25rem] flex-col items-center gap-2 rounded-card py-1 text-center"
+              className="group/seal flex w-21 flex-col items-center gap-2 rounded-card py-1 text-center"
             >
               <UnitAvatar
                 name={u.name}
                 kind={u.kind}
                 image={u.avatar}
                 size="lg"
-                className="transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover/seal:-translate-y-0.5"
+                className="transition-transform duration-300 ease-out-expo group-hover/seal:-translate-y-0.5"
               />
               <span className="text-xs leading-tight font-semibold text-balance text-foreground/85 group-hover/seal:text-foreground">
                 {shortName(u)}
@@ -80,7 +80,7 @@ export function WatchwordPlate({ watchword }: { watchword: Organisation["watchwo
     <figure className="dark relative isolate overflow-hidden rounded-panel border border-white/10 bg-inverse px-6 pt-5 pb-6 text-foreground">
       <LogoMark className="absolute -right-6 -bottom-8 -z-10 size-36 text-white opacity-[0.06]" />
       <figcaption className="text-overline font-semibold text-highlight uppercase">Our watchword</figcaption>
-      <blockquote className="mt-3 font-serif text-[1.5rem] leading-[1.25] text-balance italic">
+      <blockquote className="mt-3 font-serif text-[1.5rem] leading-tight text-balance italic">
         {watchword.text}
       </blockquote>
       <p className="mt-3 flex items-center gap-2 text-sm text-muted-foreground">
@@ -144,7 +144,7 @@ export function Succession({ people }: { people: Person[] }) {
               </div>
               <Link href={routes.leader(p.slug)} className="group/leader mt-2 grid gap-2.5">
                 <span className="text-sm font-semibold text-highlight tabular">{p.tenure.from}</span>
-                <span className="relative block aspect-[4/5] overflow-hidden rounded-card bg-surface-sunken">
+                <span className="relative block aspect-4/5 overflow-hidden rounded-card bg-surface-sunken">
                   {p.portrait && (
                     <SmartImage
                       image={{ ...p.portrait, alt: "" }}
@@ -152,7 +152,7 @@ export function Succession({ people }: { people: Person[] }) {
                       frame={{ width: 4, height: 5 }}
                       sizes="176px"
                       quality={60}
-                      className="object-cover object-top grayscale-[40%] transition-[filter,transform] duration-500 group-hover/leader:scale-[1.03] group-hover/leader:grayscale-0"
+                      className="object-cover object-top grayscale-40 transition-[filter,transform] duration-500 group-hover/leader:scale-[1.03] group-hover/leader:grayscale-0"
                     />
                   )}
                 </span>

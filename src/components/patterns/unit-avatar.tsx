@@ -29,11 +29,7 @@ export function UnitAvatar({
   const ringed = px >= 36;
   return (
     <span
-      className={cn(
-        "relative inline-flex shrink-0 rounded-full",
-        ringed && "bg-background p-[2px]",
-        className,
-      )}
+      className={cn("relative inline-flex shrink-0 rounded-full", ringed && "bg-background p-0.5", className)}
       style={{
         width: px,
         height: px,

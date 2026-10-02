@@ -21,6 +21,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     npm_config_update_notifier=false \
     npm_config_fund=false \
     npm_config_audit=false
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 WORKDIR /app
 
 # ---------------------------------------------------------------------------
@@ -54,7 +55,8 @@ COPY . .
 RUN --mount=type=secret,id=server_actions_key,required=false \
     --mount=type=cache,target=/app/.next/cache \
     if [ -f /run/secrets/server_actions_key ]; then \
-      export NEXT_SERVER_ACTIONS_ENCRYPTION_KEY="$(cat /run/secrets/server_actions_key)"; \
+      NEXT_SERVER_ACTIONS_ENCRYPTION_KEY="$(cat /run/secrets/server_actions_key)"; \
+      export NEXT_SERVER_ACTIONS_ENCRYPTION_KEY; \
     fi && \
     npm run build
 
@@ -62,6 +64,8 @@ RUN --mount=type=secret,id=server_actions_key,required=false \
 # runner: the image that ships
 # ---------------------------------------------------------------------------
 FROM base AS runner
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 ARG APP_VERSION=dev
 ARG DEPLOYMENT_ID=""
@@ -80,7 +84,14 @@ LABEL org.opencontainers.image.title="esocs-web" \
 RUN apt-get update \
  && apt-get install --no-install-recommends -y tini libjemalloc2 \
  && rm -rf /var/lib/apt/lists/* \
- && ln -s "$(find /usr/lib -name 'libjemalloc.so.2' | head -n1)" /usr/lib/libjemalloc.so.2
+ && ln -s "$(find /usr/lib -name 'libjemalloc.so.2' -print -quit)" /usr/lib/libjemalloc.so.2 \
+ && rm -rf /usr/local/lib/node_modules/npm \
+           /usr/local/lib/node_modules/corepack \
+           /usr/local/bin/npm \
+           /usr/local/bin/npx \
+           /usr/local/bin/corepack \
+           /usr/local/bin/yarn* \
+           /opt/yarn*
 
 ENV NODE_ENV=production \
     PORT=3000 \
@@ -102,7 +113,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 RUN mkdir -p .next/cache && chown -R nextjs:nodejs .next/cache
 VOLUME ["/app/.next/cache"]
 
-USER nextjs
+USER 1001:1001
 EXPOSE 3000
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
