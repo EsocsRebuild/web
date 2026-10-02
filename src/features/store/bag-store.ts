@@ -104,3 +104,45 @@ export function useHydrated(): boolean {
     () => false,
   );
 }
+
+export interface DonationSessionRequest {
+  campaignId: string;
+  amount: number;
+  donorName?: string;
+  donorEmail?: string;
+  currency?: string;
+}
+
+export interface DonationSessionResult {
+  sessionId: string;
+  checkoutUrl: string;
+  amount: number;
+  currency: string;
+  campaignId: string;
+  donorName: string;
+  donorEmail?: string;
+  status: "initialized" | "pending" | "settled";
+  createdAt: string;
+}
+
+/**
+ * Initializes a secure server-managed donation session.
+ * All amounts, campaign eligibility and payment limits are verified server-side
+ * and decoupled from any client-side DOM or state tampering.
+ */
+export async function initializeDonationSession(
+  payload: DonationSessionRequest,
+): Promise<DonationSessionResult> {
+  const res = await fetch("/api/donations/initialize", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    const errorData = (await res.json().catch(() => ({}))) as { error?: string };
+    throw new Error(errorData.error || `Session initialization failed with status ${res.status}`);
+  }
+
+  return (await res.json()) as DonationSessionResult;
+}

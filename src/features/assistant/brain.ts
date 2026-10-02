@@ -1,3 +1,6 @@
+import { MockLanguageModelV4 } from "ai/test";
+
+import { siteConfig } from "@/config/site";
 import type { SearchEntry } from "@/features/search/index-builder";
 import { routes } from "@/lib/routes";
 
@@ -40,6 +43,11 @@ export interface GuideContext {
   phones: readonly { label: string; number: string; display: string }[];
   headquarters: { readonly name: string; readonly address: string };
 }
+
+export const defaultGuideContext: GuideContext = {
+  phones: siteConfig.contact.phones,
+  headquarters: siteConfig.contact.headquarters,
+};
 
 const STOPWORDS = new Set(
   "a an and are at be can church churches do does esocs find for from get go have how i in is it me my near nearest of on or our please show some tell the there to want what when where which who with you your house houses prayer branch branches".split(
@@ -154,7 +162,11 @@ const toLink = (e: SearchEntry): GuideLink => ({
 const phoneLinks = (ctx: GuideContext): GuideLink[] =>
   ctx.phones.map((p) => ({ label: p.display, href: `tel:${p.number}`, hint: p.label, kind: "phone" }));
 
-export function topicReply(topic: Topic, index: SearchEntry[], ctx: GuideContext): GuideReply {
+export function topicReply(
+  topic: Topic,
+  index: SearchEntry[],
+  ctx: GuideContext = defaultGuideContext,
+): GuideReply {
   switch (topic) {
     case "find": {
       const count = index.filter((e) => e.kind === "page").length;
@@ -263,7 +275,11 @@ export const GREETING: GuideReply = {
 };
 
 /** The answer to anything typed. `index` is null while it is still loading. */
-export function respond(message: string, index: SearchEntry[] | null, ctx: GuideContext): GuideReply {
+export function respond(
+  message: string,
+  index: SearchEntry[] | null,
+  ctx: GuideContext = defaultGuideContext,
+): GuideReply {
   const topic = detectTopic(message);
   if (topic === "greeting") return GREETING;
   if (topic === "thanks") {
@@ -333,4 +349,30 @@ export function respond(message: string, index: SearchEntry[] | null, ctx: Guide
     links: [],
     suggestions: ["find", "events", "contact"],
   };
+}
+
+/**
+ * Creates a streamable Vercel AI SDK compatible language model
+ * grounded in the church knowledge base.
+ */
+export function createAssistantLanguageModel(
+  query: string,
+  index?: SearchEntry[] | null,
+  ctx: GuideContext = defaultGuideContext,
+) {
+  const reply = respond(query, index ?? null, ctx);
+  return new MockLanguageModelV4({
+    doStream: async () => ({
+      stream: new ReadableStream({
+        async start(controller) {
+          const words = reply.text.split(" ");
+          for (let i = 0; i < words.length; i++) {
+            const token = words[i] + (i < words.length - 1 ? " " : "");
+            controller.enqueue({ type: "text-delta", id: "0", delta: token });
+          }
+          controller.close();
+        },
+      }),
+    }),
+  });
 }

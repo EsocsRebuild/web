@@ -1,23 +1,19 @@
-import { Bricolage_Grotesque, DM_Sans, Instrument_Serif } from "next/font/google";
+import { DM_Sans, Raleway, Roboto, Work_Sans } from "next/font/google";
 
-/** Headlines: a characterful grotesk whose optical sizes sharpen as type grows. */
-export const fontDisplay = Bricolage_Grotesque({
+/**
+ * Headlines & display: Work Sans provides a clean, modern, architectural grotesque
+ * that looks dignified, contemporary, and relatable for church media.
+ */
+export const fontDisplay = Work_Sans({
   subsets: ["latin"],
-  axes: ["opsz", "wdth"],
-  variable: "--font-bricolage",
+  variable: "--font-work-sans",
   display: "swap",
 });
 
-/** Elegant accent: key words in headlines, the wordmark, scripture and quotes. */
-export const fontSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
-  display: "swap",
-});
-
-/** Body copy and interface text. Optical sizing keeps small labels crisp. */
+/**
+ * Primary body copy & interface text: DM Sans offers a friendly, warm geometric-humanist
+ * tone with optical sizing for exceptional readability across mobile and desktop.
+ */
 export const fontSans = DM_Sans({
   subsets: ["latin"],
   axes: ["opsz"],
@@ -25,4 +21,31 @@ export const fontSans = DM_Sans({
   display: "swap",
 });
 
-export const fontVariables = `${fontDisplay.variable} ${fontSerif.variable} ${fontSans.variable}`;
+/**
+ * Modern elegant accent: Raleway brings sophisticated, geometric styling for scripture,
+ * pull quotes, testimonials, and wordmark subtitles.
+ */
+export const fontAccent = Raleway({
+  subsets: ["latin"],
+  variable: "--font-raleway",
+  display: "swap",
+});
+
+/**
+ * Secondary neutral sans: Roboto offers universally legible, balanced utility
+ * for dates, tabular data, metadata chips, and form controls.
+ */
+export const fontRoboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
+/* Aliases for backwards compatibility and explicit semantic imports */
+export const fontSerif = fontAccent;
+export const fontWorkSans = fontDisplay;
+export const fontDMSans = fontSans;
+export const fontRaleway = fontAccent;
+
+export const fontVariables = `${fontSans.variable} ${fontDisplay.variable} ${fontAccent.variable} ${fontRoboto.variable}`;

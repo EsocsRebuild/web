@@ -1,0 +1,104 @@
+// ============================================================================
+// ESOCS Sacred Order - High-End Architectural Sass Mixins
+// Concrete physical surfaces with precision micro-bevels and zero faux-glass.
+// ============================================================================
+
+@use "sass:map";
+@use "tokens" as *;
+
+/// Solid Physical Surface: Delivers authentic material depth using precision
+/// edge highlights and structural drop shadows. Never translucent or blurry.
+@mixin physical-surface($elevation: 1, $inset-highlight: true) {
+  position: relative;
+  background-color: var(--surface);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+
+  @if $elevation == 1 {
+    box-shadow: $shadow-substrate;
+  } @else if $elevation == 2 {
+    box-shadow: $shadow-podium;
+  } @else if $elevation == 3 {
+    box-shadow: $shadow-cathedral;
+  } @else if $elevation == 4 {
+    box-shadow: $shadow-monolith;
+  }
+
+  @if $inset-highlight {
+    // 0.5px equivalent top rim highlight mimicking directional altar light
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: inherit;
+      box-shadow: inset 0 1px 0 0 oklch(1 0 0 / 0.08);
+    }
+  }
+}
+
+/// Solid Altar Dark Surface: High-contrast solemn navy substrate
+@mixin physical-inverse($elevation: 2) {
+  position: relative;
+  background-color: map.get($palette-royal, 950);
+  color: #ffffff;
+  border: 1px solid oklch(1 0 0 / 0.12);
+
+  @if $elevation == 1 {
+    box-shadow: 0 2px 8px -2px oklch(0 0 0 / 0.35);
+  } @else {
+    box-shadow: 0 12px 32px -6px oklch(0 0 0 / 0.5);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    box-shadow: inset 0 1px 0 0 oklch(1 0 0 / 0.15);
+  }
+}
+
+/// Tactile Button Physics: Micro-displacement on click providing instant physical feedback
+@mixin tactile-control {
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  transition:
+    transform $duration-micro $ease-tactile,
+    background-color $duration-micro ease,
+    border-color $duration-micro ease,
+    box-shadow $duration-micro ease;
+
+  &:active {
+    transform: translateY(1px) scale(0.985);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/// Sacred Gold Accent Line / Border
+@mixin sacred-gold-edge {
+  border-color: map.get($palette-gold, 500);
+  box-shadow: 0 0 0 1px map.get($palette-gold, 500);
+}
+
+/// Fluid Typography Calculation
+@mixin fluid-scale($property, $min-value, $max-value, $min-vw: 22.5rem, $max-vw: 90rem) {
+  #{$property}: clamp(
+    #{$min-value},
+    calc(#{$min-value} + #{($max-value - $min-value)} * ((100vw - #{$min-vw}) / #{($max-vw - $min-vw)})),
+    #{$max-value}
+  );
+}
+
+/// Zero-Transit-Loss Spatial Wayfinding
+@mixin transit-anchor {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

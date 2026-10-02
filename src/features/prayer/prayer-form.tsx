@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { siteConfig } from "@/config/site";
 import { isSocialError } from "@/data/errors";
 import { getSocial } from "@/data/social";
+import { useRealtime } from "@/features/social/realtime-provider";
 
 type Status = "idle" | "sending" | "sent" | "unavailable";
 
@@ -20,6 +21,8 @@ export function PrayerForm() {
   const [status, setStatus] = React.useState<Status>("idle");
   const [error, setError] = React.useState<string | null>(null);
   const [request, setRequest] = React.useState("");
+  const [shareOnWall, setShareOnWall] = React.useState(true);
+  const { emitEvent } = useRealtime();
   const hotline =
     siteConfig.contact.phones.find((p) => /counsel/i.test(p.label)) ?? siteConfig.contact.phones[0];
 
@@ -58,11 +61,25 @@ export function PrayerForm() {
         setError(null);
         setStatus("sending");
         try {
+          const name = String(data.get("name") ?? "");
+          const contact = String(data.get("contact") ?? "");
+
           await getSocial().submitPrayerRequest({
-            name: String(data.get("name") ?? ""),
-            contact: String(data.get("contact") ?? ""),
+            name,
+            contact,
             request,
           });
+
+          if (shareOnWall) {
+            emitEvent("prayer:new", {
+              id: `prayer-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+              name: name.trim() || "Anonymous Saint",
+              request: request.trim(),
+              createdAt: new Date().toISOString(),
+              prayingCount: 1,
+            });
+          }
+
           setStatus("sent");
         } catch (err) {
           if (isSocialError(err, "unavailable")) setStatus("unavailable");
@@ -75,7 +92,7 @@ export function PrayerForm() {
     >
       <p className="flex items-start gap-2.5 rounded-card bg-surface-muted p-4 text-sm leading-6 text-muted-foreground">
         <Lock aria-hidden className="mt-0.5 size-4 shrink-0" />
-        Your request is private. It is never published and is read only by the prayer team.
+        Your request is private. It is read by the prayer team, and only shared on the wall if you choose.
       </p>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Your name" htmlFor="prayer-name" hint="Optional">
@@ -103,6 +120,16 @@ export function PrayerForm() {
           required
         />
       </Field>
+
+      <label className="flex cursor-pointer items-center gap-2.5 text-sm text-foreground select-none">
+        <input
+          type="checkbox"
+          checked={shareOnWall}
+          onChange={(e) => setShareOnWall(e.target.checked)}
+          className="size-4 rounded border-border text-primary focus:ring-accent"
+        />
+        <span>Also share anonymously on the Live Prayer Wall so brethren can pray with you</span>
+      </label>
       {status === "unavailable" && (
         <div role="alert" className="grid gap-2 rounded-card bg-warning-soft p-4 text-sm">
           <p className="font-semibold">Online prayer requests are coming soon.</p>

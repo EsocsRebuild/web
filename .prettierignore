@@ -9,3 +9,8 @@ next-env.d.ts
 
 # generated legacy export
 data/legacy/
+
+# release-please automated files
+CHANGELOG.md
+.release-please-manifest.json
+

@@ -77,7 +77,7 @@ function Tile({ icon: Icon, colour }: { icon: LucideIcon; colour: string }) {
       className="flex size-9 shrink-0 items-center justify-center rounded-control bg-surface-muted"
       style={{ color: colour }}
     >
-      <Icon className="size-[1.125rem]" />
+      <Icon className="size-4.5" />
     </span>
   );
 }

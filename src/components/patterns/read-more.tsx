@@ -140,16 +140,16 @@ export function ReadMore({
               aria-controls={id}
               onClick={open ? collapse : expand}
               className={cn(
-                "relative z-10 inline-flex min-h-10 cursor-pointer items-center gap-1 rounded-control text-sm font-semibold transition-colors",
+                "relative z-10 inline-flex min-h-9 cursor-pointer items-center gap-1.5 rounded-pill px-3.5 py-1 text-xs font-semibold tracking-wide transition-all select-none active:scale-[0.98]",
                 tone === "inverse"
-                  ? "text-gold-200 hover:text-gold-100"
-                  : "text-accent hover:text-accent-hover",
+                  ? "border border-gold-400/30 bg-royal-900/80 text-gold-200 shadow-xs hover:border-gold-400/60 hover:bg-royal-900 hover:text-gold-100"
+                  : "border border-border/80 bg-surface text-foreground shadow-xs hover:border-border-strong hover:bg-surface-muted",
               )}
             >
-              {open ? lessLabel : moreLabel}
+              <span>{open ? lessLabel : moreLabel}</span>
               <ChevronDown
                 aria-hidden
-                className={cn("size-4 transition-transform duration-300", open && "rotate-180")}
+                className={cn("size-3.5 transition-transform duration-300", open && "rotate-180")}
               />
             </button>
           )}
