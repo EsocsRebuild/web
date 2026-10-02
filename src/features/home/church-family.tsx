@@ -96,7 +96,7 @@ function resolve(): FamilyCard[] {
 /** "Our church family": the generations as a row to swipe or step through. */
 export function ChurchFamily() {
   return (
-    <section aria-labelledby="family-heading" className="grid gap-6">
+    <section aria-labelledby="family-heading" className="grid max-w-full min-w-0 gap-6">
       <SectionHeading
         id="family-heading"
         eyebrow="Our church family"

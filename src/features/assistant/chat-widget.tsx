@@ -237,7 +237,7 @@ export function ChatWidget({ open, onClose }: { open: boolean; onClose: () => vo
       >
         <div className="flex items-center gap-2">
           <label htmlFor="esocs-help-input" className="sr-only">
-            Ask ESOCS Assistant
+            Ask ESOCS Help
           </label>
           <input
             id="esocs-help-input"

@@ -75,7 +75,7 @@ export function QuickPathsDeck() {
   const PrimaryIcon = PRIMARY_PATH.icon;
 
   return (
-    <nav aria-label="Essential Sacred Pathways" className={styles.quickPathsNav}>
+    <nav aria-label="Start here" className={styles.quickPathsNav}>
       {/* 1. Mobile Experience (< 640px): Prominent Hero Beacon + 2x2 Tactile Card Grid */}
       <div className={styles.mobileDeck}>
         <Link href={PRIMARY_PATH.href} className={styles.beaconCard}>

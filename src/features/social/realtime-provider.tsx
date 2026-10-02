@@ -1,10 +1,12 @@
 "use client";
 
+import { HubConnection, HubConnectionBuilder, HubConnectionState, LogLevel } from "@microsoft/signalr";
 import * as React from "react";
-import { io, type Socket } from "socket.io-client";
+import type { Socket } from "socket.io-client";
 
 export interface RealtimeContextValue {
   socket: Socket | null;
+  connection: HubConnection | null;
   isConnected: boolean;
   transport: string | null;
   joinRoom: (room: string) => void;
@@ -14,26 +16,40 @@ export interface RealtimeContextValue {
 
 const RealtimeContext = React.createContext<RealtimeContextValue | null>(null);
 
-let globalSocket: Socket | null = null;
+let globalSignalRConnection: HubConnection | null = null;
 
-function getSocketInstance(): Socket | null {
+function getSignalRUrl(): string | null {
   if (typeof window === "undefined") return null;
+  return (
+    process.env.NEXT_PUBLIC_SIGNALR_URL ||
+    process.env.NEXT_PUBLIC_SOCKET_URL ||
+    process.env.NEXT_PUBLIC_API_URL ||
+    null
+  );
+}
 
-  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || process.env.NEXT_PUBLIC_API_URL;
+function getSignalRConnection(): HubConnection | null {
+  const url = getSignalRUrl();
+  if (!url) return null;
 
-  if (!socketUrl) return null;
+  if (!globalSignalRConnection) {
+    const hubUrl = url.includes("/hubs/") ? url : `${url.replace(/\/api\/v1\/?$/, "")}/hubs/platform`;
 
-  if (!globalSocket) {
-    globalSocket = io(socketUrl, {
-      autoConnect: false,
-      reconnection: true,
-      reconnectionDelay: 1000,
-      reconnectionDelayMax: 10000,
-      randomizationFactor: 0.5,
-      transports: ["websocket", "polling"],
-    });
+    globalSignalRConnection = new HubConnectionBuilder()
+      .withUrl(hubUrl, {
+        accessTokenFactory: () => {
+          if (typeof window !== "undefined") {
+            return localStorage.getItem("accessToken") || "";
+          }
+          return "";
+        },
+      })
+      .withAutomaticReconnect([0, 1000, 3000, 5000, 10000])
+      .configureLogging(LogLevel.Warning)
+      .build();
   }
-  return globalSocket;
+
+  return globalSignalRConnection;
 }
 
 export function RealtimeProvider({
@@ -43,99 +59,165 @@ export function RealtimeProvider({
   children: React.ReactNode;
   socket?: Socket | null;
 }) {
-  const getSnapshot = React.useCallback(
-    () => (customSocket !== undefined ? customSocket : getSocketInstance()),
-    [customSocket],
-  );
-  const getServerSnapshot = React.useCallback(() => null, []);
-  const emptySubscribe = React.useCallback(() => () => {}, []);
-
-  const socket = React.useSyncExternalStore(emptySubscribe, getSnapshot, getServerSnapshot);
-
   const [isConnected, setIsConnected] = React.useState(false);
   const [transport, setTransport] = React.useState<string | null>(null);
+  const isCustom = customSocket !== undefined;
+  const connection = React.useMemo(() => {
+    if (typeof window === "undefined" || isCustom) return null;
+    return getSignalRConnection();
+  }, [isCustom]);
 
   React.useEffect(() => {
-    if (!socket) return;
+    if (isCustom) {
+      if (!customSocket) {
+        return;
+      }
 
-    const onConnect = () => {
-      setIsConnected(true);
-      const engineTransport = socket.io.engine?.transport?.name ?? "websocket";
-      setTransport(engineTransport);
-    };
+      const onConnect = () => {
+        setIsConnected(true);
+        const engineTransport = customSocket.io?.engine?.transport?.name ?? "websocket";
+        setTransport(engineTransport);
+      };
 
-    const onDisconnect = () => {
-      setIsConnected(false);
-      setTransport(null);
-    };
+      const onDisconnect = () => {
+        setIsConnected(false);
+        setTransport(null);
+      };
 
-    const onUpgrade = () => {
-      const engineTransport = socket.io.engine?.transport?.name ?? null;
-      setTransport(engineTransport);
-    };
+      const onUpgrade = () => {
+        const engineTransport = customSocket.io?.engine?.transport?.name ?? null;
+        setTransport(engineTransport);
+      };
 
-    socket.on("connect", onConnect);
-    socket.on("disconnect", onDisconnect);
+      customSocket.on("connect", onConnect);
+      customSocket.on("disconnect", onDisconnect);
 
-    if (socket.io.engine) {
-      socket.io.engine.on("upgrade", onUpgrade);
-    } else {
-      socket.io.on("open", () => {
-        socket.io.engine?.on("upgrade", onUpgrade);
-      });
+      if (customSocket.io?.engine) {
+        customSocket.io.engine.on?.("upgrade", onUpgrade);
+      }
+
+      if (customSocket.connected) {
+        onConnect();
+      } else if (typeof customSocket.connect === "function") {
+        customSocket.connect();
+      }
+
+      return () => {
+        customSocket.off("connect", onConnect);
+        customSocket.off("disconnect", onDisconnect);
+      };
     }
 
-    if (socket.connected) {
-      onConnect();
-    } else {
-      socket.connect();
+    // In production browser, connect to SignalR
+    const conn = connection;
+    if (!conn) {
+      return;
     }
 
-    return () => {
-      socket.off("connect", onConnect);
-      socket.off("disconnect", onDisconnect);
-      if (socket.io.engine) {
-        socket.io.engine.off("upgrade", onUpgrade);
+    const startConnection = async () => {
+      try {
+        if (conn.state === HubConnectionState.Disconnected) {
+          await conn.start();
+          setIsConnected(true);
+          setTransport("WebSockets");
+        }
+      } catch {
+        setIsConnected(false);
       }
     };
-  }, [socket]);
+
+    conn.onreconnecting(() => {
+      setIsConnected(false);
+    });
+
+    conn.onreconnected(() => {
+      setIsConnected(true);
+      setTransport("WebSockets");
+    });
+
+    conn.onclose(() => {
+      setIsConnected(false);
+      setTransport(null);
+    });
+
+    startConnection();
+
+    return () => {
+      // Keep connection pooled or stop on full teardown
+    };
+  }, [customSocket, isCustom, connection]);
 
   const joinRoom = React.useCallback(
     (room: string) => {
-      if (!socket) return;
-      socket.emit("room:join", { room });
-      socket.emit("join", room);
+      if (customSocket) {
+        customSocket.emit("room:join", { room });
+        customSocket.emit("join", room);
+        return;
+      }
+
+      if (connection && connection.state === HubConnectionState.Connected) {
+        if (room === "prayer:wall" || room === "prayer:wall:global") {
+          connection.invoke("JoinPrayerWall").catch(() => {});
+        } else if (room.startsWith("finance:campaign:")) {
+          const campaignId = room.replace("finance:campaign:", "");
+          connection.invoke("JoinCampaignRoom", campaignId).catch(() => {});
+        } else if (room.startsWith("service:stream:")) {
+          const branchId = room.replace("service:stream:", "");
+          connection.invoke("JoinLiveService", branchId).catch(() => {});
+        }
+      }
     },
-    [socket],
+    [customSocket, connection],
   );
 
   const leaveRoom = React.useCallback(
     (room: string) => {
-      if (!socket) return;
-      socket.emit("room:leave", { room });
-      socket.emit("leave", room);
+      if (customSocket) {
+        customSocket.emit("room:leave", { room });
+        customSocket.emit("leave", room);
+        return;
+      }
+
+      if (connection && connection.state === HubConnectionState.Connected) {
+        if (room === "prayer:wall" || room === "prayer:wall:global") {
+          connection.invoke("LeavePrayerWall").catch(() => {});
+        } else if (room.startsWith("finance:campaign:")) {
+          const campaignId = room.replace("finance:campaign:", "");
+          connection.invoke("LeaveCampaignRoom", campaignId).catch(() => {});
+        } else if (room.startsWith("service:stream:")) {
+          const branchId = room.replace("service:stream:", "");
+          connection.invoke("LeaveLiveService", branchId).catch(() => {});
+        }
+      }
     },
-    [socket],
+    [customSocket, connection],
   );
 
   const emitEvent = React.useCallback(
     <T = unknown,>(event: string, payload: T) => {
-      if (!socket) return;
-      socket.emit(event, payload);
+      if (customSocket) {
+        customSocket.emit(event, payload);
+        return;
+      }
+
+      if (connection && connection.state === HubConnectionState.Connected) {
+        connection.invoke("SendClientEvent", event, payload).catch(() => {});
+      }
     },
-    [socket],
+    [customSocket, connection],
   );
 
   const value = React.useMemo<RealtimeContextValue>(
     () => ({
-      socket,
+      socket: customSocket ?? null,
+      connection,
       isConnected,
       transport,
       joinRoom,
       leaveRoom,
       emitEvent,
     }),
-    [socket, isConnected, transport, joinRoom, leaveRoom, emitEvent],
+    [customSocket, connection, isConnected, transport, joinRoom, leaveRoom, emitEvent],
   );
 
   return <RealtimeContext.Provider value={value}>{children}</RealtimeContext.Provider>;
@@ -150,7 +232,7 @@ export function useRealtime(): RealtimeContextValue {
 }
 
 export function useSubscription<T>(room: string, event: string, onData: (data: T) => void): void {
-  const { socket, joinRoom, leaveRoom } = useRealtime();
+  const { socket, connection, joinRoom, leaveRoom } = useRealtime();
   const onDataRef = React.useRef(onData);
 
   React.useEffect(() => {
@@ -158,19 +240,77 @@ export function useSubscription<T>(room: string, event: string, onData: (data: T
   }, [onData]);
 
   React.useEffect(() => {
-    if (!socket) return;
-
     joinRoom(room);
 
-    const handler = (data: T) => {
-      onDataRef.current(data);
-    };
+    // If using custom socket (e.g. tests or socket.io)
+    if (socket) {
+      const handler = (data: T) => {
+        onDataRef.current(data);
+      };
 
-    socket.on(event, handler);
+      socket.on(event, handler);
+
+      return () => {
+        socket.off(event, handler);
+        leaveRoom(room);
+      };
+    }
+
+    // If using SignalR connection
+    if (connection) {
+      // Map event names to SignalR method broadcasts
+      const signalRHandler = (...args: unknown[]) => {
+        if (event === "prayer:new" && args.length >= 5) {
+          // ReceivePrayerUpdate(Guid prayerId, string title, string requesterName, string excerpt, DateTimeOffset createdAt)
+          const mapped = {
+            id: args[0],
+            name: args[2] || args[1] || "Anonymous",
+            request: args[3] || args[1] || "",
+            createdAt: args[4] || new Date().toISOString(),
+            prayingCount: 1,
+          } as unknown as T;
+          onDataRef.current(mapped);
+        } else if (event === "finance:giving:settled" && args.length >= 4) {
+          // ReceiveCampaignProgress(Guid campaignId, decimal raisedAmount, decimal goalAmount, decimal percentage)
+          const mapped = {
+            campaignId: args[0],
+            amount: args[1],
+            raisedAmount: args[1],
+            goalAmount: args[2],
+            percentage: args[3],
+          } as unknown as T;
+          onDataRef.current(mapped);
+        } else if (args.length === 1) {
+          onDataRef.current(args[0] as T);
+        } else {
+          onDataRef.current(args as unknown as T);
+        }
+      };
+
+      // Register both the raw event name and the typed SignalR method
+      const signalRMethodName =
+        event === "prayer:new"
+          ? "ReceivePrayerUpdate"
+          : event === "finance:giving:settled"
+            ? "ReceiveCampaignProgress"
+            : event;
+
+      connection.on(event, signalRHandler);
+      if (signalRMethodName !== event) {
+        connection.on(signalRMethodName, signalRHandler);
+      }
+
+      return () => {
+        connection.off(event, signalRHandler);
+        if (signalRMethodName !== event) {
+          connection.off(signalRMethodName, signalRHandler);
+        }
+        leaveRoom(room);
+      };
+    }
 
     return () => {
-      socket.off(event, handler);
       leaveRoom(room);
     };
-  }, [socket, room, event, joinRoom, leaveRoom]);
+  }, [socket, connection, room, event, joinRoom, leaveRoom]);
 }

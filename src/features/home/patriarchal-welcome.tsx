@@ -264,7 +264,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                       <p className="font-serif text-lg leading-relaxed text-foreground italic sm:text-xl">
                         “{greeting}”
                       </p>
-                      <p className="mt-2 text-[0.6875rem] font-bold tracking-wider text-gold-600 uppercase dark:text-gold-400">
+                      <p className="mt-2 text-[0.6875rem] font-bold tracking-wider text-gold-800 uppercase dark:text-gold-400">
                         — Opening Apostolic Benediction
                       </p>
                     </div>
@@ -361,9 +361,10 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
 
                   <Link
                     href={href}
+                    aria-label={`Comment on the ${message.title}`}
                     className="inline-flex min-h-8 items-center gap-1 rounded-control bg-primary px-3 text-xs font-semibold text-primary-foreground hover:bg-primary-hover"
                   >
-                    <span>Amen &amp; Comments</span>
+                    <span>Comment on the {message.title}</span>
                     <ArrowRight className="size-3" />
                   </Link>
                 </div>
@@ -419,7 +420,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                         “Therefore, my beloved brethren, be ye steadfast, unmoveable, always abounding in the
                         work of the Lord, forasmuch as ye know that your labour is not in vain in the Lord.”
                       </blockquote>
-                      <p className="mt-1.5 text-xs font-bold tracking-wider text-gold-600 uppercase dark:text-gold-400">
+                      <p className="mt-1.5 text-xs font-bold tracking-wider text-gold-800 uppercase dark:text-gold-400">
                         1 Corinthians 15:58
                       </p>
                     </div>
@@ -452,9 +453,10 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                 {/* Comment / Amen Link */}
                 <Link
                   href={href}
+                  aria-label={`Comment on the ${message.title}`}
                   className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-control border border-border bg-surface px-4 text-xs font-semibold text-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
                 >
-                  <span>Amen &amp; Comments</span>
+                  <span>Comment on the {message.title}</span>
                   <ArrowRight className="size-3.5" aria-hidden />
                 </Link>
 
@@ -544,7 +546,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
           <div className="flex-1 overflow-y-auto px-6 py-8 sm:px-10">
             {/* Epistle Letterhead Banner */}
             <div className="mb-8 border-b border-border pb-6 text-center">
-              <p className="text-[0.6875rem] font-bold tracking-widest text-gold-600 uppercase dark:text-gold-400">
+              <p className="text-[0.6875rem] font-bold tracking-widest text-gold-800 uppercase dark:text-gold-400">
                 The Eternal Sacred Order of the Cherubim &amp; Seraphim Worldwide
               </p>
               <h3 className="mt-1 font-display text-xl font-extrabold sm:text-2xl">
@@ -638,9 +640,10 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
               <Link
                 href={href}
                 onClick={() => setReaderOpen(false)}
+                aria-label={`Comment on the ${message.title}`}
                 className="inline-flex min-h-9 items-center gap-1 rounded-control bg-primary px-4 text-xs font-semibold text-primary-foreground hover:bg-primary-hover"
               >
-                <span>Comment on this Address</span>
+                <span>Comment on the {message.title}</span>
                 <ArrowRight className="size-3" />
               </Link>
             </div>

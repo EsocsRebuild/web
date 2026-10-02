@@ -86,9 +86,6 @@
 .mobileText {
   font-size: 0.8125rem;
   line-height: 1.25;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   color: oklch(0.96 0.01 90);
 
   strong {
@@ -205,7 +202,6 @@
       border-radius: inherit;
       border: 1px solid map.get($palette-gold, 300);
       opacity: 0.7;
-      animation: beaconPulse 2.8s infinite ease-out;
     }
   }
 
@@ -246,9 +242,6 @@
     font-size: 0.75rem;
     line-height: 1.3;
     color: oklch(0.9 0.01 90 / 0.8);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .beaconArrow {
@@ -335,10 +328,6 @@
     font-size: 0.6875rem;
     line-height: 1.3;
     color: var(--muted-foreground);
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 }
 
@@ -564,7 +553,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: map.get($palette-gold, 600);
+  color: map.get($palette-gold, 800);
 
   :global(.dark) & {
     color: map.get($palette-gold, 400);
@@ -711,7 +700,7 @@
     font-family: var(--font-display, sans-serif);
     font-size: 1.25rem;
     font-weight: 800;
-    color: map.get($palette-gold, 600);
+    color: map.get($palette-gold, 800);
 
     :global(.dark) & {
       color: map.get($palette-gold, 400);
@@ -746,7 +735,7 @@
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: map.get($palette-gold, 600);
+    color: map.get($palette-gold, 800);
     margin-bottom: 0.5rem;
 
     :global(.dark) & {
@@ -1046,21 +1035,22 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .familyTrack {
   position: relative;
   overflow-x: auto;
-  scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-bottom: 0.5rem;
-  margin-left: calc(-1 * var(--gutter));
-  margin-right: calc(-1 * var(--gutter));
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-  scroll-padding-left: var(--gutter);
+  margin-left: calc(-1 * var(--spacing-gutter, 1rem));
+  margin-right: calc(-1 * var(--spacing-gutter, 1rem));
+  padding-left: var(--spacing-gutter, 1rem);
+  padding-right: var(--spacing-gutter, 1rem);
+  scroll-padding-left: var(--spacing-gutter, 1rem);
   outline: none;
 
   &::-webkit-scrollbar {
@@ -1091,7 +1081,7 @@
   min-width: 0;
 
   @media (min-width: 640px) {
-    flex: 0 0 65%;
+    flex: 0 0 64%;
   }
 
   @media (min-width: 1024px) {
@@ -1209,7 +1199,7 @@
 }
 
 .familyImageDrifting {
-  animation: familyPanDrift 20s ease-in-out infinite alternate;
+  animation: familyPanDrift 14s cubic-bezier(0.25, 0.1, 0.25, 1) both;
 
   @media (prefers-reduced-motion: reduce) {
     animation: none;
@@ -1416,15 +1406,10 @@
   line-height: 1.55;
   color: oklch(0.92 0.01 90);
   margin: 0;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
 
   @media (min-width: 640px) {
     font-size: 0.875rem;
     line-height: 1.6;
-    -webkit-line-clamp: 4;
   }
 }
 

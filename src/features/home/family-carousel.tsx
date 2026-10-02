@@ -66,40 +66,36 @@ export function FamilyCarousel({ cards }: { cards: FamilyCard[] }) {
   const goTo = (i: number) => {
     const el = track.current;
     const clamped = Math.max(0, Math.min(i, cards.length - 1));
-    const item = list.current?.children[clamped];
+    const item = list.current?.children[clamped] as HTMLElement | undefined;
     if (!el || !item) return;
     setActive(clamped);
+    setEdges({
+      start: clamped === 0,
+      end: clamped === cards.length - 1,
+    });
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const start = el.getBoundingClientRect().left + parseFloat(getComputedStyle(el).scrollPaddingLeft || "0");
     el.scrollBy({ left: item.getBoundingClientRect().left - start, behavior: reduce ? "auto" : "smooth" });
   };
 
   const step = (direction: 1 | -1) => {
-    const el = track.current;
-    const first = list.current?.children[0];
-    if (!el || !first) return;
-    const gap = parseFloat(getComputedStyle(list.current!).columnGap || "0");
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollBy({
-      left: direction * (first.getBoundingClientRect().width + gap),
-      behavior: reduce ? "auto" : "smooth",
-    });
+    goTo(active + direction);
   };
 
   return (
-    <div className={styles.familyContainer}>
+    <div className={cn("max-w-full min-w-0 overflow-hidden", styles.familyContainer)}>
       <div
         ref={track}
         role="region"
-        aria-label="Our church family, scroll for more generations"
+        aria-label="Our church family, scroll for more"
         tabIndex={0}
-        className={styles.familyTrack}
+        className={cn("max-w-full min-w-0", styles.familyTrack)}
       >
         <ul ref={list} className={styles.familyList}>
           {cards.map((c, i) => {
             const inFocus = i === active;
             return (
-              <li key={c.key} className={styles.familyItem}>
+              <li key={c.key} className={cn("min-w-0", styles.familyItem)}>
                 <article
                   className={cn(
                     "relative isolate flex min-h-[25rem] w-full flex-col justify-end overflow-hidden sm:min-h-[28rem] lg:min-h-[30rem]",
@@ -218,8 +214,8 @@ export function FamilyCarousel({ cards }: { cards: FamilyCard[] }) {
             type="button"
             className={styles.familyArrowButton}
             onClick={() => step(-1)}
-            disabled={edges.start}
-            aria-label="Previous generation"
+            disabled={active <= 0 || edges.start}
+            aria-label="Previous"
           >
             <ChevronLeft aria-hidden className="size-5" />
           </button>
@@ -227,8 +223,8 @@ export function FamilyCarousel({ cards }: { cards: FamilyCard[] }) {
             type="button"
             className={styles.familyArrowButton}
             onClick={() => step(1)}
-            disabled={edges.end}
-            aria-label="Next generation"
+            disabled={active >= cards.length - 1 || edges.end}
+            aria-label="Next"
           >
             <ChevronRight aria-hidden className="size-5" />
           </button>
