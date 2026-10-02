@@ -12,7 +12,7 @@ import styles from "./transit-architecture.module.scss";
  * Provides immediate feedback on route transit, preventing users from feeling lost or
  * wondering if their click registered, while eliminating jarring navigation disorientation.
  */
-export function RouteFilament() {
+function RouteFilamentBar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -97,5 +97,13 @@ export function RouteFilament() {
         }}
       />
     </div>
+  );
+}
+
+export function RouteFilament() {
+  return (
+    <React.Suspense fallback={null}>
+      <RouteFilamentBar />
+    </React.Suspense>
   );
 }

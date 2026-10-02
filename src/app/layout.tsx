@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 
 import { SkipLink } from "@/components/layout/skip-link";
 import { RouteFilament } from "@/components/motion/route-filament";
@@ -58,7 +59,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <link rel="preload" as="image" href="/brand/esocs-crest-192.webp" fetchPriority="high" />
       </head>
       <body className="flex min-h-dvh flex-col">
-        <RouteFilament />
+        <Suspense fallback={null}>
+          <RouteFilament />
+        </Suspense>
         <AppSplash />
         <Providers>
           <SkipLink />
