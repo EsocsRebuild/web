@@ -19,22 +19,17 @@ let globalSocket: Socket | null = null;
 function getSocketInstance(): Socket | null {
   if (typeof window === "undefined") return null;
 
-  // Dedicated WebSocket server URL (e.g. NEXT_PUBLIC_SOCKET_URL="https://realtime.esocs.org").
-  // If not configured, we do NOT open websocket connections against the Next.js HTTP server.
-  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL;
-  if (!socketUrl) {
-    return null;
-  }
+  const socketUrl = process.env.NEXT_PUBLIC_SOCKET_URL || process.env.NEXT_PUBLIC_API_URL;
+
+  if (!socketUrl) return null;
 
   if (!globalSocket) {
     globalSocket = io(socketUrl, {
       autoConnect: false,
       reconnection: true,
-      reconnectionAttempts: 5,
-      reconnectionDelay: 2000,
+      reconnectionDelay: 1000,
       reconnectionDelayMax: 10000,
       randomizationFactor: 0.5,
-      timeout: 5000,
       transports: ["websocket", "polling"],
     });
   }
@@ -48,26 +43,24 @@ export function RealtimeProvider({
   children: React.ReactNode;
   socket?: Socket | null;
 }) {
-  const [socket] = React.useState<Socket | null>(() => {
-    if (customSocket !== undefined) return customSocket;
-    if (typeof window !== "undefined") {
-      return getSocketInstance();
-    }
-    return null;
-  });
+  const getSnapshot = React.useCallback(
+    () => (customSocket !== undefined ? customSocket : getSocketInstance()),
+    [customSocket],
+  );
+  const getServerSnapshot = React.useCallback(() => null, []);
+  const emptySubscribe = React.useCallback(() => () => {}, []);
+
+  const socket = React.useSyncExternalStore(emptySubscribe, getSnapshot, getServerSnapshot);
 
   const [isConnected, setIsConnected] = React.useState(false);
   const [transport, setTransport] = React.useState<string | null>(null);
 
   React.useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    const sock = socket;
-    if (!sock) return;
+    if (!socket) return;
 
     const onConnect = () => {
       setIsConnected(true);
-      const engineTransport = sock.io.engine?.transport?.name ?? "websocket";
+      const engineTransport = socket.io.engine?.transport?.name ?? "websocket";
       setTransport(engineTransport);
     };
 
@@ -76,39 +69,33 @@ export function RealtimeProvider({
       setTransport(null);
     };
 
-    const onConnectError = () => {
-      setIsConnected(false);
-    };
-
     const onUpgrade = () => {
-      const engineTransport = sock.io.engine?.transport?.name ?? null;
+      const engineTransport = socket.io.engine?.transport?.name ?? null;
       setTransport(engineTransport);
     };
 
-    sock.on("connect", onConnect);
-    sock.on("disconnect", onDisconnect);
-    sock.on("connect_error", onConnectError);
+    socket.on("connect", onConnect);
+    socket.on("disconnect", onDisconnect);
 
-    if (sock.io.engine) {
-      sock.io.engine.on("upgrade", onUpgrade);
+    if (socket.io.engine) {
+      socket.io.engine.on("upgrade", onUpgrade);
     } else {
-      sock.io.on("open", () => {
-        sock.io.engine?.on("upgrade", onUpgrade);
+      socket.io.on("open", () => {
+        socket.io.engine?.on("upgrade", onUpgrade);
       });
     }
 
-    if (sock.connected) {
+    if (socket.connected) {
       onConnect();
     } else {
-      sock.connect();
+      socket.connect();
     }
 
     return () => {
-      sock.off("connect", onConnect);
-      sock.off("disconnect", onDisconnect);
-      sock.off("connect_error", onConnectError);
-      if (sock.io.engine) {
-        sock.io.engine.off("upgrade", onUpgrade);
+      socket.off("connect", onConnect);
+      socket.off("disconnect", onDisconnect);
+      if (socket.io.engine) {
+        socket.io.engine.off("upgrade", onUpgrade);
       }
     };
   }, [socket]);
