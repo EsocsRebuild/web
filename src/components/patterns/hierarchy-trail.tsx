@@ -41,7 +41,7 @@ export function HierarchyTrail({
 
   return (
     <nav
-      aria-label="Spatial Church Wayfinding Ribbon"
+      aria-label="Where this page sits in the church"
       className={cn("scrollbar-none max-w-full min-w-0 overflow-x-auto", className)}
     >
       <ol
@@ -56,7 +56,7 @@ export function HierarchyTrail({
           <Compass aria-hidden className="size-3.5 shrink-0 text-gold-500" />
         </li>
 
-        {ancestors.map((a, idx) => (
+        {ancestors.map((a) => (
           <li key={a.slug} className="flex items-center gap-1.5">
             <Link
               href={routes.unit(a.slug)}
@@ -67,7 +67,7 @@ export function HierarchyTrail({
                   : "text-muted-foreground hover:bg-surface-muted hover:text-foreground",
               )}
             >
-              {idx === 0 && a.slug === "esocs" ? "ESOCS Apex" : a.name}
+              {a.slug === "esocs" ? "ESOCS" : a.name}
             </Link>
             <ChevronRight
               aria-hidden
