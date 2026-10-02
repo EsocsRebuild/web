@@ -110,7 +110,12 @@ export function LivePrayerList({ initialPrayers = INITIAL_PRAYERS }: { initialPr
           throw new Error("Network offline");
         }
 
-        const userId = member?.id ?? `anon-${Math.random().toString(36).slice(2, 9)}`;
+        const userId =
+          member?.id ??
+          `anon-${Array.from(crypto.getRandomValues(new Uint8Array(4)))
+            .map((b) => b.toString(16).padStart(2, "0"))
+            .join("")
+            .slice(0, 7)}`;
 
         emitEvent("prayer:support", {
           prayerId,
