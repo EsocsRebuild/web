@@ -59,7 +59,7 @@ export function ProductPurchase({ product }: { product: Product }) {
                   key={v.id}
                   className={cn(
                     "relative inline-flex min-h-11 min-w-14 cursor-pointer items-center justify-center rounded-control border px-4 text-sm font-semibold transition-colors",
-                    "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40",
+                    "has-focus-visible:ring-2 has-focus-visible:ring-ring/40",
                     chosen
                       ? "border-foreground bg-foreground text-background"
                       : "border-border-strong bg-surface hover:border-foreground",
