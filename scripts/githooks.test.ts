@@ -115,10 +115,12 @@ beforeAll(async () => {
   await setup(repo, "add", ".");
   await setup(repo, "commit", "-q", "-m", "chore: initial commit");
   await setup(repo, "push", "-q", "origin", "develop");
-});
+}, 60_000);
 
 afterAll(() => {
-  rmSync(workspace, { recursive: true, force: true });
+  if (workspace) {
+    rmSync(workspace, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 });
+  }
 });
 
 describe.concurrent("pre-commit", () => {
