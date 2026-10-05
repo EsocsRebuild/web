@@ -10,7 +10,7 @@ import { siteConfig } from "@/config/site";
 import type { SearchEntry } from "@/features/search/index-builder";
 import { cn } from "@/lib/utils";
 
-import { GREETING, TOPICS, type Topic } from "./brain";
+import { GREETING, TOPICS, respond, type Topic } from "./brain";
 import { PANEL_ID } from "./chat-launcher";
 
 const STORE_KEY = "esocs:help:v2";
@@ -185,24 +185,68 @@ export function ChatWidget({ open, onClose }: { open: boolean; onClose: () => vo
           </li>
         )}
 
-        {messages.map((m) => {
-          const text = extractText(m.parts as Array<{ type: string; text?: string }>);
+        {messages.map((m, idx) => {
+          const text =
+            extractText(m.parts as Array<{ type: string; text?: string }>) ||
+            (m as { content?: string }).content ||
+            "";
           const isUser = m.role === "user";
 
-          return isUser ? (
-            <li key={m.id} className="flex justify-end">
-              <p className="max-w-[85%] rounded-2xl rounded-br-md bg-royal-800 px-3.5 py-2.5 text-sm leading-6 [overflow-wrap:anywhere] text-white">
-                <span className="sr-only">You: </span>
-                {text}
-              </p>
-            </li>
-          ) : (
+          if (isUser) {
+            return (
+              <li key={m.id} className="flex justify-end">
+                <p className="max-w-[85%] rounded-2xl rounded-br-md bg-royal-800 px-3.5 py-2.5 text-sm leading-6 [overflow-wrap:anywhere] text-white">
+                  <span className="sr-only">You: </span>
+                  {text}
+                </p>
+              </li>
+            );
+          }
+
+          const prevUserMsg = idx > 0 && messages[idx - 1].role === "user" ? messages[idx - 1] : null;
+          const userQuery = prevUserMsg
+            ? extractText(prevUserMsg.parts as Array<{ type: string; text?: string }>) ||
+              (prevUserMsg as { content?: string }).content ||
+              ""
+            : "";
+          const reply = userQuery ? respond(userQuery, index) : null;
+          const links = reply?.links ?? [];
+          const suggestions = reply?.suggestions ?? [];
+
+          return (
             <li key={m.id} className="flex max-w-[92%] items-end gap-2">
               <Crest size={28} className="mb-0.5 shrink-0" />
               <div className="grid min-w-0 gap-2">
                 <p className="rounded-2xl rounded-bl-md bg-surface-muted px-3.5 py-2.5 text-sm leading-6 text-foreground">
                   {text}
                 </p>
+                {links.length > 0 && (
+                  <div className="grid gap-1.5 pt-1">
+                    {links.map((link) => (
+                      <a
+                        key={link.href + link.label}
+                        href={link.href}
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline"
+                      >
+                        {link.label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+                {suggestions.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {suggestions.map((t) => (
+                      <button
+                        key={t}
+                        type="button"
+                        onClick={() => chooseTopic(t)}
+                        className="inline-flex items-center rounded-pill border border-border bg-surface px-2.5 py-1 text-xs font-medium text-foreground transition-colors hover:border-foreground/30 hover:bg-surface-muted"
+                      >
+                        {topicLabel(t)}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </li>
           );
