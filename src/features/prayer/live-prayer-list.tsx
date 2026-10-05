@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { toast } from "@/components/ui/toaster";
 import { useOptionalSocial } from "@/features/social/provider";
 import { useRealtime, useSubscription } from "@/features/social/realtime-provider";
+import { apiClient } from "@/lib/api-client";
 import { formatDate } from "@/lib/format";
 
 export interface PrayerItem {
@@ -18,6 +19,16 @@ export interface PrayerItem {
   createdAt: string;
   prayingCount: number;
   hasSupported?: boolean;
+}
+
+interface BackendPrayerWallItem {
+  id: string;
+  name: string;
+  request: string;
+  status: string;
+  prayedCount: number;
+  answerNote?: string | null;
+  createdAt: string;
 }
 
 export interface PrayerIncrementPayload {
@@ -58,6 +69,32 @@ export function LivePrayerList({ initialPrayers = INITIAL_PRAYERS }: { initialPr
   const { isConnected, emitEvent } = useRealtime();
   const social = useOptionalSocial();
   const member = social?.member;
+
+  React.useEffect(() => {
+    let isMounted = true;
+    apiClient
+      .get<BackendPrayerWallItem[]>("/public/prayer-wall")
+      .then((res) => {
+        if (isMounted && res.data && Array.isArray(res.data) && res.data.length > 0) {
+          setPrayers(
+            res.data.map((item) => ({
+              id: item.id,
+              name: item.name,
+              request: item.request,
+              createdAt: item.createdAt,
+              prayingCount: item.prayedCount,
+            })),
+          );
+        }
+      })
+      .catch(() => {
+        // Fallback to initial/mock data if backend is offline
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   // Listen for prayer:new in room prayer:wall
   useSubscription<PrayerItem>("prayer:wall", "prayer:new", (newPrayer) => {
@@ -105,9 +142,15 @@ export function LivePrayerList({ initialPrayers = INITIAL_PRAYERS }: { initialPr
       setPendingPrayers((prev) => new Set(prev).add(prayerId));
 
       try {
-        // Simulated network check / offline handling
         if (typeof navigator !== "undefined" && !navigator.onLine) {
           throw new Error("Network offline");
+        }
+
+        // Call backend API to persist the "I prayed" counter
+        try {
+          await apiClient.post(`/public/prayer-wall/${prayerId}/pray`, {});
+        } catch {
+          // If in local preview or endpoint fails, proceed with local socket broadcast
         }
 
         const userId =

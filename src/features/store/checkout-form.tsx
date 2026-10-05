@@ -198,7 +198,7 @@ export function CheckoutForm({ catalogue }: { catalogue: Product[] }) {
       <label
         htmlFor={id}
         className={cn(
-          "flex cursor-pointer items-start gap-3 rounded-card border p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40",
+          "flex cursor-pointer items-start gap-3 rounded-card border p-4 transition-colors has-focus-visible:ring-2 has-focus-visible:ring-ring/40",
           fulfilment === value
             ? "border-foreground bg-surface-muted"
             : "border-border-strong hover:border-foreground",
@@ -211,7 +211,7 @@ export function CheckoutForm({ catalogue }: { catalogue: Product[] }) {
           value={value}
           checked={fulfilment === value}
           onChange={() => setFulfilment(value)}
-          className="mt-1 size-4 accent-[var(--color-royal-700)]"
+          className="mt-1 size-4 accent-royal-700"
         />
         <span className="grid gap-1">
           <span className="flex items-center gap-2 font-semibold">

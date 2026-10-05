@@ -34,6 +34,18 @@ const today = () => new Date().toISOString().slice(0, 10);
 const plusDays = (iso: string, days: number) =>
   new Date(Date.parse(`${iso}T00:00:00Z`) + days * 86_400_000).toISOString().slice(0, 10);
 
+interface BackendOccurrenceResponse {
+  id: string;
+  eventId: string;
+  title: string;
+  type: string;
+  startsAt: string;
+  endsAt: string;
+  status: string;
+  location?: string | null;
+  unitId?: string | null;
+}
+
 export interface HttpContentRepositoryOptions {
   client?: ApiClient;
   initialGraph?: SeedGraph;
@@ -42,6 +54,7 @@ export interface HttpContentRepositoryOptions {
 export interface ExtendedHttpContentRepository extends ContentRepository {
   syncUnits(): Promise<void>;
   syncPosts(): Promise<void>;
+  syncEvents(): Promise<void>;
   refresh(): Promise<void>;
 }
 
@@ -55,6 +68,7 @@ export function createHttpContentRepository(
   let children = computeChildren(graph.units);
   let posts = new Map(graph.posts.map((p) => [p.id, p]));
   let datedPosts = graph.posts.filter((p) => p.date).sort(byDateDesc);
+  const eventsMap = new Map<string, ChurchEvent>();
 
   function computeChildren(unitList: Unit[]) {
     const map = new Map<string, Unit[]>();
@@ -113,13 +127,39 @@ export function createHttpContentRepository(
     }
   }
 
+  async function syncEvents(): Promise<void> {
+    try {
+      const res = await client.get<BackendOccurrenceResponse[]>("/public/events?days=365");
+      if (Array.isArray(res.data) && res.data.length > 0) {
+        for (const o of res.data) {
+          const slug = `event-${o.id}`;
+          eventsMap.set(slug, {
+            slug,
+            title: o.title,
+            description: o.location ? `Venue: ${o.location}` : "Church Event",
+            date: o.startsAt.slice(0, 10),
+            endDate: o.endsAt ? o.endsAt.slice(0, 10) : undefined,
+            startTime: o.startsAt.length >= 16 ? o.startsAt.slice(11, 16) : null,
+            kind: o.type.toLowerCase() === "service" ? "service" : "programme",
+            unitSlug: ROOT_SLUG,
+            image: null,
+            computed: false,
+          });
+        }
+      }
+    } catch {
+      // Backend offline: retain current state
+    }
+  }
+
   async function refresh(): Promise<void> {
-    await Promise.allSettled([syncUnits(), syncPosts()]);
+    await Promise.allSettled([syncUnits(), syncPosts(), syncEvents()]);
   }
 
   return {
     syncUnits,
     syncPosts,
+    syncEvents,
     refresh,
 
     getOrganisation: () => graph.organisation,
@@ -186,14 +226,18 @@ export function createHttpContentRepository(
       const to = query.to ?? plusDays(from, 365);
       const years: number[] = [];
       for (let y = Number(from.slice(0, 4)); y <= Number(to.slice(0, 4)); y++) years.push(y);
-      return years
-        .flatMap(observanceEvents)
+      const observances = years.flatMap(observanceEvents);
+      const customEvents = Array.from(eventsMap.values());
+      return [...observances, ...customEvents]
         .filter((e) => (e.endDate ?? e.date) >= from && e.date <= to)
         .filter((e) => !query.unitSlug || e.unitSlug === query.unitSlug)
         .sort((a, b) => a.date.localeCompare(b.date));
     },
 
     getEvent(slug: string) {
+      if (eventsMap.has(slug)) {
+        return eventsMap.get(slug)!;
+      }
       const year = Number(slug.match(/-(\d{4})$/)?.[1]);
       if (!year) return null;
       return observanceEvents(year).find((e) => e.slug === slug) ?? null;
