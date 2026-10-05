@@ -262,11 +262,11 @@ export function useSubscription<T>(room: string, event: string, onData: (data: T
       // Map event names to SignalR method broadcasts
       const signalRHandler = (...args: unknown[]) => {
         if (event === "prayer:new" && args.length >= 5) {
-          // ReceivePrayerUpdate(Guid prayerId, string title, string requesterName, string excerpt, DateTimeOffset createdAt)
+          // ReceivePrayerUpdate(Guid prayerId, string title, string? content, string authorName, DateTimeOffset createdAt)
           const mapped = {
             id: args[0],
-            name: args[2] || args[1] || "Anonymous",
-            request: args[3] || args[1] || "",
+            name: args[3] || "Anonymous",
+            request: args[2] || args[1] || "",
             createdAt: args[4] || new Date().toISOString(),
             prayingCount: 1,
           } as unknown as T;

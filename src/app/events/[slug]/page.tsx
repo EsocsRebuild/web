@@ -10,8 +10,63 @@ import { getContent } from "@/data/content";
 import { AddToCalendar } from "@/features/events/add-to-calendar";
 import { EventRows } from "@/features/events/event-rows";
 import { RsvpControl, ShareButton } from "@/features/social/actions";
+import { apiClient } from "@/lib/api-client";
 import { formatDate, formatLongDate } from "@/lib/format";
 import { routes } from "@/lib/routes";
+
+interface BackendPublicOccurrence {
+  id: string;
+  startsAt: string;
+  endsAt: string;
+  availableCapacity?: number | null;
+}
+
+interface BackendPublicEvent {
+  id: string;
+  title: string;
+  slug: string;
+  type: string;
+  summary?: string | null;
+  description?: string | null;
+  coverImageUrl?: string | null;
+  location?: string | null;
+  isOnline: boolean;
+  onlineUrl?: string | null;
+  timeZone: string;
+  allDay: boolean;
+  registrationEnabled: boolean;
+  occurrences: BackendPublicOccurrence[];
+}
+
+async function resolveEvent(slug: string) {
+  const content = getContent();
+  const cached = content.getEvent(slug);
+  if (cached) return cached;
+
+  try {
+    const res = await apiClient.get<BackendPublicEvent>(`/public/events/${slug}`);
+    if (res.data) {
+      const be = res.data;
+      const firstOcc = be.occurrences?.[0];
+      return {
+        slug: be.slug,
+        title: be.title,
+        description: be.description || be.summary || "",
+        date: firstOcc ? firstOcc.startsAt.slice(0, 10) : new Date().toISOString().slice(0, 10),
+        endDate: firstOcc?.endsAt ? firstOcc.endsAt.slice(0, 10) : undefined,
+        startTime:
+          firstOcc?.startsAt && firstOcc.startsAt.length >= 16 ? firstOcc.startsAt.slice(11, 16) : null,
+        kind: be.type.toLowerCase() === "service" ? ("service" as const) : ("programme" as const),
+        unitSlug: "esocs",
+        image: be.coverImageUrl ? { src: be.coverImageUrl, alt: be.title, width: 800, height: 600 } : null,
+        computed: false,
+      };
+    }
+  } catch {
+    // not found in backend either
+  }
+  return null;
+}
 
 export function generateStaticParams() {
   return getContent()
@@ -20,7 +75,7 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps<"/events/[slug]">): Promise<Metadata> {
-  const event = getContent().getEvent((await params).slug);
+  const event = await resolveEvent((await params).slug);
   return event
     ? { title: event.title, description: `${formatLongDate(event.date)}. ${event.description}` }
     : {};
@@ -28,9 +83,9 @@ export async function generateMetadata({ params }: PageProps<"/events/[slug]">):
 
 export default async function EventPage({ params }: PageProps<"/events/[slug]">) {
   const content = getContent();
-  const event = content.getEvent((await params).slug);
+  const event = await resolveEvent((await params).slug);
   if (!event) notFound();
-  const host = content.getUnit(event.unitSlug)!;
+  const host = content.getUnit(event.unitSlug) ?? content.getUnit("esocs")!;
   const related = content
     .listEvents({ from: event.date })
     .filter((e) => e.slug !== event.slug)

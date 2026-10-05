@@ -75,7 +75,7 @@ describe("LivePrayerList", () => {
 
     // Optimistically updated counter to 6
     expect(screen.getByText("6 praying")).toBeDefined();
-    expect(screen.getByRole("button", { name: /Praying With You/i })).toBeDefined();
+    expect(await screen.findByRole("button", { name: /Praying With You/i })).toBeDefined();
 
     expect(mockSocket.emit).toHaveBeenCalledWith("prayer:support", {
       prayerId: "p-test-1",
