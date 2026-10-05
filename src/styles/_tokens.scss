@@ -1,0 +1,80 @@
+// ============================================================================
+// ESOCS Sacred Order - High-End Architectural Sass Design System Tokens
+// Rooted in physical ecclesiastical substrates, gold stewardship, and royal dignity.
+// NO translucent glassmorphism: 100% solid, tactile, architectural surfaces.
+// ============================================================================
+
+// 1. Color Palettes (OKLCH Color Spaces for High Dynamic Range)
+$palette-royal: (
+  50: oklch(0.97 0.012 265),
+  100: oklch(0.93 0.025 265),
+  200: oklch(0.86 0.05 265),
+  300: oklch(0.76 0.08 265),
+  400: oklch(0.62 0.12 265),
+  500: oklch(0.5 0.14 265),
+  600: oklch(0.42 0.14 265),
+  700: oklch(0.35 0.12 265),
+  800: oklch(0.28 0.1 265),
+  900: oklch(0.22 0.07 265),
+  950: oklch(0.17 0.045 265),
+);
+
+$palette-gold: (
+  50: oklch(0.98 0.02 90),
+  100: oklch(0.95 0.045 88),
+  200: oklch(0.9 0.08 86),
+  300: oklch(0.85 0.1 84),
+  400: oklch(0.79 0.11 80),
+  500: oklch(0.72 0.115 76),
+  600: oklch(0.62 0.11 70),
+  700: oklch(0.52 0.095 66),
+  800: oklch(0.42 0.08 62),
+  900: oklch(0.34 0.06 60),
+  950: oklch(0.24 0.04 58),
+);
+
+$palette-parchment: (
+  50: oklch(0.985 0.004 85),
+  100: oklch(0.965 0.007 85),
+  200: oklch(0.92 0.01 80),
+  300: oklch(0.86 0.012 80),
+  400: oklch(0.7 0.012 75),
+  500: oklch(0.56 0.012 70),
+  600: oklch(0.46 0.01 70),
+  700: oklch(0.37 0.008 70),
+  800: oklch(0.27 0.006 70),
+  900: oklch(0.2 0.005 70),
+  950: oklch(0.14 0.004 70),
+);
+
+// 2. High-Intent Liturgical Motion & Easing Curves
+// Built with purpose: each ease communicates physical intent and prevents orientation loss.
+$ease-reverent: cubic-bezier(0.16, 1, 0.3, 1); // Deliberate, smooth deceleration for sacred content
+$ease-tactile: cubic-bezier(0.2, 0, 0, 1); // Snappy physical response for controls
+$ease-transit: cubic-bezier(0.22, 1, 0.36, 1); // Spatial continuity during page/hierarchy changes
+$ease-contemplative: cubic-bezier(0.37, 0, 0.63, 1); // Smooth cyclical breathing
+
+// 3. Durations
+$duration-micro: 150ms;
+$duration-normal: 260ms;
+$duration-transit: 400ms;
+$duration-sacred: 700ms;
+$duration-breathe: 2800ms;
+
+// 4. Hairline Borders & Structural Radii
+$radius-control: 0.625rem; // 10px - controls, buttons, inputs
+$radius-card: 0.875rem; // 14px - content cards, dialogue blocks
+$radius-panel: 1.25rem; // 20px - structural panels
+$radius-ribbon: 9999px; // Circular pills, breadcrumbs, tags
+
+// 5. Solid Architectural Elevations (Tactile Physics, Zero Translucent Blur)
+$shadow-substrate: 0 1px 2px 0 oklch(0 0 0 / 0.05);
+$shadow-podium:
+  0 4px 12px -2px oklch(0.15 0.03 265 / 0.08),
+  0 2px 6px -1px oklch(0 0 0 / 0.04);
+$shadow-cathedral:
+  0 16px 36px -6px oklch(0.12 0.04 265 / 0.16),
+  0 6px 16px -4px oklch(0 0 0 / 0.06);
+$shadow-monolith:
+  0 24px 60px -12px oklch(0.1 0.05 265 / 0.22),
+  0 8px 24px -6px oklch(0 0 0 / 0.08);

@@ -89,7 +89,7 @@ function ScrollTop({ suppressed }: { suppressed: boolean }) {
             : "pointer-events-none translate-y-3 scale-90 opacity-0",
         )}
       >
-        <svg aria-hidden viewBox="0 0 48 48" className="absolute inset-0 -rotate-90">
+        <svg aria-hidden viewBox="0 0 48 48" className="absolute inset-0 size-full -rotate-90">
           <circle
             cx="24"
             cy="24"

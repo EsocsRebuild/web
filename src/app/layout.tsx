@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import { Suspense } from "react";
 
 import { SkipLink } from "@/components/layout/skip-link";
+import { RouteFilament } from "@/components/motion/route-filament";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { AppSplash } from "@/components/shell/app-splash";
 import { AppHeader } from "@/components/shell/app-header";
@@ -15,6 +17,7 @@ import { fontVariables } from "@/lib/fonts";
 import { absoluteUrl } from "@/lib/utils";
 
 import "./globals.css";
+import "@/styles/system.scss";
 
 // Upcoming events and the announcement ticker depend on today's date.
 export const revalidate = 3600;
@@ -49,13 +52,16 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={fontVariables} suppressHydrationWarning>
+    <html lang="en" className={fontVariables} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         {/* The splash paints these first; fetch them before anything else. */}
         <link rel="preload" as="image" href="/brand/splash-bg.webp" fetchPriority="high" />
         <link rel="preload" as="image" href="/brand/esocs-crest-192.webp" fetchPriority="high" />
       </head>
       <body className="flex min-h-dvh flex-col">
+        <Suspense fallback={null}>
+          <RouteFilament />
+        </Suspense>
         <AppSplash />
         <Providers>
           <SkipLink />

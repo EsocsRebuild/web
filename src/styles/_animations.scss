@@ -1,0 +1,89 @@
+// ============================================================================
+// ESOCS Sacred Order - High-Intent Motion Architecture
+// Every motion serves spatial wayfinding, orientation continuity, and reverence.
+// Zero meaningless "vibe animations"; purely functional and dignified physics.
+// ============================================================================
+
+@use "tokens" as *;
+
+// 1. Spatial Transit Reveal (Leaves no user disoriented during route/hierarchy change)
+@keyframes transit-spatial-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.996);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// 2. Sacred Presence Breathe (Subtle, dignified respiratory cycle on sacred focal points)
+@keyframes sacred-presence-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px oklch(0.72 0.115 76 / 0));
+  }
+  50% {
+    transform: scale(1.015);
+    filter: drop-shadow(0 0 6px oklch(0.72 0.115 76 / 0.35));
+  }
+}
+
+// 3. Route Filament Traverse (Continuous feedback across view switches)
+@keyframes filament-pulse {
+  0% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.25);
+  }
+  100% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
+}
+
+// 4. Ribbon Landmark Reveal (For lateral hierarchy navigation)
+@keyframes ribbon-mount {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Animation Utility Classes
+.animate-transit-in {
+  animation: transit-spatial-in $duration-transit $ease-reverent forwards;
+}
+
+.animate-sacred-breathe {
+  animation: sacred-presence-breathe $duration-breathe $ease-contemplative infinite;
+}
+
+.animate-filament-pulse {
+  animation: filament-pulse 1800ms ease-in-out infinite;
+}
+
+.animate-ribbon-mount {
+  animation: ribbon-mount $duration-normal $ease-transit forwards;
+}
+
+// Reduced Motion Safety
+@media (prefers-reduced-motion: reduce) {
+  .animate-transit-in,
+  .animate-sacred-breathe,
+  .animate-filament-pulse,
+  .animate-ribbon-mount {
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}

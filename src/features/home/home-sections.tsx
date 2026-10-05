@@ -120,8 +120,13 @@ export function Succession({ people }: { people: Person[] }) {
       <div className="mx-auto grid max-w-wide gap-8 px-gutter py-14 sm:py-16">
         <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-3">
           <div className="grid max-w-xl gap-2">
-            <h2 id="succession-heading" className="font-display text-display-sm font-extrabold">
-              The line of succession
+            <p className="text-overline font-semibold text-highlight uppercase">Sacred Lineage</p>
+            <h2
+              id="succession-heading"
+              className="font-display text-[clamp(1.5rem,1.25rem+1.5vw,2.75rem)] leading-[1.15] font-extrabold tracking-tight text-balance"
+            >
+              The line of succession,{" "}
+              <span className="font-serif font-normal text-accent italic">in continuity.</span>
             </h2>
             <p className="text-[0.9375rem] leading-7 text-muted-foreground">
               From Saint Moses Orimolade Tunolase to His Most Eminence today:{" "}

@@ -1,13 +1,4 @@
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CalendarDays,
-  HandHeart,
-  MapPin,
-  PlayCircle,
-  Search,
-  ShoppingBag,
-} from "lucide-react";
+import { ArrowRight, MapPin, Search } from "lucide-react";
 import Link from "next/link";
 
 import { SmartImage } from "@/components/media/smart-image";
@@ -18,7 +9,7 @@ import { DateBadge } from "@/components/patterns/date-badge";
 import { Paragraphs } from "@/components/patterns/paragraphs";
 import { ReadMore } from "@/components/patterns/read-more";
 import { SectionHeading } from "@/components/patterns/section-heading";
-import type { ChurchEvent, ImageRef, Organisation, Person, Post, Unit } from "@/data/schema/content";
+import type { ChurchEvent, ImageRef, Organisation, Post, Unit } from "@/data/schema/content";
 import { formatLongDate } from "@/lib/format";
 import { POST_KIND } from "@/lib/kinds";
 import { routes } from "@/lib/routes";
@@ -41,80 +32,17 @@ export function HomeBand({
   );
 }
 
-const PATHS = [
-  {
-    href: routes.find(),
-    icon: MapPin,
-    title: "Find a church",
-    body: "Houses of prayer, provinces and headquarters near you.",
-  },
-  {
-    href: routes.events(),
-    icon: CalendarDays,
-    title: "Events",
-    body: "Services, programmes and the church calendar.",
-  },
-  {
-    href: routes.media(),
-    icon: PlayCircle,
-    title: "Watch & listen",
-    body: "Photo albums, videos and the radio ministry.",
-  },
-  {
-    href: routes.store(),
-    icon: ShoppingBag,
-    title: "Store",
-    body: "Hymn books, garments and centenary keepsakes.",
-  },
-  {
-    href: routes.give(),
-    icon: HandHeart,
-    title: "Give",
-    body: "Support the work of the Order with a seed of love.",
-  },
-] as const;
+import { QuickPathsDeck } from "./quick-paths-deck";
+import { WhoWeAre } from "./who-we-are";
+
+export { QuickPathsDeck, WhoWeAre };
 
 /** The things most people come for, one tap away, straight after the hero. */
 export function QuickPaths() {
-  return (
-    <nav aria-label="Start here" className="relative z-10 mx-auto -mt-10 max-w-wide px-gutter sm:-mt-14">
-      <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-panel border border-border bg-border shadow-[0_24px_60px_-30px_oklch(0.25_0.08_265/0.45)] sm:grid-cols-6 lg:grid-cols-5">
-        {PATHS.map(({ href, icon: Icon, title, body }, i) => (
-          <li
-            key={href}
-            // Rows that always fill: 1+2+2 on phones, 3+2 on tablets, 5 across on desktops.
-            className={cn(
-              "bg-surface lg:col-span-1",
-              i === 0 && "col-span-2",
-              i < 3 ? "sm:col-span-2" : "sm:col-span-3",
-            )}
-          >
-            <Link
-              href={href}
-              className="group/path flex h-full flex-col gap-3 p-4 transition-colors hover:bg-accent-soft/60 sm:p-5"
-            >
-              <span className="flex items-center justify-between">
-                <span className="inline-flex size-10 items-center justify-center rounded-control bg-accent-soft text-accent-soft-foreground">
-                  <Icon aria-hidden className="size-5" />
-                </span>
-                <ArrowUpRight
-                  aria-hidden
-                  className="size-4 text-subtle-foreground transition-transform group-hover/path:translate-x-0.5 group-hover/path:-translate-y-0.5 group-hover/path:text-foreground"
-                />
-              </span>
-              <span className="grid gap-1">
-                <span className="font-display text-base font-bold sm:text-lg">{title}</span>
-                <span className="hidden text-sm leading-6 text-muted-foreground sm:block">{body}</span>
-              </span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  );
+  return <QuickPathsDeck />;
 }
 
-/** Who we are: the summary beside a photograph, the vision, and the FLOSH values. */
+/** Who we are: modern multi-perspective sanctuary architecture, vision, FLOSH pillars, and centenary monument. */
 export function Welcome({
   org,
   photo,
@@ -122,85 +50,7 @@ export function Welcome({
   org: Organisation;
   photo: { image: ImageRef; caption: string } | null;
 }) {
-  return (
-    <HomeBand aria-labelledby="welcome-heading">
-      <div className="grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:gap-16">
-        <div className="grid content-start gap-5">
-          <p className="text-overline font-semibold text-highlight uppercase">Who we are</p>
-          <h2 id="welcome-heading" className="font-display text-display-md font-extrabold text-balance">
-            One Order of prayer,{" "}
-            <span className="font-serif font-normal text-accent italic">since {org.founded}.</span>
-          </h2>
-          <p className="max-w-xl text-base leading-7 text-muted-foreground sm:text-[1.0625rem] sm:leading-8">
-            {org.summary}
-          </p>
-          <figure className="rounded-panel bg-accent-soft px-6 py-5 text-accent-soft-foreground">
-            <p className="text-overline font-semibold uppercase opacity-80">Our vision</p>
-            <blockquote className="mt-2 font-serif text-xl leading-snug italic sm:text-2xl">
-              {org.vision}
-            </blockquote>
-          </figure>
-          <div className="grid gap-3">
-            <p className="text-overline font-semibold text-subtle-foreground uppercase">What we live by</p>
-            <ul className="flex flex-wrap gap-2">
-              {org.coreValues.map((v) => (
-                <li
-                  key={v.letter + v.value}
-                  className="inline-flex items-center gap-2 rounded-pill border border-border bg-surface py-1 pr-3.5 pl-1 text-sm font-semibold"
-                >
-                  <span
-                    aria-hidden
-                    className="inline-flex size-7 items-center justify-center rounded-full bg-royal-900 font-display text-sm font-bold text-gold-100"
-                  >
-                    {v.letter}
-                  </span>
-                  {v.value}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex flex-wrap gap-x-6 gap-y-2">
-            <Link
-              href={routes.unit("esocs")}
-              className="group/link inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-accent hover:text-accent-hover"
-            >
-              About the Holy Order
-              <ArrowRight
-                aria-hidden
-                className="size-4 transition-transform group-hover/link:translate-x-0.5"
-              />
-            </Link>
-            <Link
-              href={routes.history()}
-              className="inline-flex min-h-11 items-center text-sm font-semibold text-muted-foreground hover:text-foreground"
-            >
-              Our history
-            </Link>
-          </div>
-        </div>
-
-        {photo && (
-          <div className="relative aspect-[4/5] overflow-hidden rounded-panel bg-surface-sunken sm:aspect-[4/3] lg:aspect-[4/5]">
-            <SmartImage
-              image={photo.image}
-              fill
-              frame={{ width: 4, height: 5 }}
-              sizes="(min-width: 1024px) 600px, 100vw"
-              className="parallax-media object-cover"
-            />
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-royal-950/60 to-transparent"
-            />
-            <p className="absolute bottom-4 left-5 flex items-center gap-2 text-sm font-semibold text-white">
-              <span aria-hidden className="h-px w-6 bg-gold-300" />
-              {photo.caption}
-            </p>
-          </div>
-        )}
-      </div>
-    </HomeBand>
-  );
+  return <WhoWeAre org={org} photo={photo} />;
 }
 
 /** What's coming: the next few dates, with the full calendar one tap away. */
@@ -210,7 +60,13 @@ export function UpcomingBand({ events }: { events: ChurchEvent[] }) {
       <SectionHeading
         id="upcoming-heading"
         eyebrow="Coming up"
-        title="Dates for the family"
+        title={
+          <>
+            Dates for the family,{" "}
+            <span className="font-serif font-normal text-accent italic">in fellowship.</span>
+          </>
+        }
+        size="lg"
         href={routes.events()}
         linkLabel="All events"
       />
@@ -272,13 +128,19 @@ export function LatestNews({ posts, units }: { posts: Post[]; units: Map<string,
       <SectionHeading
         id="news-heading"
         eyebrow="Latest"
-        title="News from across the Order"
+        title={
+          <>
+            News from across the Order,{" "}
+            <span className="font-serif font-normal text-accent italic">worldwide.</span>
+          </>
+        }
+        size="lg"
         href={routes.news()}
         linkLabel="All news"
       />
       <div className="grid gap-8 lg:grid-cols-[1.35fr_1fr] lg:gap-10">
         <article className="group/lead relative grid content-start gap-4">
-          <div className="relative aspect-[16/10] overflow-hidden rounded-panel bg-surface-sunken">
+          <div className="relative aspect-16/10 overflow-hidden rounded-panel bg-surface-sunken">
             {leadImage ? (
               <SmartImage
                 image={leadImage}
@@ -375,8 +237,12 @@ export function FindBand({ pageCount, headquarters }: { pageCount: number; headq
         />
         <div className="grid gap-5">
           <p className="text-overline font-semibold text-highlight uppercase">Worldwide</p>
-          <h2 id="find-heading" className="font-display text-display-sm font-extrabold text-balance">
-            There’s a house of prayer near you.
+          <h2
+            id="find-heading"
+            className="font-display text-[clamp(1.75rem,1.4rem+1.6vw,3.25rem)] leading-[1.15] font-extrabold tracking-tight text-balance text-white"
+          >
+            There’s a house of prayer{" "}
+            <span className="font-serif font-normal text-highlight italic">near you.</span>
           </h2>
           <p className="text-base leading-7 text-muted-foreground">
             Search {pageCount} churches, provinces and headquarters in Nigeria and abroad.
@@ -426,7 +292,7 @@ export function FindBand({ pageCount, headquarters }: { pageCount: number; headq
               <li key={hq.slug}>
                 <Link
                   href={routes.unit(hq.slug)}
-                  className="group/hq flex items-center gap-4 rounded-card border border-white/10 bg-white/[0.04] p-4 transition-colors hover:border-white/25 hover:bg-white/[0.08]"
+                  className="group/hq flex items-center gap-4 rounded-card border border-white/10 bg-white/4 p-4 transition-colors hover:border-white/25 hover:bg-white/8"
                 >
                   <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-highlight">
                     <MapPin aria-hidden className="size-5" />
@@ -451,104 +317,5 @@ export function FindBand({ pageCount, headquarters }: { pageCount: number; headq
   );
 }
 
-/**
- * The Baba Aladura's welcome, in his own words, before the life of the church
- * this week. His portrait drifts in its frame; the message links to the full text.
- */
-export function BabaAladuraMessage({
-  message,
-  shepherd,
-  portrait,
-  href,
-}: {
-  message: Organisation["message"];
-  shepherd: Person | undefined;
-  portrait: ImageRef | null;
-  href: string;
-}) {
-  const [opening = "", ...rest] = message.body;
-  // The opening blessing is the first sentence of the message.
-  const greeting = opening.split(/(?<=[.!?])\s+/)[0]?.trim() ?? "";
-  // Everything after the opening blessing, so nothing is said twice.
-  const messageText = [opening.slice(greeting.length).trim(), ...rest].filter(Boolean);
-  return (
-    <section aria-labelledby="message-heading" className="relative isolate overflow-hidden bg-surface">
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-gold-400/70 to-transparent"
-      />
-      <div className="mx-auto grid max-w-wide gap-10 px-gutter py-16 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-        <div className="relative">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-panel bg-royal-950 sm:aspect-[16/10] lg:aspect-[4/5]">
-            {portrait ? (
-              <SmartImage
-                image={portrait}
-                fill
-                sizes="(min-width: 1024px) 1280px, 170vw"
-                className="parallax-media object-cover object-[60%_30%]"
-              />
-            ) : (
-              <Cover image={null} kind="holy-order" className="absolute inset-0" />
-            )}
-            <div
-              aria-hidden
-              className="absolute inset-x-0 bottom-0 h-2/5 bg-linear-to-t from-royal-950/85 to-transparent"
-            />
-            {shepherd && (
-              <div className="absolute inset-x-5 bottom-5 grid gap-0.5 text-white">
-                <p className="text-overline font-semibold text-gold-300 uppercase">His Most Eminence</p>
-                <p className="font-display text-lg font-bold">
-                  {shepherd.honorific ? `${shepherd.honorific} ` : ""}
-                  {shepherd.name}
-                </p>
-                <p className="text-sm text-white/80">Baba Aladura & Prelate</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="grid content-start gap-5">
-          <p className="text-overline font-semibold text-highlight uppercase">
-            A welcome from the Baba Aladura
-          </p>
-          <h2 id="message-heading" className="font-display text-display-md font-extrabold text-balance">
-            Welcome to ESOCS Worldwide
-          </h2>
-          {greeting && (
-            <p className="font-serif text-[1.5rem] leading-snug text-balance italic sm:text-[1.75rem]">
-              “{greeting}”
-            </p>
-          )}
-          {messageText.length > 0 && (
-            <ReadMore
-              lines={5}
-              moreLabel="Read the full message"
-              className="max-w-2xl"
-              contentClassName="text-base leading-7 text-muted-foreground sm:text-[1.0625rem] sm:leading-8"
-            >
-              <Paragraphs text={messageText} />
-            </ReadMore>
-          )}
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-1">
-            <Link
-              href={href}
-              className="group/link inline-flex min-h-11 items-center gap-1.5 rounded-pill bg-primary px-5 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
-            >
-              Comment on the {message.title}
-              <ArrowRight
-                aria-hidden
-                className="size-4 transition-transform group-hover/link:translate-x-0.5"
-              />
-            </Link>
-            <Link
-              href={routes.leaders()}
-              className="inline-flex min-h-11 items-center text-sm font-semibold text-muted-foreground hover:text-foreground"
-            >
-              The Baba Aladuras since 1925
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+export { PatriarchalWelcome, type PatriarchalWelcomeProps } from "./patriarchal-welcome";
+export { PatriarchalWelcome as BabaAladuraMessage } from "./patriarchal-welcome";

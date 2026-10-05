@@ -192,32 +192,37 @@ export function CheckoutForm({ catalogue }: { catalogue: Product[] }) {
   };
 
   const hq = siteConfig.contact.headquarters;
-  const option = (value: FulfilmentMethod, Icon: typeof MapPin, title: string, body: string) => (
-    <label
-      className={cn(
-        "flex cursor-pointer items-start gap-3 rounded-card border p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40",
-        fulfilment === value
-          ? "border-foreground bg-surface-muted"
-          : "border-border-strong hover:border-foreground",
-      )}
-    >
-      <input
-        type="radio"
-        name="fulfilment"
-        value={value}
-        checked={fulfilment === value}
-        onChange={() => setFulfilment(value)}
-        className="mt-1 size-4 accent-[var(--color-royal-700)]"
-      />
-      <span className="grid gap-1">
-        <span className="flex items-center gap-2 font-semibold">
-          <Icon aria-hidden className="size-4 text-accent" />
-          {title}
+  const option = (value: FulfilmentMethod, Icon: typeof MapPin, title: string, body: string) => {
+    const id = `fulfilment-${value}`;
+    return (
+      <label
+        htmlFor={id}
+        className={cn(
+          "flex cursor-pointer items-start gap-3 rounded-card border p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-ring/40",
+          fulfilment === value
+            ? "border-foreground bg-surface-muted"
+            : "border-border-strong hover:border-foreground",
+        )}
+      >
+        <input
+          id={id}
+          type="radio"
+          name="fulfilment"
+          value={value}
+          checked={fulfilment === value}
+          onChange={() => setFulfilment(value)}
+          className="mt-1 size-4 accent-[var(--color-royal-700)]"
+        />
+        <span className="grid gap-1">
+          <span className="flex items-center gap-2 font-semibold">
+            <Icon aria-hidden className="size-4 text-accent" />
+            {title}
+          </span>
+          <span className="text-sm leading-6 text-muted-foreground">{body}</span>
         </span>
-        <span className="text-sm leading-6 text-muted-foreground">{body}</span>
-      </span>
-    </label>
-  );
+      </label>
+    );
+  };
 
   return (
     <form

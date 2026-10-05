@@ -61,7 +61,7 @@ export function YourChurchCard({ churches, reach }: { churches: ChurchNames; rea
       aria-labelledby="find-your-church"
       className="dark relative isolate overflow-hidden rounded-panel border border-white/10 bg-inverse text-foreground"
     >
-      <div className="relative h-32">
+      <div className="relative h-32 min-h-32 w-full overflow-hidden">
         <Image
           src="/brand/hero-mount-zion.webp"
           alt=""

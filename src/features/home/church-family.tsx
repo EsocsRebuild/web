@@ -82,7 +82,7 @@ function resolve(): FamilyCard[] {
       image: photo ? { ...photo, alt: g.photo.alt } : null,
       focus: g.photo.focus,
       link: unit
-        ? { label: "Explore", href: routes.unit(unit.slug) }
+        ? { label: `Explore ${g.title}`, href: routes.unit(unit.slug) }
         : event
           ? { label: event.title, href: routes.event(event.slug) }
           : "link" in g
@@ -96,11 +96,17 @@ function resolve(): FamilyCard[] {
 /** "Our church family": the generations as a row to swipe or step through. */
 export function ChurchFamily() {
   return (
-    <section aria-labelledby="family-heading" className="grid gap-6">
+    <section aria-labelledby="family-heading" className="grid max-w-full min-w-0 gap-6">
       <SectionHeading
         id="family-heading"
         eyebrow="Our church family"
-        title="Every generation has a place"
+        title={
+          <>
+            Every generation has a place,{" "}
+            <span className="font-serif font-normal text-accent italic">in worship.</span>
+          </>
+        }
+        size="lg"
         href={routes.sections()}
         linkLabel="All sections"
       />

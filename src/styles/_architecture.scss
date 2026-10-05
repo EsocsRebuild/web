@@ -1,0 +1,91 @@
+// ============================================================================
+// ESOCS Sacred Order - Solid UI Architectures
+// Authentic solid physical materials replacing glassmorphic AI templates.
+// ============================================================================
+
+@use "sass:map";
+@use "tokens" as *;
+@use "mixins" as *;
+
+// 1. The Monolith: Primary solid content card with bevel rim lighting
+.ui-monolith {
+  @include physical-surface(1);
+  border-radius: $radius-card;
+  transition:
+    transform $duration-normal $ease-reverent,
+    box-shadow $duration-normal $ease-reverent;
+
+  &:hover {
+    box-shadow: $shadow-podium;
+    transform: translateY(-1px);
+  }
+}
+
+// 2. The Altar Slab: Deep inverse physical block for sacred / solemn segments
+.ui-altar-slab {
+  @include physical-inverse(2);
+  border-radius: $radius-panel;
+}
+
+// 3. The Hierarchy Wayfinding Ribbon: Physical context anchor
+.ui-wayfinding-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: $radius-ribbon;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  box-shadow: $shadow-substrate;
+  font-size: 0.75rem;
+  letter-spacing: -0.01em;
+  @include transit-anchor;
+}
+
+// 4. Tactile Action Podium: High-significance physical CTA
+.ui-action-podium {
+  @include tactile-control;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-control;
+  font-weight: 600;
+  font-size: 0.875rem;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow:
+    0 1px 2px 0 oklch(0 0 0 / 0.12),
+    inset 0 1px 0 0 oklch(1 0 0 / 0.18);
+
+  &:hover {
+    background-color: var(--primary-hover);
+    box-shadow:
+      0 2px 6px -1px oklch(0.15 0.05 265 / 0.25),
+      inset 0 1px 0 0 oklch(1 0 0 / 0.22);
+  }
+}
+
+// 5. Sacred Gold Ingot: Giving and Covenant primary button
+.ui-gold-ingot {
+  @include tactile-control;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-control;
+  font-weight: 700;
+  font-size: 0.875rem;
+  background-color: map.get($palette-gold, 500);
+  color: map.get($palette-royal, 950);
+  box-shadow:
+    0 1px 3px 0 oklch(0 0 0 / 0.15),
+    inset 0 1px 0 0 oklch(1 0 0 / 0.3);
+
+  &:hover {
+    background-color: map.get($palette-gold, 400);
+    box-shadow:
+      0 3px 8px -1px oklch(0.72 0.115 76 / 0.4),
+      inset 0 1px 0 0 oklch(1 0 0 / 0.45);
+  }
+}

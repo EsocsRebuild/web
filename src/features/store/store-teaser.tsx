@@ -56,9 +56,10 @@ export function StoreTeaser() {
               </p>
               <h2
                 id="store-teaser-heading"
-                className="font-display text-display-sm leading-tight font-extrabold text-balance"
+                className="font-display text-[clamp(1.5rem,1.25rem+1.5vw,2.75rem)] leading-[1.15] font-extrabold tracking-tight text-balance text-white"
               >
-                For worship at church and at home
+                For worship at church{" "}
+                <span className="font-serif font-normal text-highlight italic">and at home.</span>
               </h2>
               <p className="max-w-lg text-[0.9375rem] leading-7 text-pretty text-muted-foreground">
                 Hymn books, the Holy Bible, white garments and keepsakes of the centenary, from the Order’s

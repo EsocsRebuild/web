@@ -1,6 +1,4 @@
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
-
+import { SectionHeading } from "@/components/patterns/section-heading";
 import { Announcements } from "@/components/shell/announcements";
 import { getContent } from "@/data/content";
 import { FeedList } from "@/features/feed/feed-list";
@@ -13,9 +11,9 @@ import {
   FindBand,
   HomeBand,
   LatestNews,
-  QuickPaths,
+  QuickPathsDeck,
   UpcomingBand,
-  Welcome,
+  WhoWeAre,
 } from "@/features/home/story-bands";
 import { ChurchFamily } from "@/features/home/church-family";
 import { GiveAppeal } from "@/features/home/story-sections";
@@ -45,7 +43,8 @@ export default function HomePage() {
   const albumSizes = Object.fromEntries(content.listGalleries().map((g) => [g.slug, g.photos.length]));
 
   const shepherd = people.find((p) => p.tenure.to === null);
-  const shepherdPhoto = org.heroSlides.find((s) => /baba aladura/i.test(s.title))?.image ?? null;
+  const shepherdPhoto =
+    org.heroSlides.find((s) => /baba aladura/i.test(s.title))?.image ?? shepherd?.portrait ?? null;
   const messagePost = content.getFeed({ kind: "message", limit: 1 }).items[0];
 
   // The editorial spread shows the latest four and the Baba Aladura's message has its
@@ -126,19 +125,9 @@ export default function HomePage() {
   return (
     <>
       <HeroScenes scenes={scenes} findHref={routes.find()} footer={<Announcements variant="hero" />} />
-      <QuickPaths />
-      <Welcome
-        org={org}
-        photo={centenary && centenaryPhoto ? { image: centenaryPhoto, caption: centenary.title } : null}
-      />
-      <UpcomingBand events={upcoming} />
-      <LatestNews posts={editorial} units={unitsBySlug} />
-      <HomeBand tone="raised" aria-label="Our church family">
-        <ChurchFamily />
-      </HomeBand>
-      <FindBand pageCount={units.length} headquarters={headquarters} />
+      <QuickPathsDeck />
 
-      {/* The Baba Aladura's welcome, then the life of the church this week. */}
+      {/* The Baba Aladura's Patriarchal Welcome & Apostolic Address */}
       <BabaAladuraMessage
         message={org.message}
         shepherd={shepherd}
@@ -152,6 +141,18 @@ export default function HomePage() {
         }
         href={messagePost ? routes.post(messagePost.id) : routes.news("message")}
       />
+
+      <WhoWeAre
+        org={org}
+        photo={centenary && centenaryPhoto ? { image: centenaryPhoto, caption: centenary.title } : null}
+      />
+      <UpcomingBand events={upcoming} />
+      <LatestNews posts={editorial} units={unitsBySlug} />
+      <HomeBand tone="raised" aria-label="Our church family">
+        <ChurchFamily />
+      </HomeBand>
+      <FindBand pageCount={units.length} headquarters={headquarters} />
+
       <div className="mx-auto grid max-w-wide gap-8 border-t border-border px-gutter py-12 lg:grid-cols-[minmax(0,1fr)_var(--spacing-rail-right)] lg:py-16 xl:grid-cols-[16.5rem_minmax(0,1fr)_var(--spacing-rail-right)] xl:gap-10">
         <OrderIndex
           root={root}
@@ -165,21 +166,18 @@ export default function HomePage() {
         <div className="grid min-w-0 grid-cols-1 content-start gap-6">
           <SealsRow units={[root, ...headquarters, ...sections, ...cmcs]} />
           <section aria-labelledby="feed-heading" className="grid gap-4">
-            <div className="flex items-end justify-between gap-4">
-              <h2 id="feed-heading" className="font-display text-display-sm font-extrabold">
-                Life across the Order
-              </h2>
-              <Link
-                href={routes.news()}
-                className="group/more inline-flex min-h-10 items-center gap-1 text-sm font-semibold text-accent hover:text-accent-hover"
-              >
-                All news
-                <ArrowRight
-                  aria-hidden
-                  className="size-4 transition-transform group-hover/more:translate-x-0.5"
-                />
-              </Link>
-            </div>
+            <SectionHeading
+              id="feed-heading"
+              title={
+                <>
+                  Life across the Order,{" "}
+                  <span className="font-serif font-normal text-accent italic">in communion.</span>
+                </>
+              }
+              size="lg"
+              href={routes.news()}
+              linkLabel="All news"
+            />
             <FeedList initial={feed} excludeIds={excludeIds} albumSizes={albumSizes} />
           </section>
         </div>

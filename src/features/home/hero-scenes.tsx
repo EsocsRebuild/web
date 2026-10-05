@@ -131,7 +131,7 @@ export function HeroScenes({
       data-overlay-hero
       aria-roledescription="carousel"
       aria-label="The church family"
-      className="dark relative isolate flex min-h-[max(38rem,100svh)] touch-pan-y flex-col overflow-hidden bg-inverse text-foreground"
+      className="dark relative isolate flex h-[max(38rem,100svh)] min-h-[max(38rem,100svh)] w-full touch-pan-y flex-col overflow-hidden bg-inverse text-foreground"
       onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
       onPointerLeave={() => setHovered(false)}
       onFocusCapture={() => setFocused(true)}
@@ -154,13 +154,13 @@ export function HeroScenes({
       }}
     >
       {/* Photographs: stacked and crossfading; the active one drifts in or out. */}
-      <div aria-hidden className="absolute inset-0 -z-30">
+      <div aria-hidden className="absolute inset-0 -z-30 h-full w-full">
         {scenes.map((s, i) =>
           mounted.has(i) ? (
             <div
               key={s.id}
               className={cn(
-                "absolute inset-0 transition-opacity duration-[1600ms] ease-[var(--ease-standard)]",
+                "absolute inset-0 h-full w-full transition-opacity duration-1600 ease-standard",
                 i === index ? "opacity-100" : "opacity-0",
               )}
             >
@@ -214,10 +214,10 @@ export function HeroScenes({
 
           <h1
             aria-label={`${scene.lead} ${scene.accent}`}
-            className="font-display text-[clamp(1.95rem,1.35rem+2.3vw,3.5rem)] leading-[1] font-extrabold tracking-[-0.03em] text-balance"
+            className="font-display text-[clamp(1.8rem,1.35rem+1.6vw,2.85rem)] leading-[1.05] font-extrabold tracking-[-0.026em] text-balance"
           >
             <RisingWords text={scene.lead} start={120} />
-            <span className="block font-serif text-[1.08em] leading-[1.02] font-normal tracking-[-0.005em] italic">
+            <span className="block font-serif text-[1.04em] leading-[1.06] font-normal tracking-[-0.008em] italic">
               <RisingWords
                 text={scene.accent}
                 start={120 + scene.lead.split(" ").length * 80}

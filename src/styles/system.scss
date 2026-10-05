@@ -1,0 +1,9 @@
+// ============================================================================
+// ESOCS Sacred Order - Master Sass Design System Entrypoint
+// Integrates tokens, physical surface mixins, high-intent animations, and architectures.
+// ============================================================================
+
+@forward "tokens";
+@forward "mixins";
+@forward "animations";
+@forward "architecture";
