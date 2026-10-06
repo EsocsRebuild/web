@@ -12,6 +12,8 @@
     "format": "prettier --write --cache .",
     "format:check": "prettier --check --cache .",
     "test": "vitest run",
+    "test:unit": "vitest run --project unit",
+    "test:githooks": "vitest run --project githooks",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test",

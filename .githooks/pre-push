@@ -83,4 +83,4 @@ ensure_dependencies
 run_step format "Formatting" npm_script format:check
 run_step lint "Lint" npm_script lint
 run_step typecheck "Type-check" npm_script typecheck
-run_step tests "Unit tests" npm_script test
+run_step tests "Unit tests" npm_script test:unit
