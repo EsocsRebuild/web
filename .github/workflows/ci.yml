@@ -76,13 +76,10 @@ jobs:
           path: ~/.cache/ms-playwright
           key: ${{ runner.os }}-playwright-${{ hashFiles('package-lock.json') }}
 
-      - name: Install Playwright Browsers
-        if: steps.playwright-cache.outputs.cache-hit != 'true'
+      - name: Install Playwright Browsers & Dependencies
         run: npx playwright install --with-deps chromium webkit
-
-      - name: Install Playwright System Dependencies
-        if: steps.playwright-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium webkit
+        env:
+          DEBIAN_FRONTEND: noninteractive
 
       - run: npm run test:githooks
       - run: npm run build
