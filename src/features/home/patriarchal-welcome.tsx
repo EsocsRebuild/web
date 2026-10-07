@@ -10,6 +10,7 @@ import {
   Crown,
   Heart,
   Maximize2,
+  MessageSquare,
   Quote,
   Scroll,
   Sparkles,
@@ -149,51 +150,56 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
         <div className="grid gap-8 lg:grid-cols-[22rem_minmax(0,1fr)] lg:items-stretch xl:grid-cols-[25rem_minmax(0,1fr)] xl:gap-12">
           {/* Left Monument: Altar Portrait & Ecclesiastical Inscription Board */}
           <div className="flex flex-col justify-between">
-            <div className={cn(styles.monolithFrame, "shadow-monolith flex flex-col")}>
+            <div className="flex flex-col overflow-hidden rounded-2xl border border-gold-500/30 bg-royal-950 shadow-2xl transition-all duration-300 hover:border-gold-400/50">
               {/* Portrait Canvas */}
-              <div className="relative aspect-4/5 w-full overflow-hidden bg-royal-950 sm:aspect-4/3 lg:aspect-4/5">
+              <div className="relative aspect-4/5 w-full overflow-hidden bg-linear-to-b from-royal-900 via-royal-950 to-royal-950 sm:aspect-4/3 lg:aspect-4/5">
                 {portrait ? (
                   <SmartImage
                     image={portrait}
                     fill
                     sizes="(min-width: 1280px) 400px, (min-width: 1024px) 352px, 100vw"
-                    className="object-cover object-[60%_25%] transition-transform duration-700 hover:scale-105"
+                    className="object-cover object-top transition-transform duration-700 hover:scale-105"
                   />
                 ) : (
                   <Cover image={null} kind="holy-order" className="absolute inset-0" />
                 )}
 
-                {/* Altar Shadowing */}
+                {/* Altar Shadowing Overlay */}
                 <div
                   aria-hidden
-                  className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-royal-950/90 via-royal-950/40 to-transparent"
+                  className="absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-royal-950 via-royal-950/60 to-transparent"
                 />
 
                 {/* Status Indicator */}
                 <div className="absolute top-4 right-4 z-10">
-                  <span className="inline-flex items-center gap-1.5 rounded-pill bg-royal-950/90 px-3 py-1 text-xs font-semibold text-gold-300 ring-1 ring-gold-400/40">
-                    <span className="size-2 rounded-full bg-gold-400" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-royal-950/90 px-3.5 py-1 text-xs font-bold text-gold-300 shadow-md ring-1 ring-gold-400/50 backdrop-blur-md">
+                    <span className="size-2 animate-pulse rounded-full bg-gold-400" />
                     Reigning Prelate
                   </span>
                 </div>
               </div>
 
               {/* The Plinth: Formal Ecclesiastical Credentials */}
-              <div className={styles.prelatePlinth}>
-                <p className="text-[0.6875rem] font-bold tracking-widest text-gold-400 uppercase">
-                  His Most Eminence
-                </p>
-                <h3 className="mt-1 font-display text-lg font-extrabold text-white sm:text-xl">
-                  {shepherd ? `${shepherd.honorific} ${shepherd.name}` : "Dr. David D. L. Bob-Manuel"}
+              <div className="border-t border-gold-500/20 bg-royal-950 p-6 text-white">
+                <div className="mb-1 flex items-center gap-1.5 text-[0.6875rem] font-bold tracking-widest text-gold-400 uppercase">
+                  <Crown className="size-3.5 shrink-0 text-gold-400" />
+                  <span>His Most Eminence</span>
+                </div>
+                <h3 className="font-display text-xl leading-snug font-extrabold tracking-tight text-white sm:text-2xl">
+                  {shepherd
+                    ? `${shepherd.honorific} ${shepherd.name}`
+                    : "Elder (Dr.) David Dabaye Lamjose Bob-Manuel"}
                 </h3>
-                <p className="mt-0.5 text-xs font-medium text-white/80">
+                <p className="mt-1 text-xs leading-relaxed font-semibold text-gold-200/90">
                   Moses Orimolade IX · Prelate of the ESOCS Church Worldwide
                 </p>
 
-                <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-white/10 pt-2.5 text-[0.6875rem] text-gold-200/90">
-                  <span>Watchword: Sustained by God&apos;s Endless Mercies</span>
-                  <span className="text-white/40">·</span>
-                  <span>Lam. 3:21</span>
+                <div className="mt-4 flex flex-wrap items-center gap-2 border-t border-white/15 pt-3">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-400/10 px-3.5 py-1 text-xs font-semibold text-gold-300 shadow-xs ring-1 ring-gold-400/30">
+                    <span>Watchword: Sustained by God&apos;s Endless Mercies</span>
+                    <span className="text-gold-400/60">·</span>
+                    <span className="font-bold">Lam. 3:21</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -375,110 +381,136 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
             /* INITIAL STATE: HIGH-IMPACT EXECUTIVE OVERVIEW                      */
             /* Zero scroll effect here; compact, dignified, propels next sections */
             /* =================================================================== */
-            <div className="flex flex-col justify-between gap-6">
-              <div className="grid gap-6">
+            <div className="flex flex-col justify-between gap-6 sm:gap-8 lg:mt-2">
+              <div className="grid gap-6 sm:gap-7">
                 {/* Illuminated Opening Apostolic Greeting */}
                 {greeting && (
-                  <div className="relative rounded-card border border-border bg-surface-muted/60 p-6 sm:p-7">
+                  <div className="relative rounded-2xl border border-border/80 bg-surface-muted/60 p-6 shadow-2xs transition-all hover:border-border sm:p-7">
                     <Quote
                       aria-hidden
-                      className="absolute top-5 right-5 size-8 text-gold-500/25 sm:size-10"
+                      className="absolute top-5 right-5 size-8 text-gold-500/20 sm:size-10"
                     />
                     <p className="font-serif text-xl leading-relaxed text-foreground italic sm:text-2xl sm:leading-relaxed">
                       “{greeting}”
                     </p>
-                    <p className="mt-3 text-xs font-semibold tracking-wider text-muted-foreground uppercase">
-                      — Apostolic Greeting &amp; Opening Benediction
-                    </p>
+                    <div className="mt-4 flex items-center gap-2">
+                      <span className="h-px w-6 bg-gold-500/40" />
+                      <p className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">
+                        — Apostolic Greeting &amp; Opening Benediction
+                      </p>
+                    </div>
                   </div>
                 )}
 
                 {/* Thematic Movement Cards: Clear, Responsive Synthesis */}
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
                   {THEMATIC_PILLARS.map(({ icon: Icon, title, summary }, i) => (
-                    <div key={title} className={styles.thematicPillarCard}>
-                      <div className="flex items-center gap-2">
-                        <span className="inline-flex size-7 items-center justify-center rounded-control bg-accent-soft text-accent-soft-foreground">
-                          <Icon className="size-3.5" aria-hidden />
-                        </span>
-                        <span className="text-[0.6875rem] font-bold tracking-wider text-muted-foreground uppercase">
-                          Part 0{i + 1}
-                        </span>
+                    <div
+                      key={title}
+                      className="group flex flex-col justify-between rounded-2xl border border-border/80 bg-surface/80 p-4.5 shadow-2xs transition-all duration-300 hover:border-gold-500/40 hover:bg-surface hover:shadow-md sm:p-5"
+                    >
+                      <div>
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="inline-flex size-7 items-center justify-center rounded-lg bg-gold-400/10 text-gold-600 ring-1 ring-gold-400/20 dark:text-gold-300">
+                            <Icon className="size-3.5" aria-hidden />
+                          </span>
+                          <span className="text-[0.6875rem] font-bold tracking-widest text-muted-foreground uppercase">
+                            Part 0{i + 1}
+                          </span>
+                        </div>
+                        <h4 className="mt-3 font-display text-sm leading-snug font-bold text-foreground transition-colors group-hover:text-gold-600 dark:group-hover:text-gold-400">
+                          {title}
+                        </h4>
+                        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{summary}</p>
                       </div>
-                      <h4 className="mt-2 text-sm font-bold text-foreground">{title}</h4>
-                      <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">{summary}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Consecrated Scripture Tablet (1 Corinthians 15:58) */}
-                <div className={styles.scriptureTablet}>
-                  <div className="flex items-start gap-3">
-                    <Scroll className="mt-0.5 size-4 shrink-0 text-accent" aria-hidden />
-                    <div>
-                      <blockquote className="font-serif text-sm leading-relaxed text-foreground italic sm:text-base sm:leading-relaxed">
+                <div className="relative overflow-hidden rounded-2xl border border-gold-500/30 bg-linear-to-r from-gold-400/10 via-surface-muted/80 to-surface p-5 shadow-2xs transition-all hover:border-gold-500/50 sm:p-6">
+                  <div className="flex items-start gap-3.5">
+                    <div className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-gold-400/15 text-gold-600 ring-1 ring-gold-400/30 dark:text-gold-400">
+                      <Scroll className="size-4" aria-hidden />
+                    </div>
+                    <div className="space-y-2">
+                      <blockquote className="font-serif text-base leading-relaxed text-foreground italic sm:text-lg sm:leading-relaxed">
                         “Therefore, my beloved brethren, be ye steadfast, unmoveable, always abounding in the
                         work of the Lord, forasmuch as ye know that your labour is not in vain in the Lord.”
                       </blockquote>
-                      <p className="mt-1.5 text-xs font-bold tracking-wider text-gold-800 uppercase dark:text-gold-400">
-                        1 Corinthians 15:58
-                      </p>
+                      <div className="pt-1">
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-gold-400/15 px-3 py-1 text-xs font-bold tracking-wider text-gold-800 uppercase ring-1 ring-gold-400/30 dark:text-gold-300">
+                          1 Corinthians 15:58
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Patriarchal Action & Reading Controls */}
-              <div className="flex flex-wrap items-center gap-3 border-t border-border pt-6">
-                {/* PRIMARY ACTION: Activates the in-card Scrollable Reader */}
-                <button
-                  type="button"
-                  onClick={activateReadingMode}
-                  className="group inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-control bg-primary px-6 text-sm font-semibold text-primary-foreground shadow-sm transition-all hover:bg-primary-hover active:translate-y-0.5"
-                >
-                  <BookOpen className="size-4 transition-transform group-hover:scale-110" aria-hidden />
-                  <span>Complete Reading · 3 mins</span>
-                </button>
+              {/* Patriarchal Action & Reading Control Dock */}
+              <div className="mt-2 rounded-2xl border border-border/80 bg-surface-muted/50 p-4 shadow-2xs transition-all hover:border-border hover:bg-surface-muted/70 sm:p-5">
+                <div className="flex flex-col gap-3.5 xl:flex-row xl:items-center xl:justify-between">
+                  {/* HERO READING ACTIONS */}
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    {/* PRIMARY ACTION: Activates the in-card Scrollable Reader */}
+                    <button
+                      type="button"
+                      onClick={activateReadingMode}
+                      className="group inline-flex min-h-11 cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-linear-to-r from-royal-800 via-royal-900 to-royal-950 px-5.5 text-xs font-bold tracking-wide text-white shadow-md shadow-royal-950/20 transition-all hover:from-royal-700 hover:to-royal-900 active:scale-[0.98] sm:text-sm"
+                    >
+                      <BookOpen
+                        className="size-4 text-gold-300 transition-transform group-hover:scale-110"
+                        aria-hidden
+                      />
+                      <span>Complete Reading · 3 mins</span>
+                    </button>
 
-                {/* Dedicated Chamber Modal Trigger */}
-                <button
-                  type="button"
-                  onClick={() => setReaderOpen(true)}
-                  className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-1.5 rounded-control border border-border bg-surface px-4 text-xs font-semibold text-foreground shadow-xs transition-colors hover:bg-surface-muted"
-                >
-                  <Maximize2 className="size-3.5 text-accent" aria-hidden />
-                  <span>Dedicated Chamber</span>
-                </button>
+                    {/* Dedicated Chamber Modal Trigger */}
+                    <button
+                      type="button"
+                      onClick={() => setReaderOpen(true)}
+                      className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-gold-500/30 bg-surface/90 px-4 text-xs font-semibold text-foreground shadow-2xs transition-all hover:border-gold-500/60 hover:bg-surface active:scale-[0.98]"
+                    >
+                      <Maximize2 className="size-3.5 text-gold-500" aria-hidden />
+                      <span>Dedicated Chamber</span>
+                    </button>
+                  </div>
 
-                {/* Comment / Amen Link */}
-                <Link
-                  href={href}
-                  aria-label={`Comment on the ${message.title}`}
-                  className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-control border border-border bg-surface px-4 text-xs font-semibold text-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
-                >
-                  <span>Comment on the {message.title}</span>
-                  <ArrowRight className="size-3.5" aria-hidden />
-                </Link>
+                  {/* FELLOWSHIP & UTILITY TOOLSET */}
+                  <div className="flex flex-wrap items-center gap-2 border-t border-border/50 pt-3 xl:border-t-0 xl:pt-0">
+                    {/* Comment / Amen Link */}
+                    <Link
+                      href={href}
+                      aria-label={`Comment on the ${message.title}`}
+                      className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-border/80 bg-surface px-3.5 text-xs font-semibold text-foreground shadow-2xs transition-all hover:border-border-strong hover:bg-surface-muted active:scale-[0.98]"
+                    >
+                      <MessageSquare className="size-3.5 text-accent" aria-hidden />
+                      <span>Comment on {message.title}</span>
+                      <ArrowRight className="size-3 text-muted-foreground" aria-hidden />
+                    </Link>
 
-                {/* Fast Copy Blessing Button */}
-                <button
-                  type="button"
-                  onClick={copyEpistleBlessing}
-                  title="Copy opening pastoral blessing"
-                  className="inline-flex min-h-11 cursor-pointer items-center gap-1.5 rounded-control border border-border bg-surface px-4 text-xs font-semibold text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
-                >
-                  {copied ? (
-                    <>
-                      <Check className="size-3.5 text-success" />
-                      <span>Copied</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="size-3.5" />
-                      <span>Copy Blessing</span>
-                    </>
-                  )}
-                </button>
+                    {/* Fast Copy Blessing Button */}
+                    <button
+                      type="button"
+                      onClick={copyEpistleBlessing}
+                      title="Copy opening pastoral blessing"
+                      className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-lg border border-border/80 bg-surface px-3 text-xs font-semibold text-muted-foreground shadow-2xs transition-all hover:border-border-strong hover:bg-surface-muted hover:text-foreground active:scale-[0.98]"
+                    >
+                      {copied ? (
+                        <>
+                          <Check className="size-3.5 text-success" />
+                          <span className="font-bold text-success">Copied</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="size-3.5 text-muted-foreground" />
+                          <span>Copy Blessing</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           )}

@@ -60,6 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     needs: [fast-unit-tests, lint-and-format]
+    if: github.event.pull_request.draft == false || github.event_name == 'push'
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

@@ -5,7 +5,6 @@ import { SmartImage } from "@/components/media/smart-image";
 import { LogoMark } from "@/components/icons/logo";
 import { Reveal } from "@/components/motion/reveal";
 import { Cover } from "@/components/patterns/cover";
-import { DateBadge } from "@/components/patterns/date-badge";
 import { Paragraphs } from "@/components/patterns/paragraphs";
 import { ReadMore } from "@/components/patterns/read-more";
 import { SectionHeading } from "@/components/patterns/section-heading";
@@ -53,52 +52,11 @@ export function Welcome({
   return <WhoWeAre org={org} photo={photo} />;
 }
 
-/** What's coming: the next few dates, with the full calendar one tap away. */
+import { AutomatedEventsBand } from "@/features/events/automated-events-band";
+
+/** What's coming: automated monthly events schedule with interactive reminder actions. */
 export function UpcomingBand({ events }: { events: ChurchEvent[] }) {
-  return (
-    <HomeBand tone="raised" aria-labelledby="upcoming-heading">
-      <SectionHeading
-        id="upcoming-heading"
-        eyebrow="Coming up"
-        title={
-          <>
-            Dates for the family,{" "}
-            <span className="font-serif font-normal text-accent italic">in fellowship.</span>
-          </>
-        }
-        size="lg"
-        href={routes.events()}
-        linkLabel="All events"
-      />
-      {events.length ? (
-        <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,15rem),1fr))] gap-3">
-          {events.map((e) => (
-            <Reveal as="li" key={e.slug}>
-              <Link
-                href={routes.event(e.slug)}
-                className="group/event flex h-full flex-col gap-4 rounded-card border border-border bg-background p-5 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-border-strong hover:shadow-card"
-              >
-                <DateBadge date={e.date} size="sm" />
-                <span className="grid gap-1.5">
-                  <span className="font-display text-base leading-snug font-bold group-hover/event:text-accent">
-                    {e.title}
-                  </span>
-                  <span className="text-sm leading-6 text-muted-foreground">{e.description}</span>
-                </span>
-                {e.endDate && (
-                  <span className="mt-auto text-xs text-muted-foreground">
-                    Until {formatLongDate(e.endDate)}
-                  </span>
-                )}
-              </Link>
-            </Reveal>
-          ))}
-        </ul>
-      ) : (
-        <p className="text-muted-foreground">Nothing scheduled yet.</p>
-      )}
-    </HomeBand>
-  );
+  return <AutomatedEventsBand events={events} />;
 }
 
 function postLink(post: Post) {

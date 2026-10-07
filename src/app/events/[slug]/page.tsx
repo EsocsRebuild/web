@@ -81,6 +81,8 @@ export async function generateMetadata({ params }: PageProps<"/events/[slug]">):
     : {};
 }
 
+import { BackButton } from "@/components/ui/back-button";
+
 export default async function EventPage({ params }: PageProps<"/events/[slug]">) {
   const content = getContent();
   const event = await resolveEvent((await params).slug);
@@ -92,7 +94,10 @@ export default async function EventPage({ params }: PageProps<"/events/[slug]">)
     .slice(0, 3);
 
   return (
-    <article className="mx-auto grid max-w-5xl gap-10 px-gutter py-10">
+    <article className="mx-auto grid max-w-5xl gap-8 px-gutter py-8">
+      <div>
+        <BackButton href={routes.events()} label="Back to Events" />
+      </div>
       <header className="flex flex-col gap-5 sm:flex-row sm:items-start">
         <DateBadge date={event.date} className="size-20 [&>span:nth-child(2)]:text-3xl" />
         <div className="grid gap-2">

@@ -28,6 +28,8 @@ export async function generateMetadata({ params }: PageProps<"/store/[slug]">): 
     : {};
 }
 
+import { BackButton } from "@/components/ui/back-button";
+
 export default async function ProductPage({ params }: PageProps<"/store/[slug]">) {
   const store = getStore();
   const product = store.getProduct((await params).slug);
@@ -36,7 +38,10 @@ export default async function ProductPage({ params }: PageProps<"/store/[slug]">
   const related = store.listRelated(product.slug, 4);
 
   return (
-    <div className="mx-auto grid max-w-wide gap-10 px-gutter py-6 sm:py-8">
+    <div className="mx-auto grid max-w-wide gap-8 px-gutter py-6 sm:py-8">
+      <div>
+        <BackButton href={routes.store()} label="Back to Store" />
+      </div>
       <nav aria-label="Breadcrumb">
         <ol className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
           <li>

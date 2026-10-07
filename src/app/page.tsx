@@ -32,7 +32,7 @@ export default function HomePage() {
     .listUnits({ kind: "cmc" })
     .sort((a, b) => a.name.localeCompare(b.name, "en", { numeric: true }));
   const people = content.listPeople();
-  const upcoming = content.listEvents().slice(0, 4);
+  const upcoming = content.listEvents();
   const units = content.listUnits();
   const unitsBySlug = new Map(units.map((u) => [u.slug, u]));
   const churchNames = Object.fromEntries(units.map((u) => [u.slug, { name: u.name, locality: u.locality }]));

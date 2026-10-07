@@ -66,7 +66,7 @@ export function MonthGrid({ month, events, today }: { month: string; events: Chu
         </div>
       </div>
 
-      <div className="hidden overflow-hidden rounded-panel border border-border bg-border md:block">
+      <div className="overflow-x-auto rounded-panel border border-border bg-border">
         {/* Weekday names are for the eye; each day carries its full date for screen readers. */}
         <div aria-hidden className="grid grid-cols-7 gap-px">
           {WEEKDAYS.map((d) => (

@@ -16,7 +16,7 @@ function observanceEvents(year: number): ChurchEvent[] {
     description: o.description,
     date: o.date,
     ...(o.endDate ? { endDate: o.endDate } : {}),
-    startTime: null,
+    startTime: o.startTime ?? null,
     kind: "observance",
     unitSlug: ROOT_SLUG,
     image: null,
