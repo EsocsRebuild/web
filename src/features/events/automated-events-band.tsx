@@ -302,78 +302,82 @@ export function AutomatedEventsBand({ events }: { events: ChurchEvent[] }) {
         {/* Real Interactive Calendar Grid View */}
         {viewMode === "grid" && (
           <div className="mb-8 overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
-            {/* Weekday Header Row */}
-            <div className="bg-muted/50 grid grid-cols-7 border-b border-border/80 text-center">
-              {WEEKDAYS.map((day) => (
-                <div
-                  key={day}
-                  className="py-2.5 text-xs font-bold tracking-wider text-muted-foreground uppercase"
-                >
-                  {day}
+            <div className="scrollbar-none min-w-0 overflow-x-auto">
+              <div className="min-w-[600px] sm:min-w-0">
+                {/* Weekday Header Row */}
+                <div className="bg-muted/50 grid grid-cols-7 border-b border-border/80 text-center">
+                  {WEEKDAYS.map((day) => (
+                    <div
+                      key={day}
+                      className="py-2.5 text-xs font-bold tracking-wider text-muted-foreground uppercase"
+                    >
+                      {day}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            {/* Day Cells Grid */}
-            <div className="grid grid-cols-7 divide-x divide-y divide-border/60 bg-border/40">
-              {calendarCells.map((iso, idx) => {
-                if (!iso) {
-                  return <div key={idx} className="bg-muted/20 min-h-24 sm:min-h-28" />;
-                }
+                {/* Day Cells Grid */}
+                <div className="grid grid-cols-7 divide-x divide-y divide-border/60 bg-border/40">
+                  {calendarCells.map((iso, idx) => {
+                    if (!iso) {
+                      return <div key={idx} className="bg-muted/20 min-h-24 sm:min-h-28" />;
+                    }
 
-                const dayEvents = monthEvents.filter(
-                  (e) => e.date === iso || (e.endDate && e.date <= iso && iso <= e.endDate),
-                );
-                const isToday = iso === todayIso;
-                const isSelectedDay = iso === selectedDay;
+                    const dayEvents = monthEvents.filter(
+                      (e) => e.date === iso || (e.endDate && e.date <= iso && iso <= e.endDate),
+                    );
+                    const isToday = iso === todayIso;
+                    const isSelectedDay = iso === selectedDay;
 
-                return (
-                  <button
-                    key={iso}
-                    type="button"
-                    onClick={() => setSelectedDay(isSelectedDay ? null : iso)}
-                    className={cn(
-                      "hover:bg-muted/40 flex min-h-24 flex-col justify-between bg-background p-2 text-left transition-all duration-150 sm:min-h-28",
-                      isSelectedDay && "bg-accent/5 ring-2 ring-accent",
-                      dayEvents.length > 0 && "bg-accent/5 font-medium",
-                    )}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span
+                    return (
+                      <button
+                        key={iso}
+                        type="button"
+                        onClick={() => setSelectedDay(isSelectedDay ? null : iso)}
                         className={cn(
-                          "inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold",
-                          isToday ? "bg-accent text-accent-foreground shadow-xs" : "text-foreground",
+                          "hover:bg-muted/40 flex min-h-24 flex-col justify-between bg-background p-2 text-left transition-all duration-150 sm:min-h-28",
+                          isSelectedDay && "bg-accent/5 ring-2 ring-accent",
+                          dayEvents.length > 0 && "bg-accent/5 font-medium",
                         )}
                       >
-                        {Number(iso.slice(8))}
-                      </span>
+                        <div className="flex items-center justify-between">
+                          <span
+                            className={cn(
+                              "inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold",
+                              isToday ? "bg-accent text-accent-foreground shadow-xs" : "text-foreground",
+                            )}
+                          >
+                            {Number(iso.slice(8))}
+                          </span>
 
-                      {dayEvents.length > 0 && (
-                        <span className="rounded-full bg-accent/20 px-1.5 py-0.5 text-[10px] font-bold text-accent">
-                          {dayEvents.length}
-                        </span>
-                      )}
-                    </div>
+                          {dayEvents.length > 0 && (
+                            <span className="rounded-full bg-accent/20 px-1.5 py-0.5 text-[10px] font-bold text-accent">
+                              {dayEvents.length}
+                            </span>
+                          )}
+                        </div>
 
-                    {/* Event indicators / dots */}
-                    <div className="mt-1 grid gap-1">
-                      {dayEvents.slice(0, 2).map((e) => (
-                        <span
-                          key={e.slug}
-                          className="truncate rounded bg-accent/15 px-1.5 py-0.5 text-[11px] leading-tight font-semibold text-accent"
-                        >
-                          {e.title}
-                        </span>
-                      ))}
-                      {dayEvents.length > 2 && (
-                        <span className="pl-1 text-[10px] font-semibold text-muted-foreground">
-                          +{dayEvents.length - 2} more
-                        </span>
-                      )}
-                    </div>
-                  </button>
-                );
-              })}
+                        {/* Event indicators / dots */}
+                        <div className="mt-1 grid gap-1">
+                          {dayEvents.slice(0, 2).map((e) => (
+                            <span
+                              key={e.slug}
+                              className="truncate rounded bg-accent/15 px-1.5 py-0.5 text-[11px] leading-tight font-semibold text-accent"
+                            >
+                              {e.title}
+                            </span>
+                          ))}
+                          {dayEvents.length > 2 && (
+                            <span className="pl-1 text-[10px] font-semibold text-muted-foreground">
+                              +{dayEvents.length - 2} more
+                            </span>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             {/* Filtered Day Banner */}

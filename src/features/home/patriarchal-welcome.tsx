@@ -403,7 +403,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                 )}
 
                 {/* Thematic Movement Cards: Clear, Responsive Synthesis */}
-                <div className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-3.5 md:grid-cols-3">
                   {THEMATIC_PILLARS.map(({ icon: Icon, title, summary }, i) => (
                     <div
                       key={title}
@@ -428,8 +428,8 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                 </div>
 
                 {/* Consecrated Scripture Tablet (1 Corinthians 15:58) */}
-                <div className="relative overflow-hidden rounded-2xl border border-gold-500/30 bg-linear-to-r from-gold-400/10 via-surface-muted/80 to-surface p-5 shadow-2xs transition-all hover:border-gold-500/50 sm:p-6">
-                  <div className="flex items-start gap-3.5">
+                <div className="relative mt-2 overflow-hidden rounded-2xl border border-gold-500/30 bg-linear-to-r from-gold-400/10 via-surface-muted/80 to-surface p-5 shadow-2xs transition-all hover:border-gold-500/50 sm:mt-4 sm:p-6">
+                  <div className="flex flex-col gap-3.5 sm:flex-row sm:items-start">
                     <div className="inline-flex size-8 shrink-0 items-center justify-center rounded-lg bg-gold-400/15 text-gold-600 ring-1 ring-gold-400/30 dark:text-gold-400">
                       <Scroll className="size-4" aria-hidden />
                     </div>
@@ -452,12 +452,12 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
               <div className="mt-2 rounded-2xl border border-border/80 bg-surface-muted/50 p-4 shadow-2xs transition-all hover:border-border hover:bg-surface-muted/70 sm:p-5">
                 <div className="flex flex-col gap-3.5 xl:flex-row xl:items-center xl:justify-between">
                   {/* HERO READING ACTIONS */}
-                  <div className="flex flex-wrap items-center gap-2.5">
+                  <div className="flex flex-col flex-wrap items-stretch gap-2.5 sm:flex-row sm:items-center">
                     {/* PRIMARY ACTION: Activates the in-card Scrollable Reader */}
                     <button
                       type="button"
                       onClick={activateReadingMode}
-                      className="group inline-flex min-h-11 cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-linear-to-r from-royal-800 via-royal-900 to-royal-950 px-5.5 text-xs font-bold tracking-wide text-white shadow-md shadow-royal-950/20 transition-all hover:from-royal-700 hover:to-royal-900 active:scale-[0.98] sm:text-sm"
+                      className="group inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-linear-to-r from-royal-800 via-royal-900 to-royal-950 px-4 text-xs font-bold tracking-wide text-white shadow-md shadow-royal-950/20 transition-all hover:from-royal-700 hover:to-royal-900 active:scale-[0.98] sm:w-auto sm:px-5.5 sm:text-sm"
                     >
                       <BookOpen
                         className="size-4 text-gold-300 transition-transform group-hover:scale-110"
@@ -470,7 +470,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                     <button
                       type="button"
                       onClick={() => setReaderOpen(true)}
-                      className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-xl border border-gold-500/30 bg-surface/90 px-4 text-xs font-semibold text-foreground shadow-2xs transition-all hover:border-gold-500/60 hover:bg-surface active:scale-[0.98]"
+                      className="inline-flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-gold-500/30 bg-surface/90 px-4 text-xs font-semibold text-foreground shadow-2xs transition-all hover:border-gold-500/60 hover:bg-surface active:scale-[0.98] sm:w-auto"
                     >
                       <Maximize2 className="size-3.5 text-gold-500" aria-hidden />
                       <span>Dedicated Chamber</span>
@@ -478,12 +478,12 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                   </div>
 
                   {/* FELLOWSHIP & UTILITY TOOLSET */}
-                  <div className="flex flex-wrap items-center gap-2 border-t border-border/50 pt-3 xl:border-t-0 xl:pt-0">
+                  <div className="flex flex-col flex-wrap items-stretch gap-2 border-t border-border/50 pt-3 sm:flex-row sm:items-center xl:border-t-0 xl:pt-0">
                     {/* Comment / Amen Link */}
                     <Link
                       href={href}
                       aria-label={`Comment on the ${message.title}`}
-                      className="inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-border/80 bg-surface px-3.5 text-xs font-semibold text-foreground shadow-2xs transition-all hover:border-border-strong hover:bg-surface-muted active:scale-[0.98]"
+                      className="inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-lg border border-border/80 bg-surface px-3.5 text-xs font-semibold text-foreground shadow-2xs transition-all hover:border-border-strong hover:bg-surface-muted active:scale-[0.98] sm:w-auto"
                     >
                       <MessageSquare className="size-3.5 text-accent" aria-hidden />
                       <span>Comment on {message.title}</span>
@@ -495,7 +495,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
                       type="button"
                       onClick={copyEpistleBlessing}
                       title="Copy opening pastoral blessing"
-                      className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-lg border border-border/80 bg-surface px-3 text-xs font-semibold text-muted-foreground shadow-2xs transition-all hover:border-border-strong hover:bg-surface-muted hover:text-foreground active:scale-[0.98]"
+                      className="inline-flex min-h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-lg border border-border/80 bg-surface px-3 text-xs font-semibold text-muted-foreground shadow-2xs transition-all hover:border-border-strong hover:bg-surface-muted hover:text-foreground active:scale-[0.98] sm:w-auto"
                     >
                       {copied ? (
                         <>
