@@ -22,6 +22,7 @@ export const routes = {
   find: (query: { q?: string; kind?: string; country?: string; view?: "list" | "map" } = {}) =>
     withQuery("/find", query),
   structure: () => "/structure",
+  cmcs: () => "/cmcs",
   unit: (slug: string, tab?: UnitTab) => `/church/${enc(slug)}${tab ? `/${tab}` : ""}`,
 
   sections: () => "/sections",
