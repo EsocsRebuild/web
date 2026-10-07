@@ -1,17 +1,29 @@
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { getContent } from "@/data/content";
+import type { ImageRef } from "@/data/schema/content";
 import { routes } from "@/lib/routes";
 
 import { FamilyCarousel, type FamilyCard } from "./family-carousel";
 
-/**
- * The church family, in the order the generations are named: children, youth,
- * women, men. Each card has its own photograph from the church's albums (none
- * repeats the hero) and leads to where that generation lives on the site. Women
- * and Youth are pages of their own (and can be followed); Children and Men lead
- * to their own celebrations.
- */
-const GENERATIONS = [
+interface GenerationConfig {
+  key: string;
+  unit?: string;
+  title: string;
+  eyebrow: string;
+  body: string[];
+  image?: ImageRef;
+  photo?: {
+    gallery: string;
+    index: number;
+    alt: string;
+    focus: string;
+  };
+  focus?: string;
+  link?: { label: string; href: string };
+  event?: string;
+}
+
+const GENERATIONS: GenerationConfig[] = [
   {
     key: "children",
     title: "Children",
@@ -30,24 +42,32 @@ const GENERATIONS = [
     unit: "youth",
     title: "Youth",
     eyebrow: "Mount Zion Youth Society",
-    photo: {
-      gallery: "childrens-day-celebration",
-      index: 22,
-      alt: "Young members in blue capes singing together",
-      focus: "50% 25%",
+    body: [
+      "Tuesday Bible Studies in every branch, Campus Fellowships, and missions: raising youth as true ambassadors of Christ.",
+    ],
+    image: {
+      url: "/brand/hero-youth.webp",
+      width: 1200,
+      height: 800,
+      alt: "Young members of the Mount Zion Youth Society in white garments in a joyful procession",
     },
+    focus: "center 35%",
   },
   {
     key: "women",
     unit: "women",
     title: "Women",
     eyebrow: "Women’s Affairs",
-    photo: {
-      gallery: "adoption-thanksgiving-service",
-      index: 37,
-      alt: "A mother of the Order rejoicing, arms raised, at the Adoption Thanksgiving Service",
-      focus: "55% 25%",
+    body: [
+      "Women of all ages growing in their relationship with Jesus Christ through learning, fellowship, and service.",
+    ],
+    image: {
+      url: "/brand/hero-women.webp",
+      width: 1200,
+      height: 800,
+      alt: "Mothers and women of the Order in white garments at worship",
     },
+    focus: "70% center",
   },
   {
     key: "men",
@@ -64,28 +84,39 @@ const GENERATIONS = [
     },
     event: "fathers-day",
   },
-] as const;
+];
 
 function resolve(): FamilyCard[] {
   const content = getContent();
   const galleries = new Map(content.listGalleries().map((g) => [g.slug, g]));
   return GENERATIONS.map((g) => {
-    const gallery = galleries.get(g.photo.gallery);
-    const photo = gallery?.photos[g.photo.index] ?? gallery?.cover ?? null;
-    const unit = "unit" in g ? content.getUnit(g.unit) : null;
-    const event = "event" in g ? content.listEvents().find((e) => e.slug.startsWith(g.event)) : null;
+    let photo: ImageRef | null = g.image ?? null;
+    let focusPosition = g.focus ?? "50% 30%";
+
+    if (!photo && g.photo) {
+      const gallery = galleries.get(g.photo.gallery);
+      const galleryPhoto = gallery?.photos[g.photo.index] ?? gallery?.cover ?? null;
+      if (galleryPhoto) {
+        photo = { ...galleryPhoto, alt: g.photo.alt };
+      }
+      focusPosition = g.photo.focus;
+    }
+
+    const unit = g.unit ? content.getUnit(g.unit) : null;
+    const event = g.event ? content.listEvents().find((e) => e.slug.startsWith(g.event!)) : null;
+
     return {
       key: g.key,
       title: g.title,
       eyebrow: g.eyebrow,
-      body: unit?.about.length ? unit.about : "body" in g ? [...g.body] : [],
-      image: photo ? { ...photo, alt: g.photo.alt } : null,
-      focus: g.photo.focus,
+      body: g.body,
+      image: photo,
+      focus: focusPosition,
       link: unit
         ? { label: `Explore ${g.title}`, href: routes.unit(unit.slug) }
         : event
           ? { label: event.title, href: routes.event(event.slug) }
-          : "link" in g
+          : g.link
             ? g.link
             : { label: "Church calendar", href: routes.calendar() },
       follow: unit ? { slug: unit.slug, name: unit.name } : null,
