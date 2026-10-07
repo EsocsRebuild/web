@@ -33,8 +33,8 @@ export default defineConfig({
     ...(isCI ? [{ name: "mobile-safari", use: { ...devices["iPhone 14"] } }] : []),
   ],
   webServer: {
-    // Always test a production build. CI builds in an earlier step.
-    command: isCI ? `npm run start -- --port ${PORT}` : `npm run build && npm run start -- --port ${PORT}`,
+    // Always test a production build. CI and local test runs build beforehand.
+    command: `npm run start -- --port ${PORT}`,
     port: PORT,
     reuseExistingServer: !isCI,
     timeout: 240_000,
