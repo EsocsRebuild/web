@@ -81,7 +81,7 @@ export function LeaderCard({
         )}
       </span>
       <span className="grid min-w-0 flex-1 gap-1">
-        <span className="inline-flex w-fit max-w-full items-center gap-1 truncate rounded-full bg-gold-400/10 px-2.5 py-0.5 text-[0.6875rem] font-bold tracking-wider text-gold-800 uppercase ring-1 ring-gold-400/30 dark:text-gold-300">
+        <span className="inline-flex w-fit max-w-full items-center gap-1 rounded-full bg-gold-400/10 px-2.5 py-0.5 text-[0.6875rem] font-bold tracking-wider text-gold-800 uppercase ring-1 ring-gold-400/30 dark:text-gold-300">
           {leader.role}
         </span>
         <span className="font-display text-sm leading-snug font-bold text-balance text-foreground">

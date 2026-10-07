@@ -1,6 +1,7 @@
 import { SectionHeading } from "@/components/patterns/section-heading";
 import { getContent } from "@/data/content";
 import type { ImageRef } from "@/data/schema/content";
+import { placeholderFor } from "@/lib/image-placeholders";
 import { routes } from "@/lib/routes";
 
 import { FamilyCarousel, type FamilyCard } from "./family-carousel";
@@ -50,6 +51,7 @@ const GENERATIONS: GenerationConfig[] = [
       width: 1200,
       height: 800,
       alt: "Young members of the Mount Zion Youth Society in white garments in a joyful procession",
+      placeholder: placeholderFor("/brand/hero-youth.webp"),
     },
     focus: "center 35%",
   },
@@ -66,6 +68,7 @@ const GENERATIONS: GenerationConfig[] = [
       width: 1200,
       height: 800,
       alt: "Mothers and women of the Order in white garments at worship",
+      placeholder: placeholderFor("/brand/hero-women.webp"),
     },
     focus: "70% center",
   },

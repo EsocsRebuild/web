@@ -88,8 +88,8 @@ export function LatestNews({ posts, units }: { posts: Post[]; units: Map<string,
         eyebrow="Latest"
         title={
           <>
-            News from across the Order,{" "}
-            <span className="font-serif font-normal text-accent italic">worldwide.</span>
+            Life across the Order,{" "}
+            <span className="font-serif font-normal text-accent italic">in communion.</span>
           </>
         }
         size="lg"

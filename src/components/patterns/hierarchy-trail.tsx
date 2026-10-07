@@ -88,7 +88,7 @@ export function HierarchyTrail({
                 )}
               >
                 <span aria-hidden className="size-1.5 shrink-0 animate-pulse rounded-full bg-gold-500" />
-                <span aria-current="page" className="max-w-[200px] truncate sm:max-w-[280px]">
+                <span aria-current="page" className="max-w-[200px] break-words sm:max-w-[280px]">
                   {current.name}
                 </span>
                 <ChevronDown aria-hidden className="size-3 opacity-70" />
@@ -123,7 +123,7 @@ export function HierarchyTrail({
                         href={routes.unit(s.slug)}
                         className="flex items-center justify-between rounded-control px-2.5 py-1.5 text-xs font-medium transition-colors hover:bg-surface-muted"
                       >
-                        <span className="truncate">{s.name}</span>
+                        <span className="break-words">{s.name}</span>
                         <ChevronRight aria-hidden className="size-3 shrink-0 text-muted-foreground/60" />
                       </Link>
                     </li>
@@ -147,7 +147,7 @@ export function HierarchyTrail({
               )}
             >
               <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-gold-500" />
-              <span className="max-w-[200px] truncate sm:max-w-[280px]">{current.name}</span>
+              <span className="max-w-[200px] break-words sm:max-w-[280px]">{current.name}</span>
             </span>
           )}
         </li>

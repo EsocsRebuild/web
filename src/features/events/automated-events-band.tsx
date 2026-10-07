@@ -362,7 +362,7 @@ export function AutomatedEventsBand({ events }: { events: ChurchEvent[] }) {
                           {dayEvents.slice(0, 2).map((e) => (
                             <span
                               key={e.slug}
-                              className="truncate rounded bg-accent/15 px-1.5 py-0.5 text-[11px] leading-tight font-semibold text-accent"
+                              className="text-ellipsis-none overflow-hidden rounded bg-accent/15 px-1.5 py-0.5 text-[11px] leading-tight font-semibold whitespace-nowrap text-accent"
                             >
                               {e.title}
                             </span>
@@ -435,7 +435,7 @@ export function AutomatedEventsBand({ events }: { events: ChurchEvent[] }) {
                             {event.title}
                           </h3>
                         </Link>
-                        <p className="mb-4 line-clamp-2 text-sm text-muted-foreground">{event.description}</p>
+                        <p className="mb-4 text-sm text-balance text-muted-foreground">{event.description}</p>
                       </div>
 
                       {/* Time & Location badges */}
