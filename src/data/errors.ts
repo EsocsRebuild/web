@@ -20,7 +20,9 @@ export class SocialError extends Error {
 }
 
 export const isSocialError = (error: unknown, code?: SocialErrorCode): error is SocialError =>
-  error instanceof SocialError && (!code || error.code === code);
+  (error instanceof SocialError ||
+    (typeof error === "object" && error !== null && (error as { name?: string }).name === "SocialError")) &&
+  (!code || (error as { code?: SocialErrorCode }).code === code);
 
 export type CommerceErrorCode =
   /** Online orders are not switched on in this environment. */
@@ -43,4 +45,6 @@ export class CommerceError extends Error {
 }
 
 export const isCommerceError = (error: unknown, code?: CommerceErrorCode): error is CommerceError =>
-  error instanceof CommerceError && (!code || error.code === code);
+  (error instanceof CommerceError ||
+    (typeof error === "object" && error !== null && (error as { name?: string }).name === "CommerceError")) &&
+  (!code || (error as { code?: CommerceErrorCode }).code === code);
