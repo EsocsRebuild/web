@@ -106,7 +106,7 @@ export function StoreTeaser() {
                     >
                       <ShelfSwatch theme={theme} />
                       <span className="grid min-w-0 flex-1 gap-0.5">
-                        <span className="text-sm leading-snug font-bold whitespace-nowrap">{c.name}</span>
+                        <span className="text-sm leading-snug font-bold text-balance">{c.name}</span>
                         <span className="text-xs leading-5 text-muted-foreground">{theme.promise}</span>
                       </span>
                       <ChevronRight

@@ -1,11 +1,7 @@
-import { SectionHeading } from "@/components/patterns/section-heading";
 import { Announcements } from "@/components/shell/announcements";
 import { getContent } from "@/data/content";
-import { FeedList } from "@/features/feed/feed-list";
-import { getFeedPage } from "@/features/feed/resolve";
 import { HeroScenes, type HeroScene } from "@/features/home/hero-scenes";
-import { PrayerCard, SealsRow, Succession, WatchwordPlate } from "@/features/home/home-sections";
-import { OrderIndex } from "@/features/home/order-index";
+import { PrayerCard, Succession } from "@/features/home/home-sections";
 import {
   BabaAladuraMessage,
   FindBand,
@@ -25,35 +21,19 @@ export default function HomePage() {
   const content = getContent();
   const org = content.getOrganisation();
 
-  const root = content.getUnit("esocs")!;
   const headquarters = content.listUnits({ kind: "headquarters" });
-  const sections = content.listUnits({ kind: "section" });
-  const cmcs = content
-    .listUnits({ kind: "cmc" })
-    .sort((a, b) => a.name.localeCompare(b.name, "en", { numeric: true }));
   const people = content.listPeople();
-  const upcoming = content.listEvents().slice(0, 4);
+  const upcoming = content.listEvents();
   const units = content.listUnits();
   const unitsBySlug = new Map(units.map((u) => [u.slug, u]));
-  const churchNames = Object.fromEntries(units.map((u) => [u.slug, { name: u.name, locality: u.locality }]));
-  const churchKinds = new Set(["headquarters", "province", "special-area", "district", "branch"]);
-  const churchUnits = units.filter((u) => churchKinds.has(u.kind));
-  const countries = new Set(churchUnits.map((u) => u.country).filter(Boolean)).size;
-  const reach = `${churchUnits.length} churches${countries > 1 ? ` · ${countries} countries` : ""}`;
-  const albumSizes = Object.fromEntries(content.listGalleries().map((g) => [g.slug, g.photos.length]));
 
   const shepherd = people.find((p) => p.tenure.to === null);
   const shepherdPhoto =
     org.heroSlides.find((s) => /baba aladura/i.test(s.title))?.image ?? shepherd?.portrait ?? null;
   const messagePost = content.getFeed({ kind: "message", limit: 1 }).items[0];
 
-  // The editorial spread shows the latest four and the Baba Aladura's message has its
-  // own section, so the chronicle continues from everything not already on the page.
   const editorial = content.getFeed({ limit: 4 }).items;
-  const excludeIds = [...editorial.map((p) => p.id), ...(messagePost ? [messagePost.id] : [])];
-  const feed = getFeedPage({ limit: 10, excludeIds });
 
-  // A different moment of the centenary from the one leading the news.
   const centenary = content.listGalleries().find((g) => g.slug === "100th-anniversary-celebration");
   const centenaryPhoto = centenary?.photos.find((p) => p.url !== centenary.cover.url) ?? null;
   const fathersDay = content.listEvents().find((e) => e.slug.startsWith("fathers-day"));
@@ -63,7 +43,6 @@ export default function HomePage() {
         id: "church",
         image: "/brand/hero-mount-zion.webp",
         alt: "The Mount Zion house of prayer, its cross-topped tower rising under a rain-grey sky",
-        // Keep the tower's cross and the lit doorway in frame on wide screens.
         focus: "center 28%",
         eyebrow: `The Eternal Sacred Order of the Cherubim & Seraphim · Since ${org.founded}`,
         lead: "A house of prayer",
@@ -152,49 +131,16 @@ export default function HomePage() {
         <ChurchFamily />
       </HomeBand>
       <FindBand pageCount={units.length} headquarters={headquarters} />
-
-      <div className="mx-auto grid max-w-wide gap-8 border-t border-border px-gutter py-12 lg:grid-cols-[minmax(0,1fr)_var(--spacing-rail-right)] lg:py-16 xl:grid-cols-[16.5rem_minmax(0,1fr)_var(--spacing-rail-right)] xl:gap-10">
-        <OrderIndex
-          root={root}
-          headquarters={headquarters}
-          sections={sections}
-          cmcs={cmcs}
-          churches={churchNames}
-          reach={reach}
-        />
-
-        <div className="grid min-w-0 grid-cols-1 content-start gap-6">
-          <SealsRow units={[root, ...headquarters, ...sections, ...cmcs]} />
-          <section aria-labelledby="feed-heading" className="grid gap-4">
-            <SectionHeading
-              id="feed-heading"
-              title={
-                <>
-                  Life across the Order,{" "}
-                  <span className="font-serif font-normal text-accent italic">in communion.</span>
-                </>
-              }
-              size="lg"
-              href={routes.news()}
-              linkLabel="All news"
-            />
-            <FeedList initial={feed} excludeIds={excludeIds} albumSizes={albumSizes} />
-          </section>
-        </div>
-
-        <aside
-          aria-label="Watchword and prayer"
-          className="grid content-start gap-5 lg:sticky lg:top-[calc(var(--spacing-header)+1.5rem)] lg:self-start"
-        >
-          <WatchwordPlate watchword={org.watchword} />
-          <PrayerCard />
-        </aside>
-      </div>
-
       <Succession people={people} />
       <StoreTeaser />
+
       <div className="mx-auto max-w-wide px-gutter py-14 sm:py-16">
-        <GiveAppeal appeal={org.givingAppeal} />
+        <div className="grid gap-8 lg:grid-cols-[1fr_22rem] lg:items-start lg:gap-10">
+          <GiveAppeal appeal={org.givingAppeal} />
+          <aside aria-label="Pastoral Prayer and Support">
+            <PrayerCard />
+          </aside>
+        </div>
       </div>
     </>
   );

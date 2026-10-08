@@ -20,14 +20,14 @@ export default async function UnitLeadersPage({ params }: PageProps<"/church/[sl
   return (
     <div className="grid gap-6">
       <SectionHeading
-        title={unit.slug === "esocs" ? "The Advisory Board" : "Leaders"}
+        title={unit.slug === "esocs" ? "The Advisory Board" : `${unit.name} Leadership`}
         description={
           unit.slug === "esocs"
             ? "The governing council of the Holy Order, chaired by His Most Eminence, in the order the church lists them."
-            : undefined
+            : `Executive leaders, chairmen, and officers of ${unit.name}.`
         }
       />
-      <ul className="grid gap-1 sm:grid-cols-2">
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {unit.leaders.map((l) => (
           <li key={`${l.name}-${l.role}`}>
             <LeaderCard

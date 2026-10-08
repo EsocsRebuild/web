@@ -16,6 +16,7 @@ import {
   ScrollText,
   ShoppingBag,
   Sparkles,
+  Shield,
   Users,
   UsersRound,
   Network,
@@ -40,7 +41,12 @@ export interface NavLink {
 
 export const primaryNav: NavLink[] = [
   { label: "Home", href: routes.home(), icon: Home },
-  { label: "Find a Church", href: routes.find(), icon: MapPin, match: ["/find", "/structure", "/church"] },
+  {
+    label: "Find a Church",
+    href: routes.find(),
+    icon: MapPin,
+    match: ["/find", "/structure", "/cmcs", "/church"],
+  },
   { label: "Events", href: routes.events(), icon: CalendarDays, match: ["/events", "/calendar", "/tours"] },
   { label: "Media", href: routes.media(), icon: Images, match: ["/media", "/news", "/posts"] },
   { label: "Store", href: routes.store(), icon: ShoppingBag, match: ["/store"] },
@@ -83,6 +89,12 @@ export const moreNav: { title: string; items: NavLink[] }[] = [
       { label: "Women", href: routes.unit("women"), icon: UsersRound },
       { label: "Youth", href: routes.unit("youth"), icon: UsersRound },
       { label: "Directorates", href: routes.sections(), icon: ScrollText },
+      {
+        label: "Church Councils (CMCs)",
+        href: routes.cmcs(),
+        icon: Shield,
+        description: "The 12 regional councils and chairmen",
+      },
       { label: "How we're organised", href: routes.structure(), icon: Network },
     ],
   },

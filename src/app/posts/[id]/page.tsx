@@ -37,6 +37,8 @@ export async function generateMetadata({ params }: PageProps<"/posts/[id]">): Pr
   };
 }
 
+import { BackButton } from "@/components/ui/back-button";
+
 export default async function PostPage({ params }: PageProps<"/posts/[id]">) {
   const content = getContent();
   const post = content.getPost((await params).id);
@@ -56,6 +58,9 @@ export default async function PostPage({ params }: PageProps<"/posts/[id]">) {
     <div className="mx-auto grid max-w-wide gap-10 px-gutter py-8 lg:grid-cols-[minmax(0,1fr)_var(--spacing-rail-right)] lg:py-12">
       <article aria-labelledby="post-title" className="grid min-w-0 content-start gap-8">
         <header className="grid max-w-3xl gap-5">
+          <div>
+            <BackButton href={routes.news()} label="Back to News" />
+          </div>
           <p className="text-overline font-semibold text-highlight uppercase">{POST_KIND[post.kind].label}</p>
           <h1 id="post-title" className="font-display text-display-lg font-extrabold text-balance">
             {post.title}

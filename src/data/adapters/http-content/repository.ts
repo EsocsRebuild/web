@@ -22,7 +22,7 @@ function observanceEvents(year: number): ChurchEvent[] {
     description: o.description,
     date: o.date,
     ...(o.endDate ? { endDate: o.endDate } : {}),
-    startTime: null,
+    startTime: o.startTime ?? null,
     kind: "observance",
     unitSlug: ROOT_SLUG,
     image: null,
@@ -42,8 +42,11 @@ interface BackendOccurrenceResponse {
   startsAt: string;
   endsAt: string;
   status: string;
+  description?: string | null;
   location?: string | null;
   unitId?: string | null;
+  unitSlug?: string | null;
+  imageUrl?: string | null;
 }
 
 export interface HttpContentRepositoryOptions {
@@ -133,16 +136,29 @@ export function createHttpContentRepository(
       if (Array.isArray(res.data) && res.data.length > 0) {
         for (const o of res.data) {
           const slug = `event-${o.id}`;
+          const image = o.imageUrl
+            ? {
+                url: o.imageUrl,
+                width: 1200,
+                height: 800,
+                alt: o.title,
+              }
+            : null;
           eventsMap.set(slug, {
             slug,
             title: o.title,
-            description: o.location ? `Venue: ${o.location}` : "Church Event",
+            description: o.description ?? (o.location ? `Venue: ${o.location}` : "Church Event"),
             date: o.startsAt.slice(0, 10),
             endDate: o.endsAt ? o.endsAt.slice(0, 10) : undefined,
             startTime: o.startsAt.length >= 16 ? o.startsAt.slice(11, 16) : null,
-            kind: o.type.toLowerCase() === "service" ? "service" : "programme",
-            unitSlug: ROOT_SLUG,
-            image: null,
+            kind:
+              o.type.toLowerCase() === "service"
+                ? "service"
+                : o.type.toLowerCase() === "observance"
+                  ? "observance"
+                  : "programme",
+            unitSlug: o.unitSlug ?? ROOT_SLUG,
+            image,
             computed: false,
           });
         }

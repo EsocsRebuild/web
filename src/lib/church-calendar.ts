@@ -13,6 +13,7 @@ export interface Observance {
   description: string;
   date: string;
   endDate?: string;
+  startTime?: string;
 }
 
 const DAY = 86_400_000;
@@ -47,11 +48,22 @@ export function nthWeekdayOfMonth(year: number, month: number, weekday: number, 
   return addDays(first, offset + (n - 1) * 7);
 }
 
+/** Specific events registered specifically for the 2026 Calendar Year */
+const EVENTS_2026: Observance[] = [
+  {
+    slug: "advisory-board-meeting-2026",
+    title: "Advisory Board Meeting",
+    description: "Annual Executive Advisory Board assembly and strategic planning session.",
+    date: "2026-09-03",
+    startTime: "10:00",
+  },
+];
+
 export function observancesForYear(year: number): Observance[] {
   const easter = easterSunday(year);
   const ashWednesday = addDays(easter, -46);
 
-  return [
+  const observances: Observance[] = [
     {
       slug: `ash-wednesday-${year}`,
       title: "Ash Wednesday · Lent begins",
@@ -96,6 +108,12 @@ export function observancesForYear(year: number): Observance[] {
       date: iso(utc(year, 12, 25)),
     },
   ];
+
+  if (year === 2026) {
+    observances.push(...EVENTS_2026);
+  }
+
+  return observances;
 }
 
 /** Observances whose (end) date falls on or after `from`, soonest first. */

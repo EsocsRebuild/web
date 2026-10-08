@@ -1,6 +1,7 @@
 import { Info } from "lucide-react";
 
 import { LogoMark } from "@/components/icons/logo";
+import { BackButton } from "@/components/ui/back-button";
 import type { ProductCategory } from "@/data/schema/store";
 import { getStore } from "@/data/store";
 import { cn } from "@/lib/utils";
@@ -47,6 +48,9 @@ function StoreHero({ category }: { category: ProductCategory | null }) {
       />
       <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:gap-12">
         <div className="grid max-w-2xl gap-3">
+          <div className="mb-1">
+            <BackButton href="/" label="Back to Home" />
+          </div>
           <p className="text-overline font-semibold text-highlight uppercase">The ESOCS Store</p>
           <h1 className="font-display text-display-lg font-extrabold text-balance">
             {category ? category.name : "For worship at church and at home"}

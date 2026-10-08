@@ -63,30 +63,43 @@ export function LeaderCard({
   portrait?: ImageRef | null;
   className?: string;
 }) {
+  const isChairman = /chairman/i.test(leader.role) && !/vice/i.test(leader.role);
   const body = (
-    <>
-      <span className="relative inline-flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-surface-sunken font-display text-sm font-bold text-muted-foreground">
+    <div className="flex items-center gap-3.5">
+      <span
+        className={cn(
+          "relative inline-flex size-13 shrink-0 items-center justify-center overflow-hidden rounded-full font-display text-sm font-bold shadow-xs transition-all",
+          isChairman
+            ? "bg-royal-950 text-gold-300 ring-2 ring-gold-400/50"
+            : "bg-surface-sunken text-foreground/80 ring-1 ring-border",
+        )}
+      >
         {portrait ? (
-          <Image src={portrait.url} alt="" fill sizes="48px" className="object-cover object-top" />
+          <Image src={portrait.url} alt="" fill sizes="52px" className="object-cover object-top" />
         ) : (
           <span aria-hidden>{initials(leader.name)}</span>
         )}
       </span>
-      <span className="grid min-w-0 gap-0.5">
-        <span className="leading-snug font-semibold text-balance">{leader.name}</span>
-        <span className="text-sm leading-5 text-muted-foreground">{leader.role}</span>
+      <span className="grid min-w-0 flex-1 gap-1">
+        <span className="inline-flex w-fit max-w-full items-center gap-1 rounded-full bg-gold-400/10 px-2.5 py-0.5 text-[0.6875rem] font-bold tracking-wider text-gold-800 uppercase ring-1 ring-gold-400/30 dark:text-gold-300">
+          {leader.role}
+        </span>
+        <span className="font-display text-sm leading-snug font-bold text-balance text-foreground">
+          {leader.name}
+        </span>
       </span>
-    </>
+    </div>
   );
-  const base = "flex items-start gap-3 rounded-card p-3";
+  const base =
+    "flex flex-col justify-between rounded-2xl border border-border/80 bg-surface p-4 shadow-2xs transition-all duration-300";
   return leader.personSlug ? (
     <Link
       href={routes.leader(leader.personSlug)}
-      className={cn(base, "transition-colors hover:bg-surface-muted", className)}
+      className={cn(base, "hover:border-gold-500/40 hover:bg-surface-muted/50 hover:shadow-md", className)}
     >
       {body}
     </Link>
   ) : (
-    <div className={cn(base, className)}>{body}</div>
+    <div className={cn(base, "hover:border-border-strong hover:shadow-xs", className)}>{body}</div>
   );
 }

@@ -161,16 +161,16 @@ export function createHttpSocialRepository(options: HttpSocialOptions = {}): Soc
         throw new SocialError("validation", "Enter a valid email address or phone number.");
       }
 
+      if (!allowDemoSignIn) {
+        throw new SocialError("unavailable", "Member accounts are coming soon.");
+      }
+
       try {
         await client.post("/identity/auth/otp/send", { contact: normalised });
         commit({ ...state, pendingContact: normalised });
-      } catch (err) {
+      } catch {
         // If API is unavailable in local dev, allow pendingContact so demo code can proceed
-        if (allowDemoSignIn) {
-          commit({ ...state, pendingContact: normalised });
-          return;
-        }
-        throw mapError(err, "Could not send verification code.");
+        commit({ ...state, pendingContact: normalised });
       }
     },
 
@@ -390,6 +390,10 @@ export function createHttpSocialRepository(options: HttpSocialOptions = {}): Soc
         throw new SocialError("validation", "Please write your request (up to 4,000 characters).");
       }
 
+      if (!allowDemoSignIn) {
+        throw new SocialError("unavailable", "Online prayer requests are coming soon.");
+      }
+
       const email = input.contact?.includes("@") ? input.contact.trim() : null;
       const phoneNumber =
         !input.contact?.includes("@") && input.contact?.trim() ? input.contact.trim() : null;
@@ -415,6 +419,10 @@ export function createHttpSocialRepository(options: HttpSocialOptions = {}): Soc
       const email = subscriber.email.trim().toLowerCase();
       if (!EMAIL.test(email)) {
         throw new SocialError("validation", "Please enter a valid email address.");
+      }
+
+      if (!allowDemoSignIn) {
+        throw new SocialError("unavailable", "Newsletter sign-up opens soon.");
       }
 
       try {
