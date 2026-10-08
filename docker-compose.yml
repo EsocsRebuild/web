@@ -18,6 +18,8 @@ services:
       - NODE_ENV=development
       - PORT=3000
       - HOSTNAME=0.0.0.0
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
       - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
       - NEXT_PUBLIC_USE_HTTP_SOCIAL=${NEXT_PUBLIC_USE_HTTP_SOCIAL:-false}
       - ENABLE_DESIGN_SYSTEM=true
