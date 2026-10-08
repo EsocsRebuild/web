@@ -303,7 +303,7 @@ export function AutomatedEventsBand({ events }: { events: ChurchEvent[] }) {
         {viewMode === "grid" && (
           <div className="mb-8 overflow-hidden rounded-2xl border border-border bg-background shadow-sm">
             <div className="scrollbar-none min-w-0 overflow-x-auto">
-              <div className="min-w-[600px] sm:min-w-0">
+              <div className="min-w-150 sm:min-w-0">
                 {/* Weekday Header Row */}
                 <div className="bg-muted/50 grid grid-cols-7 border-b border-border/80 text-center">
                   {WEEKDAYS.map((day) => (
