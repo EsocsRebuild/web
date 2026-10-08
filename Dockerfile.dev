@@ -1,0 +1,46 @@
+# syntax=docker/dockerfile:1.10
+#
+# ESOCS Web: Development Container with Live Hot-Reloading.
+#
+# Usage:
+#   docker compose up web-dev
+#   Or standalone:
+#   docker build -f Dockerfile.dev -t esocs-web:dev .
+#   docker run --rm -p 3000:3000 -v $(pwd):/app -v /app/node_modules esocs-web:dev
+
+ARG NODE_VERSION=24
+ARG DEBIAN_RELEASE=bookworm
+
+FROM node:${NODE_VERSION}-${DEBIAN_RELEASE}-slim
+
+ENV NODE_ENV=development \
+    PORT=3000 \
+    HOSTNAME=0.0.0.0 \
+    NEXT_TELEMETRY_DISABLED=1 \
+    npm_config_update_notifier=false \
+    npm_config_fund=false \
+    npm_config_audit=false
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+WORKDIR /app
+
+# Install curl for healthchecks
+RUN apt-get update \
+ && apt-get install --no-install-recommends -y curl \
+ && rm -rf /var/lib/apt/lists/*
+
+COPY package.json package-lock.json ./
+
+# Install all dependencies (including devDependencies)
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --no-audit --no-fund
+
+COPY . .
+
+EXPOSE 3000
+
+HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:3000/api/health || exit 1
+
+CMD ["npm", "run", "dev"]
+
