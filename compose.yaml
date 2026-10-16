@@ -1,6 +1,6 @@
 # ESOCS web: production-like stack.
 #
-#   docker compose up --build -d                  # app only, on http://localhost:3000
+#   docker compose up --build -d                  # app only, on http://localhost:3020
 #   docker compose --profile proxy up --build -d  # with Caddy (HTTPS, compression) on :80/:443
 #
 # Variables come from the shell or a .env file next to this file (see .env.example).
@@ -28,7 +28,7 @@ services:
       context: .
       target: runner
       args:
-        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3020}
         DEPLOYMENT_ID: ${DEPLOYMENT_ID:-local}
         APP_VERSION: ${APP_VERSION:-local}
       secrets:
@@ -37,7 +37,7 @@ services:
       NODE_ENV: production
       PORT: 3000
     ports:
-      - "${WEB_PORT:-3000}:3000"
+      - "${WEB_PORT:-3020}:3000"
     volumes:
       # Regenerated pages and optimised images survive restarts.
       - next-cache:/app/.next/cache
