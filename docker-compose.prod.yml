@@ -1,7 +1,7 @@
 # ESOCS Web: Production Container Stack.
 #
 # Usage:
-#   docker compose -f docker-compose.prod.yml up --build -d                  # standalone app on http://localhost:3000
+#   docker compose -f docker-compose.prod.yml up --build -d                  # standalone app on http://localhost:3020
 #   docker compose -f docker-compose.prod.yml --profile proxy up --build -d  # with Caddy HTTPS proxy on :80/:443
 #   docker compose -f docker-compose.prod.yml down                           # stop production stack
 
@@ -30,7 +30,7 @@ services:
       dockerfile: Dockerfile
       target: runner
       args:
-        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3020}
         DEPLOYMENT_ID: ${DEPLOYMENT_ID:-local}
         APP_VERSION: ${APP_VERSION:-local}
       secrets:
@@ -39,9 +39,9 @@ services:
       NODE_ENV: production
       PORT: 3000
       HOSTNAME: 0.0.0.0
-      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost:3020}
     ports:
-      - "${WEB_PORT:-3000}:3000"
+      - "${WEB_PORT:-3020}:3000"
     volumes:
       # Persistent cache for regenerated pages and optimized images across restarts
       - esocs-next-cache:/app/.next/cache

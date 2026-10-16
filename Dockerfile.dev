@@ -6,7 +6,7 @@
 #   docker compose up --build
 #   Or standalone:
 #   docker build -f Dockerfile.dev -t esocs-web:dev .
-#   docker run --rm -p 3000:3000 -v $(pwd):/app -v /app/node_modules esocs-web:dev
+#   docker run --rm -p 3020:3000 -v $(pwd):/app -v /app/node_modules esocs-web:dev
 
 ARG NODE_VERSION=24
 ARG DEBIAN_RELEASE=bookworm

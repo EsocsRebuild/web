@@ -18,7 +18,7 @@
 ### Development (Live Hot-Reloading)
 
 ```bash
-npm run docker:dev       # Build and start development container with live logs on http://localhost:3000
+npm run docker:dev       # Build and start development container with live logs on http://localhost:3020
 npm run docker:up        # Start development container in background (-d)
 npm run docker:logs      # Follow development container logs
 npm run docker:down      # Stop development container
@@ -29,7 +29,7 @@ Edits to files on your host machine are reflected immediately in your browser vi
 ### Production Stack (Optimized & Hardened)
 
 ```bash
-npm run docker:prod                                                      # Start production standalone container on http://localhost:3000
+npm run docker:prod                                                      # Start production standalone container on http://localhost:3020
 docker compose -f docker-compose.prod.yml --profile proxy up --build -d  # Production with Caddy proxy on :80/:443
 npm run docker:logs:prod                                                 # Follow production container logs
 ```

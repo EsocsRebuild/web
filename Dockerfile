@@ -1,7 +1,7 @@
 # ESOCS web: production image.
 #
 #   docker build -t esocs-web .
-#   docker run --rm -p 3000:3000 esocs-web
+#   docker run --rm -p 3020:3000 esocs-web
 #
 # Stages: deps (install) → builder (next build, standalone output) → runner (minimal).
 # The runner holds only the traced server, static assets and public files: no
@@ -38,7 +38,7 @@ RUN --mount=type=cache,target=/root/.npm \
 FROM base AS builder
 
 # Public values are inlined into the browser bundle at build time.
-ARG NEXT_PUBLIC_SITE_URL=http://localhost:3000
+ARG NEXT_PUBLIC_SITE_URL=http://localhost:3020
 # Identifies this release; used for version-skew protection during rolling updates.
 ARG DEPLOYMENT_ID=""
 ENV NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL} \
