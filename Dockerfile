@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1.10
-#
 # ESOCS web: production image.
 #
 #   docker build -t esocs-web .
