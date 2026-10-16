@@ -3,7 +3,9 @@
 # ESOCS Web: Development Container with Live Hot-Reloading.
 #
 # Usage:
-#   docker compose up web-dev
+#   npm run docker:dev
+#   Or:
+#   docker compose up --build
 #   Or standalone:
 #   docker build -f Dockerfile.dev -t esocs-web:dev .
 #   docker run --rm -p 3000:3000 -v $(pwd):/app -v /app/node_modules esocs-web:dev
