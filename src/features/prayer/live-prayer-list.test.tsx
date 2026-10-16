@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, act } from "@testing-library/react";
 import * as React from "react";
-import { describe, expect, it, vi, beforeEach } from "vitest";
+import { describe, expect, it, vi, beforeEach, afterEach } from "vitest";
 
 import { LivePrayerList, type PrayerItem } from "./live-prayer-list";
 import { RealtimeProvider } from "@/features/social/realtime-provider";
@@ -57,6 +57,20 @@ describe("LivePrayerList", () => {
 
   beforeEach(() => {
     mockSocket = createMockSocket();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        status: 200,
+        headers: new Headers({ "content-type": "application/json" }),
+        json: async () => ({ data: [] }),
+        text: async () => JSON.stringify({ data: [] }),
+      }),
+    );
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
   });
 
   it("renders prayer list and allows optimistic agreement click", async () => {
