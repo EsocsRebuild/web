@@ -16,7 +16,7 @@ updates:
       radix:
         patterns: ["@radix-ui/*"]
       testing:
-        patterns: ["vitest", "@vitest/*", "@testing-library/*", "@playwright/test", "@axe-core/*", "jsdom"]
+        patterns: ["vitest", "@vitest/*", "@testing-library/*", "jsdom"]
       tooling:
         patterns:
           [

@@ -16,6 +16,8 @@ FROM node:${NODE_VERSION}-${DEBIAN_RELEASE}-slim
 ENV NODE_ENV=development \
     PORT=3000 \
     HOSTNAME=0.0.0.0 \
+    WATCHPACK_POLLING=true \
+    CHOKIDAR_USEPOLLING=true \
     NEXT_TELEMETRY_DISABLED=1 \
     npm_config_update_notifier=false \
     npm_config_fund=false \

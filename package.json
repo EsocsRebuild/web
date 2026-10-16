@@ -16,7 +16,6 @@
     "test:githooks": "vitest run --project githooks",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test",
     "validate": "npm run lint && npm run format:check && npm run typecheck && npm run test",
     "prepare": "node scripts/githooks.mjs install",
     "hooks:install": "node scripts/githooks.mjs install",
@@ -61,10 +60,8 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.13.0",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
-    "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
