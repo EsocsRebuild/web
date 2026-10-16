@@ -36,8 +36,9 @@ RUN apt-get update \
 COPY package.json package-lock.json ./
 
 # Install all dependencies (including devDependencies)
+# --ignore-scripts skips the host git-hooks installer script
 RUN --mount=type=cache,target=/root/.npm \
-    npm ci --no-audit --no-fund
+    npm ci --ignore-scripts --no-audit --no-fund
 
 COPY . .
 
