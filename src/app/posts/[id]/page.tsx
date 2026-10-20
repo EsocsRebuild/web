@@ -122,7 +122,7 @@ export default async function PostPage({ params }: PageProps<"/posts/[id]">) {
           </section>
         )}
 
-        <div className="sticky bottom-[calc(var(--spacing-bottom-nav)+env(safe-area-inset-bottom)+0.5rem)] z-20 flex flex-wrap items-center justify-between gap-2 rounded-pill border border-border bg-surface/95 px-2 py-1 shadow-card backdrop-blur lg:static lg:rounded-card lg:shadow-none">
+        <div className="sticky bottom-[calc(var(--spacing-bottom-nav)+env(safe-area-inset-bottom)+0.5rem)] z-20 flex flex-wrap items-center justify-between gap-2 rounded-pill border border-border bg-surface px-2 py-1 lg:static lg:rounded-card">
           <ReactionBar postId={post.id} title={post.title} />
           <div className="flex items-center">
             <SaveButton postId={post.id} title={post.title} />

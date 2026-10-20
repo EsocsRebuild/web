@@ -82,7 +82,7 @@ function ScrollTop({ suppressed }: { suppressed: boolean }) {
         tabIndex={shown ? 0 : -1}
         data-scroll-top
         className={cn(
-          "pointer-events-auto relative inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-border bg-background/90 text-foreground shadow-[0_10px_30px_-12px_oklch(0.2_0.06_265/0.45)] backdrop-blur-md",
+          "pointer-events-auto relative inline-flex size-12 cursor-pointer items-center justify-center rounded-full border border-border-strong bg-background text-foreground",
           "transition-[opacity,translate,scale,background-color] duration-300 ease-[var(--ease-out-expo)] hover:bg-surface",
           shown
             ? "translate-y-0 scale-100 opacity-100"

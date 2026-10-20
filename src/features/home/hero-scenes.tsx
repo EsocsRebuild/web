@@ -254,7 +254,7 @@ export function HeroScenes({
             </Link>
             <Link
               href={scene.cta.href}
-              className="group/cta inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-white/30 bg-white/5 px-5 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white hover:text-royal-950"
+              className="group/cta inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-white/30 bg-white/10 px-5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-royal-950"
             >
               {scene.cta.label}
               <ArrowRight

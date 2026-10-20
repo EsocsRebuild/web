@@ -22,7 +22,7 @@ export function BackButton({
       <Link
         href={href}
         className={cn(
-          "hover:bg-muted inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground shadow-xs backdrop-blur-xs transition-all hover:border-border-strong hover:text-foreground",
+          "hover:bg-muted inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-all hover:border-border-strong hover:text-foreground",
           className,
         )}
       >
@@ -43,7 +43,7 @@ export function BackButton({
         }
       }}
       className={cn(
-        "hover:bg-muted inline-flex items-center gap-2 rounded-full border border-border/80 bg-background/80 px-3 py-1.5 text-xs font-semibold text-muted-foreground shadow-xs backdrop-blur-xs transition-all hover:border-border-strong hover:text-foreground",
+        "hover:bg-muted inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-all hover:border-border-strong hover:text-foreground",
         className,
       )}
     >

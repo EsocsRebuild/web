@@ -227,7 +227,7 @@ export function AutomatedEventsBand({ events }: { events: ChurchEvent[] }) {
         </div>
 
         {/* Month Navigation & Kind Filters Bar */}
-        <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-border bg-background/90 p-3 shadow-sm backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
+        <div className="mb-8 flex flex-col gap-4 rounded-2xl border border-border bg-background p-3 sm:flex-row sm:items-center sm:justify-between">
           {/* Month Selection Bar */}
           <div className="scrollbar-none flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0">
             <Button

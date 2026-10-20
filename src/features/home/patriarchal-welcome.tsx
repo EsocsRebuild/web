@@ -172,7 +172,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
 
                 {/* Status Indicator */}
                 <div className="absolute top-4 right-4 z-10">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-royal-950/90 px-3.5 py-1 text-xs font-bold text-gold-300 shadow-md ring-1 ring-gold-400/50 backdrop-blur-md">
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-royal-950 px-3.5 py-1 text-xs font-bold text-gold-300 ring-1 ring-gold-400/50">
                     <span className="size-2 animate-pulse rounded-full bg-gold-400" />
                     Reigning Prelate
                   </span>
@@ -522,9 +522,9 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
       {/* Centered with fixed positioning, no relative position conflicts.        */}
       {/* ========================================================================= */}
       <Dialog open={readerOpen} onOpenChange={setReaderOpen}>
-        <DialogContent className="flex max-h-[85dvh] flex-col gap-0 overflow-hidden rounded-card border border-border bg-surface p-0 shadow-2xl sm:max-w-3xl sm:rounded-panel">
+        <DialogContent className="flex max-h-[85dvh] flex-col gap-0 overflow-hidden rounded-card border border-border bg-surface p-0 sm:max-w-3xl sm:rounded-panel">
           {/* Modal Header */}
-          <div className="sticky top-0 z-20 flex items-center justify-between border-b border-border bg-surface/95 px-6 py-4 backdrop-blur-sm sm:px-8">
+          <div className="sticky top-0 z-20 flex items-center justify-between border-b border-border bg-surface px-6 py-4 sm:px-8">
             <DialogHeader className="p-0 pr-4">
               <div className="flex items-center gap-2">
                 <Crown className="size-4 text-accent" />

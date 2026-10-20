@@ -84,7 +84,7 @@ export function AppHeader() {
           "mx-auto grid h-header grid-cols-[minmax(max-content,1fr)_auto_minmax(max-content,1fr)] items-center gap-2 text-foreground sm:gap-3",
           "transition-[max-width,height,background-color,border-color,box-shadow,border-radius,padding] duration-500 ease-[var(--ease-out-expo)]",
           scrolled
-            ? "h-16 max-w-[66rem] rounded-b-panel border border-border/70 bg-background/80 px-3 shadow-[0_18px_50px_-20px_oklch(0.2_0.06_265/0.45)] backdrop-blur-xl backdrop-saturate-150 sm:rounded-pill sm:px-4"
+            ? "h-16 max-w-[66rem] rounded-b-panel border border-border bg-background px-3 sm:rounded-pill sm:px-4"
             : "max-w-wide border border-transparent bg-transparent px-0",
         )}
       >

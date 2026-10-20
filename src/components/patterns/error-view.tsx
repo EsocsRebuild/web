@@ -173,7 +173,7 @@ export function ErrorView({ error, reset, isGlobal = false, className }: ErrorVi
         </div>
 
         {/* Central Brand Shield / Icon Container */}
-        <div className="mx-auto mb-6 flex size-20 items-center justify-center rounded-2xl border border-gold-500/30 bg-surface-muted/80 shadow-lg backdrop-blur-md">
+        <div className="mx-auto mb-6 flex size-20 items-center justify-center rounded-2xl border border-gold-500/40 bg-surface-muted">
           {isOffline ? (
             <WifiOff className="size-10 text-warning" />
           ) : healthStatus === "unreachable" ? (

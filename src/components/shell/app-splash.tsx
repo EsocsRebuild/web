@@ -9,7 +9,11 @@ import { SplashController } from "./splash-controller";
  */
 export function AppSplash() {
   return (
-    <div className="app-splash" role="status" aria-label="Loading The ESOCS Church">
+    <div
+      className="app-splash"
+      role="status"
+      aria-label="Loading The Eternal Sacred Order of the Cherubim and Seraphim"
+    >
       <div className="app-splash__stage">
         <div className="app-splash__mark">
           <span aria-hidden className="app-splash__glow" />
@@ -26,10 +30,14 @@ export function AppSplash() {
             height={96}
           />
         </div>
-        <p aria-hidden className="app-splash__word">
-          <span className="app-splash__word-main">The ESOCS</span>
-          <span className="app-splash__word-accent">Church</span>
-        </p>
+        <div aria-hidden className="app-splash__word max-w-sm px-4 text-center">
+          <span className="app-splash__word-main text-xs font-bold tracking-wider text-white uppercase sm:text-sm">
+            The Eternal Sacred Order of the Cherubim and Seraphim
+          </span>
+          <span className="app-splash__word-accent font-serif text-sm text-gold-300 italic sm:text-base">
+            Mount Zion Worldwide
+          </span>
+        </div>
         <span aria-hidden className="app-splash__line" />
       </div>
       <SplashController />
