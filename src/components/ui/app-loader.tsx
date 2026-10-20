@@ -17,7 +17,7 @@ export function AppLoader() {
 
   React.useEffect(() => {
     const startTime = Date.now();
-    const duration = 6000; // 6 seconds cinematic loader duration
+    const duration = 10000; // 10 seconds cinematic loader duration
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;

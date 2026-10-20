@@ -653,7 +653,7 @@ html:not([data-splash="seen"]) .hero-word {
   overflow: hidden;
   background: #040814;
   color: var(--color-parchment-50);
-  animation: splash-exit 0.85s cubic-bezier(0.16, 1, 0.3, 1) 6s forwards;
+  animation: splash-exit 0.85s cubic-bezier(0.16, 1, 0.3, 1) 10s forwards;
   cursor: pointer;
 }
 /* The congregation, pre-blurred, drifting in slowly with Ken Burns depth behind the crest. */
@@ -662,7 +662,7 @@ html:not([data-splash="seen"]) .hero-word {
   inset: -5%;
   background: url("/brand/splash-bg.webp") center / cover no-repeat;
   filter: saturate(1.25) brightness(0.68) contrast(1.15);
-  animation: splash-bg 5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: splash-bg 9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 /* Deep sacred cathedral veil with radial spotlight vignette. */
 .app-splash__veil {
@@ -756,7 +756,7 @@ html[data-splash="seen"] .app-splash {
   display: grid;
   justify-items: center;
   gap: 1.35rem;
-  animation: splash-stage-exit 0.85s cubic-bezier(0.16, 1, 0.3, 1) 6s forwards;
+  animation: splash-stage-exit 0.85s cubic-bezier(0.16, 1, 0.3, 1) 10s forwards;
 }
 .app-splash__mark {
   position: relative;

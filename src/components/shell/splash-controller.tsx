@@ -18,8 +18,8 @@ export function SplashController() {
       root.dataset.splash = "seen";
     };
 
-    // Extended 6.2s delay for rich cinematic experience
-    const timer = window.setTimeout(dismiss, reduce ? 50 : 6200);
+    // Extended 10s delay for full cinematic experience
+    const timer = window.setTimeout(dismiss, reduce ? 50 : 10200);
 
     const splashEl = document.querySelector(".app-splash");
     splashEl?.addEventListener("click", dismiss);
