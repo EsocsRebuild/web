@@ -13,16 +13,23 @@ import * as React from "react";
 export function AppLoader() {
   const [mounted, setMounted] = React.useState(true);
   const [fadingOut, setFadingOut] = React.useState(false);
-  const [progress, setProgress] = React.useState(18);
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
+    const startTime = Date.now();
+    const duration = 6000; // 6 seconds cinematic loader duration
+
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 92) return prev;
-        const jump = Math.floor(Math.random() * 8) + 4;
-        return Math.min(92, prev + jump);
-      });
-    }, 120);
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(100, Math.floor((elapsed / duration) * 100));
+      setProgress(pct);
+
+      if (pct >= 100) {
+        clearInterval(interval);
+        setFadingOut(true);
+        setTimeout(() => setMounted(false), 400);
+      }
+    }, 40);
 
     return () => clearInterval(interval);
   }, []);
@@ -130,11 +137,11 @@ export function AppLoader() {
           </div>
         </div>
 
-        {/* Sacred Holy Order Title requested */}
-        <h1 className="max-w-md text-sm font-extrabold tracking-[0.06em] text-white uppercase sm:text-base md:text-lg">
-          The Eternal Sacred Order Of the Cherubim and Seraphim
+        {/* Sacred Holy Order Title */}
+        <h1 className="max-w-md text-base font-extrabold tracking-[0.05em] text-white uppercase sm:text-lg md:text-xl">
+          The Eternal Sacred Order of Cherubim and Seraphim
         </h1>
-        <span className="mt-1 font-serif text-base text-amber-300 italic sm:text-xl">
+        <span className="mt-1.5 font-serif text-lg text-amber-300 italic sm:text-2xl">
           Mount Zion Worldwide
         </span>
 
