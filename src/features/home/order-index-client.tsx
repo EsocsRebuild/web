@@ -73,7 +73,7 @@ export function YourChurchCard({ churches, reach }: { churches: ChurchNames; rea
           aria-hidden
           className="absolute inset-0 bg-linear-to-b from-transparent via-inverse/15 to-inverse"
         />
-        <span className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 rounded-pill bg-black/35 px-2.5 py-1 text-[0.6875rem] font-semibold text-white backdrop-blur-sm">
+        <span className="absolute bottom-3 left-4 inline-flex items-center gap-1.5 rounded-pill border border-white/10 bg-slate-950/80 px-2.5 py-1 text-[0.6875rem] font-semibold text-white">
           <Church aria-hidden className="size-3.5 text-highlight" />
           {reach}
         </span>

@@ -1,4 +1,5 @@
 import { Announcements } from "@/components/shell/announcements";
+import { SpotlightBulletinModal, type SpotlightItem } from "@/components/bulletin/spotlight-bulletin-modal";
 import { getContent } from "@/data/content";
 import { HeroScenes, type HeroScene } from "@/features/home/hero-scenes";
 import { PrayerCard, Succession } from "@/features/home/home-sections";
@@ -33,6 +34,22 @@ export default function HomePage() {
   const messagePost = content.getFeed({ kind: "message", limit: 1 }).items[0];
 
   const editorial = content.getFeed({ limit: 4 }).items;
+
+  const spotlightPost = editorial[0] ?? messagePost;
+  const spotlightItem: SpotlightItem | null = spotlightPost
+    ? {
+        id: spotlightPost.id,
+        title: spotlightPost.title,
+        category: spotlightPost.kind === "message" ? "Holy Patriarchal Epistle" : "Holy Order Bulletin",
+        summary:
+          spotlightPost.body[0] ??
+          "Read the latest official bulletin and pastoral communication from the Eternal Sacred Order.",
+        imageUrl: spotlightPost.images[0]?.url,
+        ctaText: spotlightPost.kind === "message" ? "Read Patriarchal Epistle" : "Read Full Bulletin",
+        ctaLink: routes.post(spotlightPost.id),
+        isUrgent: spotlightPost.kind === "message",
+      }
+    : null;
 
   const centenary = content.listGalleries().find((g) => g.slug === "100th-anniversary-celebration");
   const centenaryPhoto = centenary?.photos.find((p) => p.url !== centenary.cover.url) ?? null;
@@ -103,6 +120,7 @@ export default function HomePage() {
 
   return (
     <>
+      <SpotlightBulletinModal spotlight={spotlightItem} />
       <HeroScenes scenes={scenes} findHref={routes.find()} footer={<Announcements variant="hero" />} />
       <QuickPathsDeck />
 

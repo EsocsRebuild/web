@@ -60,7 +60,7 @@ export function Lightbox({
   };
 
   const nav =
-    "absolute top-1/2 z-10 hidden size-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20 disabled:opacity-30 sm:inline-flex [&_svg]:size-6";
+    "absolute top-1/2 z-10 hidden size-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-white/20 bg-slate-900/90 text-white transition-colors hover:bg-slate-800 disabled:opacity-30 sm:inline-flex [&_svg]:size-6";
 
   return (
     <DialogPrimitive.Root open={open} onOpenChange={(o) => !o && onClose()}>

@@ -47,9 +47,7 @@ export function HierarchyTrail({
       <ol
         className={cn(
           "inline-flex flex-wrap items-center gap-1.5 rounded-pill border px-3 py-1.5 text-xs shadow-xs transition-colors",
-          isInverse
-            ? "border-white/15 bg-white/10 text-white backdrop-blur-none"
-            : "border-border bg-surface text-foreground",
+          isInverse ? "border-white/15 bg-white/10 text-white" : "border-border bg-surface text-foreground",
         )}
       >
         <li className="flex items-center pr-1 text-muted-foreground">

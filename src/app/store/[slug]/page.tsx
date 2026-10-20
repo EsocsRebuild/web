@@ -75,7 +75,7 @@ export default async function ProductPage({ params }: PageProps<"/store/[slug]">
             className="aspect-square rounded-panel lg:sticky lg:top-[calc(var(--spacing-header)+1.5rem)]"
           />
           {product.badge && (
-            <span className="absolute top-4 left-4 rounded-pill bg-background/90 px-3 py-1 text-xs font-bold tracking-wide uppercase backdrop-blur">
+            <span className="absolute top-4 left-4 rounded-pill border border-border bg-background px-3 py-1 text-xs font-bold tracking-wide uppercase">
               {product.badge}
             </span>
           )}

@@ -92,7 +92,7 @@ export function ProductCard({
         />
         <div className="absolute inset-x-3 top-3 flex items-start justify-between gap-2">
           {product.badge ? (
-            <span className="rounded-pill bg-background/90 px-2.5 py-1 text-[0.6875rem] font-bold tracking-wide whitespace-nowrap text-foreground uppercase shadow-sm backdrop-blur">
+            <span className="rounded-pill border border-border bg-background px-2.5 py-1 text-[0.6875rem] font-bold tracking-wide whitespace-nowrap text-foreground uppercase">
               {product.badge}
             </span>
           ) : (
@@ -101,7 +101,7 @@ export function ProductCard({
           {product.stock !== "in-stock" && (
             <StockLabel
               stock={product.stock}
-              className="rounded-pill bg-background/90 px-2.5 py-1 text-[0.6875rem] whitespace-nowrap shadow-sm backdrop-blur"
+              className="rounded-pill border border-border bg-background px-2.5 py-1 text-[0.6875rem] whitespace-nowrap"
             />
           )}
         </div>
