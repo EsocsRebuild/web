@@ -2,19 +2,43 @@
 
 import * as React from "react";
 
-/** Marks the splash as finished, so later hero animations no longer wait for it. */
+/**
+ * Manages the cinematic splash lifecycle:
+ * - Plays the 2.8s sacred cinematic reveal
+ * - Allows instant skip by tapping/clicking anywhere on the screen
+ * - Responds to Escape, Enter, or Space keys for instant skip
+ * - Honors prefers-reduced-motion for instant skip
+ * - Sets data-splash="seen" on root element when complete
+ */
 export function SplashController() {
   React.useEffect(() => {
     const root = document.documentElement;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // Matches the exit timing in globals.css; if reduced motion, complete promptly.
-    const id = window.setTimeout(
-      () => {
-        root.dataset.splash = "seen";
-      },
-      reduce ? 50 : 1800,
-    );
-    return () => window.clearTimeout(id);
+
+    const dismiss = () => {
+      root.dataset.splash = "seen";
+    };
+
+    // Auto-dismiss after the cinematic experience completes (2.8s)
+    const timer = window.setTimeout(dismiss, reduce ? 50 : 2800);
+
+    // Instant click-to-enter anywhere on the splash screen
+    const splashEl = document.querySelector(".app-splash");
+    splashEl?.addEventListener("click", dismiss);
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" || e.key === " " || e.key === "Enter") {
+        dismiss();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      window.clearTimeout(timer);
+      splashEl?.removeEventListener("click", dismiss);
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, []);
+
   return null;
 }
