@@ -72,7 +72,7 @@ export function AppSplash() {
 
         {/* Sacred Order Typography */}
         <div aria-hidden className="app-splash__word max-w-xl px-4 text-center">
-          <h1 className="app-splash__word-main text-base font-extrabold tracking-[0.05em] text-white uppercase sm:text-lg md:text-xl">
+          <h1 className="app-splash__word-main text-base font-extrabold tracking-wider text-white uppercase sm:text-lg md:text-xl">
             The Eternal Sacred Order of Cherubim and Seraphim
           </h1>
           <span className="app-splash__word-accent mt-1.5 block font-serif text-lg text-gold-300 italic sm:text-2xl">
