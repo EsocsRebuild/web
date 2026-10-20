@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Suspense } from "react";
 
 import { SkipLink } from "@/components/layout/skip-link";
+import { InteractionMonitor } from "@/components/motion/interaction-monitor";
 import { RouteFilament } from "@/components/motion/route-filament";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { AppSplash } from "@/components/shell/app-splash";
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SignInHost />
           <Toaster />
           <ScrollReveal />
+          <InteractionMonitor />
         </Providers>
       </body>
     </html>

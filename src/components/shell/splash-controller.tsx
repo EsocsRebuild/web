@@ -4,11 +4,10 @@ import * as React from "react";
 
 /**
  * Manages the cinematic splash lifecycle:
- * - Plays the 2.8s sacred cinematic reveal
- * - Allows instant skip by tapping/clicking anywhere on the screen
- * - Responds to Escape, Enter, or Space keys for instant skip
- * - Honors prefers-reduced-motion for instant skip
- * - Sets data-splash="seen" on root element when complete
+ * - Extended 3.6s delay for rich cinematic ambiance
+ * - Instant skip on tap/click anywhere
+ * - Instant skip on Escape, Enter, or Space keys
+ * - Instant skip for prefers-reduced-motion
  */
 export function SplashController() {
   React.useEffect(() => {
@@ -19,10 +18,9 @@ export function SplashController() {
       root.dataset.splash = "seen";
     };
 
-    // Auto-dismiss after the cinematic experience completes (2.8s)
-    const timer = window.setTimeout(dismiss, reduce ? 50 : 2800);
+    // Extended 3.6s delay for rich cinematic experience
+    const timer = window.setTimeout(dismiss, reduce ? 50 : 3600);
 
-    // Instant click-to-enter anywhere on the splash screen
     const splashEl = document.querySelector(".app-splash");
     splashEl?.addEventListener("click", dismiss);
 
