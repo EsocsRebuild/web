@@ -1,30 +1,35 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 
 /**
- * Cinematic Sanctuary Route & Suspense Loader:
- * - Full-screen immersive midnight cathedral aesthetic
- * - Luminous sacred ESOCS crest with rotating gold halo
- * - Elegant church typography with gold foil script
- * - Ambient celestial glow and breathing light filament
- * - Instant tap-to-dismiss support
+ * High-End Cinematic Sanctuary Route & Suspense Loader:
+ * - Direct <img> rendering ensures instant zero-delay paint (no Next.js image optimizer waiting)
+ * - Crystal clear unblurred crest at balanced size (80px)
+ * - Official Holy Order title: "The Eternal Sacred Order Of the Cherubim and Seraphim"
+ * - Celestial gold corona with animated halo
+ * - Tap anywhere to dismiss instantly
  */
 export function AppLoader() {
   const [mounted, setMounted] = React.useState(true);
   const [fadingOut, setFadingOut] = React.useState(false);
-  const [progress, setProgress] = React.useState(15);
+  const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
-    // Graceful simulated progression while streaming chunks arrive
+    const startTime = Date.now();
+    const duration = 10000; // 10 seconds cinematic loader duration
+
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 92) return prev;
-        const jump = Math.floor(Math.random() * 8) + 3;
-        return Math.min(92, prev + jump);
-      });
-    }, 120);
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(100, Math.floor((elapsed / duration) * 100));
+      setProgress(pct);
+
+      if (pct >= 100) {
+        clearInterval(interval);
+        setFadingOut(true);
+        setTimeout(() => setMounted(false), 400);
+      }
+    }, 40);
 
     return () => clearInterval(interval);
   }, []);
@@ -41,14 +46,14 @@ export function AppLoader() {
       role="status"
       aria-label="Loading The Eternal Sacred Order of the Cherubim and Seraphim Sanctuary"
       onClick={handleDismiss}
-      className={`fixed inset-0 z-[99999] flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-[#040814] transition-opacity duration-500 ease-out ${
+      className={`fixed inset-0 z-99999 flex cursor-pointer flex-col items-center justify-center overflow-hidden bg-[#040814] transition-opacity duration-500 ease-out ${
         fadingOut ? "pointer-events-none opacity-0" : "opacity-100"
       }`}
     >
       {/* Cinematic Sanctuary Atmospheric Backdrop */}
       <div
         aria-hidden
-        className="absolute inset-[-4%] scale-105 bg-[url('/brand/splash-bg.webp')] bg-cover bg-center opacity-30 brightness-75 saturate-125 transition-transform duration-1000 ease-out"
+        className="absolute inset-[-4%] scale-105 bg-[url('/brand/splash-bg.webp')] bg-cover bg-center opacity-30 brightness-75 saturate-125"
       />
       <div
         aria-hidden
@@ -61,12 +66,12 @@ export function AppLoader() {
 
       {/* Main Sanctuary Content Stage */}
       <div className="relative z-10 flex max-w-lg flex-col items-center px-6 text-center">
-        {/* Sacred Official Crest with Glowing Solar Halo */}
-        <div className="relative mb-6 flex size-28 items-center justify-center sm:size-32">
-          {/* Pulsing Gold Ambient Aura */}
+        {/* Sacred Official Crest with Balanced, Crisp Proportions (80px - not too big) */}
+        <div className="relative mb-5 flex size-24 items-center justify-center">
+          {/* Pulsing Gold Ambient Aura behind the crest */}
           <span
             aria-hidden
-            className="absolute inset-2 animate-pulse rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.65)_0%,transparent_70%)] blur-xl"
+            className="absolute inset-2 animate-pulse rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.6)_0%,transparent_70%)] blur-lg"
           />
 
           {/* Animated Cardinal Star Ring */}
@@ -117,27 +122,26 @@ export function AppLoader() {
             </defs>
           </svg>
 
-          {/* Sacred Crest Graphic */}
-          <div className="relative size-20 overflow-hidden rounded-full bg-slate-950/80 p-1 shadow-[0_0_0_2px_rgba(245,158,11,0.6),0_15px_35px_-8px_rgba(0,0,0,0.9)] sm:size-24">
-            <Image
+          {/* Sharp, Unblurred Master Crest Image */}
+          <div className="relative size-20 overflow-hidden rounded-full bg-slate-950 p-0.5 shadow-[0_0_0_2px_rgba(245,158,11,0.7),0_12px_28px_-6px_rgba(0,0,0,0.9)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/brand/esocs-crest.png"
-              alt="The Official Crest of The Eternal Sacred Order of the Cherubim and Seraphim"
-              width={96}
-              height={96}
-              priority
-              className="size-full object-contain"
+              alt="Official Crest"
+              width={80}
+              height={80}
+              loading="eager"
+              decoding="async"
+              className="size-full object-contain [image-rendering:-webkit-optimize-contrast]"
             />
           </div>
         </div>
 
-        {/* Holy Order Title & Typography */}
-        <span className="text-[0.6875rem] font-semibold tracking-[0.28em] text-amber-300/85 uppercase sm:text-xs">
-          The Eternal Sacred Order of
-        </span>
-        <h1 className="mt-1 text-base font-extrabold tracking-[0.06em] text-white uppercase sm:text-xl">
-          Cherubim &amp; Seraphim
+        {/* Sacred Holy Order Title */}
+        <h1 className="max-w-md text-base font-extrabold tracking-[0.05em] text-white uppercase sm:text-lg md:text-xl">
+          The Eternal Sacred Order of Cherubim and Seraphim
         </h1>
-        <span className="mt-0.5 font-serif text-lg text-amber-300 italic sm:text-2xl">
+        <span className="mt-1.5 font-serif text-lg text-amber-300 italic sm:text-2xl">
           Mount Zion Worldwide
         </span>
 
@@ -145,7 +149,7 @@ export function AppLoader() {
         <div className="mt-6 w-full max-w-xs space-y-2.5">
           <div className="relative h-1 w-full overflow-hidden rounded-full bg-white/10 backdrop-blur-sm">
             <div
-              className="h-full rounded-full bg-gradient-to-r from-amber-400 via-amber-200 to-amber-500 shadow-[0_0_12px_rgba(251,191,36,0.9)] transition-all duration-300 ease-out"
+              className="h-full rounded-full bg-linear-to-r from-amber-400 via-amber-200 to-amber-500 shadow-[0_0_12px_rgba(251,191,36,0.9)] transition-all duration-300 ease-out"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -159,8 +163,8 @@ export function AppLoader() {
           </div>
         </div>
 
-        {/* Subtle Tap to Skip Indicator */}
-        <p className="mt-6 text-[0.625rem] tracking-[0.2em] text-white/35 uppercase">
+        {/* Subtle Tap to Continue Indicator */}
+        <p className="mt-5 text-[0.625rem] tracking-[0.2em] text-white/35 uppercase">
           Tap anywhere to continue
         </p>
       </div>

@@ -2,11 +2,11 @@ import { SplashController } from "./splash-controller";
 
 /**
  * Cinematic Opening Splash:
- * - Sacred ESOCS Crest illuminated with celestial golden corona and dual animated halos.
- * - Atmospheric sanctuary background drifting slowly with Ken Burns depth.
- * - Official Holy Order typography with glowing gold foil script.
- * - Divine light rays and ethereal celestial particles.
- * - Interactive: plays the majestic 2.8s cinematic sequence, or dismisses instantly on tap/Esc.
+ * - Crystal clear official ESOCS Crest (proportioned ~84px, not oversized, razor sharp)
+ * - Atmospheric sanctuary background drifting slowly with Ken Burns depth
+ * - Official Holy Order title: "The Eternal Sacred Order Of the Cherubim and Seraphim"
+ * - Extended 3.6s cinematic delay with instant click/tap-to-skip
+ * - Celestial light rays and ethereal gold particles
  */
 export function AppSplash() {
   return (
@@ -34,7 +34,6 @@ export function AppSplash() {
         {/* Sacred Official Crest with Dual Concentric Radiant Halos */}
         <div className="app-splash__mark">
           <span aria-hidden className="app-splash__glow" />
-          <span aria-hidden className="app-splash__glow-secondary" />
 
           {/* Outer Star Cardinal Halo */}
           <svg aria-hidden className="app-splash__ring-outer" viewBox="0 0 160 160">
@@ -58,30 +57,28 @@ export function AppSplash() {
             <circle cx="70" cy="70" r="66" pathLength="1" />
           </svg>
 
-          {/* Sacred Crest with High-DPI Sharpness */}
+          {/* Razor Sharp Master Crest - not too big (84px), zero blur */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="app-splash__crest"
             src="/brand/esocs-crest.png"
-            srcSet="/brand/esocs-crest-192.webp 1x, /brand/esocs-crest.png 2x"
             alt="The Official Crest of The Eternal Sacred Order of the Cherubim and Seraphim"
-            width={124}
-            height={124}
+            width={84}
+            height={84}
+            loading="eager"
+            decoding="async"
           />
         </div>
 
         {/* Sacred Order Typography */}
-        <div aria-hidden className="app-splash__word max-w-lg px-4 text-center">
-          <span className="app-splash__overline text-[0.6875rem] font-semibold tracking-[0.26em] text-amber-300/85 uppercase sm:text-xs">
-            The Eternal Sacred Order of
-          </span>
-          <h1 className="app-splash__word-main mt-1 text-base font-extrabold tracking-[0.06em] text-white uppercase sm:text-xl md:text-2xl">
-            Cherubim &amp; Seraphim
+        <div aria-hidden className="app-splash__word max-w-xl px-4 text-center">
+          <h1 className="app-splash__word-main text-base font-extrabold tracking-[0.05em] text-white uppercase sm:text-lg md:text-xl">
+            The Eternal Sacred Order of Cherubim and Seraphim
           </h1>
-          <span className="app-splash__word-accent mt-0.5 font-serif text-lg text-gold-300 italic sm:text-2xl md:text-3xl">
+          <span className="app-splash__word-accent mt-1.5 block font-serif text-lg text-gold-300 italic sm:text-2xl">
             Mount Zion Worldwide
           </span>
-          <span className="app-splash__motto mt-2 text-[0.625rem] font-medium tracking-[0.28em] text-white/50 uppercase sm:text-[0.6875rem]">
+          <span className="app-splash__motto mt-2.5 block text-[0.625rem] font-medium tracking-[0.28em] text-white/60 uppercase sm:text-[0.6875rem]">
             One Fold · One Shepherd · Founded 1925
           </span>
         </div>
