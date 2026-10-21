@@ -138,7 +138,7 @@ export function AppLoader() {
         </div>
 
         {/* Sacred Holy Order Title */}
-        <h1 className="max-w-md text-base font-extrabold tracking-[0.05em] text-white uppercase sm:text-lg md:text-xl">
+        <h1 className="max-w-md text-base font-extrabold tracking-wider text-white uppercase sm:text-lg md:text-xl">
           The Eternal Sacred Order of Cherubim and Seraphim
         </h1>
         <span className="mt-1.5 font-serif text-lg text-amber-300 italic sm:text-2xl">
