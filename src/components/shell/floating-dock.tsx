@@ -1,7 +1,8 @@
 "use client";
 
-import { ArrowUp } from "lucide-react";
+import { ArrowUp, Flame } from "lucide-react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import * as React from "react";
 
 import { ChatLauncher } from "@/features/assistant/chat-launcher";
@@ -145,6 +146,21 @@ export function FloatingDock() {
         className="pointer-events-none fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(var(--spacing-bottom-nav)+env(safe-area-inset-bottom)+0.875rem)] z-30 flex flex-col items-end gap-3 lg:right-6 lg:bottom-6"
       >
         <ScrollTop suppressed={chatOpen} />
+        <Link
+          href="/stream"
+          title="Watch Sacred Stream (Word & Hymns)"
+          aria-label="Sacred Stream"
+          className="group/stream pointer-events-auto relative flex size-12 items-center justify-center rounded-full border border-amber-500/40 bg-slate-950/90 text-amber-300 shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-amber-400 hover:bg-slate-900 active:scale-95"
+        >
+          <span
+            aria-hidden
+            className="pointer-events-none absolute right-full mr-3 hidden rounded-pill bg-foreground px-3 py-1.5 text-xs font-semibold whitespace-nowrap text-background opacity-0 transition-[opacity,translate] duration-200 group-hover/stream:translate-x-0 group-hover/stream:opacity-100 lg:block lg:translate-x-1"
+          >
+            Sacred Stream
+          </span>
+          <span className="pointer-events-none absolute inset-0 animate-ping rounded-full bg-amber-400/20 opacity-40" />
+          <Flame className="size-5 text-amber-400 transition-transform duration-300 group-hover/stream:scale-110" />
+        </Link>
         <ChatLauncher
           ref={launcher}
           open={chatOpen}

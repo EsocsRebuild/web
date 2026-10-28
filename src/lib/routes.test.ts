@@ -17,6 +17,13 @@ describe("routes", () => {
     expect(routes.signIn("/church/women")).toBe("/sign-in?next=%2Fchurch%2Fwomen");
   });
 
+  it("builds stream, privacy and terms routes", () => {
+    expect(routes.stream()).toBe("/stream");
+    expect(routes.stream("prophetic-word")).toBe("/stream?category=prophetic-word");
+    expect(routes.privacy()).toBe("/privacy");
+    expect(routes.terms()).toBe("/terms");
+  });
+
   it("encodes path segments", () => {
     expect(routes.post("a/b")).toBe("/posts/a%2Fb");
     expect(routes.glossary("CMC")).toBe("/glossary#CMC");

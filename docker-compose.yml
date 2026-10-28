@@ -25,7 +25,12 @@ services:
       - WATCHPACK_POLLING=true
       - CHOKIDAR_USEPOLLING=true
       - NEXT_PUBLIC_SITE_URL=${NEXT_PUBLIC_SITE_URL:-http://localhost:3020}
-      - NEXT_PUBLIC_USE_HTTP_SOCIAL=${NEXT_PUBLIC_USE_HTTP_SOCIAL:-false}
+      - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL:-http://localhost:5080/api/v1}
+      - NEXT_PUBLIC_BACKEND_URL=${NEXT_PUBLIC_BACKEND_URL:-http://localhost:5080/api/v1}
+      - NEXT_PUBLIC_SIGNALR_URL=${NEXT_PUBLIC_SIGNALR_URL:-http://localhost:5080/hubs/platform}
+      - NEXT_PUBLIC_USE_HTTP_SOCIAL=${NEXT_PUBLIC_USE_HTTP_SOCIAL:-true}
+      - USE_HTTP_CONTENT=${USE_HTTP_CONTENT:-true}
+      - NEXT_PUBLIC_TENANT_SLUG=${NEXT_PUBLIC_TENANT_SLUG:-esocs}
       - ENABLE_DESIGN_SYSTEM=true
     volumes:
       # Mount current repository for live hot-reloading

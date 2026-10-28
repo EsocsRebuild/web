@@ -20,6 +20,7 @@ import type {
   RsvpStatus,
 } from "./schema/social";
 import type { OrderConfirmation, OrderDraft, Product, ProductCategory } from "./schema/store";
+import type { SacredStreamItem, StreamQuery } from "./schema/stream";
 
 /**
  * The contracts every data source implements. Components depend only on these,
@@ -86,6 +87,7 @@ export interface ContentRepository {
   getTour(slug: string): Tour | null;
 
   listOrdinations(): Ordination[];
+  listStreamItems?(query?: StreamQuery): SacredStreamItem[];
 }
 
 export interface SocialRepository {
