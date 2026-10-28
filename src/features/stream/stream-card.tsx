@@ -142,7 +142,7 @@ export function StreamCard({ item, isActive }: StreamCardProps) {
       {/* Atmospheric Sacred Gradient Overlay */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/90"
+        className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/60 via-transparent to-black/90"
       />
 
       {/* 2. Top Bar: Category Pill & Sound Control */}

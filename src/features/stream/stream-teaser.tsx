@@ -14,7 +14,7 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
   return (
     <section
       aria-label="Sacred Stream Teaser"
-      className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 py-16 text-white"
+      className="relative overflow-hidden bg-linear-to-b from-slate-950 via-slate-900 to-slate-950 py-16 text-white"
     >
       {/* Background Divine Radiant Glow */}
       <div
@@ -58,7 +58,7 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
             <Link
               key={item.id}
               href={`${routes.stream()}#${item.id}`}
-              className="group relative flex aspect-[9/14] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/60 hover:shadow-2xl"
+              className="group relative flex aspect-9/14 flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-xl transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/60 hover:shadow-2xl"
             >
               {/* Media Preview Image */}
               <Image
@@ -69,7 +69,7 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
               />
               <div
                 aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-black/30"
+                className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/40 to-black/30"
               />
 
               {/* Top Category Badge */}
