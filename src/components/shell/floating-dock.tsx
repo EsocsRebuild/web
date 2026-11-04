@@ -3,6 +3,7 @@
 import { ArrowUp, Flame } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import * as React from "react";
 
 import { ChatLauncher } from "@/features/assistant/chat-launcher";
@@ -129,6 +130,7 @@ function ScrollTop({ suppressed }: { suppressed: boolean }) {
  * for the opening splash, and steps aside while a dialog or menu is open.
  */
 export function FloatingDock() {
+  const pathname = usePathname();
   const [chatOpen, setChatOpen] = React.useState(false);
   // The panel is fetched on first use and then kept, with its conversation.
   const [chatUsed, setChatUsed] = React.useState(false);
@@ -138,6 +140,11 @@ export function FloatingDock() {
     setChatOpen(false);
     launcher.current?.focus();
   }, []);
+
+  // Suppress corner dock entirely on dedicated Sacred Stream view
+  if (pathname?.startsWith("/stream")) {
+    return null;
+  }
 
   return (
     <>

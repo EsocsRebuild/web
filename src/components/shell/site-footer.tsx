@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { Logo } from "@/components/icons/logo";
 import { socialIcons } from "@/components/icons/social-icons";
@@ -8,6 +11,13 @@ import { NewsletterSignup } from "@/features/newsletter/newsletter-signup";
 import { routes } from "@/lib/routes";
 
 export function SiteFooter() {
+  const pathname = usePathname();
+
+  // Suppress public site footer on the dedicated full-screen Sacred Stream view
+  if (pathname?.startsWith("/stream")) {
+    return null;
+  }
+
   const { contact, socials } = siteConfig;
   const groups = [{ title: "Explore", items: bottomNav.slice(1) }, ...moreNav];
 

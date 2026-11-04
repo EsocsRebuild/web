@@ -123,7 +123,10 @@ export function AppLoader() {
           </svg>
 
           {/* Sharp Master Crest Image Emerging Gracefully Out of Blur into Crisp Focus */}
-          <div className="relative size-20 animate-[splash-crest_1.4s_cubic-bezier(0.16,1,0.3,1)_0.1s_both] overflow-hidden rounded-full bg-slate-950 p-0.5 shadow-[0_0_0_2px_rgba(245,158,11,0.75),0_12px_28px_-6px_rgba(0,0,0,0.9)]">
+          <div
+            style={{ animation: "splash-crest 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both" }}
+            className="relative size-20 overflow-hidden rounded-full bg-slate-950 p-0.5 shadow-[0_0_0_2px_rgba(245,158,11,0.75),0_12px_28px_-6px_rgba(0,0,0,0.9)]"
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/brand/esocs-crest.png"
@@ -138,20 +141,26 @@ export function AppLoader() {
         </div>
 
         {/* Sacred Holy Order Title - Refined, Non-Bulky, Animated Typography */}
-        <div className="max-w-md animate-[splash-word_1.1s_cubic-bezier(0.16,1,0.3,1)_0.4s_both] px-2 text-center">
-          <h1 className="text-xs font-semibold tracking-wider text-white uppercase sm:text-sm md:text-base">
+        <div
+          style={{ animation: "splash-word 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both" }}
+          className="app-splash__word max-w-md px-2 text-center"
+        >
+          <h1 className="app-splash__word-main text-xs font-semibold tracking-wider uppercase sm:text-sm md:text-base">
             The Eternal Sacred Order of the Cherubim and Seraphim
           </h1>
           <span className="mt-1 block font-serif text-base text-amber-300 italic sm:text-lg md:text-xl">
             Mount Zion Worldwide
           </span>
-          <span className="mt-1.5 block text-[0.625rem] font-medium tracking-[0.25em] text-white/50 uppercase sm:text-[0.6875rem]">
+          <span className="mt-1.5 block text-[0.625rem] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[0.6875rem]">
             One Fold · One Shepherd · Founded 1925
           </span>
         </div>
 
         {/* Luminous Golden Progress Bar Filament */}
-        <div className="mt-5 w-full max-w-xs animate-[splash-word_1.1s_cubic-bezier(0.16,1,0.3,1)_0.6s_both] space-y-2">
+        <div
+          style={{ animation: "splash-word 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both" }}
+          className="mt-5 w-full max-w-xs space-y-2"
+        >
           <div className="relative h-1 w-full overflow-hidden rounded-full bg-white/10 backdrop-blur-sm">
             <div
               className="h-full rounded-full bg-linear-to-r from-amber-400 via-amber-200 to-amber-500 shadow-[0_0_12px_rgba(251,191,36,0.9)] transition-all duration-300 ease-out"
