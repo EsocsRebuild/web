@@ -193,7 +193,9 @@ export function StreamCard({ item, isActive, isMuted }: StreamCardProps) {
             <div className="flex items-center gap-1.5">
               <span className="truncate text-xs font-bold text-white sm:text-sm">{item.author}</span>
               {item.verifiedClergy && (
-                <CheckCircle2 className="size-3.5 shrink-0 text-amber-400" title="Verified Clergy" />
+                <span title="Verified Clergy" className="inline-flex items-center">
+                  <CheckCircle2 className="size-3.5 shrink-0 text-amber-400" />
+                </span>
               )}
             </div>
             <p className="truncate text-[0.6875rem] text-slate-300/90">{item.authorTitle}</p>

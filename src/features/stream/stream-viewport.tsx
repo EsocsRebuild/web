@@ -28,7 +28,7 @@ export function StreamViewport({ initialItems }: StreamViewportProps) {
   const [isMuted, setIsMuted] = React.useState(true);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const cardRefs = React.useRef<(HTMLDivElement | null)[]>([]);
+  const cardRefs = React.useRef<(HTMLElement | null)[]>([]);
 
   const filteredItems = React.useMemo(() => {
     if (selectedCategory === "all") return initialItems;
