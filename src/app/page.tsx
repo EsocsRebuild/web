@@ -14,6 +14,7 @@ import {
 } from "@/features/home/story-bands";
 import { ChurchFamily } from "@/features/home/church-family";
 import { GiveAppeal } from "@/features/home/story-sections";
+import { StreamTeaser } from "@/features/stream/stream-teaser";
 import { StoreTeaser } from "@/features/store/store-teaser";
 import { placeholderFor } from "@/lib/image-placeholders";
 import { routes } from "@/lib/routes";
@@ -54,6 +55,7 @@ export default function HomePage() {
   const centenary = content.listGalleries().find((g) => g.slug === "100th-anniversary-celebration");
   const centenaryPhoto = centenary?.photos.find((p) => p.url !== centenary.cover.url) ?? null;
   const fathersDay = content.listEvents().find((e) => e.slug.startsWith("fathers-day"));
+  const streamItems = content.listStreamItems ? content.listStreamItems() : [];
   const scenes: HeroScene[] = (
     [
       {
@@ -145,6 +147,7 @@ export default function HomePage() {
       />
       <UpcomingBand events={upcoming} />
       <LatestNews posts={editorial} units={unitsBySlug} />
+      <StreamTeaser items={streamItems} />
       <HomeBand tone="raised" aria-label="Our church family">
         <ChurchFamily />
       </HomeBand>

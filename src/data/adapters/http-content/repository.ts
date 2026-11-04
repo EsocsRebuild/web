@@ -4,6 +4,7 @@ import { observancesForYear } from "@/lib/church-calendar";
 import type { ContentRepository, EventQuery, FeedQuery, Page, UnitQuery } from "../../repositories";
 import type { ChurchEvent, Post, Unit } from "../../schema/content";
 import { buildSeedGraph, ROOT_SLUG, type SeedGraph } from "../seed/build";
+import { initialSacredStreamItems } from "../seed/stream-data";
 import {
   mapBackendPost,
   mapBackendUnit,
@@ -269,5 +270,16 @@ export function createHttpContentRepository(
     getTour: (slug: string) => graph.tours.find((t) => t.slug === slug) ?? null,
 
     listOrdinations: () => [...graph.ordinations].sort((a, b) => b.date.localeCompare(a.date)),
+
+    listStreamItems: (query = {}) => {
+      let items = initialSacredStreamItems;
+      if (query.category) {
+        items = items.filter((i) => i.category === query.category);
+      }
+      if (query.unitSlug) {
+        items = items.filter((i) => i.unitSlug === query.unitSlug);
+      }
+      return items;
+    },
   };
 }

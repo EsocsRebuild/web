@@ -1,12 +1,23 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import { Logo } from "@/components/icons/logo";
 import { socialIcons } from "@/components/icons/social-icons";
 import { bottomNav, moreNav } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
 import { NewsletterSignup } from "@/features/newsletter/newsletter-signup";
+import { routes } from "@/lib/routes";
 
 export function SiteFooter() {
+  const pathname = usePathname();
+
+  // Suppress public site footer on the dedicated full-screen Sacred Stream view
+  if (pathname?.startsWith("/stream")) {
+    return null;
+  }
+
   const { contact, socials } = siteConfig;
   const groups = [{ title: "Explore", items: bottomNav.slice(1) }, ...moreNav];
 
@@ -93,9 +104,22 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-border">
-        <p className="mx-auto max-w-wide px-gutter py-6 text-xs text-subtle-foreground">
-          © {new Date().getFullYear()} {siteConfig.fullName}
-        </p>
+        <div className="mx-auto flex max-w-wide flex-col items-center justify-between gap-4 px-gutter py-6 text-xs text-subtle-foreground sm:flex-row">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.fullName}
+          </p>
+          <div className="flex items-center gap-6">
+            <Link href={routes.stream()} className="hover:text-foreground">
+              Sacred Stream
+            </Link>
+            <Link href={routes.privacy()} className="hover:text-foreground">
+              Privacy & Safeguarding
+            </Link>
+            <Link href={routes.terms()} className="hover:text-foreground">
+              Decorum Covenant
+            </Link>
+          </div>
+        </div>
       </div>
     </footer>
   );

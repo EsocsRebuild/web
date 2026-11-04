@@ -15,7 +15,15 @@ export function SplashController() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const dismiss = () => {
-      root.dataset.splash = "seen";
+      if (root.dataset.splash === "dismissing" || root.dataset.splash === "seen") return;
+      if (reduce) {
+        root.dataset.splash = "seen";
+        return;
+      }
+      root.dataset.splash = "dismissing";
+      window.setTimeout(() => {
+        root.dataset.splash = "seen";
+      }, 750);
     };
 
     // Extended 10s delay for full cinematic experience

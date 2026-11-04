@@ -45,7 +45,8 @@ export const routes = {
   history: () => "/history",
   glossary: (term?: string) => `/glossary${term ? `#${enc(term)}` : ""}`,
 
-  // Media
+  // Media & Sacred Stream
+  stream: (category?: string) => (category ? `/stream?category=${enc(category)}` : "/stream"),
   media: () => "/media",
   album: (slug: string) => `/media/albums/${enc(slug)}`,
   videos: () => "/media/videos",
@@ -61,6 +62,10 @@ export const routes = {
   give: () => "/give",
   prayer: () => "/prayer",
   contact: () => "/contact",
+
+  // Legal, Privacy & Sacred Decorum
+  privacy: () => "/privacy",
+  terms: () => "/terms",
 
   // Members
   signIn: (next?: string) => withQuery("/sign-in", { next }),

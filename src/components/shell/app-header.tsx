@@ -61,6 +61,12 @@ export function AppHeader() {
   const pathname = usePathname();
   const scrolled = useScrolled(24);
   const { open: openSearch, preload: preloadSearch } = useCommandPalette();
+
+  // Suppress public global header on the dedicated full-screen Sacred Stream view
+  if (pathname?.startsWith("/stream")) {
+    return null;
+  }
+
   const overHero = pathname === "/" && !scrolled;
 
   // Home is reached through the crest, so the centre-split nav carries the other four.

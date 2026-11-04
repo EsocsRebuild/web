@@ -2,6 +2,7 @@ import {
   BookOpen,
   CalendarDays,
   Crown,
+  Flame,
   Gift,
   History,
   Home,
@@ -47,13 +48,25 @@ export const primaryNav: NavLink[] = [
     icon: MapPin,
     match: ["/find", "/structure", "/cmcs", "/church"],
   },
+  {
+    label: "Stream",
+    href: routes.stream(),
+    icon: Flame,
+    match: ["/stream"],
+    description: "Sermon clips, canticles and prophetic words in motion",
+  },
   { label: "Events", href: routes.events(), icon: CalendarDays, match: ["/events", "/calendar", "/tours"] },
   { label: "Media", href: routes.media(), icon: Images, match: ["/media", "/news", "/posts"] },
   { label: "Store", href: routes.store(), icon: ShoppingBag, match: ["/store"] },
 ];
 
-/** The phone's bottom bar keeps five thumb-sized tabs; the Store is in More and the header bag. */
-export const bottomNav = primaryNav.filter((n) => n.href !== routes.store());
+/** The phone's bottom bar keeps five thumb-sized tabs; Store and Media are in More. */
+export const bottomNav = [
+  primaryNav[0], // Home
+  primaryNav[1], // Find
+  primaryNav[2], // Stream (Elevated Center Tab)
+  primaryNav[3], // Events
+];
 
 /** The fifth slot opens this menu. */
 export const moreNav: { title: string; items: NavLink[] }[] = [

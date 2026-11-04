@@ -18,6 +18,11 @@ export function BottomNav() {
   const [moreOpen, setMoreOpen] = React.useState(false);
   const [moreUsed, setMoreUsed] = React.useState(false);
 
+  // Suppress bottom nav on dedicated full-screen Sacred Stream view
+  if (pathname?.startsWith("/stream")) {
+    return null;
+  }
+
   // Mount the sheet closed first, then open it, so it slides up the first time too.
   const openMore = async () => {
     setMoreUsed(true);
