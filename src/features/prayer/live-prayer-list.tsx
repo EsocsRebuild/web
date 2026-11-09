@@ -36,32 +36,7 @@ export interface PrayerIncrementPayload {
   prayingCount?: number;
 }
 
-const INITIAL_PRAYERS: PrayerItem[] = [
-  {
-    id: "prayer-init-1",
-    name: "Sister Deborah O.",
-    request:
-      "Praying for divine health and safe delivery for my sister in Lagos, and that God grants strength to the entire family during this season.",
-    createdAt: new Date(Date.now() - 1000 * 60 * 35).toISOString(),
-    prayingCount: 24,
-  },
-  {
-    id: "prayer-init-2",
-    name: "Brother Michael A.",
-    request:
-      "Thanksgiving for open doors in my engineering career after 8 months of seeking, and prayer for wisdom to excel in this new assignment.",
-    createdAt: new Date(Date.now() - 1000 * 60 * 120).toISOString(),
-    prayingCount: 18,
-  },
-  {
-    id: "prayer-init-3",
-    name: "Elder Samuel B.",
-    request:
-      "Praying for peace, unity, and spiritual revival across all ESOCS provinces, especially for our youths stepping into ministry leadership.",
-    createdAt: new Date(Date.now() - 1000 * 60 * 240).toISOString(),
-    prayingCount: 42,
-  },
-];
+const INITIAL_PRAYERS: PrayerItem[] = [];
 
 export function LivePrayerList({ initialPrayers = INITIAL_PRAYERS }: { initialPrayers?: PrayerItem[] }) {
   const [prayers, setPrayers] = React.useState<PrayerItem[]>(initialPrayers);
@@ -217,6 +192,15 @@ export function LivePrayerList({ initialPrayers = INITIAL_PRAYERS }: { initialPr
       </div>
 
       <div className="grid gap-4">
+        {prayers.length === 0 && (
+          <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border py-12 text-center text-muted-foreground">
+            <HeartHandshake className="mb-3 size-8 text-highlight/60" />
+            <p className="text-sm font-medium text-foreground">No active prayer petitions yet</p>
+            <p className="mt-1 max-w-sm text-xs text-muted-foreground">
+              Be the first to bring a petition before the Mount Zion fellowship altar above.
+            </p>
+          </div>
+        )}
         {prayers.map((prayer) => {
           const isPending = pendingPrayers.has(prayer.id);
 

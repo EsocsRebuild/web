@@ -35,8 +35,8 @@ export function LiveCampaignProgress({
   campaignId = "empowerment-2026",
   title = "Centenary Empowerment & Welfare Fund",
   targetAmount = 50_000_000,
-  initialRaised = 34_850_000,
-  initialDonors = 1420,
+  initialRaised = 0,
+  initialDonors = 0,
 }: LiveCampaignProgressProps) {
   const [raised, setRaised] = React.useState(initialRaised);
   const [donorCount, setDonorCount] = React.useState(initialDonors);
