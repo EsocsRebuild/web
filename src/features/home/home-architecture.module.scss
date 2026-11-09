@@ -971,7 +971,8 @@
 
 .monumentOverlay {
   position: absolute;
-  inset-x: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
   padding: 1.25rem;
   background: linear-gradient(
@@ -1235,7 +1236,8 @@
 
 .familyLuminousGlow {
   position: absolute;
-  inset-x: 0;
+  left: 0;
+  right: 0;
   bottom: 0;
   height: 60%;
   z-index: -5;

@@ -12,7 +12,6 @@ export const initialSacredStreamItems: SacredStreamItem[] = [
     unitSlug: "esocs",
     unitName: "National Headquarters, Mount Zion",
     thumbnailUrl: "/brand/hero-mount-zion.webp",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     scriptureReference: "Hebrews 12:22",
     scriptureText:
       "But ye are come unto Mount Zion, and unto the city of the living God, the heavenly Jerusalem, and to an innumerable company of angels.",
@@ -36,7 +35,6 @@ export const initialSacredStreamItems: SacredStreamItem[] = [
     unitSlug: "esocs",
     unitName: "Mount Zion Mass Choir",
     thumbnailUrl: "/brand/hero-fathers.webp",
-    audioUrl: "https://actions.google.com/sounds/v1/ambiences/humming_choir.ogg",
     scriptureReference: "Revelation 4:8",
     scriptureText: "Holy, holy, holy, Lord God Almighty, which was, and is, and is to come.",
     caption:
@@ -80,7 +78,6 @@ export const initialSacredStreamItems: SacredStreamItem[] = [
     unitSlug: "lagos-central",
     unitName: "Lagos Central Province",
     thumbnailUrl: "/brand/hero-youth.webp",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
     scriptureReference: "Isaiah 6:6-7",
     scriptureText:
       "Then flew one of the seraphims unto me, having a live coal in his hand, which he had taken with the tongs from off the altar.",
@@ -103,7 +100,6 @@ export const initialSacredStreamItems: SacredStreamItem[] = [
     unitSlug: "surulere",
     unitName: "Surulere House of Prayer",
     thumbnailUrl: "/brand/hero-women.webp",
-    videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     scriptureReference: "Psalm 103:2-3",
     scriptureText:
       "Bless the Lord, O my soul, and forget not all his benefits: Who forgiveth all thine iniquities; who healeth all thy diseases.",

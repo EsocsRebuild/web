@@ -135,7 +135,7 @@ export function AppLoader() {
               height={80}
               loading="eager"
               decoding="async"
-              className="size-full object-contain [image-rendering:-webkit-optimize-contrast]"
+              className="size-full object-contain [image-rendering:crisp-edges]"
             />
           </div>
         </div>

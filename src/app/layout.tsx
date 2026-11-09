@@ -58,7 +58,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* The splash paints these first; fetch them before anything else. */}
         <link rel="preload" as="image" href="/brand/splash-bg.webp" fetchPriority="high" />
         <link rel="preload" as="image" href="/brand/esocs-crest.png" fetchPriority="high" />
-        <link rel="preload" as="image" href="/brand/esocs-crest-192.webp" fetchPriority="high" />
       </head>
       <body className="flex min-h-dvh flex-col">
         <Suspense fallback={null}>
