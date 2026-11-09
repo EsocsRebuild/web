@@ -119,6 +119,7 @@ export function StreamCard({ item, isActive, isMuted }: StreamCardProps) {
             src={item.thumbnailUrl}
             alt={item.title}
             fill
+            sizes="(max-width: 768px) 100vw, 448px"
             priority={isActive}
             className="scale-105 object-cover blur-xs brightness-45"
           />
@@ -255,9 +256,11 @@ export function StreamCard({ item, isActive, isMuted }: StreamCardProps) {
               <Sparkles
                 className={cn("size-3.5", engagement.hasAmened ? "text-amber-300" : "text-amber-400/80")}
               />
-              <span className="font-mono text-[0.6875rem] font-bold">
-                {engagement.amensCount.toLocaleString()}
-              </span>
+              {engagement.amensCount > 0 && (
+                <span className="font-mono text-[0.6875rem] font-bold">
+                  {engagement.amensCount.toLocaleString()}
+                </span>
+              )}
             </div>
             <span className="text-[0.5625rem] font-semibold tracking-wider uppercase">
               {engagement.hasAmened ? "Amened" : "Amen"}
@@ -283,9 +286,11 @@ export function StreamCard({ item, isActive, isMuted }: StreamCardProps) {
                   engagement.hasInterceded ? "text-emerald-300" : "text-emerald-400/80",
                 )}
               />
-              <span className="font-mono text-[0.6875rem] font-bold">
-                {engagement.intercessionsCount.toLocaleString()}
-              </span>
+              {engagement.intercessionsCount > 0 && (
+                <span className="font-mono text-[0.6875rem] font-bold">
+                  {engagement.intercessionsCount.toLocaleString()}
+                </span>
+              )}
             </div>
             <span className="text-[0.5625rem] font-semibold tracking-wider uppercase">Pray With</span>
           </button>

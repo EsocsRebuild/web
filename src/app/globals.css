@@ -413,6 +413,7 @@
   }
 
   html {
+    text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
     scroll-padding-top: calc(var(--spacing-header) + 1.5rem);
@@ -833,7 +834,6 @@ html[data-splash="dismissing"] .app-splash {
   height: 5rem;
   border-radius: 9999px;
   object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   box-shadow:
     0 0 0 2px rgba(245, 158, 11, 0.75),

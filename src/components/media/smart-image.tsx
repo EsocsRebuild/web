@@ -41,7 +41,7 @@ export function SmartImage({
       {...dimensions}
       sizes={scaled}
       priority={priority}
-      loading={priority ? undefined : "lazy"}
+      loading={priority ? "eager" : "lazy"}
       decoding="async"
       placeholder={image.placeholder ? "blur" : "empty"}
       blurDataURL={image.placeholder}

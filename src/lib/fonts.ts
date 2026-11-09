@@ -29,6 +29,7 @@ export const fontAccent = Raleway({
   subsets: ["latin"],
   variable: "--font-raleway",
   display: "swap",
+  preload: false,
 });
 
 /**
@@ -40,6 +41,7 @@ export const fontRoboto = Roboto({
   weight: ["300", "400", "500", "700"],
   variable: "--font-roboto",
   display: "swap",
+  preload: false,
 });
 
 /* Aliases for backwards compatibility and explicit semantic imports */
