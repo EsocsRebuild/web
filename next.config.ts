@@ -35,6 +35,28 @@ const nextConfig: NextConfig = {
     // 60 for small grid tiles and thumbnails (the difference is invisible at that
     // size and they are the bulk of a gallery's bytes); 75 for everything else.
     qualities: [60, 75],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.blob.core.windows.net",
+      },
+      {
+        protocol: "https",
+        hostname: "**.googleusercontent.com",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
   },
   async redirects() {
     return legacyRedirects;

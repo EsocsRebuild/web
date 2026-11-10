@@ -12,6 +12,7 @@ import {
   UpcomingBand,
   WhoWeAre,
 } from "@/features/home/story-bands";
+import { ServiceTimesBand } from "@/features/home/service-times-band";
 import { ChurchFamily } from "@/features/home/church-family";
 import { GiveAppeal } from "@/features/home/story-sections";
 import { DevotionalHeroBand } from "@/features/devotional/devotional-hero-band";
@@ -127,6 +128,9 @@ export default function HomePage() {
       <HeroScenes scenes={scenes} findHref={routes.find()} footer={<Announcements variant="hero" />} />
       <QuickPathsDeck />
 
+      {/* Worship With Us: Weekly Gatherings & First-Time Visitor Guide */}
+      <ServiceTimesBand />
+
       {/* The Baba Aladura's Patriarchal Welcome & Apostolic Address */}
       <BabaAladuraMessage
         message={org.message}
@@ -145,16 +149,22 @@ export default function HomePage() {
       {/* Priority Devotional Portal: Grow in Your Christian Journey */}
       <DevotionalHeroBand />
 
+      {/* Word in Motion: Sacred Stream Broadcast */}
+      <StreamTeaser items={streamItems} />
+
+      {/* Who We Are: Centenary Heritage, Vision & FLOSH Pillars */}
       <WhoWeAre
         org={org}
         photo={centenary && centenaryPhoto ? { image: centenaryPhoto, caption: centenary.title } : null}
       />
-      <UpcomingBand events={upcoming} />
-      <LatestNews posts={editorial} units={unitsBySlug} />
-      <StreamTeaser items={streamItems} />
+
+      {/* Generations of Mount Zion: Church Family */}
       <HomeBand tone="raised" aria-label="Our church family">
         <ChurchFamily />
       </HomeBand>
+
+      <UpcomingBand events={upcoming} />
+      <LatestNews posts={editorial} units={unitsBySlug} />
       <FindBand pageCount={units.length} headquarters={headquarters} />
       <Succession people={people} />
       <StoreTeaser />
