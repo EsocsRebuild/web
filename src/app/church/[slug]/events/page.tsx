@@ -4,7 +4,7 @@ import { SectionHeading } from "@/components/patterns/section-heading";
 import { EventRows } from "@/features/events/event-rows";
 import { getUnitContext, hasTab, staticParamsForTab } from "@/features/units/unit-context";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return staticParamsForTab("events");

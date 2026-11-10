@@ -13,6 +13,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // Stop `next dev` from generating AGENTS.md / CLAUDE.md in the project root.
   agentRules: false,
+  // Suppress dev indicator overlay and its injected styles in the DOM
+  devIndicators: false,
   // Minimal self-contained server for the container image (see Dockerfile).
   output: "standalone",
   // Set per release (the git SHA in CI) so rolling deployments detect version skew

@@ -26,7 +26,7 @@ export const getUnitContext = cache((slug: string) => {
   const posts = content.listPostsForUnit(slug);
   const galleries = content.listGalleries().filter((g) => g.unitSlug === slug);
   const events = content.listEvents({ unitSlug: slug });
-  const photos = slug === "esocs" ? galleries : [];
+  const photos = galleries;
 
   // Tabs appear only when they have something in them.
   const tabs: TabSpec[] = [

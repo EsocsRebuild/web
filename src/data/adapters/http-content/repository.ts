@@ -167,6 +167,80 @@ export function createHttpContentRepository(
     } catch {
       // Backend offline: retain current state
     }
+
+    // Merge live events published via Admin Portal Web Studio
+    try {
+      const fs = await import("node:fs");
+      const path = await import("node:path");
+      const localEventsDb = path.join(process.cwd(), "../AdminPortal/src/features/events/events-db.json");
+      if (fs.existsSync(localEventsDb)) {
+        const raw = fs.readFileSync(localEventsDb, "utf-8");
+        const list = JSON.parse(raw);
+        if (Array.isArray(list)) {
+          for (const ev of list) {
+            const slug = `event-${ev.id}`;
+            const unitSlug = (ev.unitName || "").toLowerCase().includes("diobu")
+              ? "diobu-provincial-headquarters"
+              : ROOT_SLUG;
+            const startsAt = ev.startDate || new Date().toISOString();
+            eventsMap.set(slug, {
+              slug,
+              title: ev.title,
+              description: ev.description || (ev.venue ? `Venue: ${ev.venue}` : "Church Event"),
+              date: startsAt.slice(0, 10),
+              endDate: ev.endDate ? ev.endDate.slice(0, 10) : undefined,
+              startTime: startsAt.length >= 16 ? startsAt.slice(11, 16) : null,
+              kind: ev.category?.toLowerCase() === "fellowship_rally" ? "service" : "programme",
+              unitSlug,
+              image: ev.bannerUrl
+                ? {
+                    url: ev.bannerUrl,
+                    width: 1200,
+                    height: 800,
+                    alt: ev.title,
+                  }
+                : null,
+              computed: false,
+            });
+          }
+        }
+      }
+    } catch {
+      // Local events sync fallback
+    }
+
+    // Merge live programmes published via Admin Portal Web Studio
+    try {
+      const fs = await import("node:fs");
+      const path = await import("node:path");
+      const localProgDb = path.join(process.cwd(), "../AdminPortal/src/features/web-cms/programmes-db.json");
+      if (fs.existsSync(localProgDb)) {
+        const raw = fs.readFileSync(localProgDb, "utf-8");
+        const list = JSON.parse(raw);
+        if (Array.isArray(list)) {
+          for (const pr of list) {
+            const slug = `prog-${pr.id}`;
+            const unitSlug = (pr.unitName || "").toLowerCase().includes("diobu")
+              ? "diobu-provincial-headquarters"
+              : ROOT_SLUG;
+            const sched = pr.scheduleDate || new Date().toISOString();
+            eventsMap.set(slug, {
+              slug,
+              title: pr.title,
+              description: pr.theme ? `Theme: "${pr.theme}"` : "Provincial Programme",
+              date: sched.slice(0, 10),
+              startTime: sched.length >= 16 ? sched.slice(11, 16) : null,
+              kind: "programme",
+              unitSlug,
+              image: null,
+              computed: false,
+            });
+          }
+        }
+      }
+    } catch {
+      // Local programmes sync fallback
+    }
   }
 
   async function refresh(): Promise<void> {

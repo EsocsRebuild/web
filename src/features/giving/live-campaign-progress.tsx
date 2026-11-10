@@ -197,7 +197,7 @@ export function LiveCampaignProgress({
                   </button>
                 );
               })}
-              <div className="relative min-w-[140px] flex-1">
+              <div className="relative min-w-35 flex-1">
                 <span className="pointer-events-none absolute top-2.5 left-3 text-xs text-muted-foreground">
                   ₦
                 </span>

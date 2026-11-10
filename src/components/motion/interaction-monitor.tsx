@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Activity, Sparkles, X, ChevronUp } from "lucide-react";
+import { Activity, Sparkles, X } from "lucide-react";
 
 interface Ripple {
   id: number;
@@ -260,26 +260,9 @@ export function InteractionMonitor() {
         </div>
       )}
 
-      {/* 3. Live Action Monitor & Telemetry Pill / HUD */}
-      <div className="fixed bottom-4 left-4 z-9997 hidden font-sans text-xs select-none md:block">
-        {!hudOpen ? (
-          <button
-            type="button"
-            onClick={() => setHudOpen(true)}
-            title="Open Action Monitor & Telemetry (Ctrl+Shift+M)"
-            className="group flex items-center gap-2 rounded-full border border-amber-500/30 bg-slate-950/80 px-3 py-1.5 text-slate-300 shadow-lg backdrop-blur-md transition-all hover:border-amber-400 hover:bg-slate-900 hover:text-white"
-          >
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-            </span>
-            <Activity className="size-3.5 text-amber-400" />
-            <span className="font-mono text-[0.6875rem] font-medium tracking-wide">
-              {telemetry.scrollPercent}% · {telemetry.clicks} clicks
-            </span>
-            <ChevronUp className="size-3 text-slate-500 transition-transform group-hover:-translate-y-px" />
-          </button>
-        ) : (
+      {/* 3. Action Telemetry HUD (Opened via Ctrl+Shift+M / Cmd+Shift+M) */}
+      {hudOpen && (
+        <div className="fixed bottom-4 left-4 z-9997 font-sans text-xs select-none">
           <div className="w-80 rounded-xl border border-amber-500/40 bg-slate-950/95 p-3.5 text-slate-200 shadow-2xl backdrop-blur-xl">
             <div className="flex items-center justify-between border-b border-slate-800 pb-2.5">
               <div className="flex items-center gap-2">
@@ -373,8 +356,8 @@ export function InteractionMonitor() {
               </span>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }

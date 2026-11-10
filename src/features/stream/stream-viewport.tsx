@@ -4,7 +4,7 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, ChevronDown, ChevronUp, Volume2, VolumeX } from "lucide-react";
+import { ArrowLeft, Volume2, VolumeX } from "lucide-react";
 import type { SacredStreamCategory, SacredStreamItem } from "@/data/schema/stream";
 import { cn } from "@/lib/utils";
 import { StreamCard } from "./stream-card";
@@ -110,14 +110,14 @@ export function StreamViewport({ initialItems }: StreamViewportProps) {
       className="relative h-dvh w-full overflow-hidden bg-[#040814] text-white select-none"
     >
       {/* 1. Dedicated Liturgical Cinema Top Bar (Clear Back Navigation & Unified Controls) */}
-      <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-3 bg-linear-to-b from-[#040814]/95 via-[#040814]/80 to-transparent px-4 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-4 backdrop-blur-md transition-all sm:px-6">
+      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-3 bg-linear-to-b from-[#040814]/95 via-[#040814]/85 to-transparent px-4 pt-[calc(env(safe-area-inset-top)+0.75rem)] pb-4 backdrop-blur-md transition-all sm:px-6">
         {/* Left: Prominent, High-End Return to Sanctuary Navigation */}
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={handleBackToSanctuary}
             aria-label="Return to Sanctuary Home"
-            className="group flex items-center gap-2 rounded-full border border-white/20 bg-slate-900/80 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-white shadow-xl backdrop-blur-xl transition-all duration-200 hover:border-amber-400 hover:bg-slate-800 hover:text-amber-300 active:scale-95 sm:px-4 sm:py-2"
+            className="group flex items-center gap-2 rounded-full border border-amber-400/30 bg-slate-900/90 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-white shadow-xl backdrop-blur-xl transition-all duration-200 hover:border-amber-400 hover:bg-slate-800 hover:text-amber-300 active:scale-95 sm:px-4 sm:py-2"
           >
             <ArrowLeft className="size-4 text-amber-400 transition-transform duration-200 group-hover:-translate-x-0.5" />
             <span className="hidden sm:inline">Back to Sanctuary</span>
@@ -126,7 +126,7 @@ export function StreamViewport({ initialItems }: StreamViewportProps) {
 
           <Link
             href="/"
-            className="hidden items-center gap-2 border-l border-white/10 pl-3 transition-opacity hover:opacity-80 lg:flex"
+            className="flex items-center gap-2 border-l border-white/10 pl-3 transition-opacity hover:opacity-80"
             title="The Eternal Sacred Order of the Cherubim and Seraphim"
           >
             <div className="relative size-6 overflow-hidden rounded-full border border-amber-400/50 bg-black">
@@ -138,7 +138,7 @@ export function StreamViewport({ initialItems }: StreamViewportProps) {
                 className="size-full object-contain p-0.5"
               />
             </div>
-            <span className="font-serif text-xs font-medium tracking-wider text-amber-200/90 uppercase">
+            <span className="hidden font-serif text-xs font-medium tracking-wider text-amber-200/90 uppercase md:inline">
               Sacred Stream
             </span>
           </Link>
@@ -224,38 +224,16 @@ export function StreamViewport({ initialItems }: StreamViewportProps) {
         ))}
       </main>
 
-      {/* 3. Subtle Desktop Stream Progress Indicator & Smooth Navigation Cue */}
+      {/* 3. Minimalist Liturgical Stream Position Badge */}
       <aside
         aria-label="Stream Progress"
-        className="pointer-events-none fixed top-1/2 right-6 z-40 hidden -translate-y-1/2 flex-col items-center gap-3 lg:flex"
+        className="pointer-events-none fixed top-1/2 right-6 z-40 hidden -translate-y-1/2 flex-col items-center gap-1.5 lg:flex"
       >
-        <button
-          type="button"
-          onClick={() => scrollToIndex(activeIndex - 1)}
-          disabled={activeIndex === 0}
-          title="Previous Ministry Clip (Up Arrow)"
-          aria-label="Previous Word"
-          className="pointer-events-auto flex size-9 items-center justify-center rounded-full border border-white/15 bg-slate-950/70 text-slate-300 shadow-xl backdrop-blur-md transition-all hover:border-amber-400 hover:bg-slate-900 hover:text-amber-300 disabled:pointer-events-none disabled:opacity-20"
-        >
-          <ChevronUp className="size-4" />
-        </button>
-
         <div className="flex flex-col items-center gap-1.5 rounded-full border border-white/10 bg-black/60 px-2 py-3 backdrop-blur-md">
           <span className="font-mono text-[0.625rem] font-bold text-amber-300">{activeIndex + 1}</span>
-          <span className="h-4 w-px bg-white/20" />
+          <span className="h-3 w-px bg-white/20" />
           <span className="font-mono text-[0.625rem] text-slate-500">{filteredItems.length}</span>
         </div>
-
-        <button
-          type="button"
-          onClick={() => scrollToIndex(activeIndex + 1)}
-          disabled={activeIndex === filteredItems.length - 1}
-          title="Next Ministry Clip (Down Arrow)"
-          aria-label="Next Word"
-          className="pointer-events-auto flex size-9 items-center justify-center rounded-full border border-white/15 bg-slate-950/70 text-slate-300 shadow-xl backdrop-blur-md transition-all hover:border-amber-400 hover:bg-slate-900 hover:text-amber-300 disabled:pointer-events-none disabled:opacity-20"
-        >
-          <ChevronDown className="size-4" />
-        </button>
       </aside>
     </div>
   );

@@ -635,11 +635,12 @@ html:not([data-splash="seen"]) .hero-word {
   animation-delay: calc(var(--d, 0ms) + 1800ms);
 }
 
-/* The fixed header floats over the page; pages start below it, except a full-bleed hero. */
+/* The fixed header floats over the page; pages start below it, except a full-bleed hero or dedicated stream viewport. */
 #main {
   padding-top: calc(var(--spacing-header) + env(safe-area-inset-top));
 }
-#main:has(> [data-overlay-hero]:first-child) {
+#main:has(> [data-overlay-hero]:first-child),
+#main:has([data-stream-viewport]) {
   padding-top: 0;
 }
 
@@ -654,7 +655,7 @@ html:not([data-splash="seen"]) .hero-word {
   overflow: hidden;
   background: #040814;
   color: var(--color-parchment-50);
-  animation: splash-exit 0.85s cubic-bezier(0.16, 1, 0.3, 1) 10s forwards;
+  animation: splash-exit 0.75s cubic-bezier(0.16, 1, 0.3, 1) 3.1s forwards;
   cursor: pointer;
 }
 /* The congregation, pre-blurred, drifting in slowly with Ken Burns depth behind the crest. */
@@ -767,7 +768,7 @@ html[data-splash="dismissing"] .app-splash {
   display: grid;
   justify-items: center;
   gap: 1.15rem;
-  animation: splash-stage-exit 1s cubic-bezier(0.16, 1, 0.3, 1) 9.2s forwards;
+  animation: splash-stage-exit 0.8s cubic-bezier(0.16, 1, 0.3, 1) 2.6s forwards;
 }
 .app-splash__mark {
   position: relative;
@@ -928,17 +929,17 @@ html[data-splash="dismissing"] .app-splash {
 @keyframes splash-crest {
   0% {
     opacity: 0;
-    transform: scale(0.68);
-    filter: blur(14px);
+    transform: scale(0.62);
+    filter: blur(16px);
   }
-  35% {
-    opacity: 0.8;
-    transform: scale(0.92);
-    filter: blur(4px);
+  38% {
+    opacity: 0.95;
+    transform: scale(1.14);
+    filter: blur(2px);
   }
-  75% {
+  70% {
     opacity: 1;
-    transform: scale(1.04);
+    transform: scale(0.96);
     filter: blur(0px);
   }
   100% {
@@ -1029,17 +1030,12 @@ html[data-splash="dismissing"] .app-splash {
   }
   30% {
     opacity: 1;
-    transform: scale(1.06);
+    transform: scale(1.08);
     filter: blur(0px);
-  }
-  65% {
-    opacity: 0.8;
-    transform: scale(0.94);
-    filter: blur(1px);
   }
   100% {
     opacity: 0;
-    transform: scale(1.22);
+    transform: scale(0.9);
     filter: blur(14px);
   }
 }

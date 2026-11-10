@@ -13,7 +13,7 @@ export default async function SacredStreamPage() {
   const streamItems = content.listStreamItems ? content.listStreamItems() : [];
 
   return (
-    <main className="relative min-h-dvh bg-[#040814]">
+    <main data-stream-viewport="true" className="relative min-h-dvh bg-[#040814]">
       <StreamViewport initialItems={streamItems} />
     </main>
   );

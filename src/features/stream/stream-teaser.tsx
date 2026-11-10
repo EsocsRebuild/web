@@ -100,7 +100,7 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
                 <div className="mt-3 flex items-center justify-between border-t border-white/10 pt-2 text-[0.6875rem] text-slate-400">
                   <span className="flex items-center gap-1 font-mono font-medium text-amber-300/90">
                     <Sparkles className="size-3 text-amber-400" />
-                    {item.amensCount.toLocaleString()} Amens
+                    {item.amensCount > 0 ? `${item.amensCount.toLocaleString()} Amens` : "Proclaim Amen"}
                   </span>
                   <span>{Math.floor(item.durationSeconds)}s</span>
                 </div>

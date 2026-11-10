@@ -7,7 +7,7 @@ import { formatLongDate } from "@/lib/format";
 import { routes } from "@/lib/routes";
 import { getUnitContext, hasTab, staticParamsForTab } from "@/features/units/unit-context";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return staticParamsForTab("photos");
