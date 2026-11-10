@@ -35,6 +35,8 @@ services:
     volumes:
       # Mount current repository for live hot-reloading
       - .:/app
+      # Mirror features from AdminPortal for instant sync across container boundary
+      - ../AdminPortal/src/features:/app/src/features-admin:ro
       # Keep container node_modules isolated from host OS
       - /app/node_modules
       # Keep container .next build cache isolated

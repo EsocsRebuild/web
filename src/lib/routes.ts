@@ -45,8 +45,9 @@ export const routes = {
   history: () => "/history",
   glossary: (term?: string) => `/glossary${term ? `#${enc(term)}` : ""}`,
 
-  // Media & Sacred Stream
+  // Media, Sacred Stream & Devotionals
   stream: (category?: string) => (category ? `/stream?category=${enc(category)}` : "/stream"),
+  devotional: () => "/devotional",
   media: () => "/media",
   album: (slug: string) => `/media/albums/${enc(slug)}`,
   videos: () => "/media/videos",

@@ -423,7 +423,6 @@ export const BRANCHES: DirectoryEntry[] = [
     locality: "Diobu, Port Harcourt",
     address: "Diobu Provincial Headquarters, Mile 1 Diobu, Port Harcourt, Rivers State",
     established: "2022-08-13",
-    note: "The biggest cathedral in ESOCS worldwide.",
   },
   {
     slug: "umunede-district-headquarters",

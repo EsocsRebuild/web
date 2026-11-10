@@ -1,0 +1,29 @@
+[
+  {
+    "id": "med_crest",
+    "fileName": "esocs_official_crest.png",
+    "fileSize": 245000,
+    "mimeType": "image/png",
+    "cdnUrl": "https://images.unsplash.com/photo-1543807535-eceef0bc6599?auto=format&fit=crop&w=1200&q=80",
+    "uploadedAt": "2026-10-20T10:00:00.000Z",
+    "uploadedByHandlerId": "Central Communications"
+  },
+  {
+    "id": "med_altar",
+    "fileName": "cathedral_sanctuary_altar.jpg",
+    "fileSize": 1820000,
+    "mimeType": "image/jpeg",
+    "cdnUrl": "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1200&q=80",
+    "uploadedAt": "2026-10-22T14:30:00.000Z",
+    "uploadedByHandlerId": "Diocesan Media Team"
+  },
+  {
+    "id": "med_choir",
+    "fileName": "diobu_provincial_choir.jpg",
+    "fileSize": 1420000,
+    "mimeType": "image/jpeg",
+    "cdnUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+    "uploadedAt": "2026-10-24T09:15:00.000Z",
+    "uploadedByHandlerId": "Diobu Secretariat"
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "id": "blt_diobu_revival",
+    "unitId": "parish-diobu-cathedral",
+    "unitName": "Diobu Provincial Headquarters",
+    "title": "Grand Centenary Miracle & Deliverance Revival",
+    "summary": "Join the Provincial Elders, Apostles, and Mother-in-Israel for a three-day powerful revival and miracle ministration at the Cathedral Sanctuary.",
+    "category": "Announcements",
+    "imageUrl": "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&w=1200&q=80",
+    "ctaText": "View Schedule",
+    "ctaLink": "/church/diobu-provincial-headquarters/events",
+    "publishedAt": "2026-11-08T10:00:00.000Z",
+    "submittedAt": "2026-11-08T09:30:00.000Z",
+    "submittedByHandlerId": "Central Secretariat"
+  },
+  {
+    "id": "blt_diobu_choir",
+    "unitId": "parish-diobu-cathedral",
+    "unitName": "Diobu Provincial Headquarters",
+    "title": "Provincial Choir Annual Thanksgiving & Hymn Festival",
+    "summary": "The Diobu Provincial Choir cordially invites all members and neighboring districts to an evening of classical sacred hymns, anthems, and spiritual songs.",
+    "category": "Music & Worship",
+    "imageUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=1200&q=80",
+    "ctaText": "Watch Live Stream",
+    "ctaLink": "/stream",
+    "publishedAt": "2026-11-05T14:00:00.000Z",
+    "submittedAt": "2026-11-05T13:45:00.000Z",
+    "submittedByHandlerId": "Diobu Media Team"
+  }
+]

@@ -14,6 +14,7 @@ import {
 } from "@/features/home/story-bands";
 import { ChurchFamily } from "@/features/home/church-family";
 import { GiveAppeal } from "@/features/home/story-sections";
+import { DevotionalHeroBand } from "@/features/devotional/devotional-hero-band";
 import { StreamTeaser } from "@/features/stream/stream-teaser";
 import { StoreTeaser } from "@/features/store/store-teaser";
 import { placeholderFor } from "@/lib/image-placeholders";
@@ -140,6 +141,9 @@ export default function HomePage() {
         }
         href={messagePost ? routes.post(messagePost.id) : routes.news("message")}
       />
+
+      {/* Priority Devotional Portal: Grow in Your Christian Journey */}
+      <DevotionalHeroBand />
 
       <WhoWeAre
         org={org}

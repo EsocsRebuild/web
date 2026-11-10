@@ -454,7 +454,7 @@ const MILESTONES: MilestoneSpec[] = [
     index: 40,
     title: "First ESOCS empowerment scheme graduates 62 in CMC 9",
     date: "2022-12-12",
-    tags: ["cmc-9", "diobu-province", "diobu-provincial-headquarters"],
+    tags: ["cmc-9"],
   },
 ];
 

@@ -159,15 +159,33 @@ export class ApiClient {
       next,
     };
 
-    let response: Response;
+    let response: Response | undefined;
     try {
       response = await fetch(url, init);
     } catch (err) {
-      throw new ApiClientError({
-        status: 0,
-        code: "NETWORK_ERROR",
-        message: err instanceof Error ? err.message : "Network error occurred while calling the API",
-      });
+      if (typeof window === "undefined") {
+        const fallbacks = [
+          "http://platform-dev-api:8080/api/v1",
+          "http://172.22.0.1:5080/api/v1",
+          "http://localhost:5080/api/v1",
+        ];
+        for (const base of fallbacks) {
+          if (!url.startsWith(base)) {
+            try {
+              const altUrl = normalizeUrl(base, path, params);
+              response = await fetch(altUrl, init);
+              if (response) break;
+            } catch {}
+          }
+        }
+      }
+      if (!response) {
+        throw new ApiClientError({
+          status: 0,
+          code: "NETWORK_ERROR",
+          message: err instanceof Error ? err.message : "Network error occurred while calling the API",
+        });
+      }
     }
 
     if (response.status === 204) {
