@@ -214,9 +214,9 @@ export function WorldwideSanctuaries({
     <section
       id="worldwide-parish-directory"
       aria-labelledby="find-heading"
-      className="relative isolate overflow-hidden border-t border-white/10 bg-[#09090c] py-24 text-white sm:py-32 lg:py-36 dark:bg-[#07080a]"
+      className="relative isolate overflow-hidden border-y border-neutral-200/90 bg-neutral-50/70 py-24 text-neutral-900 transition-colors sm:py-32 lg:py-36 dark:border-white/10 dark:bg-[#07080a] dark:text-white"
     >
-      {/* Ambient Seraphic Glow */}
+      {/* Ambient Liturgical Glow */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
@@ -226,7 +226,7 @@ export function WorldwideSanctuaries({
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
           }}
-          className="relative left-[calc(50%-18rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-crimson-800/40 via-gold-500/20 to-transparent opacity-25 sm:left-[calc(50%-30rem)] sm:w-288.75"
+          className="relative left-[calc(50%-18rem)] aspect-1155/678 w-144.5 -translate-x-1/2 rotate-30 bg-linear-to-tr from-crimson-800/30 via-gold-500/20 to-transparent opacity-25 sm:left-[calc(50%-30rem)] sm:w-288.75 dark:opacity-30"
         />
       </div>
 
@@ -234,41 +234,42 @@ export function WorldwideSanctuaries({
         {/* Centered Editorial Header - faithfully styled to reference design */}
         <div className="flex flex-col items-center text-center">
           {/* Eyebrow Pill */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-950/40 px-4 py-1.5 text-xs font-bold tracking-widest text-gold-300 uppercase shadow-xs backdrop-blur-md">
-            <Globe className="size-3.5 text-gold-400" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-neutral-300/80 bg-white/90 px-4 py-1.5 text-xs font-bold tracking-widest text-neutral-800 uppercase shadow-xs backdrop-blur-md dark:border-gold-500/30 dark:bg-gold-950/40 dark:text-gold-300">
+            <Globe className="size-3.5 text-crimson-800 dark:text-gold-400" />
             <span>Worldwide Parish Directory · Est. 1925</span>
           </div>
 
           {/* High-Impact Centered Headline with Liturgical Accent */}
           <h2
             id="find-heading"
-            className="mt-6 font-display text-[clamp(2.5rem,2.1rem+3vw,4.75rem)] leading-[1.05] font-extrabold tracking-tight text-balance text-white uppercase"
+            className="mt-6 font-display text-[clamp(2.5rem,2.1rem+3vw,4.75rem)] leading-[1.05] font-extrabold tracking-tight text-balance text-neutral-950 uppercase dark:text-white"
           >
-            We Are A House Of Prayer <span className="font-black text-gold-400">In Every City</span>
+            We Are A House Of Prayer{" "}
+            <span className="font-black text-crimson-800 dark:text-gold-400">In Every Nation</span>
           </h2>
 
           {/* Subtitle */}
-          <p className="mt-5 max-w-3xl text-base leading-relaxed font-normal text-neutral-300 sm:text-lg lg:text-xl">
+          <p className="mt-5 max-w-3xl text-base leading-relaxed font-normal text-neutral-600 sm:text-lg lg:text-xl dark:text-neutral-300">
             We are a worldwide family grounded in Scripture, centered on Christ, and walking in continuous
-            apostolic prayer. Across {totalCount} churches, provincial secretariats, and prayer houses across
-            Nigeria and the global diaspora — there is a house of prayer near you. Come worship with us.
+            prayer. Across {totalCount} churches, provincial secretariats, and prayer houses across Nigeria
+            and the global diaspora — there is a house of prayer near you. Come worship with us.
           </p>
 
           {/* Central Actions (Matching reference pill button + Smart Geolocation) */}
           <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
             <Link
               href={routes.find()}
-              className="group inline-flex h-12 items-center justify-center gap-2.5 rounded-full border border-neutral-700 bg-neutral-900/90 px-8 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:border-gold-500 hover:bg-neutral-800 hover:shadow-gold-500/10 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none"
+              className="group inline-flex h-12 items-center justify-center gap-2.5 rounded-full border border-neutral-300 bg-white px-8 text-sm font-bold text-neutral-900 shadow-xs transition-all duration-300 hover:border-neutral-400 hover:bg-neutral-100 hover:shadow-md focus-visible:ring-2 focus-visible:ring-crimson-800 focus-visible:outline-none dark:border-neutral-700 dark:bg-neutral-900/90 dark:text-white dark:hover:border-gold-500 dark:hover:bg-neutral-800 dark:hover:shadow-gold-500/10 dark:focus-visible:ring-gold-400"
             >
               <span>See All Branches</span>
-              <Compass className="size-4 text-gold-400 transition-transform duration-300 group-hover:rotate-45" />
+              <Compass className="size-4 text-crimson-800 transition-transform duration-300 group-hover:rotate-45 dark:text-gold-400" />
             </Link>
 
             <button
               type="button"
               onClick={handleDetectLocation}
               disabled={isLocating}
-              className="group inline-flex h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full border border-gold-500/40 bg-gold-500/10 px-7 text-sm font-bold text-gold-300 shadow-md transition-all duration-300 hover:border-gold-400 hover:bg-gold-500 hover:text-neutral-950 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none disabled:opacity-50"
+              className="group inline-flex h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-crimson-800 px-7 text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-crimson-900 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none disabled:opacity-50 dark:border dark:border-gold-500/40 dark:bg-gold-500/10 dark:text-gold-300 dark:hover:border-gold-400 dark:hover:bg-gold-500 dark:hover:text-neutral-950"
             >
               {isLocating ? (
                 <>
@@ -277,7 +278,7 @@ export function WorldwideSanctuaries({
                 </>
               ) : (
                 <>
-                  <Navigation className="size-4 text-gold-400 transition-transform duration-300 group-hover:rotate-45 group-hover:text-neutral-950" />
+                  <Navigation className="size-4 text-white transition-transform duration-300 group-hover:rotate-45 dark:text-gold-400 dark:group-hover:text-neutral-950" />
                   <span>Find Churches Near Me</span>
                 </>
               )}
@@ -286,24 +287,28 @@ export function WorldwideSanctuaries({
 
           {/* Geolocation feedback note */}
           {locationStatus && (
-            <p className="mt-3 animate-fade-in text-xs font-semibold text-gold-300">{locationStatus}</p>
+            <p className="mt-3 animate-fade-in text-xs font-semibold text-crimson-800 dark:text-gold-300">
+              {locationStatus}
+            </p>
           )}
         </div>
 
         {/* Dynamic Display: If user activated GPS, show closest parishes; otherwise show the 6 Regional Cards */}
         {userLocation ? (
           <div className="mt-14">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+            <div className="flex items-center justify-between border-b border-neutral-200 pb-4 dark:border-white/10">
               <div>
-                <h3 className="font-display text-xl font-bold text-white">Churches Nearest To You</h3>
-                <p className="text-xs text-neutral-400">
+                <h3 className="font-display text-xl font-bold text-neutral-900 dark:text-white">
+                  Churches Nearest To You
+                </h3>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400">
                   Real-time distance calculated from your current device location
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setUserLocation(null)}
-                className="cursor-pointer text-xs font-bold text-gold-400 hover:underline"
+                className="cursor-pointer text-xs font-bold text-crimson-800 hover:underline dark:text-gold-400"
               >
                 Reset to All Regions
               </button>
@@ -322,7 +327,7 @@ export function WorldwideSanctuaries({
                       setSelectedChurch(church);
                     }
                   }}
-                  className="group relative flex aspect-16/11 cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 p-6 shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:border-gold-500/60 hover:shadow-2xl hover:shadow-gold-500/10 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none"
+                  className="group relative flex aspect-16/11 cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-neutral-300/80 bg-neutral-900 p-6 shadow-md transition-all duration-500 hover:-translate-y-1.5 hover:border-crimson-800/60 hover:shadow-2xl hover:shadow-crimson-800/10 focus-visible:ring-2 focus-visible:ring-crimson-800 focus-visible:outline-none dark:border-white/10 dark:hover:border-gold-500/60 dark:hover:shadow-gold-500/10 dark:focus-visible:ring-gold-400"
                 >
                   <Image
                     src={church.cover?.url || "/brand/hero-mount-zion.webp"}
@@ -384,7 +389,7 @@ export function WorldwideSanctuaries({
                   }}
                   aria-haspopup="dialog"
                   aria-label={`Explore ${card.title} sanctuaries`}
-                  className="group relative flex aspect-16/11 cursor-pointer flex-col justify-end overflow-hidden rounded-2xl border border-white/10 bg-neutral-900 p-6 shadow-md transition-all duration-500 select-none hover:-translate-y-1.5 hover:border-gold-500/60 hover:shadow-2xl hover:shadow-gold-500/10 focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none sm:p-7"
+                  className="group relative flex aspect-16/11 cursor-pointer flex-col justify-end overflow-hidden rounded-2xl border border-neutral-300/80 bg-neutral-900 p-6 shadow-md transition-all duration-500 select-none hover:-translate-y-1.5 hover:border-crimson-800/60 hover:shadow-2xl hover:shadow-crimson-800/10 focus-visible:ring-2 focus-visible:ring-crimson-800 focus-visible:outline-none sm:p-7 dark:border-white/10 dark:hover:border-gold-500/60 dark:hover:shadow-gold-500/10 dark:focus-visible:ring-gold-400"
                 >
                   {/* Background Photography */}
                   <Image
@@ -428,13 +433,13 @@ export function WorldwideSanctuaries({
         )}
 
         {/* Bottom Search & Popular Discovery Band */}
-        <div className="mt-16 rounded-2xl border border-white/10 bg-neutral-950/80 p-8 shadow-xl backdrop-blur-sm sm:p-10">
+        <div className="mt-16 rounded-2xl border border-neutral-200/90 bg-white p-8 shadow-sm backdrop-blur-sm sm:p-10 dark:border-white/10 dark:bg-neutral-950/80 dark:shadow-xl">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-xl">
-              <h3 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">
+              <h3 className="font-display text-xl font-bold tracking-tight text-neutral-900 sm:text-2xl dark:text-white">
                 Search our worldwide directory
               </h3>
-              <p className="mt-1.5 text-sm leading-relaxed text-neutral-300">
+              <p className="mt-1.5 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
                 Filter across all {totalCount} churches, provincial secretariats, and prayer houses across
                 Nigeria and the global diaspora.
               </p>
@@ -457,12 +462,12 @@ export function WorldwideSanctuaries({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by city, province, or parish name..."
-                  className="h-12 w-full rounded-full border border-white/20 bg-neutral-900 pr-4 pl-11 text-sm text-white outline-none placeholder:text-neutral-400 focus:border-gold-500 focus:ring-2 focus:ring-gold-500/20"
+                  className="h-12 w-full rounded-full border border-neutral-300 bg-neutral-50 pr-4 pl-11 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:border-crimson-800 focus:ring-2 focus:ring-crimson-800/20 dark:border-white/20 dark:bg-neutral-900 dark:text-white dark:placeholder:text-neutral-400 dark:focus:border-gold-500 dark:focus:ring-gold-500/20"
                 />
               </div>
               <button
                 type="submit"
-                className="inline-flex h-12 shrink-0 cursor-pointer items-center rounded-full bg-gold-500 px-7 text-sm font-bold text-neutral-950 shadow-md transition-all hover:bg-gold-400 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none"
+                className="inline-flex h-12 shrink-0 cursor-pointer items-center rounded-full bg-crimson-800 px-7 text-sm font-bold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none dark:bg-gold-500 dark:text-neutral-950 dark:hover:bg-gold-400"
               >
                 Search
               </button>
@@ -471,8 +476,8 @@ export function WorldwideSanctuaries({
 
           {/* Live Search Instant Dropdown Preview */}
           {searchResults.length > 0 && (
-            <div className="mt-6 rounded-xl border border-white/10 bg-neutral-900 p-4">
-              <p className="mb-3 text-xs font-bold tracking-wider text-gold-400 uppercase">
+            <div className="mt-6 rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-white/10 dark:bg-neutral-900">
+              <p className="mb-3 text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-gold-400">
                 Matching Sanctuaries ({searchResults.length}):
               </p>
               <div className="grid max-h-60 gap-2 overflow-y-auto pr-2 sm:grid-cols-2">
@@ -481,13 +486,15 @@ export function WorldwideSanctuaries({
                     key={match.slug}
                     type="button"
                     onClick={() => setSelectedChurch(match)}
-                    className="flex cursor-pointer items-center justify-between rounded-lg bg-white/5 p-2 text-left transition-colors hover:bg-white/10"
+                    className="flex cursor-pointer items-center justify-between rounded-lg bg-white p-2.5 text-left shadow-2xs transition-colors hover:bg-neutral-100 dark:bg-white/5 dark:hover:bg-white/10"
                   >
                     <span className="truncate pr-2">
-                      <strong className="block text-sm text-white">{match.name}</strong>
-                      <span className="text-xs text-neutral-400">{match.locality || match.address}</span>
+                      <strong className="block text-sm text-neutral-900 dark:text-white">{match.name}</strong>
+                      <span className="text-xs text-neutral-500 dark:text-neutral-400">
+                        {match.locality || match.address}
+                      </span>
                     </span>
-                    <ArrowRight className="size-4 shrink-0 text-gold-400" />
+                    <ArrowRight className="size-4 shrink-0 text-crimson-800 dark:text-gold-400" />
                   </button>
                 ))}
               </div>
@@ -495,15 +502,15 @@ export function WorldwideSanctuaries({
           )}
 
           {/* Popular City Filter Pills */}
-          <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-white/10 pt-5">
-            <span className="text-xs font-bold tracking-wider text-neutral-400 uppercase">
+          <div className="mt-6 flex flex-wrap items-center gap-2 border-t border-neutral-200 pt-5 dark:border-white/10">
+            <span className="text-xs font-bold tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
               Popular Cities:
             </span>
             {POPULAR_SEARCH_CITIES.map((city) => (
               <Link
                 key={city}
                 href={routes.find({ q: city })}
-                className="inline-flex min-h-7 items-center rounded-full border border-white/10 bg-white/5 px-3.5 text-xs font-semibold text-neutral-300 transition-colors hover:border-gold-500/50 hover:bg-gold-500/10 hover:text-gold-300"
+                className="inline-flex min-h-7 items-center rounded-full border border-neutral-200 bg-neutral-100 px-3.5 text-xs font-semibold text-neutral-700 transition-colors hover:border-crimson-800/30 hover:bg-neutral-200 hover:text-neutral-950 dark:border-white/10 dark:bg-white/5 dark:text-neutral-300 dark:hover:border-gold-500/50 dark:hover:bg-gold-500/10 dark:hover:text-gold-300"
               >
                 {city}
               </Link>
@@ -520,7 +527,7 @@ export function WorldwideSanctuaries({
         }}
       >
         {selectedTerritory && (
-          <DialogContent className="max-w-3xl overflow-hidden border border-white/15 bg-neutral-950 p-0 text-white shadow-2xl sm:rounded-2xl">
+          <DialogContent className="max-w-3xl overflow-hidden border border-neutral-200 bg-white p-0 text-neutral-900 shadow-2xl sm:rounded-2xl dark:border-white/15 dark:bg-neutral-950 dark:text-white">
             <div className="relative aspect-16/8 w-full overflow-hidden bg-neutral-900">
               <Image
                 src={selectedTerritory.image}
@@ -530,9 +537,9 @@ export function WorldwideSanctuaries({
               />
               <div
                 aria-hidden
-                className="absolute inset-0 bg-linear-to-t from-neutral-950 via-neutral-950/60 to-transparent"
+                className="absolute inset-0 bg-linear-to-t from-black/95 via-black/60 to-transparent"
               />
-              <div className="absolute bottom-5 left-6 z-10">
+              <div className="absolute bottom-5 left-6 z-10 text-white">
                 <span className="text-xs font-bold tracking-widest text-gold-400 uppercase">
                   Territory Directory
                 </span>
@@ -552,37 +559,39 @@ export function WorldwideSanctuaries({
                   return (
                     <div
                       key={church.slug}
-                      className="flex flex-col justify-between rounded-xl border border-white/10 bg-neutral-900/80 p-4 transition-colors hover:border-gold-500/40"
+                      className="flex flex-col justify-between rounded-xl border border-neutral-200 bg-neutral-50/70 p-4 transition-colors hover:border-crimson-800/40 dark:border-white/10 dark:bg-neutral-900/80 dark:hover:border-gold-500/40"
                     >
                       <div>
                         <div className="flex items-center justify-between">
-                          <span className="text-[0.6875rem] font-bold tracking-wider text-gold-400 uppercase">
+                          <span className="text-[0.6875rem] font-bold tracking-wider text-crimson-800 uppercase dark:text-gold-400">
                             {church.kind.replace("-", " ")}
                           </span>
                           {church.distanceKm !== undefined && (
-                            <span className="text-[0.6875rem] font-bold text-emerald-400">
+                            <span className="text-[0.6875rem] font-bold text-emerald-600 dark:text-emerald-400">
                               {formatDistance(church.distanceKm)}
                             </span>
                           )}
                         </div>
-                        <h4 className="mt-1 font-display text-base font-bold text-white">{church.name}</h4>
-                        <p className="mt-1 flex items-center gap-1 text-xs text-neutral-300">
-                          <MapPin className="size-3 shrink-0 text-gold-400" />
+                        <h4 className="mt-1 font-display text-base font-bold text-neutral-900 dark:text-white">
+                          {church.name}
+                        </h4>
+                        <p className="mt-1 flex items-center gap-1 text-xs text-neutral-600 dark:text-neutral-300">
+                          <MapPin className="size-3 shrink-0 text-crimson-800 dark:text-gold-400" />
                           <span className="line-clamp-1">{church.locality || church.address}</span>
                         </p>
                         {church.address && (
-                          <p className="mt-1 line-clamp-1 font-mono text-[0.6875rem] text-neutral-400">
+                          <p className="mt-1 line-clamp-1 font-mono text-[0.6875rem] text-neutral-500 dark:text-neutral-400">
                             {church.address}
                           </p>
                         )}
                       </div>
 
-                      <div className="mt-4 flex items-center justify-between border-t border-white/10 pt-3">
+                      <div className="mt-4 flex items-center justify-between border-t border-neutral-200 pt-3 dark:border-white/10">
                         <a
                           href={buildGoogleMapsUrl(locationString)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-xs font-semibold text-gold-300 hover:text-white"
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-crimson-800 hover:text-crimson-900 dark:text-gold-300 dark:hover:text-white"
                         >
                           <ExternalLink className="size-3" />
                           <span>Google Maps</span>
@@ -590,7 +599,7 @@ export function WorldwideSanctuaries({
 
                         <Link
                           href={routes.unit(church.slug)}
-                          className="inline-flex items-center gap-1 text-xs font-bold text-white hover:text-gold-300"
+                          className="inline-flex items-center gap-1 text-xs font-bold text-neutral-900 hover:text-crimson-800 dark:text-white dark:hover:text-gold-300"
                         >
                           <span>Parish Page</span>
                           <ArrowRight className="size-3" />
@@ -613,49 +622,49 @@ export function WorldwideSanctuaries({
         }}
       >
         {selectedChurch && (
-          <DialogContent className="max-w-xl border border-white/15 bg-neutral-950 p-6 text-white shadow-2xl sm:rounded-2xl sm:p-8">
+          <DialogContent className="max-w-xl border border-neutral-200 bg-white p-6 text-neutral-900 shadow-2xl sm:rounded-2xl sm:p-8 dark:border-white/15 dark:bg-neutral-950 dark:text-white">
             <DialogHeader className="pr-4">
-              <span className="text-xs font-bold tracking-widest text-gold-400 uppercase">
+              <span className="text-xs font-bold tracking-widest text-crimson-800 uppercase dark:text-gold-400">
                 {selectedChurch.kind.replace("-", " ")}
               </span>
-              <DialogTitle className="mt-1 font-display text-2xl font-extrabold tracking-tight text-white sm:text-3xl">
+              <DialogTitle className="mt-1 font-display text-2xl font-extrabold tracking-tight text-neutral-900 sm:text-3xl dark:text-white">
                 {selectedChurch.name}
               </DialogTitle>
-              <DialogDescription className="mt-1 flex items-center gap-1.5 text-sm font-medium text-neutral-300">
-                <MapPin className="size-4 shrink-0 text-gold-400" />
+              <DialogDescription className="mt-1 flex items-center gap-1.5 text-sm font-medium text-neutral-600 dark:text-neutral-300">
+                <MapPin className="size-4 shrink-0 text-crimson-800 dark:text-gold-400" />
                 <span>{selectedChurch.locality || selectedChurch.address || "Holy Order Territory"}</span>
               </DialogDescription>
             </DialogHeader>
 
             <div className="my-4 space-y-4">
               {/* Worship Times */}
-              <div className="rounded-xl border border-white/10 bg-neutral-900/80 p-4">
-                <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-gold-400 uppercase">
-                  <Clock className="size-4 text-gold-400" />
+              <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-white/10 dark:bg-neutral-900/80">
+                <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-gold-400">
+                  <Clock className="size-4" />
                   <span>Gathering Schedule</span>
                 </div>
-                <p className="mt-1.5 text-sm text-neutral-200">
+                <p className="mt-1.5 text-sm text-neutral-700 dark:text-neutral-200">
                   Sunday Divine Worship: 10:00 AM · Tuesday Bible Studies: 6:00 PM
                 </p>
               </div>
 
               {/* Address with One-Click Copy */}
-              <div className="rounded-xl border border-white/10 bg-neutral-900/80 p-4">
+              <div className="rounded-xl border border-neutral-200 bg-neutral-50 p-4 dark:border-white/10 dark:bg-neutral-900/80">
                 <div className="flex items-center justify-between">
-                  <span className="flex items-center gap-2 text-xs font-bold tracking-wider text-gold-400 uppercase">
-                    <Building2 className="size-4 text-gold-400" />
+                  <span className="flex items-center gap-2 text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-gold-400">
+                    <Building2 className="size-4" />
                     <span>Location Address</span>
                   </span>
                   {selectedChurch.address && (
                     <button
                       type="button"
                       onClick={() => handleCopyAddress(selectedChurch.address!)}
-                      className="inline-flex cursor-pointer items-center gap-1 rounded px-2 py-0.5 text-xs font-medium text-neutral-400 hover:text-white"
+                      className="inline-flex cursor-pointer items-center gap-1 rounded px-2 py-0.5 text-xs font-medium text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white"
                     >
                       {copiedAddress === selectedChurch.address ? (
                         <>
-                          <Check className="size-3 text-emerald-400" />
-                          <span className="text-emerald-400">Copied</span>
+                          <Check className="size-3 text-emerald-500" />
+                          <span className="text-emerald-600 dark:text-emerald-400">Copied</span>
                         </>
                       ) : (
                         <>
@@ -666,7 +675,7 @@ export function WorldwideSanctuaries({
                     </button>
                   )}
                 </div>
-                <p className="mt-1.5 font-mono text-xs text-neutral-300">
+                <p className="mt-1.5 font-mono text-xs text-neutral-600 dark:text-neutral-300">
                   {selectedChurch.address || selectedChurch.locality || "Registered in official directory"}
                 </p>
               </div>
@@ -679,7 +688,7 @@ export function WorldwideSanctuaries({
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-6 text-sm font-semibold text-white transition-colors hover:border-gold-500 hover:text-gold-300"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:bg-neutral-100 hover:text-crimson-800 dark:border-neutral-700 dark:bg-neutral-900 dark:text-white dark:hover:border-gold-500 dark:hover:text-gold-300"
               >
                 <ExternalLink className="size-4" />
                 <span>Google Maps Directions</span>
@@ -687,7 +696,7 @@ export function WorldwideSanctuaries({
 
               <Link
                 href={routes.unit(selectedChurch.slug)}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-gold-500 px-7 text-sm font-bold text-neutral-950 shadow-md transition-all hover:bg-gold-400 hover:shadow-lg"
+                className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-crimson-800 px-7 text-sm font-bold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg dark:bg-gold-500 dark:text-neutral-950 dark:hover:bg-gold-400"
               >
                 <Sparkles className="size-4" />
                 <span>Visit Parish Profile</span>

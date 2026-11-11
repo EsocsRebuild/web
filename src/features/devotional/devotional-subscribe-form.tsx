@@ -68,7 +68,7 @@ export function DevotionalSubscribeForm({ className, variant = "card" }: Devotio
           <button
             type="button"
             onClick={() => setStatus("idle")}
-            className="text-xs font-bold text-crimson-700 transition-colors hover:text-crimson-800 dark:text-crimson-400 dark:hover:text-crimson-300"
+            className="text-xs font-bold text-crimson-800 transition-colors hover:text-crimson-900 dark:text-gold-400 dark:hover:text-gold-300"
           >
             Inscribe another email address
           </button>
@@ -139,23 +139,23 @@ export function DevotionalSubscribeForm({ className, variant = "card" }: Devotio
             disabled={status === "loading"}
             placeholder="Enter your mailbox address (e.g. brother@example.com)"
             aria-label="Email Address for ESOCS Daily Devotionals"
-            className="h-12 w-full rounded-pill border border-border bg-surface pr-4 pl-11 text-sm text-foreground shadow-xs transition-all outline-none placeholder:text-muted-foreground focus:border-crimson-700 focus:ring-2 focus:ring-crimson-700/20 disabled:opacity-50"
+            className="h-12 w-full rounded-pill border border-border bg-surface pr-4 pl-11 text-sm text-foreground shadow-xs transition-all outline-none placeholder:text-muted-foreground focus:border-crimson-800 focus:ring-2 focus:ring-crimson-800/20 disabled:opacity-50 dark:focus:border-gold-500 dark:focus:ring-gold-500/20"
           />
         </div>
 
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-7 text-sm font-bold text-white shadow-sm ring-1 ring-gold-500/20 transition-all hover:bg-[#430B16] hover:shadow-md disabled:pointer-events-none disabled:opacity-60"
+          className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-pill bg-crimson-800 px-7 text-sm font-bold text-white shadow-sm transition-all hover:bg-crimson-900 hover:shadow-md disabled:pointer-events-none disabled:opacity-60 dark:bg-gold-500 dark:text-neutral-950 dark:hover:bg-gold-400"
         >
           {status === "loading" ? (
             <>
-              <Loader2 className="size-4 animate-spin text-white" />
+              <Loader2 className="size-4 animate-spin text-white dark:text-neutral-950" />
               <span>Inscribing...</span>
             </>
           ) : (
             <>
-              <Sparkles className="size-4 text-gold-300" />
+              <Sparkles className="size-4 text-gold-300 dark:text-neutral-950" />
               <span>Receive Daily Devotionals</span>
             </>
           )}

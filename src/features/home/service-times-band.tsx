@@ -117,8 +117,8 @@ export function ServiceTimesBand() {
         {/* Section Header with Generous Whitespace */}
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-4 py-1.5 text-xs font-bold tracking-widest text-crimson-700 uppercase shadow-xs dark:text-crimson-300">
-              <Calendar className="size-3.5" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-bold tracking-widest text-muted-foreground uppercase shadow-xs">
+              <Calendar className="size-3.5 text-crimson-800 dark:text-gold-400" />
               Worship With Us This Week
             </span>
 
@@ -127,7 +127,7 @@ export function ServiceTimesBand() {
               className="mt-5 font-display text-[clamp(2.25rem,1.8rem+2vw,3.75rem)] leading-[1.08] font-extrabold tracking-tight text-foreground"
             >
               Gathering in His presence,{" "}
-              <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
+              <span className="font-serif font-normal text-crimson-800 italic dark:text-gold-400">
                 week after week.
               </span>
             </h2>
@@ -142,16 +142,16 @@ export function ServiceTimesBand() {
           <div className="flex flex-wrap items-center gap-3.5">
             <Link
               href={routes.find()}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-6 text-sm font-semibold text-white shadow-sm ring-1 ring-gold-500/20 transition-all hover:bg-[#430B16] hover:shadow-md"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-crimson-900 hover:shadow-md dark:bg-gold-500 dark:text-neutral-950 dark:hover:bg-gold-400"
             >
-              <MapPin className="size-4 text-gold-400" />
+              <MapPin className="size-4 text-gold-300 dark:text-neutral-950" />
               Find Your Nearest Parish
             </Link>
             <Link
               href={routes.stream()}
               className="hover:bg-surface-raised inline-flex h-12 items-center justify-center gap-2 rounded-pill border border-border/80 bg-surface px-6 text-sm font-semibold text-foreground transition-all hover:border-gold-500/50 hover:text-foreground"
             >
-              <Radio className="size-4 text-crimson-700 dark:text-crimson-400" />
+              <Radio className="size-4 text-crimson-800 dark:text-gold-400" />
               Join Live Broadcast
             </Link>
           </div>
@@ -168,17 +168,17 @@ export function ServiceTimesBand() {
                 className={cn(
                   "relative flex flex-col justify-between rounded-panel border p-8 transition-all duration-300 sm:p-10",
                   isSelected
-                    ? "-translate-y-1 border-crimson-700/60 bg-surface shadow-xl ring-2 ring-crimson-700/20"
+                    ? "-translate-y-1 border-crimson-800/40 bg-surface shadow-lg ring-1 ring-crimson-800/20 dark:border-gold-500/40 dark:ring-gold-500/20"
                     : "border-border/80 bg-surface/70 shadow-xs hover:border-border hover:bg-surface",
                 )}
               >
                 <div>
                   <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full border border-crimson-700/20 bg-crimson-800/10 px-3.5 py-1 text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
+                    <span className="rounded-full border border-border bg-surface-sunken px-3.5 py-1 text-xs font-bold tracking-wider text-muted-foreground uppercase">
                       {service.badge}
                     </span>
                     <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
-                      <Clock className="size-3.5 text-crimson-700 dark:text-crimson-400" />
+                      <Clock className="size-3.5 text-muted-foreground" />
                       Live in Person
                     </span>
                   </div>
@@ -187,9 +187,7 @@ export function ServiceTimesBand() {
                     {service.title}
                   </h3>
 
-                  <p className="mt-2.5 font-mono text-sm font-bold text-crimson-700 dark:text-crimson-400">
-                    {service.dayTime}
-                  </p>
+                  <p className="mt-2.5 font-mono text-sm font-bold text-foreground">{service.dayTime}</p>
 
                   <p className="mt-4 text-sm leading-snug font-medium text-foreground/90">
                     {service.tagline}
@@ -206,7 +204,7 @@ export function ServiceTimesBand() {
                     <ul className="mt-3.5 space-y-2.5">
                       {service.highlights.map((highlight) => (
                         <li key={highlight} className="flex items-center gap-3 text-xs text-foreground/85">
-                          <CheckCircle2 className="size-4 shrink-0 text-crimson-700 dark:text-crimson-400" />
+                          <CheckCircle2 className="size-4 shrink-0 text-crimson-800 dark:text-gold-400" />
                           <span>{highlight}</span>
                         </li>
                       ))}
@@ -217,7 +215,7 @@ export function ServiceTimesBand() {
                 <div className="mt-10 pt-4">
                   <Link
                     href={service.ctaHref}
-                    className="group/link inline-flex items-center gap-2 text-sm font-bold text-crimson-700 hover:text-crimson-800 dark:text-crimson-400 dark:hover:text-crimson-300"
+                    className="group/link inline-flex items-center gap-2 text-sm font-bold text-crimson-800 hover:text-crimson-900 dark:text-gold-400 dark:hover:text-gold-300"
                   >
                     <span>{service.ctaLabel}</span>
                     <ArrowRight className="size-4 transition-transform group-hover/link:translate-x-1.5" />
@@ -231,7 +229,7 @@ export function ServiceTimesBand() {
         {/* First-Time Guest Guide: "What to Expect at Mount Zion" */}
         <div className="mt-20 rounded-panel border border-border/80 bg-surface p-8 shadow-sm sm:p-12 lg:p-16">
           <div className="max-w-2xl">
-            <span className="text-xs font-bold tracking-widest text-crimson-700 uppercase dark:text-crimson-400">
+            <span className="text-xs font-bold tracking-widest text-muted-foreground uppercase">
               First-Time Guest Guide
             </span>
             <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
@@ -249,14 +247,14 @@ export function ServiceTimesBand() {
               return (
                 <div
                   key={tip.title}
-                  className="bg-surface-raised rounded-card border border-border/70 p-6 transition-colors hover:border-crimson-700/40"
+                  className="bg-surface-raised rounded-card border border-border/70 p-6 transition-colors hover:border-crimson-800/30"
                 >
-                  <div className="inline-flex size-11 items-center justify-center rounded-xl bg-crimson-800/10 text-crimson-700 dark:text-crimson-400">
-                    <Icon className="size-5" />
+                  <div className="inline-flex size-11 items-center justify-center rounded-xl border border-border bg-surface-sunken text-foreground">
+                    <Icon className="size-5 text-crimson-800 dark:text-gold-400" />
                   </div>
                   <div className="mt-5 flex items-baseline justify-between gap-2">
                     <h4 className="text-base font-bold text-foreground">{tip.title}</h4>
-                    <span className="font-serif text-xs font-medium text-crimson-700 italic dark:text-crimson-400">
+                    <span className="font-serif text-xs font-medium text-muted-foreground italic">
                       {tip.verse}
                     </span>
                   </div>
@@ -274,7 +272,7 @@ export function ServiceTimesBand() {
             </p>
             <Link
               href={routes.contact()}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-crimson-700 hover:text-crimson-800 sm:text-sm dark:text-crimson-400 dark:hover:text-crimson-300"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-crimson-800 hover:text-crimson-900 sm:text-sm dark:text-gold-400 dark:hover:text-gold-300"
             >
               <span>Speak with our Pastoral Care Team</span>
               <ArrowRight className="size-4" />

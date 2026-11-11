@@ -20,13 +20,13 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
         {/* Section Header with Generous Whitespace */}
         <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-4 py-1.5 text-xs font-bold tracking-widest text-crimson-700 uppercase shadow-xs dark:text-crimson-300">
-              <Radio className="size-3.5" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-bold tracking-widest text-muted-foreground uppercase shadow-xs">
+              <Radio className="size-3.5 text-crimson-800 dark:text-gold-400" />
               Word in Motion · Sacred Media
             </span>
             <h2 className="mt-5 font-display text-[clamp(2.25rem,1.8rem+2vw,3.75rem)] leading-[1.08] font-extrabold tracking-tight text-foreground">
               The Sacred Stream,{" "}
-              <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
+              <span className="font-serif font-normal text-crimson-800 italic dark:text-gold-400">
                 broadcasting truth.
               </span>
             </h2>
@@ -38,9 +38,9 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
 
           <Link
             href={routes.stream()}
-            className="inline-flex h-12 items-center justify-center gap-2 self-start rounded-pill bg-crimson-800 px-7 text-sm font-bold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg sm:self-auto dark:bg-crimson-700 dark:hover:bg-crimson-600"
+            className="inline-flex h-12 items-center justify-center gap-2 self-start rounded-pill bg-crimson-800 px-7 text-sm font-bold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg sm:self-auto dark:bg-gold-500 dark:text-neutral-950 dark:hover:bg-gold-400"
           >
-            <Sparkles className="size-4 text-gold-300" />
+            <Sparkles className="size-4 text-gold-300 dark:text-neutral-950" />
             <span>Enter Full Stream</span>
             <ArrowRight className="size-4" />
           </Link>
@@ -52,7 +52,7 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
             <Link
               key={item.id}
               href={`${routes.stream()}#${item.id}`}
-              className="group bg-surface-raised relative flex aspect-9/13 flex-col justify-between overflow-hidden rounded-panel border border-border/80 shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-crimson-700/60 hover:shadow-xl"
+              className="group bg-surface-raised relative flex aspect-9/13 flex-col justify-between overflow-hidden rounded-panel border border-border/80 shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-crimson-800/40 hover:shadow-xl dark:hover:border-gold-500/40"
             >
               {/* Media Preview Image */}
               <Image
@@ -69,10 +69,10 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
 
               {/* Top Badge */}
               <div className="relative z-10 flex items-center justify-between p-4">
-                <span className="rounded-full border border-crimson-500/30 bg-crimson-950/80 px-3 py-1 text-[0.625rem] font-bold tracking-wider text-crimson-200 uppercase backdrop-blur-md">
+                <span className="rounded-full border border-white/20 bg-black/60 px-3 py-1 text-[0.625rem] font-bold tracking-wider text-white uppercase backdrop-blur-md">
                   {item.category.replace("-", " ")}
                 </span>
-                <div className="flex size-9 items-center justify-center rounded-full bg-crimson-900/80 text-white backdrop-blur-md transition-transform group-hover:scale-110">
+                <div className="flex size-9 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-transform group-hover:scale-110">
                   {item.verses ? (
                     <Volume2 className="size-4 text-gold-300" />
                   ) : (

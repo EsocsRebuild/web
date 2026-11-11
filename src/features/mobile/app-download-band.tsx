@@ -61,12 +61,12 @@ function GooglePlayBadge({ className }: { className?: string }) {
 }
 
 const APP_FEATURES = [
-  "Daily Dawn Manna & Evening Vespers Devotionals",
-  "Complete Sacred Seraphic Hymnary (English & Yoruba)",
-  "HD Sacred Stream Live Broadcasts & Audio Sermons",
-  "Church Calendar, Events & Fasting Periods",
-  "Confidential Prayer Request Altar with Ministerial Follow-up",
-  "Instant Push Bulletins from His Most Eminence, the Prelate",
+  "Dawn & Dusk Daily Devotionals",
+  "Complete Sacred Seraphic Hymnary",
+  "Live HD Divine Worship & Audio Sermons",
+  "Church Calendar & Fasting Guides",
+  "Confidential Prayer Petitions",
+  "Direct Pastoral Bulletins & Alerts",
 ];
 
 export function AppDownloadBand() {
@@ -226,7 +226,7 @@ export function AppDownloadBand() {
                   </div>
 
                   {/* Live Stream / Divine Service Notification Card */}
-                  <div className="mt-5 rounded-2xl border border-crimson-700/40 bg-gradient-to-r from-[#5B101E]/80 to-[#1E2538]/80 p-3.5 shadow-lg backdrop-blur-sm">
+                  <div className="mt-5 rounded-2xl border border-crimson-800/40 bg-gradient-to-r from-crimson-900/80 to-neutral-950/90 p-3.5 shadow-lg backdrop-blur-sm">
                     <div className="flex items-center justify-between">
                       <span className="flex animate-pulse items-center gap-1.5 rounded-full bg-crimson-600 px-2.5 py-0.5 text-[0.625rem] font-bold text-white uppercase">
                         <Radio className="size-2.5" /> Live Now

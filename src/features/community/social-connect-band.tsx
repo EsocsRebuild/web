@@ -114,8 +114,8 @@ export function SocialConnectBand() {
         {/* Section Header with Refined Whitespace */}
         <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-end">
           <div className="max-w-2xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-4 py-1.5 text-xs font-bold tracking-widest text-crimson-700 uppercase shadow-xs dark:text-crimson-300">
-              <Share2 className="size-3.5" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-xs font-bold tracking-widest text-muted-foreground uppercase shadow-xs">
+              <Share2 className="size-3.5 text-crimson-800 dark:text-gold-400" />
               Connect With Us
             </span>
 
@@ -124,7 +124,7 @@ export function SocialConnectBand() {
               className="mt-5 font-display text-[clamp(2.25rem,1.8rem+2vw,3.75rem)] leading-[1.08] font-extrabold tracking-tight text-foreground"
             >
               Walk with the family{" "}
-              <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
+              <span className="font-serif font-normal text-crimson-800 italic dark:text-gold-400">
                 everywhere you are.
               </span>
             </h2>
@@ -140,9 +140,9 @@ export function SocialConnectBand() {
               href={siteConfig.socials.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-6 text-sm font-semibold text-white shadow-sm ring-1 ring-gold-500/20 transition-all hover:bg-[#430B16] hover:shadow-md"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-crimson-900 hover:shadow-md dark:bg-gold-500 dark:text-neutral-950 dark:hover:bg-gold-400"
             >
-              <Play className="size-4 fill-current text-gold-400" />
+              <Play className="size-4 fill-current text-gold-300 dark:text-neutral-950" />
               Subscribe on YouTube
             </Link>
             <Link
@@ -174,7 +174,7 @@ export function SocialConnectBand() {
                 className={cn(
                   "group relative flex flex-col justify-between overflow-hidden rounded-panel border p-8 transition-all duration-300",
                   isHovered
-                    ? "-translate-y-2 border-crimson-700/50 bg-surface shadow-2xl ring-1 ring-crimson-700/30"
+                    ? "-translate-y-2 border-crimson-800/40 bg-surface shadow-xl ring-1 ring-crimson-800/20 dark:border-gold-500/40 dark:ring-gold-500/20"
                     : "border-border/80 bg-surface/80 shadow-xs hover:border-border hover:bg-surface",
                 )}
               >
@@ -225,7 +225,7 @@ export function SocialConnectBand() {
                     </span>
                   </div>
 
-                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-crimson-700 transition-colors group-hover:text-crimson-800 dark:text-crimson-400 dark:group-hover:text-crimson-300">
+                  <span className="inline-flex items-center gap-1.5 text-xs font-bold text-crimson-800 transition-colors group-hover:text-crimson-900 dark:text-gold-400 dark:group-hover:text-gold-300">
                     <span>Connect</span>
                     <ArrowUpRight className="size-3.5" />
                   </span>
