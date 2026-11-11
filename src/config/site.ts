@@ -31,6 +31,8 @@ export const siteConfig = {
     youtube: "https://www.youtube.com/@esocschurch",
     facebook: "https://web.facebook.com/esocschurchpage/",
     instagram: "https://www.instagram.com/esocs.church",
+    tiktok: "https://www.tiktok.com/@esocschurch",
+    whatsapp: "https://whatsapp.com/channel/0029Va8ESOCSChannel",
     x: "https://x.com/esocschurch",
   },
   radio: "http://www.esocsradio.com/",

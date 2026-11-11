@@ -34,6 +34,9 @@ export function SmartImage({
     fill || !image.width || !image.height
       ? { fill: true as const }
       : { width: image.width, height: image.height };
+  const isExternal =
+    typeof image.url === "string" && (image.url.startsWith("http://") || image.url.startsWith("https://"));
+
   return (
     <Image
       src={image.url}
@@ -45,6 +48,7 @@ export function SmartImage({
       decoding="async"
       placeholder={image.placeholder ? "blur" : "empty"}
       blurDataURL={image.placeholder}
+      unoptimized={props.unoptimized ?? isExternal}
       {...props}
     />
   );

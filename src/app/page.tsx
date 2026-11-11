@@ -5,17 +5,20 @@ import { HeroScenes, type HeroScene } from "@/features/home/hero-scenes";
 import { PrayerCard, Succession } from "@/features/home/home-sections";
 import {
   BabaAladuraMessage,
-  FindBand,
   HomeBand,
   LatestNews,
-  QuickPathsDeck,
   UpcomingBand,
   WhoWeAre,
 } from "@/features/home/story-bands";
+import { ServiceTimesBand } from "@/features/home/service-times-band";
 import { ChurchFamily } from "@/features/home/church-family";
 import { GiveAppeal } from "@/features/home/story-sections";
+import { DevotionalHeroBand } from "@/features/devotional/devotional-hero-band";
 import { StreamTeaser } from "@/features/stream/stream-teaser";
 import { StoreTeaser } from "@/features/store/store-teaser";
+import { WorldwideSanctuaries } from "@/features/home/worldwide-sanctuaries";
+import { AppDownloadBand } from "@/features/mobile/app-download-band";
+import { SocialConnectBand } from "@/features/community/social-connect-band";
 import { placeholderFor } from "@/lib/image-placeholders";
 import { routes } from "@/lib/routes";
 
@@ -23,7 +26,6 @@ export default function HomePage() {
   const content = getContent();
   const org = content.getOrganisation();
 
-  const headquarters = content.listUnits({ kind: "headquarters" });
   const people = content.listPeople();
   const upcoming = content.listEvents();
   const units = content.listUnits();
@@ -124,7 +126,6 @@ export default function HomePage() {
     <>
       <SpotlightBulletinModal spotlight={spotlightItem} />
       <HeroScenes scenes={scenes} findHref={routes.find()} footer={<Announcements variant="hero" />} />
-      <QuickPathsDeck />
 
       {/* The Baba Aladura's Patriarchal Welcome & Apostolic Address */}
       <BabaAladuraMessage
@@ -141,17 +142,36 @@ export default function HomePage() {
         href={messagePost ? routes.post(messagePost.id) : routes.news("message")}
       />
 
+      {/* Who We Are: Centenary Heritage, Vision & FLOSH Pillars */}
       <WhoWeAre
         org={org}
         photo={centenary && centenaryPhoto ? { image: centenaryPhoto, caption: centenary.title } : null}
       />
-      <UpcomingBand events={upcoming} />
-      <LatestNews posts={editorial} units={unitsBySlug} />
-      <StreamTeaser items={streamItems} />
+
+      {/* Generations of Mount Zion: Church Family */}
       <HomeBand tone="raised" aria-label="Our church family">
         <ChurchFamily />
       </HomeBand>
-      <FindBand pageCount={units.length} headquarters={headquarters} />
+
+      {/* Priority Devotional Portal: Grow in Your Christian Journey */}
+      <DevotionalHeroBand />
+
+      {/* Word in Motion: Sacred Stream Broadcast */}
+      <StreamTeaser items={streamItems} />
+
+      {/* Worship With Us: Weekly Gatherings & First-Time Visitor Guide */}
+      <ServiceTimesBand />
+
+      <WorldwideSanctuaries units={units} pageCount={units.length} />
+
+      {/* Mobile Sanctuary: The ESOCS App on App Store & Google Play */}
+      <AppDownloadBand />
+
+      {/* Social Gateway: YouTube, TikTok, Facebook, WhatsApp */}
+      <SocialConnectBand />
+
+      <UpcomingBand events={upcoming} />
+      <LatestNews posts={editorial} units={unitsBySlug} />
       <Succession people={people} />
       <StoreTeaser />
 

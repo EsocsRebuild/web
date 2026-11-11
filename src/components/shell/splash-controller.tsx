@@ -26,8 +26,8 @@ export function SplashController() {
       }, 750);
     };
 
-    // Extended 10s delay for full cinematic experience
-    const timer = window.setTimeout(dismiss, reduce ? 50 : 10200);
+    // Balanced 3.4s cinematic experience before landing onto home sanctuary
+    const timer = window.setTimeout(dismiss, reduce ? 50 : 3400);
 
     const splashEl = document.querySelector(".app-splash");
     splashEl?.addEventListener("click", dismiss);

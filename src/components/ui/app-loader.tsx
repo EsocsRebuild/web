@@ -17,7 +17,7 @@ export function AppLoader() {
 
   React.useEffect(() => {
     const startTime = Date.now();
-    const duration = 10000; // 10 seconds cinematic loader duration
+    const duration = 2000; // 2 seconds responsive loader duration
 
     const interval = setInterval(() => {
       const elapsed = Date.now() - startTime;
@@ -27,9 +27,9 @@ export function AppLoader() {
       if (pct >= 100) {
         clearInterval(interval);
         setFadingOut(true);
-        setTimeout(() => setMounted(false), 750);
+        setTimeout(() => setMounted(false), 500);
       }
-    }, 40);
+    }, 30);
 
     return () => clearInterval(interval);
   }, []);
@@ -140,18 +140,18 @@ export function AppLoader() {
           </div>
         </div>
 
-        {/* Sacred Holy Order Title - Refined, Non-Bulky, Animated Typography */}
+        {/* Sacred Holy Order Title - Refined, Balanced Proportion (Not Too Big, Well Structured) */}
         <div
-          style={{ animation: "splash-word 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both" }}
-          className="app-splash__word max-w-md px-2 text-center"
+          style={{ animation: "splash-word 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both" }}
+          className="app-splash__word max-w-md px-3 text-center"
         >
-          <h1 className="app-splash__word-main text-xs font-semibold tracking-wider uppercase sm:text-sm md:text-base">
+          <h1 className="app-splash__word-main text-[0.8125rem] font-semibold tracking-wider uppercase sm:text-sm">
             The Eternal Sacred Order of the Cherubim and Seraphim
           </h1>
-          <span className="mt-1 block font-serif text-base text-amber-300 italic sm:text-lg md:text-xl">
+          <span className="mt-1 block font-serif text-xs text-amber-300 italic sm:text-sm">
             Mount Zion Worldwide
           </span>
-          <span className="mt-1.5 block text-[0.625rem] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[0.6875rem]">
+          <span className="mt-1.5 block text-[0.5625rem] font-medium tracking-[0.25em] text-white/60 uppercase sm:text-[0.625rem]">
             One Fold · One Shepherd · Founded 1925
           </span>
         </div>

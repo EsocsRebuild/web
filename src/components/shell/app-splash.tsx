@@ -70,15 +70,15 @@ export function AppSplash() {
           />
         </div>
 
-        {/* Sacred Order Typography - Refined, Balanced Proportion */}
-        <div aria-hidden className="app-splash__word max-w-xl px-4 text-center">
-          <h1 className="app-splash__word-main text-xs font-semibold tracking-wider uppercase sm:text-sm md:text-base">
+        {/* Sacred Order Typography - Refined, Balanced Proportion (Not Too Big, Well Structured) */}
+        <div aria-hidden className="app-splash__word max-w-lg px-4 text-center">
+          <h1 className="app-splash__word-main text-[0.8125rem] font-semibold tracking-wider uppercase sm:text-sm">
             The Eternal Sacred Order of the Cherubim and Seraphim
           </h1>
-          <span className="app-splash__word-accent mt-1 block font-serif text-sm text-amber-300 italic sm:text-base">
+          <span className="app-splash__word-accent mt-1 block font-serif text-xs text-amber-300 italic sm:text-sm">
             Mount Zion Worldwide
           </span>
-          <span className="app-splash__motto mt-2 block text-[0.625rem] font-medium tracking-[0.28em] text-white/60 uppercase sm:text-[0.6875rem]">
+          <span className="app-splash__motto mt-2 block text-[0.5625rem] font-medium tracking-[0.28em] text-white/60 uppercase sm:text-[0.625rem]">
             One Fold · One Shepherd · Founded 1925
           </span>
         </div>

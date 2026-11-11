@@ -6,17 +6,17 @@
 
 // 1. Color Palettes (OKLCH Color Spaces for High Dynamic Range)
 $palette-royal: (
-  50: oklch(0.97 0.012 265),
-  100: oklch(0.93 0.025 265),
-  200: oklch(0.86 0.05 265),
-  300: oklch(0.76 0.08 265),
-  400: oklch(0.62 0.12 265),
-  500: oklch(0.5 0.14 265),
-  600: oklch(0.42 0.14 265),
-  700: oklch(0.35 0.12 265),
-  800: oklch(0.28 0.1 265),
-  900: oklch(0.22 0.07 265),
-  950: oklch(0.17 0.045 265),
+  50: oklch(0.97 0.003 50),
+  100: oklch(0.93 0.004 50),
+  200: oklch(0.86 0.005 50),
+  300: oklch(0.76 0.006 50),
+  400: oklch(0.62 0.007 50),
+  500: oklch(0.48 0.008 50),
+  600: oklch(0.38 0.008 50),
+  700: oklch(0.3 0.007 50),
+  800: oklch(0.22 0.006 50),
+  900: oklch(0.16 0.005 50),
+  950: oklch(0.12 0.004 50),
 );
 
 $palette-gold: (
@@ -45,6 +45,20 @@ $palette-parchment: (
   800: oklch(0.27 0.006 70),
   900: oklch(0.2 0.005 70),
   950: oklch(0.14 0.004 70),
+);
+
+$palette-crimson: (
+  50: oklch(0.97 0.02 25),
+  100: oklch(0.93 0.05 25),
+  200: oklch(0.85 0.1 25),
+  300: oklch(0.72 0.16 26),
+  400: oklch(0.6 0.2 26),
+  500: oklch(0.5 0.22 26),
+  600: oklch(0.42 0.2 25),
+  700: oklch(0.35 0.16 24),
+  800: oklch(0.28 0.12 24),
+  900: oklch(0.21 0.08 24),
+  950: oklch(0.15 0.05 24),
 );
 
 // 2. High-Intent Liturgical Motion & Easing Curves

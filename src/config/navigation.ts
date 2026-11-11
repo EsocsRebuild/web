@@ -112,8 +112,14 @@ export const moreNav: { title: string; items: NavLink[] }[] = [
     ],
   },
   {
-    title: "Media",
+    title: "Media & Spiritual Life",
     items: [
+      {
+        label: "Daily Devotionals",
+        href: routes.devotional(),
+        icon: ScrollText,
+        description: "Grow daily with holy scripture & pastoral reflection",
+      },
       { label: "News & stories", href: routes.news(), icon: Newspaper },
       { label: "Pastoral tours", href: routes.tours(), icon: Route },
     ],

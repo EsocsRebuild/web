@@ -1,8 +1,6 @@
-import { ArrowRight, MapPin, Search } from "lucide-react";
 import Link from "next/link";
 
 import { SmartImage } from "@/components/media/smart-image";
-import { LogoMark } from "@/components/icons/logo";
 import { Reveal } from "@/components/motion/reveal";
 import { Cover } from "@/components/patterns/cover";
 import { Paragraphs } from "@/components/patterns/paragraphs";
@@ -171,108 +169,11 @@ export function LatestNews({ posts, units }: { posts: Post[]; units: Map<string,
   );
 }
 
-const PLACES = ["Lagos", "Port Harcourt", "Abuja", "Ibadan", "London", "United States"];
+import { WorldwideSanctuaries } from "./worldwide-sanctuaries";
 
-/** "There's a house of prayer near you": search, popular places and the headquarters. */
+/** Worldwide Sanctuaries & Parish Directory band with real-time smart automated locator. */
 export function FindBand({ pageCount, headquarters }: { pageCount: number; headquarters: Unit[] }) {
-  return (
-    <section aria-labelledby="find-heading" className="px-gutter py-16 sm:py-20">
-      <div className="dark relative isolate mx-auto grid max-w-wide gap-10 overflow-hidden rounded-panel bg-inverse px-6 py-10 text-foreground sm:px-10 sm:py-14 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
-        <div
-          aria-hidden
-          className="parallax-layer absolute inset-x-0 -inset-y-24 -z-10"
-          style={
-            {
-              "--parallax-shift": "14%",
-              backgroundImage:
-                "radial-gradient(45% 55% at 100% 20%, color-mix(in oklch, var(--color-royal-500) 38%, transparent), transparent 70%)",
-            } as React.CSSProperties
-          }
-        />
-        <LogoMark
-          aria-hidden
-          className="parallax-layer absolute -bottom-16 -left-10 -z-10 size-72 text-white opacity-[0.05]"
-        />
-        <div className="grid gap-5">
-          <p className="text-overline font-semibold text-highlight uppercase">Worldwide</p>
-          <h2
-            id="find-heading"
-            className="font-display text-[clamp(1.75rem,1.4rem+1.6vw,3.25rem)] leading-[1.15] font-extrabold tracking-tight text-balance text-white"
-          >
-            There’s a house of prayer{" "}
-            <span className="font-serif font-normal text-highlight italic">near you.</span>
-          </h2>
-          <p className="text-base leading-7 text-muted-foreground">
-            Search {pageCount} churches, provinces and headquarters in Nigeria and abroad.
-          </p>
-          <form action={routes.find()} role="search" className="flex gap-2">
-            <label htmlFor="find-band-q" className="sr-only">
-              Town, province or church name
-            </label>
-            <div className="relative min-w-0 flex-1">
-              <Search
-                aria-hidden
-                className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-white/60"
-              />
-              <input
-                id="find-band-q"
-                name="q"
-                type="search"
-                placeholder="Town, province or church"
-                className="h-11 w-full rounded-pill border border-white/15 bg-white/5 pr-4 pl-11 text-base text-white outline-none placeholder:text-white/55 focus-visible:border-white/40 focus-visible:ring-2 focus-visible:ring-white/20"
-              />
-            </div>
-            <button
-              type="submit"
-              className="inline-flex h-11 shrink-0 cursor-pointer items-center rounded-pill bg-white px-4 text-sm font-semibold text-royal-950 transition-colors hover:bg-royal-50 sm:px-5"
-            >
-              Search
-            </button>
-          </form>
-          <ul className="flex flex-wrap gap-2" aria-label="Popular places">
-            {PLACES.map((q) => (
-              <li key={q}>
-                <Link
-                  href={routes.find({ q })}
-                  className="inline-flex min-h-8 items-center rounded-pill border border-white/15 px-3 text-xs font-semibold text-white/85 hover:border-white/40 hover:text-white"
-                >
-                  {q}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="grid gap-3">
-          <p className="text-overline font-semibold text-muted-foreground uppercase">Headquarters</p>
-          <ul className="grid gap-2">
-            {headquarters.map((hq) => (
-              <li key={hq.slug}>
-                <Link
-                  href={routes.unit(hq.slug)}
-                  className="group/hq flex items-center gap-4 rounded-card border border-white/10 bg-white/4 p-4 transition-colors hover:border-white/25 hover:bg-white/8"
-                >
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-highlight">
-                    <MapPin aria-hidden className="size-5" />
-                  </span>
-                  <span className="grid min-w-0 flex-1 gap-0.5">
-                    <span className="text-sm font-semibold text-pretty">{hq.name}</span>
-                    {(hq.locality ?? hq.tagline) && (
-                      <span className="text-xs text-muted-foreground">{hq.locality ?? hq.tagline}</span>
-                    )}
-                  </span>
-                  <ArrowRight
-                    aria-hidden
-                    className="size-4 shrink-0 text-white/60 transition-transform group-hover/hq:translate-x-0.5 group-hover/hq:text-white"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
+  return <WorldwideSanctuaries pageCount={pageCount} headquarters={headquarters} />;
 }
 
 export { PatriarchalWelcome, type PatriarchalWelcomeProps } from "./patriarchal-welcome";

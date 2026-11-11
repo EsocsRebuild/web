@@ -13,6 +13,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   // Stop `next dev` from generating AGENTS.md / CLAUDE.md in the project root.
   agentRules: false,
+  // Suppress dev indicator overlay and its injected styles in the DOM
+  devIndicators: false,
   // Minimal self-contained server for the container image (see Dockerfile).
   output: "standalone",
   // Set per release (the git SHA in CI) so rolling deployments detect version skew
@@ -33,6 +35,28 @@ const nextConfig: NextConfig = {
     // 60 for small grid tiles and thumbnails (the difference is invisible at that
     // size and they are the bulk of a gallery's bytes); 75 for everything else.
     qualities: [60, 75],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "**.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.blob.core.windows.net",
+      },
+      {
+        protocol: "https",
+        hostname: "**.googleusercontent.com",
+      },
+      {
+        protocol: "http",
+        hostname: "localhost",
+      },
+    ],
   },
   async redirects() {
     return legacyRedirects;

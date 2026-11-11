@@ -85,4 +85,10 @@ describe("HttpContentRepository", () => {
     // Still retains seed data
     expect(repo.getUnit("esocs")).not.toBeNull();
   });
+
+  it("syncs live data from AdminPortal for Diobu", () => {
+    const repo = createHttpContentRepository();
+    const posts = repo.listPostsForUnit("diobu-provincial-headquarters");
+    expect(posts.length).toBeGreaterThan(0);
+  });
 });

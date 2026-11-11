@@ -9,7 +9,7 @@ import { UnitHeader } from "@/features/units/unit-header";
 import { UnitTabs } from "@/features/units/unit-tabs";
 import { UNIT_KIND } from "@/lib/kinds";
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getContent()
