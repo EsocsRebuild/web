@@ -99,12 +99,21 @@ export function mapBackendPost(raw: BackendPostResponse): Post {
   }
 
   const date = raw.publishedAt ? raw.publishedAt.slice(0, 10) : null;
+  const tags = Array.isArray(raw.tags) ? raw.tags : [];
+  const matchedUnitSlug = tags.find(
+    (t) =>
+      t.includes("-") &&
+      !["news", "message", "events", "bulletin", "announcements", "general", "revival", "service"].includes(
+        t,
+      ),
+  );
+  const unitSlug = matchedUnitSlug || "esocs";
 
   return {
     id: raw.slug || raw.id,
     kind,
-    unitSlug: "esocs",
-    tags: Array.isArray(raw.tags) ? raw.tags : [],
+    unitSlug,
+    tags,
     title: raw.title,
     body,
     date,

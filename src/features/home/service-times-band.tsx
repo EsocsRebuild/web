@@ -44,28 +44,32 @@ const WEEKLY_SERVICES: GatheringItem[] = [
     ctaHref: routes.find(),
   },
   {
-    id: "midweek-intercession",
-    badge: "Midweek Prayer & Power",
-    title: "Wednesday Intercession & Bible Study",
-    dayTime: "Every Wednesday · 5:00 PM – 7:00 PM",
-    tagline: "Spiritual Deliverance, Scripture Exegesis & Answered Prayers",
+    id: "tuesday-bible-study",
+    badge: "Midweek Word & Doctrine",
+    title: "Tuesday Bible Study",
+    dayTime: "Every Tuesday · 6:00 PM – 8:00 PM",
+    tagline: "Scripture Exegesis, Spiritual Formation & Christian Growth",
     description:
-      "A midweek sanctuary haven to pause the busyness of life, dig deep into practical biblical doctrine, and join in fervent intercessory prayer for families, careers, health, and our nations.",
-    highlights: ["In-Depth Bible Exegesis", "Personal Prayer Ministration", "Faith Testimonies"],
+      "A weekly sanctuary haven to pause the busyness of life, dig deep into practical biblical doctrine, and grow in the word of God alongside brothers and sisters in Christ.",
+    highlights: [
+      "In-Depth Scripture Exegesis",
+      "Interactive Q&A & Fellowship",
+      "Youth & Adult Study Circles",
+    ],
     ctaLabel: "View Bible Study",
     ctaHref: routes.events(),
   },
   {
-    id: "friday-vigil",
-    badge: "Night of Answers",
-    title: "Spiritual Watchnight Vigil",
-    dayTime: "1st & 3rd Fridays · 10:00 PM – Dawn",
-    tagline: "Prophetic Worship, Trumpet Chants & Breakthrough",
+    id: "thursday-midweek",
+    badge: "Prayer, Power & Deliverance",
+    title: "Thursday Midweek Service",
+    dayTime: "Every Thursday · 6:00 PM – 8:00 PM",
+    tagline: "Fervent Intercession, Anointing & Answered Prayers",
     description:
-      "A sacred night of watchfulness, vibrant celestial percussion, trumpet praise, and earnest prayer before the throne of grace. An atmosphere of deep faith and spiritual breakthrough.",
-    highlights: ["All-Night Spiritual Warfare", "Celestial Trumpet Chants", "Pastoral Anointing Altar"],
-    ctaLabel: "View Vigil Dates",
-    ctaHref: routes.events(),
+      "An evening dedicated to spiritual deliverance and earnest prayer before the throne of grace for families, careers, health, and our nations, punctuated by miraculous faith testimonies.",
+    highlights: ["Personal Prayer Ministration", "Faith Testimonies & Praise", "Intercessory Warfare Altar"],
+    ctaLabel: "Submit Prayer Request",
+    ctaHref: routes.contact(),
   },
 ];
 
@@ -134,18 +138,18 @@ export function ServiceTimesBand() {
             </p>
           </div>
 
-          {/* Action Pathways with Deep Red / Royal Styling */}
+          {/* Action Pathways with Deep Velvet Cardinal / Regal Styling */}
           <div className="flex flex-wrap items-center gap-3.5">
             <Link
               href={routes.find()}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-6 text-sm font-semibold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg dark:bg-crimson-700 dark:hover:bg-crimson-600"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-6 text-sm font-semibold text-white shadow-sm ring-1 ring-gold-500/20 transition-all hover:bg-[#430B16] hover:shadow-md"
             >
-              <MapPin className="size-4" />
+              <MapPin className="size-4 text-gold-400" />
               Find Your Nearest Parish
             </Link>
             <Link
               href={routes.stream()}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill border border-border bg-surface px-6 text-sm font-semibold text-foreground transition-colors hover:border-crimson-700 hover:text-crimson-700 dark:hover:border-crimson-400 dark:hover:text-crimson-400"
+              className="hover:bg-surface-raised inline-flex h-12 items-center justify-center gap-2 rounded-pill border border-border/80 bg-surface px-6 text-sm font-semibold text-foreground transition-all hover:border-gold-500/50 hover:text-foreground"
             >
               <Radio className="size-4 text-crimson-700 dark:text-crimson-400" />
               Join Live Broadcast

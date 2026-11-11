@@ -5,7 +5,6 @@ import { HeroScenes, type HeroScene } from "@/features/home/hero-scenes";
 import { PrayerCard, Succession } from "@/features/home/home-sections";
 import {
   BabaAladuraMessage,
-  FindBand,
   HomeBand,
   LatestNews,
   UpcomingBand,
@@ -17,6 +16,7 @@ import { GiveAppeal } from "@/features/home/story-sections";
 import { DevotionalHeroBand } from "@/features/devotional/devotional-hero-band";
 import { StreamTeaser } from "@/features/stream/stream-teaser";
 import { StoreTeaser } from "@/features/store/store-teaser";
+import { WorldwideSanctuaries } from "@/features/home/worldwide-sanctuaries";
 import { placeholderFor } from "@/lib/image-placeholders";
 import { routes } from "@/lib/routes";
 
@@ -24,7 +24,6 @@ export default function HomePage() {
   const content = getContent();
   const org = content.getOrganisation();
 
-  const headquarters = content.listUnits({ kind: "headquarters" });
   const people = content.listPeople();
   const upcoming = content.listEvents();
   const units = content.listUnits();
@@ -126,9 +125,6 @@ export default function HomePage() {
       <SpotlightBulletinModal spotlight={spotlightItem} />
       <HeroScenes scenes={scenes} findHref={routes.find()} footer={<Announcements variant="hero" />} />
 
-      {/* Worship With Us: Weekly Gatherings & First-Time Visitor Guide */}
-      <ServiceTimesBand />
-
       {/* The Baba Aladura's Patriarchal Welcome & Apostolic Address */}
       <BabaAladuraMessage
         message={org.message}
@@ -144,12 +140,6 @@ export default function HomePage() {
         href={messagePost ? routes.post(messagePost.id) : routes.news("message")}
       />
 
-      {/* Priority Devotional Portal: Grow in Your Christian Journey */}
-      <DevotionalHeroBand />
-
-      {/* Word in Motion: Sacred Stream Broadcast */}
-      <StreamTeaser items={streamItems} />
-
       {/* Who We Are: Centenary Heritage, Vision & FLOSH Pillars */}
       <WhoWeAre
         org={org}
@@ -161,9 +151,18 @@ export default function HomePage() {
         <ChurchFamily />
       </HomeBand>
 
+      {/* Priority Devotional Portal: Grow in Your Christian Journey */}
+      <DevotionalHeroBand />
+
+      {/* Word in Motion: Sacred Stream Broadcast */}
+      <StreamTeaser items={streamItems} />
+
+      {/* Worship With Us: Weekly Gatherings & First-Time Visitor Guide */}
+      <ServiceTimesBand />
+
+      <WorldwideSanctuaries units={units} pageCount={units.length} />
       <UpcomingBand events={upcoming} />
       <LatestNews posts={editorial} units={unitsBySlug} />
-      <FindBand pageCount={units.length} headquarters={headquarters} />
       <Succession people={people} />
       <StoreTeaser />
 

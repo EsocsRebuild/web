@@ -76,7 +76,8 @@ export function createHttpContentRepository(
   let graph = initialGraph;
   let units = new Map(graph.units.map((u) => [u.slug, u]));
   let children = computeChildren(graph.units);
-  let posts = new Map(graph.posts.map((p) => [p.id, p]));
+  const posts = new Map(graph.posts.map((p) => [p.id, p]));
+  const syncedPostIds = new Set<string>();
   let datedPosts = graph.posts.filter((p) => p.date).sort(byDateDesc);
   const eventsMap = new Map<string, ChurchEvent>();
   const unitIdToSlug = new Map<string, string>([
@@ -131,14 +132,23 @@ export function createHttpContentRepository(
   async function syncPosts(): Promise<void> {
     try {
       const res = await client.get<BackendPostResponse[]>("/public/content/posts");
-      if (Array.isArray(res.data) && res.data.length > 0) {
+      if (Array.isArray(res.data)) {
         const fetchedPosts = res.data.map(mapBackendPost);
-        const mergedMap = new Map(graph.posts.map((p) => [p.id, p]));
-        for (const p of fetchedPosts) {
-          mergedMap.set(p.id, p);
+        const activeBackendPostIds = new Set(fetchedPosts.map((p) => p.id));
+
+        // Prune any previously synced backend post that was deleted on the server
+        for (const id of Array.from(syncedPostIds)) {
+          if (!activeBackendPostIds.has(id)) {
+            posts.delete(id);
+            syncedPostIds.delete(id);
+          }
         }
-        const updatedPosts = Array.from(mergedMap.values());
-        posts = mergedMap;
+
+        for (const p of fetchedPosts) {
+          posts.set(p.id, p);
+          syncedPostIds.add(p.id);
+        }
+        const updatedPosts = Array.from(posts.values());
         datedPosts = updatedPosts.filter((p) => p.date).sort(byDateDesc);
         graph = { ...graph, posts: updatedPosts };
       }
@@ -180,8 +190,8 @@ export function createHttpContentRepository(
             computed: false,
           });
 
-          // Also bridge into feed posts so it appears in the unit's news & updates
-          const postId = `backend-evt-${o.id}`;
+          // Single canonical feed post ID to prevent duplicate feed entries
+          const postId = `evt-post-${o.id}`;
           posts.set(postId, {
             id: postId,
             kind: "news",
@@ -207,8 +217,8 @@ export function createHttpContentRepository(
           }
         }
         for (const [k] of posts.entries()) {
-          if (k.startsWith("backend-evt-")) {
-            const rawId = k.replace(/^backend-evt-/, "");
+          if (k.startsWith("evt-post-") || k.startsWith("backend-evt-")) {
+            const rawId = k.replace(/^evt-post-|^backend-evt-/, "");
             if (!activeOccurrenceIds.has(rawId)) {
               posts.delete(k);
             }
