@@ -52,7 +52,7 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
             <Link
               key={item.id}
               href={`${routes.stream()}#${item.id}`}
-              className="group bg-surface-raised relative flex aspect-[9/13] flex-col justify-between overflow-hidden rounded-panel border border-border/80 shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-crimson-700/60 hover:shadow-xl"
+              className="group bg-surface-raised relative flex aspect-9/13 flex-col justify-between overflow-hidden rounded-panel border border-border/80 shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-crimson-700/60 hover:shadow-xl"
             >
               {/* Media Preview Image */}
               <Image
@@ -64,7 +64,7 @@ export function StreamTeaser({ items }: StreamTeaserProps) {
               />
               <div
                 aria-hidden
-                className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20"
+                className="absolute inset-0 bg-linear-to-t from-black/95 via-black/40 to-black/20"
               />
 
               {/* Top Badge */}
