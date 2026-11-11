@@ -248,7 +248,7 @@ export function HeroScenes({
           >
             <Link
               href={findHref}
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-6 text-sm font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-crimson-900"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-6 text-sm font-bold text-white shadow-md ring-1 ring-gold-500/30 transition-all hover:-translate-y-0.5 hover:bg-[#430B16] hover:shadow-lg"
             >
               <MapPin aria-hidden className="size-4 text-gold-300" /> Plan Your Visit · Find a Church
             </Link>
