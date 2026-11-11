@@ -102,7 +102,7 @@ export function DevotionalSubscribeForm({ className, variant = "card" }: Devotio
             className={cn(
               "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all",
               deliveryTime === "dawn"
-                ? "bg-crimson-800 text-white shadow-xs"
+                ? "bg-[#5B101E] text-white shadow-xs"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
@@ -115,7 +115,7 @@ export function DevotionalSubscribeForm({ className, variant = "card" }: Devotio
             className={cn(
               "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition-all",
               deliveryTime === "vespers"
-                ? "bg-crimson-800 text-white shadow-xs"
+                ? "bg-[#5B101E] text-white shadow-xs"
                 : "text-muted-foreground hover:text-foreground",
             )}
           >
@@ -146,7 +146,7 @@ export function DevotionalSubscribeForm({ className, variant = "card" }: Devotio
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-pill bg-crimson-800 px-7 text-sm font-bold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg disabled:pointer-events-none disabled:opacity-60 dark:bg-crimson-700 dark:hover:bg-crimson-600"
+          className="inline-flex h-12 shrink-0 cursor-pointer items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-7 text-sm font-bold text-white shadow-sm ring-1 ring-gold-500/20 transition-all hover:bg-[#430B16] hover:shadow-md disabled:pointer-events-none disabled:opacity-60"
         >
           {status === "loading" ? (
             <>

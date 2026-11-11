@@ -27,8 +27,7 @@ export const getContent = cache((): ContentRepository => {
     httpRepoInstance.refresh().catch(() => {});
   }
 
-  // Ensure any media, events, bulletins or programmes uploaded or deleted by the admin reflect in real time
-  httpRepoInstance.syncAdminPortalData();
+  // Ensure events and posts reflect in real time
   httpRepoInstance.syncEvents().catch(() => {});
   httpRepoInstance.syncPosts().catch(() => {});
 

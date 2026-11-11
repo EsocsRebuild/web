@@ -27,6 +27,7 @@ export default function HomePage() {
   const people = content.listPeople();
   const upcoming = content.listEvents();
   const units = content.listUnits();
+  const headquarters = content.listUnits({ kind: "headquarters" });
   const unitsBySlug = new Map(units.map((u) => [u.slug, u]));
 
   const shepherd = people.find((p) => p.tenure.to === null);
@@ -160,7 +161,7 @@ export default function HomePage() {
       {/* Worship With Us: Weekly Gatherings & First-Time Visitor Guide */}
       <ServiceTimesBand />
 
-      <WorldwideSanctuaries units={units} pageCount={units.length} />
+      <WorldwideSanctuaries units={units} pageCount={units.length} headquarters={headquarters} />
       <UpcomingBand events={upcoming} />
       <LatestNews posts={editorial} units={unitsBySlug} />
       <Succession people={people} />

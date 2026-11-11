@@ -152,9 +152,9 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
             <div className="mt-10 flex flex-wrap items-center gap-3.5">
               <Link
                 href={href}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-7 text-sm font-semibold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg dark:bg-crimson-700 dark:hover:bg-crimson-600"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-7 text-sm font-semibold text-white shadow-sm ring-1 ring-gold-500/20 transition-all hover:bg-[#430B16] hover:shadow-md"
               >
-                <BookOpen className="size-4" />
+                <BookOpen className="size-4 text-gold-400" />
                 Read Full Pastoral Epistle
               </Link>
               <Link
