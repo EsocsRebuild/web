@@ -5,7 +5,7 @@ import { apiClient, type ApiClient } from "@/lib/api-client";
 import { observancesForYear } from "@/lib/church-calendar";
 
 import type { ContentRepository, EventQuery, FeedQuery, Page, UnitQuery } from "../../repositories";
-import type { ChurchEvent, Post, Unit } from "../../schema/content";
+import type { ChurchEvent, Gallery, Post, Unit } from "../../schema/content";
 import { buildSeedGraph, ROOT_SLUG, type SeedGraph } from "../seed/build";
 import { initialSacredStreamItems } from "../seed/stream-data";
 import {
