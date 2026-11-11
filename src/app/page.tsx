@@ -8,7 +8,6 @@ import {
   FindBand,
   HomeBand,
   LatestNews,
-  QuickPathsDeck,
   UpcomingBand,
   WhoWeAre,
 } from "@/features/home/story-bands";
@@ -126,7 +125,6 @@ export default function HomePage() {
     <>
       <SpotlightBulletinModal spotlight={spotlightItem} />
       <HeroScenes scenes={scenes} findHref={routes.find()} footer={<Announcements variant="hero" />} />
-      <QuickPathsDeck />
 
       {/* Worship With Us: Weekly Gatherings & First-Time Visitor Guide */}
       <ServiceTimesBand />

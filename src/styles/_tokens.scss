@@ -47,6 +47,20 @@ $palette-parchment: (
   950: oklch(0.14 0.004 70),
 );
 
+$palette-crimson: (
+  50: oklch(0.97 0.02 25),
+  100: oklch(0.93 0.05 25),
+  200: oklch(0.85 0.1 25),
+  300: oklch(0.72 0.16 26),
+  400: oklch(0.6 0.2 26),
+  500: oklch(0.5 0.22 26),
+  600: oklch(0.42 0.2 25),
+  700: oklch(0.35 0.16 24),
+  800: oklch(0.28 0.12 24),
+  900: oklch(0.21 0.08 24),
+  950: oklch(0.15 0.05 24),
+);
+
 // 2. High-Intent Liturgical Motion & Easing Curves
 // Built with purpose: each ease communicates physical intent and prevents orientation loss.
 $ease-reverent: cubic-bezier(0.16, 1, 0.3, 1); // Deliberate, smooth deceleration for sacred content

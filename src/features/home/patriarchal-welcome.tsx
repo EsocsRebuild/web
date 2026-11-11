@@ -30,16 +30,16 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
     <section
       id="patriarchal-address"
       aria-labelledby="patriarchal-welcome-heading"
-      className="relative isolate overflow-hidden bg-surface py-20 sm:py-28"
+      className="relative isolate overflow-hidden border-t border-border/80 bg-surface py-24 sm:py-32 lg:py-36"
     >
       <div className="mx-auto max-w-wide px-gutter">
-        <div className="grid gap-12 lg:grid-cols-[28rem_1fr] lg:items-center lg:gap-16">
+        <div className="grid gap-14 lg:grid-cols-[28rem_1fr] lg:items-center lg:gap-20">
           {/* Left Column: Authentic Pastoral Portrait & Seal of Office */}
           <div className="relative mx-auto w-full max-w-md lg:mx-0">
-            {/* Ambient gold aura */}
+            {/* Ambient sacred aura */}
             <div
               aria-hidden
-              className="absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-tr from-gold-500/15 via-gold-400/5 to-transparent blur-2xl"
+              className="absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-tr from-crimson-800/15 via-gold-400/5 to-transparent blur-2xl"
             />
 
             <div className="relative aspect-[4/5] w-full overflow-hidden rounded-panel border border-border/80 bg-surface-sunken shadow-2xl">
@@ -64,9 +64,9 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
               )}
 
               {/* Dignified Plaque Overlay */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/70 to-transparent p-6 pt-16 text-white">
-                <div className="flex items-center gap-2 text-xs font-semibold tracking-widest text-gold-400 uppercase">
-                  <Crown className="size-3.5" />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/75 to-transparent p-6 pt-16 text-white">
+                <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-gold-400 uppercase">
+                  <Crown className="size-3.5 text-crimson-400" />
                   <span>The Apostolic Throne</span>
                 </div>
                 <h3 className="mt-1 font-display text-lg font-bold text-white sm:text-xl">{shepherdName}</h3>
@@ -75,12 +75,12 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
             </div>
 
             {/* Centenary Watchword Ribbon */}
-            <div className="bg-surface-raised mt-4 flex items-center justify-between gap-3 rounded-card border border-border/80 px-4 py-3">
+            <div className="bg-surface-raised mt-4 flex items-center justify-between gap-3 rounded-card border border-border/80 px-4 py-3 shadow-xs">
               <div className="flex items-center gap-2">
-                <Sparkles className="size-4 text-accent" />
-                <span className="text-xs font-semibold text-foreground">Annual Watchword</span>
+                <Sparkles className="size-4 text-crimson-700 dark:text-crimson-400" />
+                <span className="text-xs font-bold text-foreground">Annual Watchword</span>
               </div>
-              <span className="font-serif text-xs font-medium text-accent italic">
+              <span className="font-serif text-xs font-medium text-crimson-700 italic dark:text-crimson-300">
                 “Sustained by God&apos;s Endless Mercies” (Lam 3:21)
               </span>
             </div>
@@ -89,7 +89,7 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
           {/* Right Column: Editorial Pastoral Epistle */}
           <div className="flex flex-col justify-center">
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-500/30 bg-gold-500/10 px-3 py-1 text-xs font-semibold tracking-wider text-accent uppercase">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-3.5 py-1 text-xs font-bold tracking-widest text-crimson-700 uppercase dark:text-crimson-300">
                 <Scroll className="size-3.5" />
                 Apostolic Address
               </span>
@@ -99,16 +99,18 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
 
             <h2
               id="patriarchal-welcome-heading"
-              className="mt-4 font-display text-[clamp(2.25rem,1.8rem+2vw,3.5rem)] leading-[1.1] font-extrabold tracking-tight text-foreground"
+              className="mt-4 font-display text-[clamp(2.25rem,1.8rem+2vw,3.75rem)] leading-[1.08] font-extrabold tracking-tight text-foreground"
             >
               Grace and peace to you,{" "}
-              <span className="font-serif font-normal text-accent italic">in Mount Zion.</span>
+              <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
+                in Mount Zion.
+              </span>
             </h2>
 
-            {/* Liturgical greeting pullquote */}
-            <div className="relative mt-6 border-l-2 border-accent pl-5">
-              <Quote className="absolute -top-3.5 -left-3 size-6 text-accent/30" />
-              <blockquote className="font-serif text-lg leading-relaxed text-foreground italic sm:text-xl">
+            {/* Liturgical greeting pullquote with deep red border */}
+            <div className="relative mt-6 border-l-4 border-crimson-800 py-1 pl-6 dark:border-crimson-600">
+              <Quote className="absolute -top-3.5 -left-3 size-6 text-crimson-800/20 dark:text-crimson-400/20" />
+              <blockquote className="font-serif text-xl leading-relaxed text-foreground italic sm:text-2xl">
                 “{greeting}”
               </blockquote>
             </div>
@@ -119,25 +121,25 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
             </div>
 
             {/* Thematic Foundations */}
-            <div className="mt-8 grid gap-4 border-t border-border/80 pt-6 sm:grid-cols-3">
-              <div className="space-y-1">
-                <h4 className="text-xs font-bold tracking-wider text-foreground uppercase">
+            <div className="mt-8 grid gap-5 border-t border-border/80 pt-6 sm:grid-cols-3">
+              <div className="space-y-1.5">
+                <h4 className="text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
                   Sovereign Thanksgiving
                 </h4>
                 <p className="text-xs leading-relaxed text-muted-foreground">
                   Acknowledging the Lord&apos;s hand preserving our families and Order through all seasons.
                 </p>
               </div>
-              <div className="space-y-1">
-                <h4 className="text-xs font-bold tracking-wider text-foreground uppercase">
+              <div className="space-y-1.5">
+                <h4 className="text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
                   Christ the Cornerstone
                 </h4>
                 <p className="text-xs leading-relaxed text-muted-foreground">
                   Entering the second centenary anchored solely on Jesus Christ as our foundation.
                 </p>
               </div>
-              <div className="space-y-1">
-                <h4 className="text-xs font-bold tracking-wider text-foreground uppercase">
+              <div className="space-y-1.5">
+                <h4 className="text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
                   Apostolic Charge
                 </h4>
                 <p className="text-xs leading-relaxed text-muted-foreground">
@@ -147,19 +149,19 @@ export function PatriarchalWelcome({ message, shepherd, portrait, href }: Patria
             </div>
 
             {/* CTA Buttons */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-3.5">
               <Link
                 href={href}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-royal-900 px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-royal-800 hover:shadow-md dark:bg-gold-400 dark:text-royal-950 dark:hover:bg-gold-300"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-7 text-sm font-semibold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg dark:bg-crimson-700 dark:hover:bg-crimson-600"
               >
                 <BookOpen className="size-4" />
                 Read Full Pastoral Epistle
               </Link>
               <Link
                 href={routes.stream()}
-                className="bg-surface-raised inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-border px-5 text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent"
+                className="bg-surface-raised inline-flex h-12 items-center justify-center gap-2 rounded-pill border border-border px-6 text-sm font-semibold text-foreground transition-colors hover:border-crimson-700 hover:text-crimson-700 dark:hover:border-crimson-400 dark:hover:text-crimson-400"
               >
-                <Radio className="size-4 text-accent" />
+                <Radio className="size-4 text-crimson-700 dark:text-crimson-400" />
                 Watch Patriarchal Address
               </Link>
             </div>

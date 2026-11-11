@@ -8,131 +8,124 @@ export function DevotionalHeroBand() {
   return (
     <section
       aria-label="ESOCS Daily Devotionals Subscription and Meditation"
-      className="relative overflow-hidden bg-linear-to-b from-[#040814] via-[#09132e] to-[#040814] py-16 text-white sm:py-20 lg:py-24"
+      className="relative overflow-hidden border-t border-border/80 bg-surface-sunken/40 py-24 sm:py-32 lg:py-36"
     >
-      {/* Background Divine Radial Illumination */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.12)_0%,transparent_70%)] blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-32 left-1/4 h-[400px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08)_0%,transparent_70%)] blur-3xl"
-      />
-
       <div className="relative mx-auto max-w-wide px-gutter">
-        {/* Section Header */}
+        {/* Section Header with Generous Whitespace */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-500/10 px-3.5 py-1.5 font-mono text-xs font-semibold tracking-wider text-amber-300 uppercase shadow-md backdrop-blur-md">
-            <BookOpen className="size-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-4 py-1.5 text-xs font-bold tracking-widest text-crimson-700 uppercase shadow-xs dark:text-crimson-300">
+            <BookOpen className="size-3.5" />
             <span>Spiritual Nourishment · Word & Prayer</span>
           </div>
 
-          <h2 className="mt-4 font-display text-2xl font-extrabold tracking-tight text-balance text-white sm:text-4xl md:text-5xl">
-            Grow in Your Christian Journey with ESOCS Daily Devotionals
+          <h2 className="mt-5 font-display text-[clamp(2.25rem,1.8rem+2vw,3.75rem)] leading-[1.08] font-extrabold tracking-tight text-balance text-foreground">
+            Grow in Your Christian Journey with{" "}
+            <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
+              ESOCS Daily Devotionals
+            </span>
           </h2>
 
-          <p className="mt-3 text-sm leading-relaxed text-balance text-slate-300 sm:text-base md:text-lg">
-            Get ESOCS Daily Devotionals right into your mailbox every dawn. Nourish your spirit with holy
-            scripture, apostolic wisdom, and morning canticles from Mount Zion.
+          <p className="mt-5 text-base leading-relaxed text-balance text-muted-foreground sm:text-lg">
+            Get ESOCS Daily Devotionals delivered right into your mailbox every dawn. Nourish your spirit with
+            holy scripture, apostolic wisdom, and morning canticles from Mount Zion.
           </p>
         </div>
 
-        {/* Two-Column Premium Architecture */}
-        <div className="mt-12 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-10">
+        {/* Two-Column Architecture */}
+        <div className="mt-16 grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12 lg:gap-10">
           {/* Left Column: Today's Sacred Meditation Preview (5 Cols) */}
-          <div className="flex flex-col justify-between rounded-3xl border border-amber-500/30 bg-slate-950/70 p-6 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-amber-400/50 sm:p-8 lg:col-span-5">
+          <div className="flex flex-col justify-between rounded-panel border border-border/80 bg-surface p-8 shadow-sm transition-all duration-300 hover:border-crimson-700/40 sm:p-10 lg:col-span-5">
             <div>
-              <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4">
-                <span className="font-mono text-xs font-semibold tracking-wide text-amber-300">
+              <div className="flex items-center justify-between gap-2 border-b border-border/80 pb-4">
+                <span className="font-mono text-xs font-bold tracking-wide text-crimson-700 dark:text-crimson-300">
                   {TODAY_DEVOTIONAL.date}
                 </span>
-                <span className="flex items-center gap-1 rounded-full border border-emerald-400/30 bg-emerald-950/40 px-2.5 py-0.5 text-[0.625rem] font-semibold text-emerald-300">
-                  <Flame className="size-3 text-emerald-400" />
+                <span className="flex items-center gap-1.5 rounded-full border border-crimson-700/20 bg-crimson-800/10 px-3 py-1 text-xs font-bold text-crimson-800 dark:text-crimson-300">
+                  <Flame className="size-3.5 text-crimson-700 dark:text-crimson-400" />
                   Today&apos;s Dawn Manna
                 </span>
               </div>
 
-              <div className="mt-5">
-                <span className="font-serif text-xs font-medium tracking-wider text-amber-400 uppercase">
+              <div className="mt-6">
+                <span className="font-serif text-xs font-medium tracking-wider text-muted-foreground uppercase">
                   {TODAY_DEVOTIONAL.theme}
                 </span>
-                <h3 className="mt-1.5 font-display text-xl leading-snug font-bold text-white sm:text-2xl">
+                <h3 className="mt-2 font-display text-2xl leading-snug font-bold text-foreground">
                   {TODAY_DEVOTIONAL.title}
                 </h3>
               </div>
 
               {/* Scripture Verse Quote Card */}
-              <div className="mt-5 rounded-2xl border border-amber-400/20 bg-amber-950/20 p-4">
-                <p className="font-serif text-sm leading-relaxed text-amber-200 italic sm:text-base">
+              <div className="mt-6 rounded-card border border-crimson-700/20 bg-crimson-800/5 p-5">
+                <p className="font-serif text-base leading-relaxed text-foreground italic">
                   &ldquo;{TODAY_DEVOTIONAL.scriptureText}&rdquo;
                 </p>
-                <p className="mt-2 text-right font-mono text-xs font-bold text-amber-400">
+                <p className="mt-3 text-right font-mono text-xs font-bold text-crimson-700 dark:text-crimson-400">
                   — {TODAY_DEVOTIONAL.scriptureVerse}
                 </p>
               </div>
 
               {/* Excerpt */}
-              <p className="mt-4 line-clamp-3 text-xs leading-relaxed text-slate-300 sm:text-sm">
+              <p className="mt-5 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
                 {TODAY_DEVOTIONAL.exhortation[0]}
               </p>
 
               {/* Hymn & Canticle Harmony */}
-              <div className="mt-4 flex items-center gap-2 text-xs text-slate-400">
-                <span className="rounded-md border border-white/10 bg-slate-900 px-2 py-0.5 font-mono text-[0.6875rem] text-amber-300">
-                  {TODAY_DEVOTIONAL.hymnNumber}
+              <div className="mt-5 flex items-center gap-2.5 text-xs text-muted-foreground">
+                <span className="rounded-md border border-border bg-surface-sunken px-2.5 py-1 font-mono text-xs font-bold text-crimson-700 dark:text-crimson-300">
+                  Hymn {TODAY_DEVOTIONAL.hymnNumber}
                 </span>
-                <span className="truncate">{TODAY_DEVOTIONAL.hymnTitle}</span>
+                <span className="truncate font-medium">{TODAY_DEVOTIONAL.hymnTitle}</span>
               </div>
             </div>
 
-            <div className="mt-6 border-t border-white/10 pt-5">
+            <div className="mt-8 border-t border-border/80 pt-6">
               <Link
                 href={routes.devotional()}
-                className="group flex items-center justify-between text-xs font-bold text-amber-300 transition-colors hover:text-amber-200"
+                className="group flex items-center justify-between text-sm font-bold text-crimson-700 hover:text-crimson-800 dark:text-crimson-400 dark:hover:text-crimson-300"
               >
                 <span>Read Today&apos;s Full Meditation & Prayer</span>
-                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+                <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1.5" />
               </Link>
             </div>
           </div>
 
           {/* Right Column: Inscription / Subscription Portal (7 Cols) */}
-          <div className="flex flex-col justify-between rounded-3xl border border-white/15 bg-linear-to-b from-slate-900/90 to-slate-950/95 p-6 shadow-2xl backdrop-blur-xl sm:p-8 lg:col-span-7">
+          <div className="flex flex-col justify-between rounded-panel border border-border/80 bg-surface p-8 shadow-sm sm:p-10 lg:col-span-7">
             <div>
-              <div className="flex items-center gap-2">
-                <Sparkles className="size-4 text-amber-400" />
-                <h3 className="font-serif text-lg font-bold text-white sm:text-xl">
+              <div className="flex items-center gap-2.5">
+                <Sparkles className="size-4 text-crimson-700 dark:text-crimson-400" />
+                <h3 className="font-display text-xl font-bold text-foreground sm:text-2xl">
                   Inscribe Your Mailbox into Daily Fellowship
                 </h3>
               </div>
-              <p className="mt-2 text-xs leading-relaxed text-slate-300 sm:text-sm">
-                Join thousands of brethren worldwide receiving daily spiritual strength, prophetic guidance,
+              <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                Join thousands of brethren worldwide receiving daily spiritual strength, apostolic guidance,
                 and liturgical prayer every morning before the sun rises.
               </p>
 
               {/* Interactive Subscription Form */}
-              <div className="mt-6">
+              <div className="mt-8">
                 <DevotionalSubscribeForm variant="hero" />
               </div>
             </div>
 
-            {/* Spiritual Pillars / Guarantees */}
-            <div className="mt-6 grid grid-cols-1 gap-2.5 border-t border-white/10 pt-5 sm:grid-cols-2">
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <Check className="size-4 shrink-0 text-emerald-400" />
+            {/* Spiritual Guarantees */}
+            <div className="mt-8 grid grid-cols-1 gap-3 border-t border-border/80 pt-6 sm:grid-cols-2">
+              <div className="flex items-center gap-2.5 text-xs text-muted-foreground sm:text-sm">
+                <Check className="size-4 shrink-0 text-crimson-700 dark:text-crimson-400" />
                 <span>Holy Scripture & Meditation at Dawn</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <Check className="size-4 shrink-0 text-emerald-400" />
+              <div className="flex items-center gap-2.5 text-xs text-muted-foreground sm:text-sm">
+                <Check className="size-4 shrink-0 text-crimson-700 dark:text-crimson-400" />
                 <span>Apostolic Ministry from Mount Zion</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <Check className="size-4 shrink-0 text-emerald-400" />
+              <div className="flex items-center gap-2.5 text-xs text-muted-foreground sm:text-sm">
+                <Check className="size-4 shrink-0 text-crimson-700 dark:text-crimson-400" />
                 <span>Canticle & Hymn Harmonies</span>
               </div>
-              <div className="flex items-center gap-2 text-xs text-slate-300">
-                <Check className="size-4 shrink-0 text-emerald-400" />
+              <div className="flex items-center gap-2.5 text-xs text-muted-foreground sm:text-sm">
+                <Check className="size-4 shrink-0 text-crimson-700 dark:text-crimson-400" />
                 <span>100% Free · One Fold, One Shepherd</span>
               </div>
             </div>

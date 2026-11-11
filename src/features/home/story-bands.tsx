@@ -175,25 +175,27 @@ const PLACES = ["Lagos", "Port Harcourt", "Abuja", "Ibadan", "London", "United S
 /** "There's a house of prayer near you": search, popular places and the headquarters. */
 export function FindBand({ pageCount, headquarters }: { pageCount: number; headquarters: Unit[] }) {
   return (
-    <section aria-labelledby="find-heading" className="px-gutter py-20 sm:py-24">
-      <div className="bg-surface-raised mx-auto grid max-w-wide gap-10 rounded-panel border border-border/80 p-8 shadow-sm sm:p-12 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-14">
-        <div className="grid gap-5">
-          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-3.5 py-1 text-xs font-semibold tracking-wider text-accent uppercase">
+    <section aria-labelledby="find-heading" className="px-gutter py-24 sm:py-32 lg:py-36">
+      <div className="bg-surface-raised mx-auto grid max-w-wide gap-12 rounded-panel border border-border/80 p-8 shadow-sm sm:p-12 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:gap-16">
+        <div className="grid gap-6">
+          <span className="inline-flex w-fit items-center gap-2 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-4 py-1.5 text-xs font-bold tracking-widest text-crimson-700 uppercase shadow-xs dark:text-crimson-300">
             <MapPin className="size-3.5" />
             Worldwide Parish Directory
           </span>
           <h2
             id="find-heading"
-            className="font-display text-[clamp(2rem,1.6rem+1.8vw,3.25rem)] leading-[1.12] font-extrabold tracking-tight text-balance text-foreground"
+            className="font-display text-[clamp(2.25rem,1.8rem+2vw,3.5rem)] leading-[1.1] font-extrabold tracking-tight text-balance text-foreground"
           >
             There’s a house of prayer{" "}
-            <span className="font-serif font-normal text-accent italic">near you.</span>
+            <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
+              near you.
+            </span>
           </h2>
           <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
             Search {pageCount} churches, provincial secretariats, and prayer houses across Nigeria and the
             global diaspora.
           </p>
-          <form action={routes.find()} role="search" className="flex gap-2">
+          <form action={routes.find()} role="search" className="flex gap-2.5">
             <label htmlFor="find-band-q" className="sr-only">
               Town, province or church name
             </label>
@@ -207,23 +209,23 @@ export function FindBand({ pageCount, headquarters }: { pageCount: number; headq
                 name="q"
                 type="search"
                 placeholder="Search by city, province, or parish name..."
-                className="h-12 w-full rounded-pill border border-border bg-surface pr-4 pl-11 text-base text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-accent focus-visible:ring-2 focus-visible:ring-accent/20"
+                className="h-12 w-full rounded-pill border border-border bg-surface pr-4 pl-11 text-base text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-crimson-700 focus-visible:ring-2 focus-visible:ring-crimson-700/20"
               />
             </div>
             <button
               type="submit"
-              className="inline-flex h-12 shrink-0 cursor-pointer items-center rounded-pill bg-royal-900 px-6 text-sm font-semibold text-white shadow-sm transition-all hover:bg-royal-800 dark:bg-gold-400 dark:text-royal-950 dark:hover:bg-gold-300"
+              className="inline-flex h-12 shrink-0 cursor-pointer items-center rounded-pill bg-crimson-800 px-7 text-sm font-bold text-white shadow-md transition-all hover:bg-crimson-900 hover:shadow-lg dark:bg-crimson-700 dark:hover:bg-crimson-600"
             >
               Search
             </button>
           </form>
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="text-xs font-semibold text-muted-foreground">Popular cities:</span>
+            <span className="text-xs font-bold text-muted-foreground">Popular cities:</span>
             {PLACES.map((q) => (
               <Link
                 key={q}
                 href={routes.find({ q })}
-                className="inline-flex min-h-7 items-center rounded-pill border border-border bg-surface px-3 text-xs font-medium text-foreground/80 hover:border-accent hover:text-accent"
+                className="inline-flex min-h-7 items-center rounded-pill border border-border bg-surface px-3.5 text-xs font-semibold text-foreground/80 hover:border-crimson-700 hover:text-crimson-700 dark:hover:border-crimson-400 dark:hover:text-crimson-400"
               >
                 {q}
               </Link>
@@ -231,22 +233,22 @@ export function FindBand({ pageCount, headquarters }: { pageCount: number; headq
           </div>
         </div>
 
-        <div className="grid gap-3">
+        <div className="grid gap-3.5">
           <p className="text-xs font-bold tracking-wider text-muted-foreground uppercase">
             Principal Headquarters
           </p>
-          <ul className="grid gap-2.5">
+          <ul className="grid gap-3">
             {headquarters.slice(0, 4).map((hq) => (
               <li key={hq.slug}>
                 <Link
                   href={routes.unit(hq.slug)}
-                  className="group/hq hover:bg-surface-raised flex items-center gap-3.5 rounded-card border border-border/80 bg-surface p-4 transition-all hover:border-accent/50"
+                  className="group/hq hover:bg-surface-raised flex items-center gap-4 rounded-card border border-border/80 bg-surface p-4.5 transition-all hover:border-crimson-700/40"
                 >
-                  <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+                  <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-full bg-crimson-800/10 text-crimson-700 dark:text-crimson-400">
                     <MapPin aria-hidden className="size-5" />
                   </span>
                   <span className="grid min-w-0 flex-1 gap-0.5">
-                    <span className="text-sm font-bold text-foreground group-hover/hq:text-accent">
+                    <span className="text-sm font-bold text-foreground group-hover/hq:text-crimson-700 dark:group-hover/hq:text-crimson-400">
                       {hq.name}
                     </span>
                     {(hq.locality ?? hq.tagline) && (
@@ -255,7 +257,7 @@ export function FindBand({ pageCount, headquarters }: { pageCount: number; headq
                   </span>
                   <ArrowRight
                     aria-hidden
-                    className="size-4 shrink-0 text-muted-foreground transition-transform group-hover/hq:translate-x-1 group-hover/hq:text-accent"
+                    className="size-4 shrink-0 text-muted-foreground transition-transform group-hover/hq:translate-x-1.5 group-hover/hq:text-crimson-700 dark:group-hover/hq:text-crimson-400"
                   />
                 </Link>
               </li>

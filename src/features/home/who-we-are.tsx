@@ -31,23 +31,25 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
     <section
       id="about-order"
       aria-labelledby="who-we-are-heading"
-      className="relative isolate overflow-hidden border-t border-border/70 bg-surface-sunken/40 py-20 sm:py-28"
+      className="relative isolate overflow-hidden border-t border-border/80 bg-surface-sunken/40 py-24 sm:py-32 lg:py-36"
     >
       <div className="mx-auto max-w-wide px-gutter">
-        {/* Header */}
+        {/* Header with Generous Whitespace */}
         <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-3.5 py-1 text-xs font-semibold tracking-wider text-accent uppercase">
+          <span className="inline-flex items-center gap-2 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-4 py-1.5 text-xs font-bold tracking-widest text-crimson-700 uppercase shadow-xs dark:text-crimson-300">
             <Sparkles className="size-3.5" />
             Centenary Heritage · Established {org.founded}
           </span>
           <h2
             id="who-we-are-heading"
-            className="mt-4 font-display text-[clamp(2rem,1.6rem+1.8vw,3.25rem)] leading-[1.12] font-extrabold tracking-tight text-foreground"
+            className="mt-5 font-display text-[clamp(2.25rem,1.8rem+2vw,3.75rem)] leading-[1.08] font-extrabold tracking-tight text-foreground"
           >
             One Order of prayer,{" "}
-            <span className="font-serif font-normal text-accent italic">across five generations.</span>
+            <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
+              across five generations.
+            </span>
           </h2>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
             Founded on the efficacy of prayers and the power of divine healing in the name of our Lord Jesus
             Christ, the Holy Order remains a beacon of apostolic revival and spiritual holiness worldwide.
           </p>
@@ -57,7 +59,7 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
         <div
           role="tablist"
           aria-label="Perspectives on the Holy Order"
-          className="mt-10 flex flex-wrap gap-2 border-b border-border/80 pb-4"
+          className="mt-12 flex flex-wrap gap-3 border-b border-border/80 pb-5"
         >
           <button
             type="button"
@@ -67,10 +69,10 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
             id="tab-foundation"
             onClick={() => setActiveTab("foundation")}
             className={cn(
-              "inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide transition-all",
+              "inline-flex cursor-pointer items-center gap-2 rounded-full px-6 py-3 text-xs font-bold tracking-wide transition-all",
               activeTab === "foundation"
-                ? "bg-royal-900 text-white shadow-sm dark:bg-gold-400 dark:text-royal-950"
-                : "border border-border bg-surface text-muted-foreground hover:border-accent hover:text-foreground",
+                ? "bg-crimson-800 text-white shadow-md dark:bg-crimson-700"
+                : "border border-border bg-surface text-muted-foreground hover:border-crimson-700/50 hover:text-foreground",
             )}
           >
             <Compass className="size-3.5" />
@@ -85,10 +87,10 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
             id="tab-vision"
             onClick={() => setActiveTab("vision")}
             className={cn(
-              "inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide transition-all",
+              "inline-flex cursor-pointer items-center gap-2 rounded-full px-6 py-3 text-xs font-bold tracking-wide transition-all",
               activeTab === "vision"
-                ? "bg-royal-900 text-white shadow-sm dark:bg-gold-400 dark:text-royal-950"
-                : "border border-border bg-surface text-muted-foreground hover:border-accent hover:text-foreground",
+                ? "bg-crimson-800 text-white shadow-md dark:bg-crimson-700"
+                : "border border-border bg-surface text-muted-foreground hover:border-crimson-700/50 hover:text-foreground",
             )}
           >
             <Shield className="size-3.5" />
@@ -103,10 +105,10 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
             id="tab-pillars"
             onClick={() => setActiveTab("pillars")}
             className={cn(
-              "inline-flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold tracking-wide transition-all",
+              "inline-flex cursor-pointer items-center gap-2 rounded-full px-6 py-3 text-xs font-bold tracking-wide transition-all",
               activeTab === "pillars"
-                ? "bg-royal-900 text-white shadow-sm dark:bg-gold-400 dark:text-royal-950"
-                : "border border-border bg-surface text-muted-foreground hover:border-accent hover:text-foreground",
+                ? "bg-crimson-800 text-white shadow-md dark:bg-crimson-700"
+                : "border border-border bg-surface text-muted-foreground hover:border-crimson-700/50 hover:text-foreground",
             )}
           >
             <HeartHandshake className="size-3.5" />
@@ -115,7 +117,7 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
         </div>
 
         {/* Dual-Panel Layout */}
-        <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-14">
+        <div className="mt-12 grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-start lg:gap-16">
           {/* Left Narrative Panel */}
           <div className="flex flex-col justify-between">
             {/* 1. The Foundation */}
@@ -126,8 +128,8 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
                 aria-labelledby="tab-foundation"
                 className="space-y-6"
               >
-                <div className="rounded-panel border border-border/80 bg-surface p-7 sm:p-8">
-                  <h3 className="font-display text-xl font-bold text-foreground">
+                <div className="rounded-panel border border-border/80 bg-surface p-8 shadow-sm sm:p-10">
+                  <h3 className="font-display text-2xl font-bold text-foreground">
                     The Sacred Genesis in 1925
                   </h3>
                   <p className="mt-4 text-base leading-relaxed text-muted-foreground">
@@ -143,24 +145,24 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
                     Prayer).
                   </p>
 
-                  <div className="mt-8 grid grid-cols-3 gap-3 border-t border-border/70 pt-6">
+                  <div className="mt-8 grid grid-cols-3 gap-4 border-t border-border/80 pt-6">
                     <div>
-                      <span className="font-display text-2xl font-extrabold text-accent sm:text-3xl">
+                      <span className="font-display text-3xl font-extrabold text-crimson-700 dark:text-crimson-400">
                         1925
                       </span>
-                      <p className="mt-1 text-xs font-medium text-muted-foreground">Year Founded</p>
+                      <p className="mt-1 text-xs font-bold text-muted-foreground">Year Founded</p>
                     </div>
                     <div>
-                      <span className="font-display text-2xl font-extrabold text-accent sm:text-3xl">
+                      <span className="font-display text-3xl font-extrabold text-crimson-700 dark:text-crimson-400">
                         100
                       </span>
-                      <p className="mt-1 text-xs font-medium text-muted-foreground">Years of Prayer</p>
+                      <p className="mt-1 text-xs font-bold text-muted-foreground">Years of Prayer</p>
                     </div>
                     <div>
-                      <span className="font-display text-2xl font-extrabold text-accent sm:text-3xl">
+                      <span className="font-display text-3xl font-extrabold text-crimson-700 dark:text-crimson-400">
                         Global
                       </span>
-                      <p className="mt-1 text-xs font-medium text-muted-foreground">Provinces & Parishes</p>
+                      <p className="mt-1 text-xs font-bold text-muted-foreground">Provinces & Parishes</p>
                     </div>
                   </div>
                 </div>
@@ -170,19 +172,19 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
             {/* 2. Vision & Mandate */}
             {activeTab === "vision" && (
               <div role="tabpanel" id="panel-vision" aria-labelledby="tab-vision" className="space-y-6">
-                <div className="rounded-panel border border-border/80 bg-surface p-7 sm:p-8">
-                  <span className="text-xs font-bold tracking-wider text-accent uppercase">
+                <div className="rounded-panel border border-border/80 bg-surface p-8 shadow-sm sm:p-10">
+                  <span className="text-xs font-bold tracking-wider text-crimson-700 uppercase dark:text-crimson-400">
                     Apostolic Mandate
                   </span>
-                  <blockquote className="mt-3 font-serif text-xl leading-relaxed text-foreground italic sm:text-2xl">
+                  <blockquote className="mt-3 font-serif text-2xl leading-relaxed text-foreground italic">
                     &ldquo;{org.vision}&rdquo;
                   </blockquote>
-                  <p className="mt-2 text-xs font-semibold text-accent">
+                  <p className="mt-3 text-xs font-bold text-crimson-700 dark:text-crimson-400">
                     Mark 16:15 &middot; &ldquo;Go ye into all the world, and preach the gospel to every
                     creature.&rdquo;
                   </p>
 
-                  <div className="mt-8 border-t border-border/70 pt-6">
+                  <div className="mt-8 border-t border-border/80 pt-6">
                     <span className="text-xs font-bold tracking-wider text-muted-foreground uppercase">
                       Our Divine Mission
                     </span>
@@ -197,19 +199,19 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
 
             {/* 3. FLOSH Pillars */}
             {activeTab === "pillars" && (
-              <div role="tabpanel" id="panel-pillars" aria-labelledby="tab-pillars" className="space-y-3">
-                <div className="grid gap-3 sm:grid-cols-2">
+              <div role="tabpanel" id="panel-pillars" aria-labelledby="tab-pillars" className="space-y-4">
+                <div className="grid gap-3.5 sm:grid-cols-2">
                   {org.coreValues.map((v) => (
                     <div
                       key={v.letter}
-                      className="flex items-start gap-3.5 rounded-card border border-border/80 bg-surface p-4 transition-colors hover:border-accent/40"
+                      className="flex items-start gap-4 rounded-card border border-border/80 bg-surface p-5 transition-colors hover:border-crimson-700/40"
                     >
-                      <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent/10 font-display text-base font-extrabold text-accent">
+                      <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-crimson-800/10 font-display text-lg font-extrabold text-crimson-700 dark:text-crimson-400">
                         {v.letter}
                       </span>
                       <div>
-                        <h4 className="text-sm font-bold text-foreground">{v.value}</h4>
-                        <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                        <h4 className="text-base font-bold text-foreground">{v.value}</h4>
+                        <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                           {VALUE_DESCRIPTIONS[v.letter] ?? "Rooted in scripture and living faith."}
                         </p>
                       </div>
@@ -220,19 +222,19 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
             )}
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap items-center gap-3">
+            <div className="mt-10 flex flex-wrap items-center gap-3.5">
               <Link
                 href={routes.unit("esocs")}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-royal-900 px-5 text-sm font-semibold text-white transition-all hover:bg-royal-800 dark:bg-gold-400 dark:text-royal-950 dark:hover:bg-gold-300"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-6 text-sm font-bold text-white shadow-md transition-all hover:bg-crimson-900 dark:bg-crimson-700 dark:hover:bg-crimson-600"
               >
                 <span>About the Holy Order</span>
                 <ArrowRight className="size-4" />
               </Link>
               <Link
                 href={routes.history()}
-                className="inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-border bg-surface px-5 text-sm font-semibold text-foreground transition-colors hover:border-accent hover:text-accent"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill border border-border bg-surface px-6 text-sm font-semibold text-foreground transition-colors hover:border-crimson-700 hover:text-crimson-700 dark:hover:border-crimson-400 dark:hover:text-crimson-400"
               >
-                <BookOpen className="size-4 text-accent" />
+                <BookOpen className="size-4 text-crimson-700 dark:text-crimson-400" />
                 <span>Our Centenary History</span>
               </Link>
             </div>
@@ -241,7 +243,7 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
           {/* Right Monument Photo */}
           {photo && (
             <div className="relative overflow-hidden rounded-panel border border-border/80 bg-surface shadow-lg">
-              <div className="relative aspect-[16/11] w-full overflow-hidden">
+              <div className="relative aspect-16/11 w-full overflow-hidden">
                 <SmartImage
                   image={photo.image}
                   fill
@@ -249,11 +251,13 @@ export function WhoWeAre({ org, photo }: WhoWeAreProps) {
                   className="object-cover object-[center_25%]"
                 />
               </div>
-              <div className="p-6">
-                <span className="text-xs font-bold tracking-wider text-accent uppercase">
+              <div className="p-8">
+                <span className="text-xs font-bold tracking-wider text-crimson-700 uppercase dark:text-crimson-400">
                   Centenary Monument · 1925–2025
                 </span>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{photo.caption}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  {photo.caption}
+                </p>
               </div>
             </div>
           )}

@@ -84,8 +84,8 @@ export function ErrorView({ error, reset, isGlobal = false, className }: ErrorVi
         aria-hidden
         className="pointer-events-none absolute inset-0 overflow-hidden opacity-40 dark:opacity-25"
       >
-        <div className="absolute top-1/4 left-1/2 size-[480px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.18)_0%,transparent_70%)] blur-3xl" />
-        <div className="absolute bottom-1/4 left-1/2 size-[360px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12)_0%,transparent_70%)] blur-3xl" />
+        <div className="absolute top-1/4 left-1/2 size-120 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.18)_0%,transparent_70%)] blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/2 size-90 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12)_0%,transparent_70%)] blur-3xl" />
       </div>
 
       <div className="relative z-10 w-full max-w-2xl text-center">
@@ -101,7 +101,7 @@ export function ErrorView({ error, reset, isGlobal = false, className }: ErrorVi
             aria-hidden
             className="absolute inset-0 animate-pulse rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.5)_0%,transparent_70%)] blur-xl"
           />
-          <div className="relative size-18 overflow-hidden rounded-full border border-amber-400/60 bg-slate-950 p-1 shadow-2xl">
+          <div className="relative size-header overflow-hidden rounded-full border border-amber-400/60 bg-slate-950 p-1 shadow-2xl">
             <Image
               src="/brand/esocs-crest.png"
               alt="The Official Crest of The Eternal Sacred Order of the Cherubim and Seraphim"

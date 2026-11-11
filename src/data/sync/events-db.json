@@ -1,18 +1,1 @@
-[
-  {
-    "id": "01a1c3bd-ea79-7247-86b5-de8b8cb84604",
-    "unitId": "01a11f17-f539-746b-975d-bfd5ae201541",
-    "unitName": "Diobu Provincial Headquarters",
-    "title": "testing uploads",
-    "description": "this is a test event upload schema",
-    "category": "REVIVAL",
-    "startDate": "2026-11-17T08:00:00.000Z",
-    "endDate": "2026-11-17T11:00:00.000Z",
-    "venue": "Diobu Provincial Headquarters Auditorium",
-    "registrationOpen": true,
-    "status": "APPROVED_LIVE",
-    "submittedByHandlerId": "Peter Chima",
-    "submittedAt": "2026-11-10T04:36:05.963Z",
-    "vettedAt": "2026-11-10T04:36:15.888Z"
-  }
-]
+[]

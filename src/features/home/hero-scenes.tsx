@@ -243,24 +243,21 @@ export function HeroScenes({
           </p>
 
           <div
-            className="hero-word mt-2 flex animate-rise-in flex-col gap-2.5 sm:flex-row sm:gap-3"
+            className="hero-word mt-4 flex animate-rise-in flex-col gap-3 sm:flex-row sm:gap-4"
             style={{ "--d": "850ms" } as React.CSSProperties}
           >
             <Link
               href={findHref}
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-pill bg-gold-400 px-5 text-sm font-semibold text-royal-950 transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-gold-300"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-crimson-800 px-6 text-sm font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-crimson-900"
             >
-              <MapPin aria-hidden className="size-4" /> Find a church near you
+              <MapPin aria-hidden className="size-4 text-gold-300" /> Plan Your Visit · Find a Church
             </Link>
             <Link
               href={scene.cta.href}
-              className="group/cta inline-flex h-11 items-center justify-center gap-2 rounded-pill border border-white/30 bg-white/10 px-5 text-sm font-semibold text-white transition-colors hover:bg-white hover:text-royal-950"
+              className="group/cta inline-flex h-12 items-center justify-center gap-2 rounded-pill border border-white/35 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-xs transition-colors hover:bg-white hover:text-royal-950"
             >
               {scene.cta.label}
-              <ArrowRight
-                aria-hidden
-                className="size-4 transition-transform group-hover/cta:translate-x-0.5"
-              />
+              <ArrowRight aria-hidden className="size-4 transition-transform group-hover/cta:translate-x-1" />
             </Link>
           </div>
         </div>

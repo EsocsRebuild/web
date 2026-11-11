@@ -150,8 +150,10 @@ export function createHttpContentRepository(
   async function syncEvents(): Promise<void> {
     try {
       const res = await client.get<BackendOccurrenceResponse[]>("/public/events?days=365");
-      if (Array.isArray(res.data) && res.data.length > 0) {
+      if (Array.isArray(res.data)) {
+        const activeOccurrenceIds = new Set<string>();
         for (const o of res.data) {
+          activeOccurrenceIds.add(o.id);
           const slug = `event-${o.id}`;
           const title = o.eventTitle || o.title || "Church Gathering";
           const typeStr = (o.eventType || o.type || "service").toLowerCase();
@@ -194,6 +196,25 @@ export function createHttpContentRepository(
             images: image ? [image] : [],
           });
         }
+
+        // Cleanly prune any backend event or post that is no longer returned
+        for (const [k, ev] of eventsMap.entries()) {
+          if (k.startsWith("event-") && !ev.computed) {
+            const rawId = k.replace(/^event-/, "");
+            if (!activeOccurrenceIds.has(rawId)) {
+              eventsMap.delete(k);
+            }
+          }
+        }
+        for (const [k] of posts.entries()) {
+          if (k.startsWith("backend-evt-")) {
+            const rawId = k.replace(/^backend-evt-/, "");
+            if (!activeOccurrenceIds.has(rawId)) {
+              posts.delete(k);
+            }
+          }
+        }
+
         const updatedPosts = Array.from(posts.values());
         datedPosts = updatedPosts.filter((p) => p.date).sort(byDateDesc);
         graph = { ...graph, posts: updatedPosts };
@@ -218,12 +239,14 @@ export function createHttpContentRepository(
       }
 
       // 1. Sync Events
+      const activeLocalEvtIds = new Set<string>();
       const eventsDbPath = resolveDbPath("events/events-db.json", "events-db.json");
       if (eventsDbPath && fs.existsSync(eventsDbPath)) {
         try {
           const list = JSON.parse(fs.readFileSync(eventsDbPath, "utf-8"));
           if (Array.isArray(list)) {
             for (const ev of list) {
+              activeLocalEvtIds.add(ev.id);
               const slug = `event-${ev.id}`;
               const unitSlug =
                 (ev.unitName || "").toLowerCase().includes("diobu") || (ev.unitId || "").includes("diobu")
@@ -269,14 +292,26 @@ export function createHttpContentRepository(
           }
         } catch {}
       }
+      // Prune deleted local events
+      for (const [k] of posts.entries()) {
+        if (k.startsWith("evt-post-")) {
+          const rawId = k.replace(/^evt-post-/, "");
+          if (!activeLocalEvtIds.has(rawId)) {
+            posts.delete(k);
+            eventsMap.delete(`event-${rawId}`);
+          }
+        }
+      }
 
       // 2. Sync Programmes
+      const activeProgIds = new Set<string>();
       const progDbPath = resolveDbPath("web-cms/programmes-db.json", "programmes-db.json");
       if (progDbPath && fs.existsSync(progDbPath)) {
         try {
           const list = JSON.parse(fs.readFileSync(progDbPath, "utf-8"));
           if (Array.isArray(list)) {
             for (const pr of list) {
+              activeProgIds.add(pr.id);
               const slug = `prog-${pr.id}`;
               const unitSlug =
                 (pr.unitName || "").toLowerCase().includes("diobu") || (pr.unitId || "").includes("diobu")
@@ -312,14 +347,26 @@ export function createHttpContentRepository(
           }
         } catch {}
       }
+      // Prune deleted programmes
+      for (const [k] of posts.entries()) {
+        if (k.startsWith("prog-post-")) {
+          const rawId = k.replace(/^prog-post-/, "");
+          if (!activeProgIds.has(rawId)) {
+            posts.delete(k);
+            eventsMap.delete(`prog-${rawId}`);
+          }
+        }
+      }
 
       // 3. Sync Posts & Bulletins
+      const activeBulletinIds = new Set<string>();
       const postsDbPath = resolveDbPath("web-cms/posts-db.json", "posts-db.json");
       if (postsDbPath && fs.existsSync(postsDbPath)) {
         try {
           const list = JSON.parse(fs.readFileSync(postsDbPath, "utf-8"));
           if (Array.isArray(list)) {
             for (const b of list) {
+              activeBulletinIds.add(b.id);
               const pId = `bulletin-${b.id}`;
               const unitSlug =
                 (b.unitName || "").toLowerCase().includes("diobu") || (b.unitId || "").includes("diobu")
@@ -339,12 +386,23 @@ export function createHttpContentRepository(
           }
         } catch {}
       }
+      // Prune deleted bulletins
+      for (const [k] of posts.entries()) {
+        if (k.startsWith("bulletin-")) {
+          const rawId = k.replace(/^bulletin-/, "");
+          if (!activeBulletinIds.has(rawId)) {
+            posts.delete(k);
+          }
+        }
+      }
 
       // 4. Sync Media Assets & Unit Visual Identity
       const mediaDbPath = resolveDbPath("web-cms/media-db.json", "media-db.json");
       if (mediaDbPath && fs.existsSync(mediaDbPath)) {
         try {
           const list = JSON.parse(fs.readFileSync(mediaDbPath, "utf-8"));
+          const albumPostId = "album-diobu-cathedral";
+          const gSlug = "gallery-diobu-cathedral";
           if (Array.isArray(list) && list.length > 0) {
             const diobu = units.get("diobu-provincial-headquarters");
             if (diobu) {
@@ -381,7 +439,6 @@ export function createHttpContentRepository(
               height: 800,
               alt: m.fileName ? m.fileName.replace(/[_-]/g, " ").replace(/\.[^.]+$/, "") : "Cathedral Media",
             }));
-            const gSlug = "gallery-diobu-cathedral";
             const diobuGallery: Gallery = {
               slug: gSlug,
               title: "Diobu Provincial Headquarters Cathedral & Ministries",
@@ -399,7 +456,6 @@ export function createHttpContentRepository(
             }
 
             // Add album post
-            const albumPostId = "album-diobu-cathedral";
             posts.set(albumPostId, {
               id: albumPostId,
               kind: "album",
@@ -413,6 +469,13 @@ export function createHttpContentRepository(
               images: diobuPhotos.slice(0, 4),
               gallerySlug: gSlug,
             });
+          } else {
+            // Prune dynamic gallery & album post if media list is empty
+            posts.delete(albumPostId);
+            const idx = graph.galleries.findIndex((g) => g.slug === gSlug);
+            if (idx >= 0) {
+              graph.galleries.splice(idx, 1);
+            }
           }
         } catch {}
       }
