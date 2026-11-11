@@ -1,4 +1,4 @@
-import { MapPin, Phone, Users } from "lucide-react";
+import { Clock, MapPin, Phone, Users } from "lucide-react";
 import Link from "next/link";
 
 import { Paragraphs } from "@/components/patterns/paragraphs";
@@ -97,6 +97,28 @@ export function IntroCard({
               <Link href={routes.unit(parent.slug)} className="font-semibold hover:text-highlight">
                 {parent.slug === "esocs" ? "ESOCS Worldwide" : parent.name}
               </Link>
+            </dd>
+          </div>
+        )}
+        {PLACE_KINDS.has(unit.kind) && (
+          <div className="bg-surface-raised rounded-card border border-border/70 p-3 text-xs">
+            <dt className="flex items-center gap-1.5 font-bold tracking-wider text-foreground uppercase">
+              <Clock className="size-3.5 text-crimson-700 dark:text-crimson-400" />
+              Service Times
+            </dt>
+            <dd className="mt-2 space-y-1.5 text-muted-foreground">
+              <div className="flex items-center justify-between">
+                <span className="font-medium text-foreground">Sunday Worship:</span>
+                <span className="font-mono text-[0.6875rem] font-semibold text-foreground">9am – 1pm</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-medium text-foreground">Tuesday Bible Study:</span>
+                <span className="font-mono text-[0.6875rem] font-semibold text-foreground">6pm – 8pm</span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="font-medium text-foreground">Thursday Midweek:</span>
+                <span className="font-mono text-[0.6875rem] font-semibold text-foreground">6pm – 8pm</span>
+              </div>
             </dd>
           </div>
         )}
