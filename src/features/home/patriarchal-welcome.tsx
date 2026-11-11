@@ -1,13 +1,14 @@
 "use client";
 
-import { BookOpen, Crown, Quote, Radio, Scroll, Sparkles } from "lucide-react";
+import { ArrowRight, Crown, ExternalLink, Sparkles } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import { useState } from "react";
 
 import { SmartImage } from "@/components/media/smart-image";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import type { ImageRef, Organisation, Person } from "@/data/schema/content";
-import { routes } from "@/lib/routes";
 
 export interface PatriarchalWelcomeProps {
   message: Organisation["message"];
@@ -17,157 +18,184 @@ export interface PatriarchalWelcomeProps {
 }
 
 export function PatriarchalWelcome({ message, shepherd, portrait, href }: PatriarchalWelcomeProps) {
-  const [opening = "", ...rest] = message.body;
-  const greeting = opening.split(/(?<=[.!?])\s+/)[0]?.trim() ?? "Peace be unto you, beloved of Mount Zion.";
-  const remainingOpening = opening.slice(greeting.length).trim();
-  const summaryParagraph = remainingOpening || (rest[0] ?? "");
+  const [isEpistleOpen, setIsEpistleOpen] = useState(false);
 
-  const shepherdName =
-    shepherd?.name ?? "His Most Eminence, Baba Aladura Dr. David D. L. Bob-Manuel, OFR, KSC";
-  const shepherdTitle = "Moses Orimolade IX · Prelate of the ESOCS Church Worldwide";
+  // In ESOCS, the Baba Aladura is always addressed with "His Most Eminence"
+  const shepherdTitleHonorific = shepherd?.honorific?.trim() || "His Most Eminence";
+  const shepherdName = shepherd?.name?.includes("Bob-Manuel")
+    ? "Baba Aladura Dr. David D. L. Bob-Manuel, OFR, KSC"
+    : (shepherd?.name ?? "Baba Aladura Dr. David D. L. Bob-Manuel, OFR, KSC");
+  const shepherdSubTitle =
+    "Moses Orimolade IX · Prelate of ESOCS (Eternal Sacred Order of the Cherubim and Seraphim) Worldwide";
 
   return (
     <section
-      id="patriarchal-address"
+      id="pastoral-welcome"
       aria-labelledby="patriarchal-welcome-heading"
-      className="relative isolate overflow-hidden border-t border-border/80 bg-surface py-24 sm:py-32 lg:py-36"
+      className="relative isolate overflow-hidden border-y border-neutral-200/90 bg-neutral-50/70 py-20 sm:py-28 lg:py-32 dark:border-white/10 dark:bg-[#08090c]"
     >
       <div className="mx-auto max-w-wide px-gutter">
-        <div className="grid gap-14 lg:grid-cols-[28rem_1fr] lg:items-center lg:gap-20">
-          {/* Left Column: Authentic Pastoral Portrait & Seal of Office */}
-          <div className="relative mx-auto w-full max-w-md lg:mx-0">
-            {/* Ambient sacred aura */}
-            <div
-              aria-hidden
-              className="absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-tr from-crimson-800/15 via-gold-400/5 to-transparent blur-2xl"
-            />
-
-            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-panel border border-border/80 bg-surface-sunken shadow-2xl">
-              {portrait ? (
-                <SmartImage
-                  image={{ ...portrait, alt: shepherdName }}
-                  fill
-                  sizes="(min-width: 1024px) 450px, 100vw"
-                  className="object-cover object-top"
-                  priority
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center bg-royal-950 text-white">
-                  <Image
-                    src="/brand/esocs-crest.png"
-                    alt="ESOCS Crest"
-                    width={180}
-                    height={180}
-                    className="opacity-90"
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center lg:gap-14 xl:gap-header">
+          {/* Left Column: Dignified Portrait & Plaque */}
+          <div className="lg:col-span-5">
+            <div className="group relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none">
+              <div className="relative aspect-4/5 w-full overflow-hidden rounded-2xl border border-neutral-300/80 bg-neutral-900 shadow-xl transition-all duration-500 sm:aspect-3/4 lg:aspect-4/5 dark:border-white/15 dark:bg-neutral-950">
+                {portrait ? (
+                  <SmartImage
+                    image={{ ...portrait, alt: `${shepherdTitleHonorific} ${shepherdName}` }}
+                    fill
+                    sizes="(min-width: 1024px) 500px, 100vw"
+                    className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-102"
+                    priority
                   />
-                </div>
-              )}
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center bg-neutral-950 text-white">
+                    <Image
+                      src="/brand/esocs-crest.png"
+                      alt="ESOCS Crest"
+                      width={180}
+                      height={180}
+                      className="opacity-90"
+                    />
+                  </div>
+                )}
 
-              {/* Dignified Plaque Overlay */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/95 via-black/75 to-transparent p-6 pt-16 text-white">
-                <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-gold-400 uppercase">
-                  <Crown className="size-3.5 text-crimson-400" />
-                  <span>The Apostolic Throne</span>
-                </div>
-                <h3 className="mt-1 font-display text-lg font-bold text-white sm:text-xl">{shepherdName}</h3>
-                <p className="font-serif text-xs text-white/80 italic">{shepherdTitle}</p>
-              </div>
-            </div>
+                {/* Stately Plaque Overlay */}
+                <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/95 via-black/75 to-transparent p-6 pt-16 text-white sm:p-7">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-black/60 px-3 py-1 text-[0.6875rem] font-bold tracking-widest text-gold-300 uppercase backdrop-blur-md">
+                    <Crown className="size-3 text-gold-400" />
+                    <span>Office of the Prelate · Est. 1925</span>
+                  </div>
 
-            {/* Centenary Watchword Ribbon */}
-            <div className="bg-surface-raised mt-4 flex items-center justify-between gap-3 rounded-card border border-border/80 px-4 py-3 shadow-xs">
-              <div className="flex items-center gap-2">
-                <Sparkles className="size-4 text-crimson-700 dark:text-crimson-400" />
-                <span className="text-xs font-bold text-foreground">Annual Watchword</span>
+                  <p className="mt-2.5 text-xs font-bold tracking-wider text-gold-300 uppercase">
+                    {shepherdTitleHonorific}
+                  </p>
+                  <h3 className="font-display text-xl font-black tracking-tight text-white sm:text-2xl">
+                    {shepherdName}
+                  </h3>
+                  <p className="mt-1 text-xs font-medium text-neutral-300">{shepherdSubTitle}</p>
+                </div>
               </div>
-              <span className="font-serif text-xs font-medium text-crimson-700 italic dark:text-crimson-300">
-                “Sustained by God&apos;s Endless Mercies” (Lam 3:21)
-              </span>
+
+              {/* Annual Watchword Ribbon */}
+              <div className="mt-3.5 flex items-center justify-between gap-3 rounded-xl border border-neutral-200/90 bg-white p-3.5 shadow-xs dark:border-white/10 dark:bg-neutral-900/90">
+                <div className="flex items-center gap-2.5">
+                  <Sparkles className="size-4 shrink-0 text-crimson-800 dark:text-gold-400" />
+                  <div className="text-xs">
+                    <span className="font-bold text-neutral-500 dark:text-neutral-400">
+                      Annual Watchword:{" "}
+                    </span>
+                    <span className="font-serif font-medium text-neutral-900 italic dark:text-white">
+                      “Sustained by God&apos;s Endless Mercies” (Lamentations 3:21)
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right Column: Editorial Pastoral Epistle */}
-          <div className="flex flex-col justify-center">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-crimson-700/30 bg-crimson-800/10 px-3.5 py-1 text-xs font-bold tracking-widest text-crimson-700 uppercase dark:text-crimson-300">
-                <Scroll className="size-3.5" />
-                Apostolic Address
-              </span>
-              <span className="text-xs text-muted-foreground">·</span>
-              <span className="text-xs font-medium text-muted-foreground">Centenary Pastoral Epistle</span>
+          {/* Right Column: Commanding, Engaging Editorial (Styled like reference design) */}
+          <div className="flex flex-col justify-center lg:col-span-7">
+            {/* Header Eyebrow */}
+            <div className="inline-flex w-fit items-center gap-2 rounded-full border border-neutral-300/80 bg-white/80 px-3.5 py-1 text-xs font-bold tracking-wider text-neutral-700 uppercase shadow-xs dark:border-white/10 dark:bg-white/5 dark:text-gold-300">
+              <Crown className="size-3.5 text-crimson-800 dark:text-gold-400" />
+              <span>Our Spiritual Father & Prelate</span>
             </div>
 
+            {/* High-Impact Commanding Headline */}
             <h2
               id="patriarchal-welcome-heading"
-              className="mt-4 font-display text-[clamp(2.25rem,1.8rem+2vw,3.75rem)] leading-[1.08] font-extrabold tracking-tight text-foreground"
+              className="mt-4 font-display text-[clamp(2.5rem,2.1rem+2.8vw,4.25rem)] leading-[1.04] font-black tracking-tight text-balance uppercase"
             >
-              Grace and peace to you,{" "}
-              <span className="font-serif font-normal text-crimson-700 italic dark:text-crimson-400">
-                in Mount Zion.
-              </span>
+              <span className="text-crimson-800 dark:text-gold-400">Our Spiritual</span>{" "}
+              <span className="text-neutral-900 dark:text-white">Father</span>
             </h2>
 
-            {/* Liturgical greeting pullquote with deep red border */}
-            <div className="relative mt-6 border-l-4 border-crimson-800 py-1 pl-6 dark:border-crimson-600">
-              <Quote className="absolute -top-3.5 -left-3 size-6 text-crimson-800/20 dark:text-crimson-400/20" />
-              <blockquote className="font-serif text-xl leading-relaxed text-foreground italic sm:text-2xl">
-                “{greeting}”
-              </blockquote>
+            {/* Engaging, Clear, Inspiring Narrative - Welcoming to Visitors and Faithful Alike */}
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-neutral-700 sm:text-lg dark:text-neutral-300">
+              <p>
+                <strong>
+                  {shepherdTitleHonorific} {shepherdName}
+                </strong>{" "}
+                is the Prelate and Supreme Head of the{" "}
+                <span className="font-semibold text-neutral-900 dark:text-white">
+                  Eternal Sacred Order of the Cherubim and Seraphim (ESOCS)
+                </span>{" "}
+                Worldwide — Moses Orimolade IX. He serves as the spiritual father and shepherd to millions of
+                worshippers across Nigeria, the United Kingdom, the United States, Canada, and global diaspora
+                parishes.
+              </p>
+              <p>
+                A distinguished scholar, administrator, and statesman honored by the Federal Republic of
+                Nigeria with the Officer of the Order of the Federal Republic (OFR) and Knight of Saint
+                Christopher (KSC). Under his pastoral guidance, the church has expanded its missionary reach,
+                nurturing families grounded in Scripture, fervent prayer, and compassionate community care.
+              </p>
+              <p>
+                His message to every seeker and worshipper is one of enduring peace, salvation, and
+                Christ-centered holiness. Whether you are searching for a house of prayer near your home,
+                visiting while traveling, or worshiping with us online, our doors and hearts are open to
+                welcome you.
+              </p>
             </div>
 
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              <p>{summaryParagraph}</p>
-              {rest[0] && rest[0] !== summaryParagraph && <p>{rest[0]}</p>}
-            </div>
-
-            {/* Thematic Foundations */}
-            <div className="mt-8 grid gap-5 border-t border-border/80 pt-6 sm:grid-cols-3">
-              <div className="space-y-1.5">
-                <h4 className="text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
-                  Sovereign Thanksgiving
-                </h4>
-                <p className="text-xs leading-relaxed text-muted-foreground">
-                  Acknowledging the Lord&apos;s hand preserving our families and Order through all seasons.
-                </p>
-              </div>
-              <div className="space-y-1.5">
-                <h4 className="text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
-                  Christ the Cornerstone
-                </h4>
-                <p className="text-xs leading-relaxed text-muted-foreground">
-                  Entering the second centenary anchored solely on Jesus Christ as our foundation.
-                </p>
-              </div>
-              <div className="space-y-1.5">
-                <h4 className="text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
-                  Apostolic Charge
-                </h4>
-                <p className="text-xs leading-relaxed text-muted-foreground">
-                  Remaining steadfast, unmovable, and abounding in love, forgiveness, and prayer.
-                </p>
-              </div>
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="mt-10 flex flex-wrap items-center gap-3.5">
-              <Link
-                href={href}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-[#5B101E] px-7 text-sm font-semibold text-white shadow-sm ring-1 ring-gold-500/20 transition-all hover:bg-[#430B16] hover:shadow-md"
+            {/* Primary Action Button (Dignified Deep Red / Gold in Dark Mode) */}
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <button
+                type="button"
+                onClick={() => setIsEpistleOpen(true)}
+                className="group inline-flex h-12 cursor-pointer items-center justify-center gap-2.5 rounded-full bg-crimson-800 px-8 text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-crimson-900 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:outline-none dark:bg-gold-500 dark:text-neutral-950 dark:hover:bg-gold-400"
               >
-                <BookOpen className="size-4 text-gold-400" />
-                Read Full Pastoral Epistle
-              </Link>
-              <Link
-                href={routes.stream()}
-                className="bg-surface-raised inline-flex h-12 items-center justify-center gap-2 rounded-pill border border-border px-6 text-sm font-semibold text-foreground transition-colors hover:border-crimson-700 hover:text-crimson-700 dark:hover:border-crimson-400 dark:hover:text-crimson-400"
-              >
-                <Radio className="size-4 text-crimson-700 dark:text-crimson-400" />
-                Watch Patriarchal Address
-              </Link>
+                <span>Learn More About His Most Eminence</span>
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </button>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Full Pastoral Address Modal Dialog */}
+      <Dialog open={isEpistleOpen} onOpenChange={setIsEpistleOpen}>
+        <DialogContent className="max-h-[85vh] sm:max-w-2xl">
+          <DialogHeader>
+            <div className="flex items-center gap-2 text-xs font-bold tracking-widest text-crimson-800 uppercase dark:text-gold-400">
+              <Crown className="size-4" />
+              <span>Office of the Prelate · ESOCS Church Worldwide</span>
+            </div>
+            <DialogTitle className="font-display text-2xl font-bold sm:text-3xl">
+              Pastoral Address to the Worldwide Flock
+            </DialogTitle>
+          </DialogHeader>
+
+          <div className="space-y-4 pt-2 text-base leading-relaxed text-muted-foreground">
+            {message.body.map((para, i) => (
+              <p key={i} className="text-justify text-sm sm:text-base">
+                {para}
+              </p>
+            ))}
+          </div>
+
+          <div className="mt-4 border-t border-border pt-4">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <p className="font-display text-sm font-bold text-foreground">
+                  {shepherdTitleHonorific} {shepherdName}
+                </p>
+                <p className="text-xs text-muted-foreground">{shepherdSubTitle}</p>
+              </div>
+              <Link
+                href={href}
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-crimson-800 hover:underline dark:text-gold-400"
+              >
+                <span>Open Dedicated Post</span>
+                <ExternalLink className="size-3.5" />
+              </Link>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
+
+export { PatriarchalWelcome as BabaAladuraMessage };

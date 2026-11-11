@@ -17,17 +17,17 @@
 /* 1. Palette and static tokens ------------------------------------------ */
 
 @theme static {
-  --color-royal-50: oklch(0.97 0.012 265);
-  --color-royal-100: oklch(0.93 0.025 265);
-  --color-royal-200: oklch(0.86 0.05 265);
-  --color-royal-300: oklch(0.76 0.08 265);
-  --color-royal-400: oklch(0.62 0.12 265);
-  --color-royal-500: oklch(0.5 0.14 265);
-  --color-royal-600: oklch(0.42 0.14 265);
-  --color-royal-700: oklch(0.35 0.12 265);
-  --color-royal-800: oklch(0.28 0.1 265);
-  --color-royal-900: oklch(0.22 0.07 265);
-  --color-royal-950: oklch(0.17 0.045 265);
+  --color-royal-50: oklch(0.97 0.003 50);
+  --color-royal-100: oklch(0.93 0.004 50);
+  --color-royal-200: oklch(0.86 0.005 50);
+  --color-royal-300: oklch(0.76 0.006 50);
+  --color-royal-400: oklch(0.62 0.007 50);
+  --color-royal-500: oklch(0.48 0.008 50);
+  --color-royal-600: oklch(0.38 0.008 50);
+  --color-royal-700: oklch(0.3 0.007 50);
+  --color-royal-800: oklch(0.22 0.006 50);
+  --color-royal-900: oklch(0.16 0.005 50);
+  --color-royal-950: oklch(0.12 0.004 50);
 
   --color-gold-50: oklch(0.98 0.02 90);
   --color-gold-100: oklch(0.95 0.045 88);
@@ -53,28 +53,28 @@
   --color-parchment-900: oklch(0.2 0.005 70);
   --color-parchment-950: oklch(0.14 0.004 70);
 
-  /* Liturgical Crimson / Deep Red: The sacred vestments, covenant blood and solemn apostolic dignity. */
-  --color-crimson-50: oklch(0.97 0.02 25);
-  --color-crimson-100: oklch(0.93 0.05 25);
-  --color-crimson-200: oklch(0.85 0.1 25);
-  --color-crimson-300: oklch(0.72 0.16 26);
-  --color-crimson-400: oklch(0.6 0.2 26);
-  --color-crimson-500: oklch(0.5 0.22 26);
-  --color-crimson-600: oklch(0.42 0.2 25);
-  --color-crimson-700: oklch(0.35 0.16 24);
-  --color-crimson-800: oklch(0.28 0.12 24);
-  --color-crimson-900: oklch(0.21 0.08 24);
-  --color-crimson-950: oklch(0.15 0.05 24);
+  /* Liturgical Crimson / Deep Wine: Sacred vestments, covenant blood, and mature dignity. */
+  --color-crimson-50: oklch(0.97 0.015 25);
+  --color-crimson-100: oklch(0.93 0.035 25);
+  --color-crimson-200: oklch(0.85 0.07 25);
+  --color-crimson-300: oklch(0.72 0.12 26);
+  --color-crimson-400: oklch(0.58 0.16 26);
+  --color-crimson-500: oklch(0.48 0.18 26);
+  --color-crimson-600: oklch(0.4 0.16 25);
+  --color-crimson-700: oklch(0.34 0.13 24);
+  --color-crimson-800: oklch(0.28 0.1 24);
+  --color-crimson-900: oklch(0.21 0.07 24);
+  --color-crimson-950: oklch(0.15 0.04 24);
 
-  /* Cool neutrals tinted toward the royal navy: the site's paper, lines and quiet text. */
-  --color-mist-50: oklch(0.985 0.004 255);
-  --color-mist-100: oklch(0.965 0.008 255);
-  --color-mist-200: oklch(0.925 0.013 255);
-  --color-mist-300: oklch(0.87 0.018 257);
-  --color-mist-400: oklch(0.72 0.025 258);
-  --color-mist-500: oklch(0.53 0.03 260);
-  --color-mist-600: oklch(0.48 0.032 262);
-  --color-mist-700: oklch(0.38 0.035 263);
+  /* Architectural warm stone neutrals: paper, lines, and calm text (no blue tint). */
+  --color-mist-50: oklch(0.99 0.002 85);
+  --color-mist-100: oklch(0.97 0.003 85);
+  --color-mist-200: oklch(0.93 0.004 85);
+  --color-mist-300: oklch(0.88 0.005 85);
+  --color-mist-400: oklch(0.72 0.006 85);
+  --color-mist-500: oklch(0.55 0.006 85);
+  --color-mist-600: oklch(0.45 0.005 85);
+  --color-mist-700: oklch(0.35 0.005 85);
 
   --font-sans: var(--font-dm-sans), var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
   --font-display:
@@ -129,14 +129,14 @@
    * Colour role per kind of page. One blue-and-gold family, used only as a small
    * mark (a seal's ring, a dot, a cover's glow): never as a large fill.
    */
-  --color-kind-holy-order: oklch(0.45 0.15 265);
+  --color-kind-holy-order: oklch(0.34 0.13 24);
   --color-kind-headquarters: oklch(0.66 0.12 78);
-  --color-kind-cmc: oklch(0.52 0.1 232);
-  --color-kind-province: oklch(0.55 0.08 200);
-  --color-kind-district: oklch(0.56 0.05 180);
-  --color-kind-branch: oklch(0.55 0.12 250);
-  --color-kind-section: oklch(0.5 0.11 295);
-  --color-kind-directorate: oklch(0.5 0.04 255);
+  --color-kind-cmc: oklch(0.45 0.08 45);
+  --color-kind-province: oklch(0.48 0.09 50);
+  --color-kind-district: oklch(0.42 0.06 60);
+  --color-kind-branch: oklch(0.38 0.1 30);
+  --color-kind-section: oklch(0.4 0.07 40);
+  --color-kind-directorate: oklch(0.35 0.04 50);
 
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --ease-emphasized: cubic-bezier(0.3, 0, 0, 1);
@@ -286,23 +286,23 @@
   --border: var(--color-mist-200);
   --border-strong: var(--color-mist-300);
   --input: var(--color-mist-300);
-  --ring: var(--color-royal-500);
+  --ring: var(--color-crimson-800);
 
-  --primary: var(--color-royal-800);
+  --primary: var(--color-royal-950);
   --primary-hover: var(--color-royal-900);
   --primary-foreground: oklch(1 0 0);
 
-  /* Royal blue carries the actions; gold is reserved for highlights and giving. */
-  --accent: var(--color-royal-600);
-  --accent-hover: var(--color-royal-700);
+  /* Deep wine red carries primary actions; gold is reserved for highlights. */
+  --accent: var(--color-crimson-800);
+  --accent-hover: var(--color-crimson-900);
   --accent-foreground: oklch(1 0 0);
-  --accent-soft: var(--color-royal-50);
-  --accent-soft-foreground: var(--color-royal-800);
+  --accent-soft: var(--color-crimson-50);
+  --accent-soft-foreground: var(--color-crimson-800);
 
   /* Gold for text on light backgrounds; darker than --accent for AA contrast. */
   --highlight: var(--color-gold-700);
 
-  /* Liturgical Crimson / Deep Red: Elders' vestments, covenant blood, solemn dignity. */
+  /* Liturgical Crimson / Deep Wine */
   --crimson: var(--color-crimson-800);
   --crimson-hover: var(--color-crimson-900);
   --crimson-foreground: oklch(1 0 0);
@@ -318,39 +318,39 @@
   --danger-hover: oklch(0.48 0.19 25);
   --danger-foreground: oklch(1 0 0);
   --danger-soft: oklch(0.95 0.025 25);
-  --info: oklch(0.52 0.12 245);
-  --info-soft: oklch(0.95 0.025 245);
+  --info: oklch(0.5 0.08 50);
+  --info-soft: oklch(0.95 0.02 50);
 
-  --overlay: oklch(0.17 0.045 265 / 0.6);
+  --overlay: oklch(0.12 0.004 50 / 0.65);
 }
 
 .dark {
   color-scheme: dark;
 
-  --background: oklch(0.155 0.03 265);
+  --background: oklch(0.12 0.004 50);
   --foreground: var(--color-parchment-100);
 
-  --surface: oklch(0.19 0.032 265);
-  --surface-muted: oklch(0.215 0.035 265);
-  --surface-sunken: oklch(0.13 0.025 265);
+  --surface: oklch(0.16 0.005 50);
+  --surface-muted: oklch(0.19 0.005 50);
+  --surface-sunken: oklch(0.1 0.003 50);
 
-  --muted-foreground: oklch(0.75 0.015 265);
-  --subtle-foreground: oklch(0.62 0.018 265);
+  --muted-foreground: oklch(0.72 0.005 50);
+  --subtle-foreground: oklch(0.58 0.006 50);
 
-  --border: oklch(0.28 0.035 265);
-  --border-strong: oklch(0.35 0.04 265);
-  --input: oklch(0.34 0.04 265);
+  --border: oklch(0.24 0.005 50);
+  --border-strong: oklch(0.3 0.006 50);
+  --input: oklch(0.28 0.006 50);
   --ring: var(--color-gold-400);
 
   --primary: var(--color-parchment-50);
   --primary-hover: var(--color-parchment-200);
-  --primary-foreground: var(--color-royal-950);
+  --primary-foreground: oklch(0.12 0.004 50);
 
-  --accent: oklch(0.7 0.13 262);
-  --accent-hover: oklch(0.76 0.12 262);
-  --accent-foreground: var(--color-royal-950);
-  --accent-soft: oklch(0.3 0.07 265 / 0.55);
-  --accent-soft-foreground: var(--color-royal-100);
+  --accent: var(--color-gold-400);
+  --accent-hover: var(--color-gold-300);
+  --accent-foreground: oklch(0.12 0.004 50);
+  --accent-soft: oklch(0.25 0.05 80 / 0.5);
+  --accent-soft-foreground: var(--color-gold-200);
 
   --highlight: var(--color-gold-300);
 
@@ -359,7 +359,7 @@
   --crimson-foreground: oklch(1 0 0);
   --crimson-soft: oklch(0.28 0.12 24 / 0.5);
 
-  --inverse: var(--color-royal-950);
+  --inverse: oklch(0.98 0.004 85);
 
   --success: oklch(0.74 0.13 155);
   --success-soft: oklch(0.3 0.05 155 / 0.45);
@@ -367,12 +367,12 @@
   --warning-soft: oklch(0.32 0.05 75 / 0.45);
   --danger: oklch(0.7 0.17 25);
   --danger-hover: oklch(0.64 0.17 25);
-  --danger-foreground: var(--color-royal-950);
+  --danger-foreground: oklch(0.12 0.004 50);
   --danger-soft: oklch(0.3 0.07 25 / 0.45);
-  --info: oklch(0.74 0.11 245);
-  --info-soft: oklch(0.3 0.05 245 / 0.45);
+  --info: oklch(0.65 0.06 50);
+  --info-soft: oklch(0.25 0.03 50 / 0.45);
 
-  --overlay: oklch(0.08 0.02 265 / 0.72);
+  --overlay: oklch(0.08 0.004 50 / 0.75);
 }
 
 /* 3. Tailwind mapping --------------------------------------------------- */

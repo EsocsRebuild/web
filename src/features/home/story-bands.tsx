@@ -171,23 +171,9 @@ export function LatestNews({ posts, units }: { posts: Post[]; units: Map<string,
 
 import { WorldwideSanctuaries } from "./worldwide-sanctuaries";
 
-/** "There's a house of prayer near you": automated worldwide sanctuary discovery. */
-export function FindBand({
-  pageCount,
-  headquarters = [],
-  units = [],
-}: {
-  pageCount?: number;
-  headquarters?: Unit[];
-  units?: Unit[];
-}) {
-  return (
-    <WorldwideSanctuaries
-      units={units.length > 0 ? units : headquarters}
-      pageCount={pageCount}
-      headquarters={headquarters}
-    />
-  );
+/** Worldwide Sanctuaries & Parish Directory band with real-time smart automated locator. */
+export function FindBand({ pageCount, headquarters }: { pageCount: number; headquarters: Unit[] }) {
+  return <WorldwideSanctuaries pageCount={pageCount} headquarters={headquarters} />;
 }
 
 export { PatriarchalWelcome, type PatriarchalWelcomeProps } from "./patriarchal-welcome";

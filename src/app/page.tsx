@@ -17,6 +17,8 @@ import { DevotionalHeroBand } from "@/features/devotional/devotional-hero-band";
 import { StreamTeaser } from "@/features/stream/stream-teaser";
 import { StoreTeaser } from "@/features/store/store-teaser";
 import { WorldwideSanctuaries } from "@/features/home/worldwide-sanctuaries";
+import { AppDownloadBand } from "@/features/mobile/app-download-band";
+import { SocialConnectBand } from "@/features/community/social-connect-band";
 import { placeholderFor } from "@/lib/image-placeholders";
 import { routes } from "@/lib/routes";
 
@@ -27,7 +29,6 @@ export default function HomePage() {
   const people = content.listPeople();
   const upcoming = content.listEvents();
   const units = content.listUnits();
-  const headquarters = content.listUnits({ kind: "headquarters" });
   const unitsBySlug = new Map(units.map((u) => [u.slug, u]));
 
   const shepherd = people.find((p) => p.tenure.to === null);
@@ -161,7 +162,14 @@ export default function HomePage() {
       {/* Worship With Us: Weekly Gatherings & First-Time Visitor Guide */}
       <ServiceTimesBand />
 
-      <WorldwideSanctuaries units={units} pageCount={units.length} headquarters={headquarters} />
+      <WorldwideSanctuaries units={units} pageCount={units.length} />
+
+      {/* Mobile Sanctuary: The ESOCS App on App Store & Google Play */}
+      <AppDownloadBand />
+
+      {/* Social Gateway: YouTube, TikTok, Facebook, WhatsApp */}
+      <SocialConnectBand />
+
       <UpcomingBand events={upcoming} />
       <LatestNews posts={editorial} units={unitsBySlug} />
       <Succession people={people} />

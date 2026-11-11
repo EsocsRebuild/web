@@ -353,6 +353,80 @@ export function LocalOverview({ unit, childUnits }: { unit: Unit; childUnits: Un
         </section>
       )}
 
+      {/* Weekly Gathering Times for Physical Parishes & Houses of Prayer */}
+      {isWorshipPlace && (
+        <section
+          aria-labelledby="unit-services-heading"
+          className="overflow-hidden rounded-panel border border-border/80 bg-surface/80 p-6 shadow-xs sm:p-8"
+        >
+          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-crimson-700/20 bg-crimson-800/10 px-3 py-1 text-xs font-bold tracking-wider text-crimson-800 uppercase dark:text-crimson-300">
+                <Calendar className="size-3.5" />
+                Weekly Service Times
+              </span>
+              <h3
+                id="unit-services-heading"
+                className="mt-3 font-display text-xl font-bold tracking-tight text-foreground sm:text-2xl"
+              >
+                Gather With Us in Fellowship
+              </h3>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+                United in white garments, sacred Seraphic hymnody, and apostolic preaching.
+              </p>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
+              <Clock className="size-3.5 text-crimson-700 dark:text-crimson-400" />
+              <span>Standard Order Schedule</span>
+            </div>
+          </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <div className="bg-surface-raised rounded-card border border-border/70 p-4 transition-colors hover:border-crimson-700/30">
+              <span className="text-[0.6875rem] font-bold tracking-wider text-crimson-700 uppercase dark:text-crimson-400">
+                Principal Sunday Liturgy
+              </span>
+              <h4 className="mt-1 text-base font-bold text-foreground">Sunday Divine Worship</h4>
+              <p className="mt-1 font-mono text-xs font-bold text-foreground/90">9:00 AM – 1:00 PM</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                The Holy Liturgy, Celestial Hymns & Apostolic Exposition.
+              </p>
+            </div>
+
+            <div className="bg-surface-raised rounded-card border border-border/70 p-4 transition-colors hover:border-crimson-700/30">
+              <span className="text-[0.6875rem] font-bold tracking-wider text-crimson-700 uppercase dark:text-crimson-400">
+                Midweek Word
+              </span>
+              <h4 className="mt-1 text-base font-bold text-foreground">Tuesday Bible Study</h4>
+              <p className="mt-1 font-mono text-xs font-bold text-foreground/90">6:00 PM – 8:00 PM</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                Scripture Exegesis, Christian Doctrine & Spiritual Growth.
+              </p>
+            </div>
+
+            <div className="bg-surface-raised rounded-card border border-border/70 p-4 transition-colors hover:border-crimson-700/30">
+              <span className="text-[0.6875rem] font-bold tracking-wider text-crimson-700 uppercase dark:text-crimson-400">
+                Prayer & Deliverance
+              </span>
+              <h4 className="mt-1 text-base font-bold text-foreground">Thursday Midweek Service</h4>
+              <p className="mt-1 font-mono text-xs font-bold text-foreground/90">6:00 PM – 8:00 PM</p>
+              <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+                Spiritual Deliverance, Intercession & Testimonies.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-5 flex items-start gap-2.5 border-t border-border/70 pt-4 text-xs text-muted-foreground">
+            <Sparkles className="mt-0.5 size-3.5 shrink-0 text-crimson-700 dark:text-crimson-400" />
+            <span>
+              <strong>Guest note:</strong> All first-time worshippers and seekers are warmly welcome. Modest
+              everyday clothing is welcome; clean guest prayer soutanes are provided on arrival. Footwear is
+              removed before stepping onto the sanctuary prayer floor in biblical reverence (Exodus 3:5).
+            </span>
+          </div>
+        </section>
+      )}
+
       {childUnits.length > 0 && (
         <section aria-labelledby="children-heading" className="grid gap-4">
           <SectionHeading
